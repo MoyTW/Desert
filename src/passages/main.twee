@@ -1,0 +1,36 @@
+:: StoryTitle
+Desert
+
+
+:: StoryData
+{
+	"ifid": "D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC"
+}
+
+
+:: IdentifyClient
+<<script>>
+const storage = window.localStorage;
+const clientId = storage.getItem('multiplayerClientId');
+
+if (clientId && setup.Websocket.isUUID(clientId)) {
+  State.variables.clientId = clientId;
+  console.log('Retrieved clientId from localstorage as ' + clientId)
+} else {
+  const newClientId = setup.uuidv4();
+  storage.setItem('multiplayerClientId', newClientId);
+  State.variables.clientId = newClientId;
+  console.log('Generated new clientId as ' + newClientId)
+}
+<</script>>\
+
+
+:: Start
+<<include [[IdentifyClient]]>>\
+/* Websocket tracking */\
+<<set $shouldBeConnected to false>>\
+<<set $websocketProcessedUpToMs to 0>>\
+TODO: game
+<<button 'Connect'>>
+  <<connect '4f1d871c-aa03-4522-ba15-a2c8698d6d12'>>
+<</button>>

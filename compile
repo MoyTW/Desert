@@ -1,0 +1,14 @@
+#!/bin/bash
+
+rm -rf src/build
+tsc
+mkdir -p html
+tweego src -f sugarcube-2.36.1-tmoy -o ./html/index.html
+rm -rf html/images
+mkdir html/images
+cp -r images ./html
+# if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+#   xdg-open http://localhost:8080/html/tweego_run.html
+# elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+#   start http://localhost:8080/html/tweego_run.html
+# fi

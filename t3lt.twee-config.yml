@@ -1,0 +1,17 @@
+sugarcube-2:
+  macros:
+    disable:
+      name: disable
+      container: true
+    send:
+      name: send
+      container: true
+    receive:
+      name: receive
+      container: true
+    connect:
+      name: connect
+    endmultiplayergame:
+      name: endmultiplayergame
+    leavemultiplayersession:
+      name: leavemultiplayersession
