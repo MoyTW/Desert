@@ -1,6 +1,7 @@
 (function () {
   const NETWORK_DIALOG_CLASS = 'networkerrordialog'
 
+  var _clientId: string | undefined = undefined
   var _chatSocket: WebSocket | undefined = undefined
   const _handlers: Record<string, (data: object) => void> = {}
   const _sendBuffer: object[] = []
@@ -18,11 +19,6 @@
     } else {
       return false
     }
-  }
-
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-  (setup as any).Websocket.isUUID = function(s: string) {
-    return uuidRegex.test(s)
   }
 
   const _registerHandler = function(messageType: string, handler: (data: object) => void) {
@@ -336,4 +332,30 @@
     $("#ui-overlay").addClass("ui-close");
     $('#ui-dialog-close').show()
   })
+
+  // Client identification utilities
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  const _isUuid = function(s: string) {
+    return uuidRegex.test(s)
+  }
+
+  const _uuidv4 = function() {
+    return (`10000000-1000-4000-8000-100000000000`).replace(/[018]/g, c =>
+      ((c as any) ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> (c as any) / 4).toString(16)
+    );
+  }
+
+  // Identify the client
+  const storage = window.localStorage
+  const storedClientId = storage.getItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_ClientId`)
+
+  if (storedClientId && _isUuid(storedClientId)) {
+     _clientId = storedClientId
+    console.log('Retrieved clientId from localstorage as ' + storedClientId)
+  } else {
+    const newClientId = _uuidv4()
+    storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_ClientId`, newClientId)
+    _clientId = newClientId;
+    console.log('Generated new clientId as ' + newClientId)
+  }
 }());
