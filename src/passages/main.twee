@@ -12,7 +12,30 @@ Desert
 /* Websocket tracking */\
 <<set $shouldBeConnected to false>>\
 <<set $websocketProcessedUpToMs to 0>>\
-TODO: game
-<<button 'Connect'>>
-  <<connect '4f1d871c-aa03-4522-ba15-a2c8698d6d12'>>
-<</button>>
+<h1>Main Menu</h1>
+<<button [[TODO: Game Hosting!|SelectCharacter]]>><</button>>
+
+
+:: SelectCharacter
+TODO: Implement!
+<<button [[The Faithful|TheFaithfulIntro]]>><</button>>
+<<button [[The Apostate|TheApostateIntro]]>><</button>>
+
+
+:: TheFaithfulIntro
+<h1>A Letter From Home</h1>\
+Most of \
+<div class='tooltip'><<link "Ma Tiger's">><</link>><span class='tooltiptext'>Legally Ann Wang. Didn't matter. Whether friend, foster child, or government official, it was always Ma Tiger.</span></div> \
+letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses. She considers them so important that she has a \
+<div class='tooltip'><<link 'special brush,'>><</link>><span class='tooltiptext'>Ebiaishe stole it once and hid it under the sink. She paid dearly for that prank.</span></div> \
+stored on a high shelf in her study.
+
+This letter is not like those letters. Its envelope is white. There is no return address. JEKUSHEKE WANG, it says, as if the computer that printed it could comprehend only capitals.
+
+<<button [[Open the letter.]]>><</button>>
+
+
+
+:: TheApostateIntro
+<h1>A Letter From Home</h1>\
+
