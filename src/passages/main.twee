@@ -12,7 +12,6 @@ Desert
 /* Websocket tracking */\
 <<set $shouldBeConnected to false>>\
 <<set $websocketProcessedUpToMs to 0>>\
-<<set $sessionId>>
 TODO: game
 <<button 'Connect'>>
   <<connect '4f1d871c-aa03-4522-ba15-a2c8698d6d12'>>

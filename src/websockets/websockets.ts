@@ -1,3 +1,10 @@
+/**
+ * State variables used:
+ * 1. $sessionId
+ * 2. $shouldBeConnected
+ * 3. $websocketProcessedUpToMs
+ */
+
 (function () {
   const NETWORK_DIALOG_CLASS = 'networkerrordialog'
 
@@ -61,7 +68,7 @@
 
       _chatSocket!.send(JSON.stringify({
         'type': 'CATCH_UP',
-        'clientId': State.getVar('$clientId'),
+        'clientId': _clientId,
         // We use current because we want every message since our last save
         // TODO: If you join an in-progress game through join instead of using the load button, this will be 0 and you'll
         // get the entire list, changing the state in unexpected ways!
@@ -172,7 +179,7 @@
         return this.error(`type and clientId are reserved properties on a message object!`);
       }
 
-      const msgObj = {type: this.args[0], clientId: State.getVar('$clientId')};
+      const msgObj = {type: this.args[0], clientId: _clientId};
       Object.assign(msgObj, result);
       _send(State.getVar('$sessionId'), msgObj);
 
@@ -321,7 +328,7 @@
     if (State.getVar('$shouldBeConnected') === true) {
       _send(State.getVar('$sessionId'), {
         'type': 'AUTOSAVE',
-        'clientId': State.getVar('$clientId'),
+        'clientId': _clientId,
         'serializedSave': Save.serialize()
       });
     }
