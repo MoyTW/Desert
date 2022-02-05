@@ -23,16 +23,34 @@ TODO: Implement!
 
 
 :: TheFaithfulIntro
+<style>
+.tfi-letter {
+  border-style: double;
+  border-color: #ffd700;
+  border-width: medium;
+}
+</style>\
 <h1>A Letter From Home</h1>\
 Most of \
-<div class='tooltip'><<link "Ma Tiger's">><</link>><span class='tooltiptext'>Legally Ann Wang. Didn't matter. Whether friend, foster child, or government official, it was always Ma Tiger.</span></div> \
-letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses. She considers them so important that she has a \
-<div class='tooltip'><<link 'special brush,'>><</link>><span class='tooltiptext'>Ebiaishe stole it once and hid it under the sink. She paid dearly for that prank.</span></div> \
-stored on a high shelf in her study.
+<div class='tooltip'><<link "Ma Tiger's">><</link>><span class='tooltiptext'>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.</span></div> \
+letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
 
-This letter is not like those letters. Its envelope is white. There is no return address. JEKUSHEKE WANG, it says, as if the computer that printed it could comprehend only capitals.
+This letter is not like those letters. Its envelope is white. There is no return address. The mailing address is machine printed, all caps. \
+<div class='tooltip'><<link "JEKUSHEKE WANG.">><</link>><span class='tooltiptext'>That's you, Ma Tiger's faithful foster son.</span></div> \
+If she hadn't instructed you to keep an eye out, you'd have tossed it without a second thought.
 
-<<button [[Open the letter.]]>><</button>>
+<span id='open-letter' class='expand-btn'><<button "Open the letter.">>
+  <<replace '#open-letter'>>\
+  You slide a fingernail under the flap and pull. The letter is short, its letters uncharacteristically shaky.
+
+  <div class='tfi-letter'>Jekusheke,
+
+  Can you come to Christie's on the 19th?
+
+  Love,
+  Ma Tiger</div>
+  <</replace>>
+<</button>></span>
 
 
 

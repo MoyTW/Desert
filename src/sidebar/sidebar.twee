@@ -1,2 +1,2 @@
 :: RightSidebar
-TODO: Sidebar!
+<<button 'Restart'>><<run Engine.restart()>><</button>>
