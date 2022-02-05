@@ -29,3 +29,7 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.tooltip:focus-within .tooltiptext {
+  visibility: visible;
+}
