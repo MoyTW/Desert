@@ -8,6 +8,15 @@ Desert
 }
 
 
+:: Widgets [widget]
+<<widget "tooltip" container>>\
+  <div class='tooltip'>\
+    <<link _args[0]>><</link>>\
+    <span class='tooltiptext'>_contents</span>\
+  </div>\
+<</widget>>\
+
+
 :: Start
 /* Websocket tracking */\
 <<set $shouldBeConnected to false>>\
@@ -24,8 +33,8 @@ TODO: Implement!
 
 :: TheFaithfulIntro
 <style>
-.tfi-letter {
-  border-style: double;
+.p-tfi-letter {
+  border-style: solid;
   border-color: #ffd700;
   border-width: medium;
 }
@@ -35,25 +44,77 @@ Most of \
 <div class='tooltip'><<link "Ma Tiger's">><</link>><span class='tooltiptext'>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.</span></div> \
 letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
 
-This letter is not like those letters. Its envelope is white. There is no return address. The mailing address is machine printed, all caps. \
+This letter was not like those letters. Its envelope was white. There was no return address. The mailing address was machine printed, all caps. \
 <div class='tooltip'><<link "JEKUSHEKE WANG.">><</link>><span class='tooltiptext'>That's you, Ma Tiger's faithful foster son.</span></div> \
 If she hadn't instructed you to keep an eye out, you'd have tossed it without a second thought.
 
-<span id='open-letter' class='expand-btn'><<button "Open the letter.">>
+Instead you opened it and read it, and now you're sitting in one of the cheap bars that squat in the shadows of Reno's ruined casinos. This one, Christie's, is themed like an old Wild West saloon, and \
+<div class='tooltip'><<link "maintained about as well.">><</link>><span class='tooltiptext'>Nah. It's not that bad, really, even if it is a bit of a tourist trap, and their diet coke is the same as anywhere else's.</span></div>
+
+You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table and muttering about long-gone glory.
+
+<span id='open-letter' class='expand-btn'><<button "Read Ma Tiger's letter again.">>
   <<replace '#open-letter'>>\
-  You slide a fingernail under the flap and pull. The letter is short, its letters uncharacteristically shaky.
+  You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
 
-  <div class='tfi-letter'>Jekusheke,
+  <div class='p-tfi-letter'>Jekusheke,
 
-  Can you come to Christie's on the 19th?
+  I'm sorry to impose, but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
+
+  Don't tell anybody else about this. It's a family matter. I will explain when we meet.
+
+  Also, do not call or text or email in response. Just be there.
 
   Love,
-  Ma Tiger</div>
+  Ma Tiger</div>\
+
+  You fold it neatly and replace it. Nothing to do but wait.
+
+  <<button "Wait.">>
+    /* TODO */
+  <</button>>
   <</replace>>
 <</button>></span>
 
 
 
 :: TheApostateIntro
-<h1>A Letter From Home</h1>\
+<style>
+.p-tfi-letter {
+  border-style: solid;
+  border-color: #ffd700;
+  border-width: medium;
+}
+</style>\
+<h1>July 19, 2055</h1>\
+<h2>Reno, Nevada</h2>\
+You pull Ma Tiger's letter out of your pocket for the hundredth time as your cab winds its way through Reno's roads. You do not look at it. Instead you stare out at the houses as they pass, watch the casinos with their neon signs, doubtless impressive outside of the light of day. You finger the letter, pull it out, put it back.
 
+<div class='tooltip'><<link "Ma Tiger.">><</link>><span class='tooltiptext'>In formal contexts, Ms. Tiger. You never learned if Ma was her real name or not.</span></div> Your mother of eleven years, eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it so you stole away in shame, because facing back up would be worse than death.
+
+You don't even know how the <<tooltip "courier">>Tall female with a slight build, short black hair, long face and glasses, concealed pepper spray and two knives.<</tooltip>> found you. Must've been an expensive ask.
+
+The car chimes its five minute warning. Almost time. The letter's in your hand.
+
+<span id='open-letter' class='expand-btn'><<button "Read it again.">>
+  <<replace '#open-letter'>>\
+  <div class='p-tfi-letter'>Ebiaishe,
+
+  I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
+  
+  You know too that the past is a painful thing. For me, I had learned it twice before, and now it is a lesson I have learned yet again, except that this time I cannot face it alone. So I am asking for your help. Ebiaishe, today I find that I do not know who to trust, and so I beg of you, if you have any love left for the woman who was once your mother, please heed this letter. I will explain once we meet.
+
+  I will be in Reno, Nevada on July 19th. If you are willing to help me, meet me then at Christie's, 1718 Holcomb Ave. I am sorry, but I can't give an exact time. I will stay until at least 10pm.
+
+  Don't try to contact me. Don't tell anybody else about this. It's a family matter.
+
+  With love,
+  Ma Tiger</div>\
+
+  The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
+
+  <<button "Enter.">>
+    /* TODO */
+  <</button>>
+  <</replace>>
+<</button>></span>
