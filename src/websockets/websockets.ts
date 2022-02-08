@@ -173,6 +173,9 @@
       }
 
       const rest = this.args.full.replace(this.args[0], '').slice(3).trim();
+      if (!rest) {
+        return this.error(`Cannot send: no data object specified! Use {} for an empty data object.`);
+      }
 
       try {
         Scripting.evalJavaScript('State.temporary.websocketTemp = ' + rest);
