@@ -1,0 +1,5 @@
+:: HideAndShowWidget [widget]
+<<widget "hideandshow">>\
+  <<addclass _args[0] "hidden">>\
+  <<removeclass _args[1] "hidden">>\
+<</widget>>\

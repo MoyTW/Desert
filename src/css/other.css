@@ -3,6 +3,16 @@ body {
   font: 18px/1 Helmet,Freesans,sans-serif
 }
 
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+  display: block;
+}
+
 .expand-btn button {
   background-color: #08804c;
 }
