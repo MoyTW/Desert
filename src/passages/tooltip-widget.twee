@@ -1,0 +1,7 @@
+:: TooltipWidget [widget]
+<<widget "tooltip" container>>\
+  <div class='tooltip'>\
+    <<link _args[0]>><</link>>\
+    <span class='tooltiptext'>_contents</span>\
+  </div>\
+<</widget>>\

@@ -8,15 +8,6 @@ Desert
 }
 
 
-:: Widgets [widget]
-<<widget "tooltip" container>>\
-  <div class='tooltip'>\
-    <<link _args[0]>><</link>>\
-    <span class='tooltiptext'>_contents</span>\
-  </div>\
-<</widget>>\
-
-
 :: Start
 /* Websocket tracking */\
 <<set $shouldBeConnected to false>>\
@@ -40,16 +31,11 @@ TODO: Implement!
 }
 </style>\
 <h1>A Letter From Home</h1>\
-Most of \
-<div class='tooltip'><<link "Ma Tiger's">><</link>><span class='tooltiptext'>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.</span></div> \
-letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
+Most of <<tooltip "Ma Tiger's">>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.<</tooltip>> letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
 
-This letter was not like those letters. Its envelope was white. There was no return address. The mailing address was machine printed, all caps. \
-<div class='tooltip'><<link "JEKUSHEKE WANG.">><</link>><span class='tooltiptext'>That's you, Ma Tiger's faithful foster son.</span></div> \
-If she hadn't instructed you to keep an eye out, you'd have tossed it without a second thought.
+This letter was not like those letters. Its envelope was white. There was no return address. The mailing address was machine printed, all caps. <<tooltip "JEKUSHEKE WANG.">>That's you, Ma Tiger's faithful foster son.<</tooltip>> If she hadn't instructed you to keep an eye out, you'd have tossed it without a second thought.
 
-Instead you opened it and read it, and now you're sitting in one of the cheap bars that squat in the shadows of Reno's ruined casinos. This one, Christie's, is themed like an old Wild West saloon, and \
-<div class='tooltip'><<link "maintained about as well.">><</link>><span class='tooltiptext'>Nah. It's not that bad, really, even if it is a bit of a tourist trap, and their diet coke is the same as anywhere else's.</span></div>
+Instead you opened it and read it, and now you're sitting in one of the cheap bars that squat in the shadows of Reno's ruined casinos. This one, Christie's, is themed like an old Wild West saloon, and <<tooltip "maintained about as well.">>Nah. It's not that bad, really, even if it is a bit of a tourist trap, and their diet coke is the same as anywhere else's.<</tooltip>>
 
 You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table and muttering about long-gone glory.
 
@@ -88,9 +74,9 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 </style>\
 <h1>July 19, 2055</h1>\
 <h2>Reno, Nevada</h2>\
-You pull Ma Tiger's letter out of your pocket for the hundredth time as your cab winds its way through Reno's roads. You do not look at it. Instead you stare out at the houses as they pass, watch the casinos with their neon signs, doubtless impressive outside of the light of day. You finger the letter, pull it out, put it back.
+You pull Ma Tiger's letter out of your pocket for the hundredth time as your cab winds its way through Reno's roads. You do not look at it. Instead you stare out at the houses as they pass, watch the casinos with their neon signs, doubtless impressive outside of the light of day. You finger the letter, put it back, pull it out.
 
-<div class='tooltip'><<link "Ma Tiger.">><</link>><span class='tooltiptext'>In formal contexts, Ms. Tiger. You never learned if Ma was her real name or not.</span></div> Your mother of eleven years, eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it so you stole away in shame, because facing back up would be worse than death.
+<<tooltip "Ma Tiger.">>In formal contexts, Ms. Tiger. You never learned if Ma was her real name or not.<</tooltip>> Your mother of eleven years, eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it so you stole away in shame, because facing back up would be worse than death.
 
 You don't even know how the <<tooltip "courier">>Tall female with a slight build, short black hair, long face and glasses, concealed pepper spray and two knives.<</tooltip>> found you. Must've been an expensive ask.
 
