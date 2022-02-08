@@ -10,7 +10,7 @@
 
   var _clientId: string | undefined = undefined
   var _chatSocket: WebSocket | undefined = undefined
-  const _handlers: Record<string, (data: object) => void> = {}
+  const _handlers: Record<string, Record<string, (data: object) => void>> = {}
   const _sendBuffer: object[] = []
 
   // Deliberately not tying it into Sugarcube's debug because turning that on makes everything hideous
@@ -26,10 +26,17 @@
     } else {
       return false
     }
-  }
+  };
 
-  const _registerHandler = function(messageType: string, handler: (data: object) => void) {
-    _handlers[messageType] = handler
+  (setup as any).Websocket.getClientId = function(): string | undefined {
+    return _clientId
+  };
+
+  const _registerHandler = function(messageType: string, handlerKey: string, handler: (data: object) => void) {
+    if (_handlers[messageType] == undefined) {
+      _handlers[messageType] = {}
+    }
+    _handlers[messageType][handlerKey] = handler
   };
 
   const _connect = function(sessionId: string, sendOnOpen?: object) {
@@ -83,12 +90,13 @@
 
     _chatSocket.onmessage = function(e: MessageEvent<any>) {
       const data = JSON.parse(e.data);
-      const handler = _handlers[data['type']];
+      const handlers = Object.values(_handlers[data['type']]);
 
       console.log('Processing message: ', data['type']);
 
       State.setVar('$websocketProcessedUpToMs', data['server_timestamp_ms'])
-      handler(data);
+
+      handlers.forEach((handler) => handler(data));
     };
 
     _chatSocket.onerror = function(ev: Event) {
@@ -125,7 +133,7 @@
     }
   }
 
-  _registerHandler('CATCH_UP', function(data: any) {
+  _registerHandler('CATCH_UP', 'System', function(data: any) {
     const serializedSave = data['serialized_save']
     console.log('Attempting to catch up! Loading:', serializedSave !== undefined);
     if (serializedSave) {
@@ -134,10 +142,10 @@
     for (const message of data['messages']) {
       // TODO: There's surely a more elegant way of dealing with this
       if (message['type'] !== 'clientJoin') {
-        const handler = _handlers[message['type']];
+        const handlers = Object.values(_handlers[message['type']]);
         console.log('catching up', message['type']);
         State.setVar('$websocketProcessedUpToMs', message['server_timestamp_ms'])
-        handler(message);
+        handlers.forEach((handler) => handler(data))
       }
     }
     State.setVar('$websocketProcessedUpToMs', data['server_timestamp_ms']);
@@ -199,18 +207,21 @@
   Macro.add('receive', {
     tags: null,
     handler: function() {
-      // TODO: Check if passage is StoryInit?
-      if (typeof this.args[0] !== 'string') {
-        return this.error(`${this.args[0]} is not a string, and is therefore ineligible for a receive target!`);
+      // TODO: Possibly add in a no-op if you've already preprocessed the tags?
+      if (typeof this.args[0] !== 'string' || this.args[0] == '') {
+        return this.error(`Receive macro's first arg, ${this.args[0]} is not a valid string!`);
       }
-      if (_handlers[this.args[0]]) {
+      if (typeof this.args[1] !== 'string' || this.args[1] == '') {
+        return this.error(`Receive macro's second arg, ${this.args[1]} is not a valid string!`);
+      }
+      if (_handlers[this.args[0]] != undefined && _handlers[this.args[0]][this.args[1]]) {
         return;
       }
 
       console.log(`Found receive macro for ${this.args[0]}`);
 
       const macroPayload = this.payload;
-      _registerHandler(this.args[0], function(data: object) {
+      const payloadFn = function(data: object) {
         if (State.temporary.receiveData !== undefined) {
           console.error('_receiveData is set when it should not be! Overwriting!')
         }
@@ -221,7 +232,9 @@
         }
 
         State.temporary.receiveData = undefined;
-      })
+      }
+
+      _registerHandler(this.args[0], this.args[1], payloadFn)
     }
   })
 
