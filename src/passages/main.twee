@@ -74,25 +74,46 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 
   "Hey," you say to the bartender. He looks up from his phone. "Can I get another diet coke?"
 
-  He nods and reaches under the counter. "Got stood up?"
+  He nods, takes your glass, puts it under the soda tap, presses a button. <<tooltip "Ten cents' worth">>They charge $8, $2 for refills.<</tooltip>> of syrup and bubbles fizz into the cup. "Here," he says, handing it back.
+
+  "Thanks."
+  
+  He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
 
   <span id='convo-btn' class="expand-btn">\
-    <<button [["Seems so."|FaithfulStoodUpSeemsSo]]>><</button>>
-    <<button [["Well, we picked a date, not a time."|FaithfulStoodUpNoTimeDecided]]>><</button>>
-    <<button [["None of your concern, friend."|FaithfulStoodUpBusinessIsMyOwn]]>><</button>>
+    <<button "Seems so.">><<hideandshow "#convo-btn" "#convo-seems-so-text">><</button>>
+    <<button "Well, we picked a date, not a time.">><<hideandshow "#convo-btn" "#convo-date-text">><</button>>
+    <<button "None of your concern, friend.">><<hideandshow "#convo-btn" "#convo-concern-text">><</button>>
   </span>\
 </span>\
-
-
-:: FaithfulStoodUpSeemsSo
-<h1>July 19, 2055</h1>\
-<h2>Stood up?</h2>\
+<span id="convo-seems-so-text" class="hidden">\
 "Seems so," you say.
 
 The bartender nods. "That's rough, buddy."
 
 "I'll wait as long as it takes." He steps up, opens his mouth. "Thanks for asking," you say, waving him off. Hint taken, he retreats back along the bar.
 
+<<include "FaithfulWaitInChristies">>
+</span>\
+<span id="convo-date-text" class="hidden">\
+You toss out a chuckle. "Well," you sigh, "I had the date, but not the time."
+
+The bartender nods sympathetically. "That's rough, buddy."
+
+"I'll give it a little longer. Thanks for asking," you say, waving him off. He takes the hint and retreats back along the bar.
+
+<<include "FaithfulWaitInChristies">>
+</span>\
+<span id="convo-concern-text" class="hidden">\
+You clear your throat. "None of your concern, friend."
+
+The bartender shrugs, retreats.
+
+<<include "FaithfulWaitInChristies">>
+</span>
+
+
+:: FaithfulWaitInChristies
 Come on, Ma. It's been a little over four hours now. What's going on?
 
 @@#fsu-wb;<<button "Wait.">>
@@ -114,41 +135,6 @@ Come on, Ma. It's been a little over four hours now. What's going on?
     }
   <</script>><</receive>>
 <</nobr>>
-
-
-:: FaithfulStoodUpNoTimeDecided
-<h1>July 19, 2055</h1>\
-<h2>Stood up?</h2>\
-You chuckle. "Well," you sigh, "I had the date, but not the time."
-
-The bartender nods sympathetically. "That's rough, buddy."
-
-"I'll give it a little longer. Thanks for asking," you say, waving him off. He takes the hint and retreats back along the bar.
-
-Come on, Ma. It's been a little over four hours now. What's going on?
-
-
-:: FaithfulStoodUpBusinessIsMyOwn
-<h1>July 19, 2055</h1>\
-<h2>Bartender Blues</h2>\
-You clear your throat. "None of your concern, friend."
-
-The bartender shrugs, retreats.
-
-Come on, Ma. It's been a little over four hours now. What's going on?
-
-
-<span id="convo-seems-so" class="hidden">\
-  "Seems that way."
-
-  He nods sympathetically. "You want something harder?"
-
-  "Thanks, but I'll stick with the diet coke."
-
-  He shrugs and takes your cup, puts it under the soda tap, presses a button. <<tooltip "Ten cents' worth">>They charge $8, $2 for refills.<</tooltip>> of syrup and bubbles fizz into the cup. "Here," he says, handing it back.
-
-  "Appreciate it."
-</span>\
 
 
 :: TheApostateIntro

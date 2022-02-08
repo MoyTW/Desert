@@ -1,5 +1,5 @@
 :: HideAndShowWidget [widget]
 <<widget "hideandshow">>\
-  <<addclass _args[0] "hidden">>\
-  <<removeclass _args[1] "hidden">>\
+  <<run $(_args[0]).addClass("hidden")>>\
+  <<run $(_args[1]).removeClass("hidden")>>\
 <</widget>>\
