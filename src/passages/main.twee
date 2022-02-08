@@ -25,16 +25,18 @@ TODO: Implement!
 <<button [[The Faithful|TheFaithfulIntro]]>>
   <<set $hostCharacterRole to 'Faithful'>>
   <<set $hostClientId to setup.Websocket.getClientId()>>
+  <<set $sessionId to "6c304596-13da-440e-995b-d01027a19bca">>\
+  <<connect $sessionId>>\
 <</button>>
 <<button [[The Apostate|TheApostateIntro]]>>
   <<set $hostCharacterRole to 'Apostate'>>
   <<set $hostClientId to setup.Websocket.getClientId()>>
+  <<set $sessionId to "1c304596-13da-440e-995b-d01027a19bca">>\
+  <<connect $sessionId>>\
 <</button>>
 
 
 :: TheFaithfulIntro
-<<set $sessionId to "6c304596-13da-440e-995b-d01027a19bca">>\
-<<connect $sessionId>>\
 <style>
 .p-tfi-letter {
   border-style: solid;
@@ -134,20 +136,18 @@ The bartender shrugs, retreats.
 Come on, Ma. It's been a little over four hours now. What's going on?
 
 @@#fsu-wb;<<button "Wait.">>
-  <<send 'FAITHFUL_WAITING' {}>><<script>>
+  <<send 'THE_FAITHFUL_INTRO_WAIT' {}>><<script>>
     $("#fsu-wb button").text("Sending to server...")>> 
     $("#fsu-wb button").prop("disabled", true)
   <</script>><</send>> 
 <</button>>@@\
 <<nobr>>
-  <<receive 'APOSTATE_ARRIVES' 'Faithful'>>
+  <<receive 'THE_APOSTATE_INTRO_ENTER' 'Faithful'>>
     TODO: this
   <</receive>>
-  <<receive 'FAITHFUL_WAITING' 'Faithful'>><<script>>
-    if (setup.isFaithful) {
-      $("#fsu-wb button").text("Waiting for partner...")>>
-      $("#fsu-wb button").prop("disabled", true)
-    }
+  <<receive 'THE_FAITHFUL_INTRO_WAIT' 'Faithful'>><<script>>
+    $("#fsu-wb button").text("Waiting for partner...")>>
+    $("#fsu-wb button").prop("disabled", true)
   <</script>><</receive>>
 <</nobr>>
 
@@ -170,12 +170,15 @@ You don't even know how the <<tooltip "courier">>Tall female with a slight build
 
 The car chimes its five minute warning. Almost time. The letter's in your hand.
 
-<span id='open-letter' class='expand-btn'><<button "Read it again.">>
-  <<replace '#open-letter'>>\
+<span id='open-letter-btn' class='expand-btn'><<button "Read it again.">>
+  <<send 'THE_APOSTATE_INTRO_1' {}>><<hideandshow "#open-letter-btn" "#open-letter-text">><</send>>
+  <<receive 'THE_APOSTATE_INTRO_1' 'Apostate'>><<hideandshow "#open-letter-btn" "#open-letter-text">><</receive>>
+<</button>></span>\
+<span id="open-letter-text" class='hidden'>\
   <div class='p-tfi-letter'>Ebiaishe,
 
   I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
-  
+
   You know too that the past is a painful thing. For me, I had learned it twice before, and now it is a lesson I have learned yet again, except that this time I cannot face it alone. So I am asking for your help. Ebiaishe, today I find that I do not know who to trust, and so I beg of you, if you have any love left for the woman who was once your mother, please heed this letter. I will explain once we meet.
 
   I will be in Reno, Nevada on July 19th. If you are willing to help me, meet me then at Christie's, 1718 Holcomb Ave. I am sorry, but I can't give an exact time. I will stay until at least 10pm.
@@ -187,8 +190,19 @@ The car chimes its five minute warning. Almost time. The letter's in your hand.
 
   The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
 
-  <<button "Enter.">>
-    /* TODO */
-  <</button>>
-  <</replace>>
-<</button>></span>
+  @@#tai-enter;<<button "Enter.">>
+    <<send 'THE_APOSTATE_INTRO_ENTER' {}>><<script>>
+      $("#tai-enter button").text("Sending to server...")
+      $("#tai-enter button").prop("disabled", true)
+    <</script>><</send>>
+  <</button>>@@\
+  <<nobr>>
+    <<receive 'THE_FAITHFUL_INTRO_WAIT' 'Apostate'>><<script>>
+      TODO: this
+    <</script>><</receive>>
+    <<receive 'THE_APOSTATE_INTRO_ENTER' 'Apostate'>><<script>>
+      $("#tai-enter button").text("Waiting for partner...")
+      $("#tai-enter button").prop("disabled", true)
+    <</script>><</receive>>
+  <</nobr>>
+</span>\
