@@ -17,9 +17,19 @@ Desert
 
 
 :: SelectCharacter
+<<set $hostCharacterRole to undefined>>
+<<set $partnerCharacterRole to undefined>>
+<<set $hostClientId to undefined>>
+<<set $partnerClientId to undefined>>
 TODO: Implement!
-<<button [[The Faithful|TheFaithfulIntro]]>><</button>>
-<<button [[The Apostate|TheApostateIntro]]>><</button>>
+<<button [[The Faithful|TheFaithfulIntro]]>>
+  <<set $hostCharacterRole to 'Faithful'>>
+  <<set $hostClientId to setup.Websocket.getClientId()>>
+<</button>>
+<<button [[The Apostate|TheApostateIntro]]>>
+  <<set $hostCharacterRole to 'Apostate'>>
+  <<set $hostClientId to setup.Websocket.getClientId()>>
+<</button>>
 
 
 :: TheFaithfulIntro
@@ -30,38 +40,115 @@ TODO: Implement!
   border-width: medium;
 }
 </style>\
-<h1>A Letter From Home</h1>\
+<h1>July 19, 2055</h1>\
+<h2>A Letter From Home</h2>\
 Most of <<tooltip "Ma Tiger's">>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.<</tooltip>> letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
 
 This letter was not like those letters. Its envelope was white. There was no return address. The mailing address was machine printed, all caps. <<tooltip "JEKUSHEKE WANG.">>That's you, Ma Tiger's faithful foster son.<</tooltip>> If she hadn't instructed you to keep an eye out, you'd have tossed it without a second thought.
 
 Instead you opened it and read it, and now you're sitting in one of the cheap bars that squat in the shadows of Reno's ruined casinos. This one, Christie's, is themed like an old Wild West saloon, and <<tooltip "maintained about as well.">>Nah. It's not that bad, really, even if it is a bit of a tourist trap, and their diet coke is the same as anywhere else's.<</tooltip>>
 
-You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table and muttering about long-gone glory.
+You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table, pushing around their poker hands and muttering about long-gone glory.
 
-<span id='open-letter' class='expand-btn'><<button "Read Ma Tiger's letter again.">>
-  <<replace '#open-letter'>>\
+<span id="open-letter-btn" class="expand-btn"><<button "Read Ma Tiger's letter again.">><<hideandshow "#open-letter-btn" "#open-letter-text">><</button>></span>\ 
+<span id="open-letter-text" class="hidden">\
   You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
 
   <div class='p-tfi-letter'>Jekusheke,
 
-  I'm sorry to impose, but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
+  <<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
 
   Don't tell anybody else about this. It's a family matter. I will explain when we meet.
 
-  Also, do not call or text or email in response. Just be there.
+  Also, do not call or text or email in response. <<tooltip "Just be there.">>What would've happened if you'd missed the letter?<</tooltip>>
 
   Love,
   Ma Tiger</div>\
 
   You fold it neatly and replace it. Nothing to do but wait.
 
-  <<button "Wait.">>
-    /* TODO */
-  <</button>>
-  <</replace>>
-<</button>></span>
+  <span id="first-wait-btn" class="expand-btn"><<button "Wait.">><<hideandshow "#first-wait-btn" "#first-wait-text">><</button>></span>\
+</span>\
+<span id="first-wait-text" class="hidden">\
+  The sun creeps across the sky. The old-timers finish up their game, trickle out one by one. Your cup empties.
 
+  "Hey," you say to the bartender. He looks up from his phone. "Can I get another diet coke?"
+
+  He nods and reaches under the counter. "Got stood up?"
+
+  <span id='convo-btn' class="expand-btn">\
+    <<button [["Seems so."|FaithfulStoodUpSeemsSo]]>><</button>>
+    <<button [["Well, we picked a date, not a time."|FaithfulStoodUpNoTimeDecided]]>><</button>>
+    <<button [["None of your concern, friend."|FaithfulStoodUpBusinessIsMyOwn]]>><</button>>
+  </span>\
+</span>\
+
+
+:: FaithfulStoodUpSeemsSo
+<h1>July 19, 2055</h1>\
+<h2>Stood up?</h2>\
+"Seems so," you say.
+
+The bartender nods. "That's rough, buddy."
+
+"I'll wait as long as it takes." He steps up, opens his mouth. "Thanks for asking," you say, waving him off. Hint taken, he retreats back along the bar.
+
+Come on, Ma. It's been a little over four hours now. What's going on?
+
+@@#fsu-wb;<<button "Wait.">>
+  <<set $sessionId to "6c304596-13da-440e-995b-d01027a19aca">>
+  <<connect $sessionId>>
+  <<send 'FAITHFUL_WAITING' {}>><<script>>
+    $("#fsu-wb button").text("Sending to server...")>> 
+    $("#fsu-wb button").prop("disabled", true)
+  <</script>><</send>> 
+<</button>>@@\
+<<nobr>>
+  <<receive 'APOSTATE_ARRIVES' 'Faithful'>>
+    TODO: this
+  <</receive>>
+  <<receive 'FAITHFUL_WAITING' 'Faithful'>><<script>>
+    if (setup.isFaithful) {
+      $("#fsu-wb button").text("Waiting for partner...")>>
+      $("#fsu-wb button").prop("disabled", true)
+    }
+  <</script>><</receive>>
+<</nobr>>
+
+
+:: FaithfulStoodUpNoTimeDecided
+<h1>July 19, 2055</h1>\
+<h2>Stood up?</h2>\
+You chuckle. "Well," you sigh, "I had the date, but not the time."
+
+The bartender nods sympathetically. "That's rough, buddy."
+
+"I'll give it a little longer. Thanks for asking," you say, waving him off. He takes the hint and retreats back along the bar.
+
+Come on, Ma. It's been a little over four hours now. What's going on?
+
+
+:: FaithfulStoodUpBusinessIsMyOwn
+<h1>July 19, 2055</h1>\
+<h2>Bartender Blues</h2>\
+You clear your throat. "None of your concern, friend."
+
+The bartender shrugs, retreats.
+
+Come on, Ma. It's been a little over four hours now. What's going on?
+
+
+<span id="convo-seems-so" class="hidden">\
+  "Seems that way."
+
+  He nods sympathetically. "You want something harder?"
+
+  "Thanks, but I'll stick with the diet coke."
+
+  He shrugs and takes your cup, puts it under the soda tap, presses a button. <<tooltip "Ten cents' worth">>They charge $8, $2 for refills.<</tooltip>> of syrup and bubbles fizz into the cup. "Here," he says, handing it back.
+
+  "Appreciate it."
+</span>\
 
 
 :: TheApostateIntro
