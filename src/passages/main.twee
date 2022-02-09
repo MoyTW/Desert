@@ -9,31 +9,160 @@ Desert
 
 
 :: Start
-/* Websocket tracking */\
-<<set $shouldBeConnected to false>>\
-<<set $websocketProcessedUpToMs to 0>>\
+<<nobr>>
+  /* Websocket tracking */
+  <<set $shouldBeConnected to false>>
+  <<set $websocketProcessedUpToMs to 0>>
+  <<set $clientId to setup.Websocket.getClientId()>>
+
+  /* ##### Game variables ##### */
+
+  /* Character Select */
+  <<set $hostCharacterRole to undefined>>
+  <<set $partnerCharacterRole to undefined>>
+  <<set $selectCharacterHostConfirmed to false>>
+  <<set $selectCharacterPartnerConfirmed to false>>
+<</nobr>>\
 <h1>Main Menu</h1>
-<<button [[TODO: Game Hosting!|SelectCharacter]]>><</button>>
+<<button [[Host a game|HostGame]]>>
+  <<set $sessionId to setup.Websocket.uuidv4()>>
+  <<set $hostClientId to setup.Websocket.getClientId()>>
+  <<connect $sessionId>>
+<</button>>
+<<button [[Join a game|JoinGame]]>><</button>>
+
+
+:: HostGame
+<h1>Hosting a new game...</h1>\
+Your session ID is:
+<strong>$sessionId</strong>
+Send this ID to your partner.
+
+The game will automatically start once your partner has joined.
+<<nobr>>
+  <<receive 'JOIN_GAME_CLIENT_CONNECTED' 'Host'>>
+    <<if $clientId === $hostClientId>>
+      <<send 'HOST_GAME_GAME_STARTED' { hostClientId: $hostClientId }>><</send>>
+    <</if>>
+  <</receive>>
+  <<receive 'HOST_GAME_GAME_STARTED' 'Host'>>
+    <<if $clientId === $hostClientId>>
+      <<run Engine.play('SelectCharacter');>>
+    <</if>>
+  <</receive>>
+<</nobr>>
+
+
+:: JoinGame
+<<set _input>>\
+Please enter the session identifier you'd like to join.
+@@#jg-session-input;<<textbox '_input' '' autofocus>>@@
+@@#jg-join-button;<<disable>><<button 'Session identifier is invalid.'>>
+  <<set $sessionId to $('#jg-session-input input')[0].value>>
+  <<connect $sessionId>>
+  <<send 'JOIN_GAME_CLIENT_CONNECTED' {}>>
+    <<run $('#jg-join-button').text('Joining game...')>>
+    <<run $('#jg-join-button').prop('disabled', true)>>
+  <</send>>
+<</button>><</disable>>@@\
+<<done>><<script>>
+  const button = $('#jg-join-button button')
+  $('#jg-session-input input').on('input', function(ev) {
+    console.log(setup.Websocket.isUuid);
+    if (setup.Websocket.isUuid(ev.target.value)) {
+      button.html('Join game.')
+      button.prop('disabled', false)
+    } else {
+      button.html('Session identifier is invalid.')
+      button.prop('disabled', true)
+    }
+  })
+<</script>><</done>>\
+<<receive 'HOST_GAME_GAME_STARTED' 'Client'>>
+  <<if $clientId !== $hostClientId>>
+    <<set $hostClientId to _receiveData.hostClientId>>
+    <<run Engine.play('SelectCharacter');>>
+  <</if>>
+<</receive>>\
 
 
 :: SelectCharacter
-<<set $hostCharacterRole to undefined>>
-<<set $partnerCharacterRole to undefined>>
-<<set $hostClientId to undefined>>
-<<set $partnerClientId to undefined>>
-TODO: Implement!
-<<button [[The Faithful|TheFaithfulIntro]]>>
-  <<set $hostCharacterRole to 'Faithful'>>
-  <<set $hostClientId to setup.Websocket.getClientId()>>
-  <<set $sessionId to "6c304596-13da-440e-995b-d01027a19bca">>\
-  <<connect $sessionId>>\
-<</button>>
-<<button [[The Apostate|TheApostateIntro]]>>
-  <<set $hostCharacterRole to 'Apostate'>>
-  <<set $hostClientId to setup.Websocket.getClientId()>>
-  <<set $sessionId to "1c304596-13da-440e-995b-d01027a19bca">>\
-  <<connect $sessionId>>\
-<</button>>
+<h1>Select a character</h1>\
+@@#sc-character-buttons;<<button "The Faithful">>
+  <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful' }>><<script>>
+    if (State.variables.clientId === State.variables.hostClientId) {
+      $("#sc-host-selection").text(`Host has selected Faithful.`)
+    } else {
+      $("#sc-partner-selection").text(`Joiner has selected Faithful.`)
+    }
+  <</script>><</send>>\
+<</button>>\
+<<button "The Apostate">>
+  <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate' }>><<script>>
+    if (State.variables.clientId === State.variables.hostClientId) {
+      $("#sc-host-selection").text(`Host has selected Apostate.`)
+    } else {
+      $("#sc-partner-selection").text(`Joiner has selected Apostate.`)
+    }
+  <</script>><</send>>\
+<</button>>@@
+<<nobr>><<receive 'SELECT_CHARACTER_SELECTED' 'All'>><<script>>
+  const data = State.temporary.receiveData
+  if (data.clientId === State.variables.hostClientId) {
+    State.variables.hostCharacterRole = data.characterRole
+    $("#sc-host-selection").text(`Host has selected ${State.variables.hostCharacterRole}.`)
+  } else {
+    State.variables.partnerCharacterRole = data.characterRole
+    $("#sc-partner-selection").text(`Joiner has selected ${State.variables.partnerCharacterRole}.`)
+  }
+  if (State.variables.hostCharacterRole && State.variables.partnerCharacterRole && State.variables.hostCharacterRole != State.variables.partnerCharacterRole) {
+    $('#sc-confirm button').prop('disabled', false)
+  } else {
+    $('#sc-confirm button').prop('disabled', true)
+  }
+<</script>><</receive>><</nobr>>\
+
+@@#sc-host-selection;<<if $hostCharacterRole is undefined>>\
+  Host has not yet selected a character.\
+<<else>>\
+  Host has selected $hostCharacterRole.\
+<</if>>@@
+@@#sc-partner-selection;<<if $partnerCharacterRole is undefined>>\
+  Joiner has not yet selected a character.\
+<<else>>\
+  Joiner has selected $partnerCharacterRole.\
+<</if>>@@
+
+@@#sc-confirm;<<disable>><<button "Confirm choices">>
+  <<send 'SELECT_CHARACTER_CONFIRMED' {}>><<script>>
+    const button = $('#sc-confirm button')
+    button.html('Waiting for partner to confirm...')
+    button.prop('disabled', true)
+    $('#sc-character-buttons button').prop('disabled', true)
+  <</script>><</send>>
+<</button>><</disable>>@@
+<<nobr>><<receive 'SELECT_CHARACTER_CONFIRMED' 'All'>><<script>>
+  const data = State.temporary.receiveData
+  // selectCharacterHostConfirmed
+  if (data.clientId === State.variables.clientId) {
+    const button = $('#sc-confirm button')
+    button.html('Waiting for partner to confirm...')
+    button.prop('disabled', true)
+    $('#sc-character-buttons button').prop('disabled', true)
+  }
+  if (data.clientId === State.variables.hostClientId) {
+    State.variables.selectCharacterHostConfirmed = true
+  } else {
+    State.variables.selectCharacterPartnerConfirmed = true
+  }
+  if (State.variables.selectCharacterHostConfirmed && State.variables.selectCharacterPartnerConfirmed) {
+    if (setup.isFaithful()) {
+      Engine.play("TheFaithfulIntro")
+    } else {
+      Engine.play("TheApostateIntro")
+    }
+  }
+<</script>><</receive>><</nobr>>\
 
 
 :: TheFaithfulIntro

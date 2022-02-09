@@ -2,7 +2,7 @@
   const _setup = setup as any
 
   _setup.getRole = function(): boolean {
-    if (State.getVar('$hostClientId') == _setup.getClientId()) {
+    if (State.getVar('$hostClientId') == State.getVar('$clientId')) {
       return State.getVar('$hostCharacterRole')
     } else {
       return State.getVar('$partnerCharacterRole')
