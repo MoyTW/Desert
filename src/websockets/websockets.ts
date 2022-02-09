@@ -18,20 +18,6 @@
   const DEV_SERVER_URL: string = 'ws://localhost:8000/ws/';
   const PROD_SERVER_URL: string = 'wss://multiplayer-twine-server.herokuapp.com/ws/';
 
-  (setup as any).Websocket = {};
-
-  (setup as any).Websocket.hasSocket = function(): boolean {
-    if (_chatSocket) {
-      return true
-    } else {
-      return false
-    }
-  };
-
-  (setup as any).Websocket.getClientId = function(): string | undefined {
-    return _clientId
-  };
-
   const _registerHandler = function(messageType: string, handlerKey: string, handler: (data: object) => void) {
     if (_handlers[messageType] == undefined) {
       _handlers[messageType] = {}
@@ -145,7 +131,7 @@
         const handlers = Object.values(_handlers[message['type']]);
         console.log('catching up', message['type']);
         State.setVar('$websocketProcessedUpToMs', message['server_timestamp_ms'])
-        handlers.forEach((handler) => handler(data))
+        handlers.forEach((handler) => handler(message))
       }
     }
     State.setVar('$websocketProcessedUpToMs', data['server_timestamp_ms']);
@@ -381,4 +367,29 @@
     _clientId = newClientId;
     console.log('Generated new clientId as ' + newClientId)
   }
+
+  /*******************************************************************************************************************
+   * External functions                                                                                              *
+   *******************************************************************************************************************/
+  (setup as any).Websocket = {};
+
+  (setup as any).Websocket.hasSocket = function(): boolean {
+    if (_chatSocket) {
+      return true
+    } else {
+      return false
+    }
+  };
+
+  (setup as any).Websocket.getClientId = function(): string | undefined {
+    return _clientId
+  };
+
+  (setup as any).Websocket.uuidv4 = function(): string {
+    return _uuidv4()
+  };
+
+  (setup as any).Websocket.isUuid = function(s: string): boolean {
+    return _isUuid(s)
+  };
 }());
