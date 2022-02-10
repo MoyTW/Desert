@@ -1,0 +1,144 @@
+:: TheFaithfulIntro
+<style>
+.p-tfi-letter {
+  border-style: solid;
+  border-color: #ffd700;
+  border-width: medium;
+}
+</style>\
+<h1>July 19, 2055</h1>\
+<h2>A Letter From Home</h2>\
+Most of <<tooltip "Ma Tiger's">>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.<</tooltip>> letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
+
+This letter was not like those letters. Its envelope was white. There was no return address. The mailing address was machine printed, all caps. <<tooltip "JEKUSHEKE WANG.">>That's you, Ma Tiger's faithful foster son.<</tooltip>> If she hadn't instructed you to keep an eye out, you'd have tossed it without a second thought.
+
+Instead you opened it and read it, and now you're sitting in one of the cheap bars that squat in the shadows of Reno's ruined casinos. This one, Christie's, is themed like an old Wild West saloon, and <<tooltip "maintained about as well.">>Nah. It's not that bad, really, even if it is a bit of a tourist trap, and their diet coke is the same as anywhere else's.<</tooltip>>
+
+You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table, pushing around their poker hands and muttering about long-gone glory.
+
+<span id="tfi-open-letter-btn" class="expand-btn"><<button "Read Ma Tiger's letter again.">>
+  <<send 'THE_FAITHFUL_INTRO_1' {}>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</send>>
+  <<receive 'THE_FAITHFUL_INTRO_1' 'Faithful'>>
+    <<if setup.isFaithful()>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</if>>
+  <</receive>>
+<</button>></span>\
+<span id="tfi-open-letter-text" class="hidden">\
+  You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
+
+  <div class='p-tfi-letter'>Jekusheke,
+
+  <<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
+
+  Don't tell anybody else about this. It's a family matter. I will explain when we meet.
+
+  Also, do not call or text or email in response. <<tooltip "Just be there.">>What would've happened if you'd missed the letter?<</tooltip>>
+
+  Love,
+  Ma Tiger</div>\
+
+  You fold it neatly and replace it. Nothing to do but wait.
+
+  <span id="tfi-first-wait-btn" class="expand-btn"><<button "Wait.">>
+    <<send 'THE_FAITHFUL_INTRO_2' {}>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</send>>
+    <<receive 'THE_FAITHFUL_INTRO_2' 'Faithful'>>
+      <<if setup.isFaithful()>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</if>>
+    <</receive>>
+  <</button>></span>\
+</span>\
+<span id="tfi-first-wait-text" class="hidden">\
+  The sun creeps across the sky. The old-timers finish up their game, trickle out one by one. Your cup empties.
+
+  "Hey," you say to the bartender. He looks up from his phone. "Can I get another diet coke?"
+
+  He nods, takes your glass, puts it under the soda tap, presses a button. <<tooltip "Ten cents' worth">>They charge $8, $2 for refills.<</tooltip>> of syrup and bubbles fizz into the cup. "Here," he says, handing it back.
+
+  "Thanks."
+  
+  He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
+
+  <span id='tfi-convo-btn' class="expand-btn">\
+    <<button "Seems so.">>
+      <<send 'THE_FAITHFUL_INTRO_3A' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</send>>
+      <<receive 'THE_FAITHFUL_INTRO_3A' 'Faithful'>>
+        <<if setup.isFaithful()>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</if>>
+      <</receive>>
+    <</button>>
+    <<button "Well, we picked a date, not a time.">>
+      <<send 'THE_FAITHFUL_INTRO_3B' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-date-text">><</send>>
+      <<receive 'THE_FAITHFUL_INTRO_3B' 'Faithful'>>
+        <<if setup.isFaithful()>><<hideandshow "#tfi-convo-btn" "#tfi-convo-date-text">><</if>>
+      <</receive>>
+    <</button>>
+    <<button "None of your concern, friend.">>
+      <<send 'THE_FAITHFUL_INTRO_3C' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-concern-text">><</send>>
+      <<receive 'THE_FAITHFUL_INTRO_3C' 'Faithful'>>
+        <<if setup.isFaithful()>><<hideandshow "#tfi-convo-btn" "#tfi-convo-concern-text">><</if>>
+      <</receive>>
+    <</button>>
+  </span>\
+</span>\
+<span id="tfi-convo-seems-so-text" class="hidden">\
+"Seems so," you say.
+
+The bartender nods. "That's rough, buddy."
+
+"I'll wait as long as it takes." He steps up, opens his mouth. "Thanks for asking," you say, waving him off. Hint taken, he retreats back along the bar.
+
+<<include "FaithfulWaitInChristies">>
+</span>\
+<span id="tfi-convo-date-text" class="hidden">\
+You toss out a chuckle. "Well," you sigh, "I had the date, but not the time."
+
+The bartender nods sympathetically. "That's rough, buddy."
+
+"I'll give it a little longer. Thanks for asking," you say, waving him off. He takes the hint and retreats back along the bar.
+
+<<include "FaithfulWaitInChristies">>
+</span>\
+<span id="tfi-convo-concern-text" class="hidden">\
+You clear your throat. "None of your concern, friend."
+
+The bartender shrugs, retreats.
+
+<<include "FaithfulWaitInChristies">>
+</span>
+
+
+:: FaithfulWaitInChristies
+Come on, Ma. It's been a little over four hours now. What's going on?
+
+@@#fsu-wb;<<button "Wait.">>
+  <<send 'THE_FAITHFUL_INTRO_WAIT' {}>><<script>>
+    $("#fsu-wb button").text("Sending to server...")>> 
+    $("#fsu-wb button").prop("disabled", true)
+  <</script>><</send>> 
+<</button>>@@\
+<<nobr>>
+  <<receive 'THE_APOSTATE_INTRO_ENTER' 'Faithful'>><<script>>
+    if (setup.isFaithful()) {
+      State.variables.THE_APOSTATE_INTRO_ENTER = true;
+      if (State.variables.THE_APOSTATE_INTRO_ENTER && State.variables.THE_FAITHFUL_INTRO_WAIT) {
+        delete State.variables.THE_APOSTATE_INTRO_ENTER;
+        delete State.variables.THE_FAITHFUL_INTRO_WAIT;
+        Engine.play('IntroFaithfulMeetingApostate');
+      }
+    }
+  <</script>><</receive>>
+  <<receive 'THE_FAITHFUL_INTRO_WAIT' 'Faithful'>><<script>>
+    if (setup.isFaithful()) {
+      State.variables.THE_FAITHFUL_INTRO_WAIT = true;
+      if (State.variables.THE_APOSTATE_INTRO_ENTER && State.variables.THE_FAITHFUL_INTRO_WAIT) {
+        delete State.variables.THE_APOSTATE_INTRO_ENTER;
+        delete State.variables.THE_FAITHFUL_INTRO_WAIT;
+        Engine.play('IntroFaithfulMeetingApostate');
+      } else {
+        $("#fsu-wb button").text("Waiting for partner...")>>
+        $("#fsu-wb button").prop("disabled", true)
+      }
+    }
+  <</script>><</receive>>
+<</nobr>>\
+
+
+:: IntroFaithfulMeetingApostate
+Whee!
