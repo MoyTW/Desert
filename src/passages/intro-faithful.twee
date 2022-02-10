@@ -141,4 +141,5 @@ Come on, Ma. It's been a little over four hours now. What's going on?
 
 
 :: IntroFaithfulMeetingApostate
-Whee!
+<<button "recognizes">><<send "IntroFaithfulMeetingApostate_SEES_FACE" { recognizes: true }>><</send>><</button>>
+<<button "does not recognize">><<send "IntroFaithfulMeetingApostate_SEES_FACE" { recognizes: false }>><</send>><</button>>

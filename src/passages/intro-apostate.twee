@@ -73,4 +73,31 @@ The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 
 :: IntroApostateMeetingFaithful
-The apostate meets the faithful.
+Faithful to their theming, the doors to Christie's look like genuine wooden saloon doors, though there's a more conventional door hidden tucked away behind. The inside is nicely lit, with polished Western decor and almost completely devoid of people. The <<tooltip "bartender">>Average height with weathered skin, black hair and exaggerated beard, reasonably strong, probably unarmed but with quick access to security.<</tooltip>> looks over at you, waves. The <<tooltip "single patron">>Tall but hunched over, probably Asian, short black hair, probably unarmed.<</tooltip>> turns away from the bar to look at you. He glances at you, and you get a good look at his face.
+
+Jekusheke, your brother, who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
+
+<span id="i-iamf-waiting-text">\
+<strong>Waiting for partner...</strong>
+</span>\
+<nobr><<receive 'IntroFaithfulMeetingApostate_SEES_FACE' 'Apostate'>><<script>>
+    if (setup.isApostate()) {
+      const data = State.temporary.receiveData;
+      if (data.recognizes === true) {
+        $("#i-iamf-waiting-text").addClass("hidden");
+        $("#i-iamf-recognizes-you-text").removeClass("hidden");
+      } else {
+        $("#i-iamf-waiting-text").addClass("hidden");
+        $("#i-iamf-does-not-recognize-you-text").removeClass("hidden");
+      }
+    }
+<</script>><</receive>></nobr>\
+<span id="i-iamf-recognizes-you-text" class="hidden">\
+TODO: He recognizes you!
+</span>\
+<span id="i-iamf-does-not-recognize-you-text" class="hidden">\
+His eyes slide off.
+
+He doesn't recognize you.
+TODO: THIS
+</span>\
