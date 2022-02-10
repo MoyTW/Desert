@@ -1,7 +1,7 @@
 (function() {
   const _setup = setup as any
 
-  _setup.getRole = function(): boolean {
+  _setup.getRole = function(): string | undefined {
     if (State.getVar('$hostClientId') == State.getVar('$clientId')) {
       return State.getVar('$hostCharacterRole')
     } else {

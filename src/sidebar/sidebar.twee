@@ -1,2 +1,20 @@
 :: RightSidebar
+<h2>Session Info</h2>\
+<<if $sessionId is undefined or $sessionId is ''>>\
+  You're not currently connected to a game.
+<<else>>\
+  Session ID: <strong>$sessionId</strong>
+  If your partner wants to connect, they will need this code.
+<</if>>\
+<<if $shouldBeConnected>>\
+  /* TODO SAVEGAMES */\
+  <<button 'Leave (game will be saved)'>><<leavemultiplayersession>><</button>>
+<</if>>\
+<h2>Character</h2>\
+<<if setup.isFaithful()>>\
+  The Faithful Son
+<<elseif setup.isApostate()>>\
+  The Former Daughter
+<</if>>\
+<h2>DEBUG</h2>\
 <<button 'Restart'>><<run Engine.restart()>><</button>>
