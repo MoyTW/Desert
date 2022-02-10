@@ -183,11 +183,11 @@ Instead you opened it and read it, and now you're sitting in one of the cheap ba
 
 You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table, pushing around their poker hands and muttering about long-gone glory.
 
-<span id="open-letter-btn" class="expand-btn"><<button "Read Ma Tiger's letter again.">>
-  <<send 'THE_FAITHFUL_INTRO_1' {}>><<hideandshow "#open-letter-btn" "#open-letter-text">><</send>>
-  <<receive 'THE_FAITHFUL_INTRO_1' 'Faithful'>><<hideandshow "#open-letter-btn" "#open-letter-text">><</receive>>
+<span id="tfi-open-letter-btn" class="expand-btn"><<button "Read Ma Tiger's letter again.">>
+  <<send 'THE_FAITHFUL_INTRO_1' {}>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</send>>
+  <<receive 'THE_FAITHFUL_INTRO_1' 'Faithful'>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</receive>>
 <</button>></span>\
-<span id="open-letter-text" class="hidden">\
+<span id="tfi-open-letter-text" class="hidden">\
   You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
 
   <div class='p-tfi-letter'>Jekusheke,
@@ -203,12 +203,12 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 
   You fold it neatly and replace it. Nothing to do but wait.
 
-  <span id="first-wait-btn" class="expand-btn"><<button "Wait.">>
-    <<send 'THE_FAITHFUL_INTRO_2' {}>><<hideandshow "#first-wait-btn" "#first-wait-text">><</send>>
-    <<receive 'THE_FAITHFUL_INTRO_2' 'Faithful'>><<hideandshow "#first-wait-btn" "#first-wait-text">><</receive>>
+  <span id="tfi-first-wait-btn" class="expand-btn"><<button "Wait.">>
+    <<send 'THE_FAITHFUL_INTRO_2' {}>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</send>>
+    <<receive 'THE_FAITHFUL_INTRO_2' 'Faithful'>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</receive>>
   <</button>></span>\
 </span>\
-<span id="first-wait-text" class="hidden">\
+<span id="tfi-first-wait-text" class="hidden">\
   The sun creeps across the sky. The old-timers finish up their game, trickle out one by one. Your cup empties.
 
   "Hey," you say to the bartender. He looks up from his phone. "Can I get another diet coke?"
@@ -219,22 +219,22 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
   
   He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
 
-  <span id='convo-btn' class="expand-btn">\
+  <span id='tfi-convo-btn' class="expand-btn">\
     <<button "Seems so.">>
-      <<send 'THE_FAITHFUL_INTRO_3A' {}>><<hideandshow "#convo-btn" "#convo-seems-so-text">><</send>>
-      <<receive 'THE_FAITHFUL_INTRO_3A' 'Faithful'>><<hideandshow "#convo-btn" "#convo-seems-so-text">><</receive>>
+      <<send 'THE_FAITHFUL_INTRO_3A' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</send>>
+      <<receive 'THE_FAITHFUL_INTRO_3A' 'Faithful'>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</receive>>
     <</button>>
     <<button "Well, we picked a date, not a time.">>
-      <<send 'THE_FAITHFUL_INTRO_3B' {}>><<hideandshow "#convo-btn" "#convo-date-text">><</send>>
-      <<receive 'THE_FAITHFUL_INTRO_3B' 'Faithful'>><<hideandshow "#convo-btn" "#convo-date-text">><</receive>>
+      <<send 'THE_FAITHFUL_INTRO_3B' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-date-text">><</send>>
+      <<receive 'THE_FAITHFUL_INTRO_3B' 'Faithful'>><<hideandshow "#tfi-convo-btn" "#tfi-convo-date-text">><</receive>>
     <</button>>
     <<button "None of your concern, friend.">>
-      <<send 'THE_FAITHFUL_INTRO_3C' {}>><<hideandshow "#convo-btn" "#convo-concern-text">><</send>>
-      <<receive 'THE_FAITHFUL_INTRO_3C' 'Faithful'>><<hideandshow "#convo-btn" "#convo-concern-text">><</receive>>
+      <<send 'THE_FAITHFUL_INTRO_3C' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-concern-text">><</send>>
+      <<receive 'THE_FAITHFUL_INTRO_3C' 'Faithful'>><<hideandshow "#tfi-convo-btn" "#tfi-convo-concern-text">><</receive>>
     <</button>>
   </span>\
 </span>\
-<span id="convo-seems-so-text" class="hidden">\
+<span id="tfi-convo-seems-so-text" class="hidden">\
 "Seems so," you say.
 
 The bartender nods. "That's rough, buddy."
@@ -243,7 +243,7 @@ The bartender nods. "That's rough, buddy."
 
 <<include "FaithfulWaitInChristies">>
 </span>\
-<span id="convo-date-text" class="hidden">\
+<span id="tfi-convo-date-text" class="hidden">\
 You toss out a chuckle. "Well," you sigh, "I had the date, but not the time."
 
 The bartender nods sympathetically. "That's rough, buddy."
@@ -252,7 +252,7 @@ The bartender nods sympathetically. "That's rough, buddy."
 
 <<include "FaithfulWaitInChristies">>
 </span>\
-<span id="convo-concern-text" class="hidden">\
+<span id="tfi-convo-concern-text" class="hidden">\
 You clear your throat. "None of your concern, friend."
 
 The bartender shrugs, retreats.
@@ -299,11 +299,11 @@ You don't even know how the <<tooltip "courier">>Tall female with a slight build
 
 The car chimes its five minute warning. Almost time. The letter's in your hand.
 
-<span id='open-letter-btn' class='expand-btn'><<button "Read it again.">>
-  <<send 'THE_APOSTATE_INTRO_1' {}>><<hideandshow "#open-letter-btn" "#open-letter-text">><</send>>
-  <<receive 'THE_APOSTATE_INTRO_1' 'Apostate'>><<hideandshow "#open-letter-btn" "#open-letter-text">><</receive>>
+<span id='tai-open-letter-btn' class='expand-btn'><<button "Read it again.">>
+  <<send 'THE_APOSTATE_INTRO_1' {}>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</send>>
+  <<receive 'THE_APOSTATE_INTRO_1' 'Apostate'>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</receive>>
 <</button>></span>\
-<span id="open-letter-text" class='hidden'>\
+<span id="tai-open-letter-text" class='hidden'>\
   <div class='p-tfi-letter'>Ebiaishe,
 
   I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
