@@ -17,4 +17,5 @@
   The Former Daughter
 <</if>>\
 <h2>DEBUG</h2>\
+<<print passage()>>
 <<button 'Restart'>><<run Engine.restart()>><</button>>
