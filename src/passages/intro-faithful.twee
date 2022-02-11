@@ -141,5 +141,108 @@ Come on, Ma. It's been a little over four hours now. What's going on?
 
 
 :: IntroFaithfulMeetingApostate
-<<button "recognizes">><<send "IntroFaithfulMeetingApostate_SEES_FACE" { recognizes: true }>><</send>><</button>>
-<<button "does not recognize">><<send "IntroFaithfulMeetingApostate_SEES_FACE" { recognizes: false }>><</send>><</button>>
+TODO: A woman walks into the bar. She seems familiar, but you can't quite place her.
+
+<<button "Greet her like you know her, because you're sure you do. You're just not sure where from.">>
+  <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "FAMILIAR" }>><</send>>
+<</button>>
+<<button "Greet her as a stranger, and hope that talking to her jogs your memory.">>
+  <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "STRANGER" }>><</send>>
+<</button>>
+<<button "Don't greet her yet - try and remember where you met her before you talk.">>
+  <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "NONE" }>><</send>>
+<</button>>
+<<nobr>><<receive "IntroFaithfulMeetingApostate_GREETING" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    const data = State.temporary.receiveData;
+    if (data.greeting === "FAMILIAR") {
+      Engine.play("IntroFaithfulGreetAndHope");
+    } else if (data.greeting === "STRANGER") {
+      Engine.play("IntroFaithfulJogYourMemory");
+    } else {
+      Engine.play("IntroFaithfulNoGreeting");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+:: IntroFaithfulGreetAndHope
+TODO: You grin & wave and hope for the best.
+
+<<include "IntroFaithfulWaitForChoices">>
+
+
+:: IntroFaithfulJogYourMemory
+TODO: You casually wave and say afternoon.
+
+<<include "IntroFaithfulWaitForChoices">>
+
+
+:: IntroFaithfulNoGreeting
+TODO: You turn back.
+
+<<include "IntroFaithfulWaitForChoices">>
+
+
+:: IntroFaithfulWaitForChoices
+<strong>Waiting for partner...</strong>
+<<nobr>><<receive "IntroApostateUnrecognizedChoices_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    const data = State.temporary.receiveData;
+    if (data.choice == "OFFENDED") {
+      Engine.play("IntroFaithfulChoiceOffended")
+    } else if (data.choice == "RELIEVED") {
+      Engine.play("IntroFaithfulChoiceRelieved");
+    } else {
+      Engine.play("IntroFaithfulChoiceGremlin");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: IntroFaithfulChoiceOffended
+<<if hasVisited("IntroFaithfulNoGreeting")>>\
+  You feel a tap on your shoulder. You turn to see the woman, her head tiled to the side and a slight scowl on her face.
+<<else>>\
+  The woman catches your eye, tilts her head to the side. Your smile falters.
+<</if>>\
+
+"Jekusheke," she says, her voice a blade, "don't you recognize your own sister?"
+
+What?
+
+<<tooltip "Holy shit.">>You're alive!?<</tooltip>>
+
+<<tooltip "\"What?\"">>What the fuck?<</tooltip>> It comes out as a sputter. <<tooltip "\"What are - why here?\"">>What are you doing? Why are you here?<</tooltip>> <<tooltip "\"We thought - you're - were you - does Mom know?\"">>We thought you were dead! Does Mom know?<</tooltip>>
+
+
+:: IntroFaithfulChoiceRelieved
+TODO
+<<if hasVisited("IntroFaithfulNoGreeting")>>\
+  The woman takes a seat at the bar beside you. You wrack your brain. She's familiar, yes, but in a distant, half-remembered way. Somebody from school? A co-worker? You didn't date her, did you?
+
+  No, that seems wrong. Definitely not that. You glance over to her again and nope. You got nothing.
+
+  "So," she says, "what brings you here?"
+
+  "Uh." Well, her voice isn't ringing any bells, and her accent's pretty standard West Coast. No help there. "Meeting a friend. How about you?"
+<<else>>\
+  The woman nods in response, taking a seat at the bar beside you. You turn back to your glass. "So," you say, "what brings you here?"
+<</if>>\
+She laughs. "Family business."
+
+"Family buisness?"
+
+"Family buisness." She sighs and turns to face you. "You don't recognize me?"
+
+"I, uh, well -" You look her up and down again. Black hair, Asian, tall, with short hair and big muscles. The sense of familiarity persists, but nothing comes to mind. "Sorry," you admit, "I think we've met but I can't quite place you."
+
+She looses a low chuckle. "I guess I can't blame you. It's been a long time." She grins at your increasing discomfort. "Come on, Jekusheke. Don't tell me you forgot your own sister?"
+
+
+:: IntroFaithfulChoiceGremlin
+TODO
+<<if hasVisited("IntroFaithfulNoGreeting")>>\
+
+<<else>>\
+  "Oh, hey Jekusheke," says says, flopping down on the stool next to you. "Fancy seeing you here."
+<</if>>\

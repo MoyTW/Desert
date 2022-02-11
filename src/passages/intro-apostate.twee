@@ -73,31 +73,91 @@ The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 
 :: IntroApostateMeetingFaithful
-Faithful to their theming, the doors to Christie's look like genuine wooden saloon doors, though there's a more conventional door hidden tucked away behind. The inside is nicely lit, with polished Western decor and almost completely devoid of people. The <<tooltip "bartender">>Average height with weathered skin, black hair and exaggerated beard, reasonably strong, probably unarmed but with quick access to security.<</tooltip>> looks over at you, waves. The <<tooltip "single patron">>Tall but hunched over, probably Asian, short black hair, probably unarmed.<</tooltip>> turns away from the bar to look at you. He glances at you, and you get a good look at his face.
+The doors to Christie's Old West Saloon look like genuine wooden saloon doors, though there's a more conventional door hidden tucked away behind. The inside is nicely lit, with polished Western decor, empty tables, and a bar with a single lonely man. The <<tooltip "bartender">>Average height with weathered skin, black hair and exaggerated beard, reasonably strong, probably unarmed but with quick access to security.<</tooltip>> looks over at you, waves. The <<tooltip "only patron">>Tall but hunched over, probably Asian, short black hair, probably unarmed.<</tooltip>> turns away from the bar to to examine you, and as he does so you get a good look at his face.
 
-Jekusheke, your brother, who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
+Jekusheke, your <<tooltip "brother,">>Foster, not bilogical.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
 
 <span id="i-iamf-waiting-text">\
 <strong>Waiting for partner...</strong>
 </span>\
-<nobr><<receive 'IntroFaithfulMeetingApostate_SEES_FACE' 'Apostate'>><<script>>
-    if (setup.isApostate()) {
-      const data = State.temporary.receiveData;
-      if (data.recognizes === true) {
-        $("#i-iamf-waiting-text").addClass("hidden");
-        $("#i-iamf-recognizes-you-text").removeClass("hidden");
-      } else {
-        $("#i-iamf-waiting-text").addClass("hidden");
-        $("#i-iamf-does-not-recognize-you-text").removeClass("hidden");
-      }
+<nobr><<receive "IntroFaithfulMeetingApostate_GREETING" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    const data = State.temporary.receiveData;
+    if (data.greeting === "FAMILIAR") {
+      Engine.play("IntroApostateFamiliarGreeting");
+    } else if (data.greeting === "STRANGER") {
+      Engine.play("IntroApostateStrangerGreeting");
+    } else {
+      Engine.play("IntroApostateNoGreeting");
     }
+  }
 <</script>><</receive>></nobr>\
-<span id="i-iamf-recognizes-you-text" class="hidden">\
-TODO: He recognizes you!
-</span>\
-<span id="i-iamf-does-not-recognize-you-text" class="hidden">\
-His eyes slide off.
 
-He doesn't recognize you.
-TODO: THIS
-</span>\
+
+:: IntroApostateFamiliarGreeting
+Jekusheke grins and waves. "Hey," he says. "Good to see you again. Fancy meeting here, huh?"
+
+TODO: lol he doesn't recognize you
+
+<<include "IntroApostateUnrecognizedChoices">>
+
+
+:: IntroApostateStrangerGreeting
+Jekusheke smiles and waves casually. "Afternoon," he says.
+
+TODO: lol he doesn't recognize you
+
+<<include "IntroApostateUnrecognizedChoices">>
+
+
+:: IntroApostateNoGreeting
+Jekusheke's eyes linger for a moment, seeming somewhat confused, and then he turns back to the bar.
+
+<<include "IntroApostateUnrecognizedChoices">>
+
+
+:: IntroApostateUnrecognizedChoices
+<<button "TODO: I'm a little offended!">>
+  <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "OFFENDED"}>><</send>>
+<</button>>
+<<button "TODO: I'm relieved, to be honest.">>
+  <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "RELIEVED"}>><</send>>
+<</button>>
+<<button "TODO: Really? He doesn't recognize me? Let's fuck with him.">>
+  <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "GREMLIN"}>><</send>>
+<</button>>
+<<nobr>><<receive "IntroApostateUnrecognizedChoices_CHOICE" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    const data = State.temporary.receiveData;
+    if (data.choice == "OFFENDED") {
+      Engine.play("IntroApostateChoiceOffended")
+    } else if (data.choice == "RELIEVED") {
+      Engine.play("IntroApostateChoiceRelieved");
+    } else {
+      Engine.play("IntroApostateChoiceGremlin");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: IntroApostateChoiceOffended
+TODO
+<<if hasVisited("IntroApostateNoGreeting")>>\
+<<else>>\
+<</if>>\
+
+
+
+:: IntroApostateChoiceRelieved
+TODO
+<<if hasVisited("IntroApostateNoGreeting")>>\
+<<else>>\
+<</if>>
+
+
+:: IntroApostateChoiceGremlin
+TODO
+<<if hasVisited("IntroApostateNoGreeting")>>\
+<<else>>\
+<</if>>
+
