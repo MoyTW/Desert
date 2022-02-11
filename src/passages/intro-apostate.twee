@@ -117,21 +117,21 @@ Jekusheke's eyes linger for a moment, seeming somewhat confused, and then he tur
 
 
 :: IntroApostateUnrecognizedChoices
-<<button "TODO: I'm a little offended!">>
+<<button "Goddammit, Jekusheke, you really can't recognize your own sister?!">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "OFFENDED"}>><</send>>
 <</button>>
-<<button "TODO: I'm relieved, to be honest.">>
+<<button "I'm a little relieved, to be honest.">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "RELIEVED"}>><</send>>
 <</button>>
-<<button "TODO: Really? He doesn't recognize me? Let's fuck with him.">>
+<<button "Really? He doesn't recognize me? Huh! You know what'd be hilarious?">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "GREMLIN"}>><</send>>
 <</button>>
 <<nobr>><<receive "IntroApostateUnrecognizedChoices_CHOICE" "Apostate">><<script>>
   if (setup.isApostate()) {
     const data = State.temporary.receiveData;
-    if (data.choice == "OFFENDED") {
+    if (data.choice === "OFFENDED") {
       Engine.play("IntroApostateChoiceOffended")
-    } else if (data.choice == "RELIEVED") {
+    } else if (data.choice === "RELIEVED") {
       Engine.play("IntroApostateChoiceRelieved");
     } else {
       Engine.play("IntroApostateChoiceGremlin");
@@ -146,6 +146,7 @@ TODO
 <<else>>\
 <</if>>\
 
+<<include "IntroApostateWaitForFaithfulReaction">>
 
 
 :: IntroApostateChoiceRelieved
@@ -154,10 +155,42 @@ TODO
 <<else>>\
 <</if>>
 
+<<include "IntroApostateWaitForFaithfulReaction">>
+
 
 :: IntroApostateChoiceGremlin
 TODO
 <<if hasVisited("IntroApostateNoGreeting")>>\
 <<else>>\
 <</if>>
+
+<<include "IntroApostateWaitForFaithfulReaction">>
+
+
+:: IntroApostateWaitForFaithfulReaction
+<strong>Waiting for partner...</strong>
+<<nobr>><<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    const data = State.temporary.receiveData;
+    if (data.choice === "HAPPY") {
+      Engine.play("IntroApostateReactionChoiceHappy")
+    } else if (data.choice === "SAD") {
+      Engine.play("IntroApostateReactionChoiceSad");
+    } else {
+      Engine.play("IntroApostateReactionChoiceAngry");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: IntroApostateReactionChoiceHappy
+
+
+
+:: IntroApostateReactionChoiceSad
+
+
+
+:: IntroApostateReactionChoiceAngry
+
 

@@ -188,9 +188,9 @@ TODO: You turn back.
 <<nobr>><<receive "IntroApostateUnrecognizedChoices_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
     const data = State.temporary.receiveData;
-    if (data.choice == "OFFENDED") {
+    if (data.choice === "OFFENDED") {
       Engine.play("IntroFaithfulChoiceOffended")
-    } else if (data.choice == "RELIEVED") {
+    } else if (data.choice === "RELIEVED") {
       Engine.play("IntroFaithfulChoiceRelieved");
     } else {
       Engine.play("IntroFaithfulChoiceGremlin");
@@ -213,6 +213,18 @@ What?
 <<tooltip "Holy shit.">>You're alive!?<</tooltip>>
 
 <<tooltip "\"What?\"">>What the fuck?<</tooltip>> It comes out as a sputter. <<tooltip "\"What are - why here?\"">>What are you doing? Why are you here?<</tooltip>> <<tooltip "\"We thought - you're - were you - does Mom know?\"">>We thought you were dead! Does Mom know?<</tooltip>>
+
+Your sister's eyes are accusing, her eyebrows raised, her mouth a line.
+
+You swallow. "We thought you were dead."
+
+"Did you?"
+
+"Yes! We thought - when you vanished - we couldn't find any trace of you! We - you were alive the whole time?"
+
+"Yes."
+
+<<include "IntroFaithfulAliveReactionChoice">>
 
 
 :: IntroFaithfulChoiceRelieved
@@ -238,6 +250,14 @@ She laughs. "Family business."
 
 She looses a low chuckle. "I guess I can't blame you. It's been a long time." She grins at your increasing discomfort. "Come on, Jekusheke. Don't tell me you forgot your own sister?"
 
+Your breath catches. Shit. So <em>that's</em> where you remember her from. But -
+
+"You're...alive?" You look over, examine her face. Now that she's said it..."You're alive!? We thought -" You shake your head. "After - I mean - how long has it been? You've been alive this whole time?"
+
+"Guess so." You can hear the hesitance in her voice. "Been doing all right for myself."
+
+<<include "IntroFaithfulAliveReactionChoice">>
+
 
 :: IntroFaithfulChoiceGremlin
 TODO
@@ -246,3 +266,43 @@ TODO
 <<else>>\
   "Oh, hey Jekusheke," says says, flopping down on the stool next to you. "Fancy seeing you here."
 <</if>>\
+
+<<include "IntroFaithfulAliveReactionChoice">>
+
+
+:: IntroFaithfulAliveReactionChoice
+TODO: These
+<<button "Holy shit. You're alive! That's - that's incredible!">>
+  <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "HAPPY" }>><</send>>
+<</button>>
+<<button "Then...why didn't come back?">>
+  <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "SAD" }>><</send>>
+<</button>>
+<<button "I - seriously? What the fuck! Why didn't you tell us?">>
+  <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "ANGRY" }>><</send>>
+<</button>>
+<<nobr>><<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    const data = State.temporary.receiveData;
+    if (data.choice == "HAPPY") {
+      Engine.play("IntroFaithfulReactionChoiceHappy")
+    } else if (data.choice == "SAD") {
+      Engine.play("IntroFaithfulReactionChoiceSad");
+    } else {
+      Engine.play("IntroFaithfulReactionChoiceAngry");
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: IntroFaithfulReactionChoiceHappy
+TODO: You're real happy
+
+
+:: IntroFaithfulReactionChoiceSad
+TODO: but...why
+
+
+:: IntroFaithfulReactionChoiceAngry
+TODO: you mad
+
