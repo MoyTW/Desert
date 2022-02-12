@@ -10,7 +10,9 @@
 <h2>Reno, Nevada</h2>\
 You pull Ma Tiger's letter out of your pocket for the hundredth time as your cab winds its way through Reno's roads. You do not look at it. Instead you stare out at the houses as they pass, watch the casinos with their neon signs, doubtless impressive outside of the light of day. You finger the letter, put it back, pull it out.
 
-<<tooltip "Ma Tiger.">>In formal contexts, Ms. Tiger. You never learned if Ma was her real name or not.<</tooltip>> Your mother of eleven years, eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it so you stole away in shame, because facing back up would be worse than death.
+<<tooltip "Ma Tiger.">>In formal contexts, Ms. Tiger. You never learned if Ma was her real name or not.<</tooltip>> Your mother of eleven years, eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it. When you left it was involuntary, but you could've returned afterwards.
+
+You never did. Facing back up would be worse than death.
 
 You don't even know how the <<tooltip "courier">>Tall female with a slight build, short black hair, long face and glasses, concealed pepper spray and two knives.<</tooltip>> found you. Must've been an expensive ask.
 
@@ -117,7 +119,7 @@ Jekusheke's eyes linger for a moment, seeming somewhat confused, and then he tur
 
 
 :: IntroApostateUnrecognizedChoices
-<<button "Goddammit, Jekusheke, you really can't recognize your own sister?!">>
+<<button "\"Goddammit, Jekusheke, you really can't recognize your own sister?!\"">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "OFFENDED"}>><</send>>
 <</button>>
 <<button "I'm a little relieved, to be honest.">>
@@ -210,55 +212,67 @@ TODO: GO TO WAITING
 :: IntroApostateReactionChoiceSad
 Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady, "why didn't you come back?" He fidgets for a moment, and his words rush out in a torrent. "We tried to find you, but, well, after a while, we figured that if you wanted to be found so we thought, you know, you must be dead, otherwise you'd have - you'd have told us, at least, we thought - and maybe even, you know, come back?" He trails off, shrugs.
 
-<<button "I just couldn't take living with Ma Tiger.">>
+<<button "\"I just couldn't take living with Ma Tiger.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "MOTHER" }>><</send>>
 <</button>>
-<<button "I got black-bagged. Wasn't released for five years.">>
+<<button "\"I was imprisoned in a blacksite for five years.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "IMPRISONED" }>><</send>>
 <</button>>
-<<button "I couldn't face the shame of it.">>
+<<button "\"I was too ashamed to face Ma. And you.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "SHAME" }>><</send>>
 <</button>>
-<<button "My reasons are my own.">>
+<<button "\"My reasons are your own.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "REFUSE" }>><</send>>
 <</button>>
-<<button "We can talk about this later.">>
+<<button "\"We'll talk about it later.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
 <</button>>
 <<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Apostate">><<script>>
   if (setup.isApostate()) {
     const data = State.temporary.receiveData;
     if (data.choice === "MOTHER") {
-      Engine.play("TODO")
+      Engine.play("IntroApostateSadCouldntStandMaTiger")
     } else if (data.choice === "IMPRISONED") {
-      Engine.play("TODO");
+      Engine.play("IntroApostateSadWasImprisoned");
     } else if (data.choice === "SHAME") {
-      Engine.play("TODO");
+      Engine.play("IntroApostateSadShame");
     } else if (data.choice === "REFUSE") {
-      Engine.play("TODO");
+      Engine.play("IntroApostateSadRefuse");
     } else {
-      Engine.play("TODO");
+      Engine.play("IntroApostateSadLater");
     }
   }
 <</script>><</receive>><</nobr>>
+
+
+:: IntroApostateSadCouldntStandMaTiger
+
+
+:: IntroApostateSadWasImprisoned
+
+
+:: IntroApostateSadShame
+
+
+:: IntroApostateSadRefuse
+
+
+:: IntroApostateSadLater
 
 
 :: IntroApostateReactionChoiceAngry
 Jekusheke pulls himself up, leans forward. "I -" he blinks. "Seriously? What the fuck!" He recoils, eyes flashing. "Why didn't you tell us? I mean it's been, it's been fucking, fucking - <<tooltip "how long?">>Thirteen years.<</tooltip>> Nearly ten fucking years!" Out of the corner of your eye, the bartender has started moving. You hold a hand up to him as Jekusheke's voice climbs further. "You're not even - I - how can you be so casual about this?" He pauses, anger falling into confusion. "What the hell were you doing? You just fucking walk into a bar and, and, just drop in like it's nothing! After ten fucking years!" His jaw is tense and he's leaning forward <<tooltip "aggressively.">>Unarmed, and not at the level of violence yet. Unless he's changed significantly, he's unlikely to have any experience in fighting, whether real or sport, but you'd hate to have to hurt him.<</tooltip>> "Why the fuck didn't you tell us!?"
 
 TODO: Revise these choices
-<<button "I just couldn't take living with Ma Tiger.">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "MOTHER" }>><</send>>
+<<button "\"I'm sorry. I should've told you.\"">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "APOLOGIZE" }>><</send>>
 <</button>>
-<<button "I got black-bagged. Wasn't released for five years.">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "IMPRISONED" }>><</send>>
+<<button "\"I was imprisoned in a blacksite for five years.\"">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "BLACKSITE" }>><</send>>
 <</button>>
-<<button "I couldn't face the shame of it.">>
+<<button "\"I was too ashamed to face Ma. And you.\"">>
   <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "SHAME" }>><</send>>
 <</button>>
-<<button "My reasons are my own.">>
+<<button "\"I had my reasons.\"">>
   <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "REFUSE" }>><</send>>
-<</button>>
-<<button "We can talk about this later.">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "LATER" }>><</send>>
 <</button>>
