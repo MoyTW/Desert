@@ -184,13 +184,81 @@ TODO
 
 
 :: IntroApostateReactionChoiceHappy
+Jekusheke's eyes are wide. His face splits into a smile. "Holy shit. You're alive! That's - that's incredible!"
 
+Interesting. You'd have expected more <<tooltip "acrimony">>If somebody you loved just up and vanished from your life for thirteen years, you'd be fucking mad.<</tooltip>> after all this time. "I'm pretty jazzed about it, too. Good to see you too."
+
+"I -" He stops himself. You can feel the <<tooltip "question">>Why?<</tooltip>> on his lips, but in a moment of doubt and worry he swallows it, chokes it down.
+
+"So, is this the family matter that Ma was talking about?" You cast a quick glance back at the door. "She wasn't specific. Did she really just call us here for a family reunion?"
+
+"I, uh." Your brother frowns. "I don't know." A cover, or truth?
+
+"You don't know?"
+
+"Look, she wasn't specific, she just said to meet her here. Did she...what did she say to you?" He doesn't know.
+
+"Not much. Got a letter. Said she needed help."
+
+"You, uh, I guess you know as much as me." A feeble chuckle follows, and he retreats behind a wall of awkward silence.
+
+Nothing to do but wait, then. Worrying that her letter implied she'd intended to be the one waiting.
+
+TODO: GO TO WAITING
 
 
 :: IntroApostateReactionChoiceSad
+Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady, "why didn't you come back?" He fidgets for a moment, and his words rush out in a torrent. "We tried to find you, but, well, after a while, we figured that if you wanted to be found so we thought, you know, you must be dead, otherwise you'd have - you'd have told us, at least, we thought - and maybe even, you know, come back?" He trails off, shrugs.
 
+<<button "I just couldn't take living with Ma Tiger.">>
+  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "MOTHER" }>><</send>>
+<</button>>
+<<button "I got black-bagged. Wasn't released for five years.">>
+  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "IMPRISONED" }>><</send>>
+<</button>>
+<<button "I couldn't face the shame of it.">>
+  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "SHAME" }>><</send>>
+<</button>>
+<<button "My reasons are my own.">>
+  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "REFUSE" }>><</send>>
+<</button>>
+<<button "We can talk about this later.">>
+  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
+<</button>>
+<<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    const data = State.temporary.receiveData;
+    if (data.choice === "MOTHER") {
+      Engine.play("TODO")
+    } else if (data.choice === "IMPRISONED") {
+      Engine.play("TODO");
+    } else if (data.choice === "SHAME") {
+      Engine.play("TODO");
+    } else if (data.choice === "REFUSE") {
+      Engine.play("TODO");
+    } else {
+      Engine.play("TODO");
+    }
+  }
+<</script>><</receive>><</nobr>>
 
 
 :: IntroApostateReactionChoiceAngry
+Jekusheke pulls himself up, leans forward. "I -" he blinks. "Seriously? What the fuck!" He recoils, eyes flashing. "Why didn't you tell us? I mean it's been, it's been fucking, fucking - <<tooltip "how long?">>Thirteen years.<</tooltip>> Nearly ten fucking years!" Out of the corner of your eye, the bartender has started moving. You hold a hand up to him as Jekusheke's voice climbs further. "You're not even - I - how can you be so casual about this?" He pauses, anger falling into confusion. "What the hell were you doing? You just fucking walk into a bar and, and, just drop in like it's nothing! After ten fucking years!" His jaw is tense and he's leaning forward <<tooltip "aggressively.">>Unarmed, and not at the level of violence yet. Unless he's changed significantly, he's unlikely to have any experience in fighting, whether real or sport, but you'd hate to have to hurt him.<</tooltip>> "Why the fuck didn't you tell us!?"
 
-
+TODO: Revise these choices
+<<button "I just couldn't take living with Ma Tiger.">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "MOTHER" }>><</send>>
+<</button>>
+<<button "I got black-bagged. Wasn't released for five years.">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "IMPRISONED" }>><</send>>
+<</button>>
+<<button "I couldn't face the shame of it.">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "SHAME" }>><</send>>
+<</button>>
+<<button "My reasons are my own.">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "REFUSE" }>><</send>>
+<</button>>
+<<button "We can talk about this later.">>
+  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "LATER" }>><</send>>
+<</button>>
