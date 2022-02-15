@@ -1,4 +1,4 @@
-:: TheApostateIntro
+:: IntroApostate_Start
 <style>
 .p-tfi-letter {
   border-style: solid;
@@ -19,8 +19,8 @@ You don't even know how the <<tooltip "courier">>Tall female with a slight build
 The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 <span id='tai-open-letter-btn' class='expand-btn'><<button "Read it again.">>
-  <<send 'THE_APOSTATE_INTRO_1' {}>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</send>>
-  <<receive 'THE_APOSTATE_INTRO_1' 'Apostate'>>
+  <<send 'IntroApostate_Start_1' {}>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</send>>
+  <<receive 'IntroApostate_Start_1' 'Apostate'>>
     <<if setup.isApostate()>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</if>>
   <</receive>>
 <</button>></span>\
@@ -276,3 +276,23 @@ TODO: Revise these choices
 <<button "\"I had my reasons.\"">>
   <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "REFUSE" }>><</send>>
 <</button>>
+
+:: IntroApostate_FaithfulAngry_ApostateApologize
+TODO
+"I'm sorry," you say. "I should've told you."
+
+
+:: IntroApostate_FaithfulAngry_ApostateBlacksite
+TODO
+"I was imprisoned," you say, staring him in the eye. "I spent five years in a blacksite."
+
+
+:: IntroApostate_FaithfulAngry_ApostateShame
+TODO
+"I was too ashamed," you say. You carefully avoid his gaze. "I couldn't face Ma. Or you."
+
+
+:: IntroApostate_FaithfulAngry_ApostateRefuse
+TODO:
+"I had my reasons."
+

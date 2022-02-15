@@ -159,7 +159,7 @@ Please enter the session identifier you'd like to join.
     if (setup.isFaithful()) {
       Engine.play("TheFaithfulIntro")
     } else {
-      Engine.play("TheApostateIntro")
+      Engine.play("IntroApostate_Start")
     }
   }
 <</script>><</receive>><</nobr>>\
