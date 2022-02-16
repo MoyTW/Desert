@@ -1,4 +1,4 @@
-:: TheFaithfulIntro
+:: IntroFaithful_Start
 <style>
 .p-tfi-letter {
   border-style: solid;
@@ -84,7 +84,7 @@ The bartender nods. "That's rough, buddy."
 
 "I'll wait as long as it takes." He steps up, opens his mouth. "Thanks for asking," you say, waving him off. Hint taken, he retreats back along the bar.
 
-<<include "FaithfulWaitInChristies">>
+<<include "IntroFaithful_WaitInChristies">>
 </span>\
 <span id="tfi-convo-date-text" class="hidden">\
 You toss out a chuckle. "Well," you sigh, "I had the date, but not the time."
@@ -93,43 +93,43 @@ The bartender nods sympathetically. "That's rough, buddy."
 
 "I'll give it a little longer. Thanks for asking," you say, waving him off. He takes the hint and retreats back along the bar.
 
-<<include "FaithfulWaitInChristies">>
+<<include "IntroFaithful_WaitInChristies">>
 </span>\
 <span id="tfi-convo-concern-text" class="hidden">\
 You clear your throat. "None of your concern, friend."
 
 The bartender shrugs, retreats.
 
-<<include "FaithfulWaitInChristies">>
+<<include "IntroFaithful_WaitInChristies">>
 </span>
 
 
-:: FaithfulWaitInChristies
+:: IntroFaithful_WaitInChristies
 Come on, Ma. It's been a little over four hours now. What's going on?
 
 @@#fsu-wb;<<button "Wait.">>
-  <<send 'THE_FAITHFUL_INTRO_WAIT' {}>><<script>>
+  <<send 'IntroFaithful_WaitInChristies_Done' {}>><<script>>
     $("#fsu-wb button").text("Sending to server...")>> 
     $("#fsu-wb button").prop("disabled", true)
   <</script>><</send>> 
 <</button>>@@\
 <<nobr>>
-  <<receive 'THE_APOSTATE_INTRO_ENTER' 'Faithful'>><<script>>
+  <<receive 'IntroApostate_Start_Done' 'Faithful'>><<script>>
     if (setup.isFaithful()) {
-      State.variables.THE_APOSTATE_INTRO_ENTER = true;
-      if (State.variables.THE_APOSTATE_INTRO_ENTER && State.variables.THE_FAITHFUL_INTRO_WAIT) {
-        delete State.variables.THE_APOSTATE_INTRO_ENTER;
-        delete State.variables.THE_FAITHFUL_INTRO_WAIT;
+      State.variables.IntroApostate_Start_Done = true;
+      if (State.variables.IntroApostate_Start_Done && State.variables.IntroFaithful_WaitInChristies_Done) {
+        delete State.variables.IntroApostate_Start_Done;
+        delete State.variables.IntroFaithful_WaitInChristies_Done;
         Engine.play('IntroFaithfulMeetingApostate');
       }
     }
   <</script>><</receive>>
-  <<receive 'THE_FAITHFUL_INTRO_WAIT' 'Faithful'>><<script>>
+  <<receive 'IntroFaithful_WaitInChristies_Done' 'Faithful'>><<script>>
     if (setup.isFaithful()) {
-      State.variables.THE_FAITHFUL_INTRO_WAIT = true;
-      if (State.variables.THE_APOSTATE_INTRO_ENTER && State.variables.THE_FAITHFUL_INTRO_WAIT) {
-        delete State.variables.THE_APOSTATE_INTRO_ENTER;
-        delete State.variables.THE_FAITHFUL_INTRO_WAIT;
+      State.variables.IntroFaithful_WaitInChristies_Done = true;
+      if (State.variables.IntroApostate_Start_Done && State.variables.IntroFaithful_WaitInChristies_Done) {
+        delete State.variables.IntroApostate_Start_Done;
+        delete State.variables.IntroFaithful_WaitInChristies_Done;
         Engine.play('IntroFaithfulMeetingApostate');
       } else {
         $("#fsu-wb button").text("Waiting for partner...")>>

@@ -157,7 +157,7 @@ Please enter the session identifier you'd like to join.
   }
   if (State.variables.selectCharacterHostConfirmed && State.variables.selectCharacterPartnerConfirmed) {
     if (setup.isFaithful()) {
-      Engine.play("TheFaithfulIntro")
+      Engine.play("IntroFaithful_Start")
     } else {
       Engine.play("IntroApostate_Start")
     }
