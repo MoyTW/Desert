@@ -99,15 +99,15 @@ Jekusheke, your <<tooltip "brother,">>Foster, not bilogical.<</tooltip>> who you
 :: IntroApostateFamiliarGreeting
 Jekusheke grins and waves. "Hey," he says. "Good to see you again. Fancy meeting here, huh?"
 
-TODO: lol he doesn't recognize you
+Interesting. He recognizes that he knows you, but he doesn't recognize who you are.
 
 <<include "IntroApostateUnrecognizedChoices">>
 
 
 :: IntroApostateStrangerGreeting
-Jekusheke smiles and waves casually. "Afternoon," he says.
+Jekusheke smiles and waves casually. "Good afternoon," he says, with a slight drawl.
 
-TODO: lol he doesn't recognize you
+Interesting. He doesn't seem to recognize you at all, or if he does, he doesn't know where from.
 
 <<include "IntroApostateUnrecognizedChoices">>
 
@@ -115,17 +115,19 @@ TODO: lol he doesn't recognize you
 :: IntroApostateNoGreeting
 Jekusheke's eyes linger for a moment, seeming somewhat confused, and then he turns back to the bar.
 
+Interesting. He didn't recognize you, at least not perfectly, but he did show a reaction.
+
 <<include "IntroApostateUnrecognizedChoices">>
 
 
 :: IntroApostateUnrecognizedChoices
-<<button "\"Goddammit, Jekusheke, you really can't recognize your own sister?!\"">>
+<<button "He can't even recognize his own sister? That's frankly insulting.">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "OFFENDED"}>><</send>>
 <</button>>
 <<button "I'm a little relieved, to be honest.">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "RELIEVED"}>><</send>>
 <</button>>
-<<button "Really? He doesn't recognize me? Huh! You know what'd be hilarious?">>
+<<button "That's hilarious. I'll make the most of it.">>
   <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "GREMLIN"}>><</send>>
 <</button>>
 <<nobr>><<receive "IntroApostateUnrecognizedChoices_CHOICE" "Apostate">><<script>>
@@ -143,10 +145,25 @@ Jekusheke's eyes linger for a moment, seeming somewhat confused, and then he tur
 
 
 :: IntroApostateChoiceOffended
-TODO
 <<if hasVisited("IntroApostateNoGreeting")>>\
+  You walk up behind him and tap him on the shoulder. He turns about, and you scowl at him.
 <<else>>\
+  You walk right up to him, tilt your head to the side, stare him in the eyes. His smile wilts.
 <</if>>\
+
+"Jekusheke," you say, your voice sharp with accusation, "don't you recognize your own sister?"
+
+He jerks back, eyes wide. "Holy shit," he says, and his face fills with shock. "Wh-" He stammers, sputters. "You-you're-" Concern. "Why are - why here?" He swallows. "We thought - you're - were you - does Mom know?"
+
+So he wasn't told to expect you. Good to know.
+
+<<tooltip "\"We thought you were dead!\"">>Did he? Ma Tiger clearly didn't.<</tooltip>>
+
+<<tooltip "\"Did you?\"">>He had a bad habit of compulsive white lies when under stress. Does he still?<</tooltip>>
+
+"Yes! We thought - when you vanished - we couldn't find any trace of you! We - you were alive the whole time?"
+
+"Yeah. Alive, if <<tooltip "not well">>An understatement.<</tooltip>>." He pulls his breath in, makes ready to speak.
 
 <<include "IntroApostateWaitForFaithfulReaction">>
 
@@ -154,6 +171,9 @@ TODO
 :: IntroApostateChoiceRelieved
 TODO
 <<if hasVisited("IntroApostateNoGreeting")>>\
+  You take a seat next to Jekusheke. He glances over at you, that quizzical look still on his face.
+
+  
 <<else>>\
 <</if>>
 
@@ -206,7 +226,7 @@ Interesting. You'd have expected more <<tooltip "acrimony">>If somebody you love
 
 Nothing to do but wait, then. Worrying that her letter implied she'd intended to be the one waiting.
 
-TODO: GO TO WAITING
+<<include "IntroApostate_WaitingAwkwardly">>
 
 
 :: IntroApostateReactionChoiceSad
@@ -296,3 +316,9 @@ TODO
 TODO:
 "I had my reasons."
 
+
+:: IntroApostate_WaitingAwkwardly
+TODO
+Jekusheke is fidgety. He keeps glancing at you, trying to to glance at you, glancing at you anyways. He seems <<tooltip "unwilling">>Unable.<</tooltip>> to say any more, but you can tell that if he found the courage he would.
+
+As for you, well, what would you say? It's been too long. He's no longer part of your life.

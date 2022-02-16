@@ -228,7 +228,6 @@ You swallow. "We thought you were dead."
 
 
 :: IntroFaithfulChoiceRelieved
-TODO
 <<if hasVisited("IntroFaithfulNoGreeting")>>\
   The woman takes a seat at the bar beside you. You wrack your brain. She's familiar, yes, but in a distant, half-remembered way. Somebody from school? A co-worker? You didn't date her, did you?
 
@@ -314,7 +313,7 @@ TODO: These
 
 "You, uh, I guess you know as much as me." No reaction. You give out a feeble chuckle. She's unmoved.
 
-TODO: GO TO WAITING
+<<button [[Wait in silence.|IntroFaithful_WaitingAwkwardly]]>><</button>>
 
 
 :: IntroFaithfulReactionChoiceSad
@@ -325,3 +324,5 @@ TODO: WAITING CODE
 :: IntroFaithfulReactionChoiceAngry
 TODO: you mad
 
+
+:: IntroFaithful_WaitingAwkwardly
