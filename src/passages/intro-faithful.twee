@@ -141,7 +141,11 @@ Come on, Ma. It's been a little over four hours now. What's going on?
 
 
 :: IntroFaithfulMeetingApostate
-TODO: A woman walks into the bar. She seems familiar, but you can't quite place her.
+The saloon doors swing open with a creak. Ma Tiger? <<tooltip "No.">>Dammit, Mom, where are you?<</tooltip>> It's some other woman, a tall asian woman about your age. Her face is tanned and weathered, and eerily familiar, in a way that tickles at the back of your mind. Where in the world have you seen her before? Did you meet her at a party? Does she work at the fire station, and you just don't see her much?
+
+You really hope she doesn't recognize you. That would be real awkward.
+
+She takes a moment to look around the room, then starts heading for the bar and, by extension, you. Well, there's nothing for it now, you're going to have to talk to her one way or another.
 
 <<button "Greet her like you know her, because you're sure you do. You're just not sure where from.">>
   <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "FAMILIAR" }>><</send>>
@@ -166,19 +170,25 @@ TODO: A woman walks into the bar. She seems familiar, but you can't quite place 
 <</script>><</receive>><</nobr>>\
 
 :: IntroFaithfulGreetAndHope
-TODO: You grin & wave and hope for the best.
+You grin, hopefully making it look natural, and wave to the woman with the familiar face. "Hey! Good to see you again. Fancy meeting you here, huh?"
+
+She slows her walk, but her face doesn't change.
 
 <<include "IntroFaithfulWaitForChoices">>
 
 
 :: IntroFaithfulJogYourMemory
-TODO: You casually wave and say afternoon.
+You put on a realxed smile and give a casual, friendly wave. "Good afternoon," you say, in a bad imitation of a cowboy drawl.
+
+If she's amused, you can't tell.
 
 <<include "IntroFaithfulWaitForChoices">>
 
 
 :: IntroFaithfulNoGreeting
-TODO: You turn back.
+You turn back to the bar, buying time. If you really do know her, she's certainly going to talk to you, and if it turns out she doesn't recognize you, all the better, right?
+
+If only you could remember where you've seen her.
 
 <<include "IntroFaithfulWaitForChoices">>
 
@@ -259,18 +269,42 @@ Your breath catches. Shit. So <em>that's</em> where you remember her from. But -
 
 
 :: IntroFaithfulChoiceGremlin
-TODO
 <<if hasVisited("IntroFaithfulNoGreeting")>>\
+  You studiously study your cup of diet coke as you ponder this woman's identity.
 
+  Then you feel her arms grabbing you from behind and you jerk forward but she's already pressing up against you, trapping you like a rabbit in a net, and she cries out in a high voice at complete odds with her looks. <<tooltip "\"Jekusheekeeeee!\"">>Shit, she knows your name.<</tooltip>> You try to pull away again, but she's nestled up against your back and will not allow escape. "It's been so long!"
+
+  You stop moving, sit still. Who the fuck is this, and more importantly, why the <strong>fuck</strong> is she groping you? <<tooltip "\"Sorry,\"">>She's fucking groping you and you're saying <strong>sorry</strong> to her?<</tooltip>> you say, "do I know you?"
+
+  "Oh, Jekusheke," she purrs, and she turns you around in your seat, "don't you recognize me?"
+
+  "No," you spit, "I'm sure you've got the wrong person."
 <<else>>\
-  "Oh, hey Jekusheke," says says, flopping down on the stool next to you. "Fancy seeing you here."
+  The woman who you don't quite recognizes pauses, her face full or surprise. Then a smile, huge and heartfelt, breaks out on her face <<tooltip "\"Jekusheke!\"">>Shit. This is awkward.<</tooltip>> she cries in a lilting voice, the <<tooltip "highest you've ever heard,">>You were not expecting her to sound like that at all.<</tooltip>> and practically runs up to you with her arms open for an embrace. "It's been so long! she cries, grabbing onto you and nuzzling up like a long-lost lover. Your attempts to extricate yourself come to no avail.
+
+  "Sorry," you choke out, "I think you have me confused with somebody else."
+
+  "Oh Jekusheke," she purrs, pulling back a few inches to look you in the face, still uncomfortably close, "don't you recognize me?"
+
+  "No," you say, trying to get her arms off you, "I'm sure you've got the wrong person."
 <</if>>\
+
+She detaches herself from you and stands back a couple of feet. Her face is full of petulance, and her lips are set in a pout. "Come on, surely you haven't forgotten little old me?"
+
+"I'm sure," you growl.
+
+She stands up straight as a statue, and suddenly she seems to be a completely different person, no longer friendly but stern and angry. "Jekusheke," she says again, and her voice is deep and resonant, like Mom's voice whenever she was angry, "you really don't recognize your own sister?"
+
+"What?"
+
+"Your sister. Ebiaishe."
+
+<strong>What?</strong> But - you thought she was dead. How is she - oh, of fucking course she'd think it's <<tooltip "funny">>It wasn't fucking funny.<</tooltip>> to fuck with you <<tooltip "like that">>She was always very physical; she got into a terrying number of fistfights.<</tooltip>>.
 
 <<include "IntroFaithfulAliveReactionChoice">>
 
 
 :: IntroFaithfulAliveReactionChoice
-TODO: These
 <<button "Holy shit. You're alive! That's - that's incredible!">>
   <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "HAPPY" }>><</send>>
 <</button>>

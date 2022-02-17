@@ -198,10 +198,41 @@ His face contorts with relalization, and shock follows on its heels. "You're...a
 
 
 :: IntroApostateChoiceGremlin
-TODO
 <<if hasVisited("IntroApostateNoGreeting")>>\
+  He's shown his back to you; a fatal mistake.
+
+  You creep up silently behind him then throw your arms around him, draping yourself over him like a shawl as jerks in shock. His weak attempt at escape is an utter failure, and in its wake you press yourself up against his back and pitch your voice as <<tooltip "high as you can">>. It hurts to do this for more than a couple of minutes at a time.<</tooltip>> You call out his name with a lilting, mocking joy. "Jekusheekeeeee! It's been so long!"
+
+  His struggling stops, and he becomes still as a stone. "Sorry," he says, "do I know you?"
+
+  "Oh, Jekusheke," you purr, pulling him back around to face you, "don't you recognize me?"
+
+  "No." <<tooltip "Anger">>Ha! Adorable.<</tooltip>> gives his growl bite. "I think you have the wrong person."
 <<else>>\
-<</if>>
+  You stop, then stare intently at his face for a beat. Then you shove as big a smile as you can on your face, pulling in your breath and pitching your voice as <<tooltip "high as the heavens">>It starts to hurt if you do this for more than about a minute.<</tooltip>>. "Jekusheke!" you cry out, running up to embrace him, "it's been so long!" He stiffens in shock as you drape yourself over him like a shawl, jerking away. You give him no chance to escape, and you can feel his panic as he attempts to squirm away.
+
+  "Sorry," he chokes out, "I think you have me confused with somebody else."
+
+  "Oh, Jekusheke," you purr, pulling back and looking him in the face, "don't you recognize me?"
+
+  "No," he says, attempting to extricate himself from your grasp, "I'm sure you've got the wrong person."
+<</if>>\
+
+You release him, put on a pout with as much facial movement as you can, and flutter your eyelashes. "Come on," you say, "surely you haven't forgotten little old me?"
+
+"I'm sure," you reply.
+
+You stand up straight, drop your voice back to normal. "Jekusheke," you say, putting as much disappointment into your words as you can, "you really don't recognize your own sister?"
+
+"What?"
+
+"Your sister. Ebiaishe."
+
+<<if hasVisited("IntroApostateNoGreeting")>>\
+  You can see his anger turning into sheer, utter bafflement, all <<tooltip "obvious as day">>He was never good at hiding his feelings.<</tooltip>> on his face. Then the anger comes rushing back, derails, drops into a chasm, flares back up; in his head rages a frenzied war, all full of confusion.
+<<else>>\
+  You can see his shock turning into sheer, utter bafflement, all <<tooltip "obvious as day">>He was never good at hiding his feelings.<</tooltip>> on his face. In his head rages a frenzied war, all full of confusion.
+<</if>>\
 
 <<include "IntroApostateWaitForFaithfulReaction">>
 
@@ -249,6 +280,7 @@ Nothing to do but wait, then. Worrying that her letter implied she'd intended to
 :: IntroApostateReactionChoiceSad
 Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady, "why didn't you come back?" He fidgets for a moment, and his words rush out in a torrent. "We tried to find you, but, well, after a while, we figured that if you wanted to be found so we thought, you know, you must be dead, otherwise you'd have - you'd have told us, at least, we thought - and maybe even, you know, come back?" He trails off, shrugs.
 
+/* TODO: Truth/Lie buttons */\
 <<button "\"I just couldn't take living with Ma Tiger.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "MOTHER" }>><</send>>
 <</button>>
@@ -335,7 +367,17 @@ TODO:
 
 
 :: IntroApostate_WaitingAwkwardly
-TODO
-Jekusheke is fidgety. He keeps glancing at you, trying to to glance at you, glancing at you anyways. He seems <<tooltip "unwilling">>Unable.<</tooltip>> to say any more, but you can tell that if he found the courage he would.
+TODO: THIS!
+<span id="ia-wa-wait-btn" class="expand-btn"><<button "Wait.">>
+  <<send 'IntroApostate_WaitingAwkwardly_1' {}>>
+    <<hideandshow "#ia-wa-wait-btn" "#ia-wa-wait-text">>
+  <</send>>
+  <<receive "IntroApostate_WaitingAwkwardly_1" "Apostate">>
+    <<hideandshow "#ia-wa-wait-btn" "#ia-wa-wait-text">>
+  <</receive>>
+<</button>></span>\
+<span id="ia-wa-wait-text" class="hidden">\
+  Jekusheke is fidgety. He keeps glancing at you, trying to to glance at you, glancing at you anyways. He seems <<tooltip "unwilling">>Unable.<</tooltip>> to say any more, but you can tell that if he found the courage he would.
 
-As for you, well, what would you say? It's been too long. He's no longer part of your life.
+  As for you, well, what would you say? It's been too long. He's got nothing to do with you, and you've got nothing to do with him.
+</span>
