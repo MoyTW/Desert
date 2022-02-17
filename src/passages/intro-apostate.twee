@@ -169,13 +169,30 @@ So he wasn't told to expect you. Good to know.
 
 
 :: IntroApostateChoiceRelieved
-TODO
 <<if hasVisited("IntroApostateNoGreeting")>>\
-  You take a seat next to Jekusheke. He glances over at you, that quizzical look still on his face.
+  You take a seat next to Jekusheke. He glances over at you, that quizzical look still on his face, and then turns back to contemplate his <<tooltip "drink">>Soda. Non-alcoholic.<</tooltip>>.
 
-  
+  What's there to say after thirteen years of absence? You're alive. He's alive. It looks like he's doing <<tooltip "well">>His clothes are good quality, he's neither underfed nor eating to well.<</tooltip>>. You'd be just as content to let him pass by. But Ma asked for your help, and his presence no mistake.
+
+  "So," you start, "what brings you here?"
+
+  "Uh." He's wary. "Meeting a friend. How about you?"
 <<else>>\
+  You nod at his greeting and take a seat at the bar. He smiles in a forced, friendly way and speaks. "So what brings you here?"
 <</if>>
+You snicker. "Family business."
+
+<<tooltip "\"Family buisness?\"">>He doesn't know?<</tooltip>>
+
+"Family buisness." You sigh and look him straight in the eyes. "You don't recognize me?"
+
+"I, uh, well-" He studies your face, looks you up and down. "Sorry. I think we've met but I can't quite place you."
+
+Is that really a surprise, after thirteen years? You guess not. Kind of funny, really. "I guess I can't blame you," you say, "it's been a long time." You realize you're <<tooltip "grinning">>Does it come across as reassuring, or predatory?<</tooltip>> as he fidgets awkwardly. "Come on, Jekusheke. Don't tell me you forgot your own sister?"
+
+His face contorts with relalization, and shock follows on its heels. "You're...alive? You're alive!? We thought - after - I mean - how long has it been? You've been alive this whole time?"
+
+"Guess so," you say, and your voice is shakier than you'd thought it'd be. "Been doing all right for myself."
 
 <<include "IntroApostateWaitForFaithfulReaction">>
 
