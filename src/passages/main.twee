@@ -47,7 +47,7 @@ The game will automatically start once your partner has joined.
   <</receive>>
   <<receive 'HOST_GAME_GAME_STARTED' 'Host'>>
     <<if $clientId === $hostClientId>>
-      <<run Engine.play('SelectCharacter');>>
+      <<run Engine.play('IntroMaTiger');>>
     <</if>>
   <</receive>>
 <</nobr>>
@@ -81,9 +81,23 @@ Please enter the session identifier you'd like to join.
 <<receive 'HOST_GAME_GAME_STARTED' 'Client'>>
   <<if $clientId !== $hostClientId>>
     <<set $hostClientId to _receiveData.hostClientId>>
-    <<run Engine.play('SelectCharacter');>>
+    <<run Engine.play('IntroMaTiger');>>
   <</if>>
 <</receive>>\
+
+
+:: IntroMaTiger
+<h1>July 19, 2055</h1>\
+<h2>On The Road</h2>\
+The long drive across the desert gives Ann Wang ample time to contemplate her sixty-two years of mistakes. She does so in silence, not speaking a word to her companion, who would neither understand nor sympathize. Instead, she watches the highway, hands on the wheels, and wonders.
+
+Her car is ancient, one of the models from before electronics crept into every nook and cranny, from that primordial past where cars could not drive themselves and the roads were filled with dangerous drivers, prone to distraction and drunken crashes. She's ditched her phone, too, left it with a friend back home. If she dozes off and wheels off the road, drives into a ditch or overturns herself on a rock, nobody will know and nobody will come.
+
+No. It's not dangerous; the roads are straight and empty, and the terror of isolation only that, terror. Soon she'll have real danger to deal with. The problems of running from your past, perhaps. Or, perhaps, the problems of facing up to it.
+
+She wonders if her plans will pan out. She wonders if it will be as hot as she remembers it, out there in the desert. She wonders if, when she arrives in Reno, she will see her children again.
+
+<<button [[Wonder.|SelectCharacter]]>><</button>>
 
 
 :: SelectCharacter
