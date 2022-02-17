@@ -10,7 +10,7 @@
 <h2>Reno, Nevada</h2>\
 You pull Ma Tiger's letter out of your pocket for the hundredth time as your cab winds its way through Reno's roads. You do not look at it. Instead you stare out at the houses as they pass, watch the casinos with their neon signs, doubtless impressive outside of the light of day. You finger the letter, put it back, pull it out.
 
-<<tooltip "Ma Tiger.">>In formal contexts, Ms. Tiger. You never learned if Ma was her real name or not.<</tooltip>> Your mother of eleven years, eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it. When you left it was involuntary, but you could've returned afterwards.
+<<tooltip "Ma Tiger.">>In formal contexts, Ms. Tiger. In official contexts, Ma Wang.<</tooltip>> Your mother of eleven years, the woman who plucked you from the streets and sat you for eleven years in a nice house in a nice neighborhood with nice neighbors and a nice school, eleven years of faking it until you made it except that you never made it. When you left it was involuntary, but you could've returned afterwards.
 
 You never did. Facing back up would be worse than death.
 
@@ -300,34 +300,78 @@ Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady
   if (setup.isApostate()) {
     const data = State.temporary.receiveData;
     if (data.choice === "MOTHER") {
-      Engine.play("IntroApostateSadCouldntStandMaTiger")
+      Engine.play("IntroApostate_FaithfulSadWhy_CouldntStandMaTiger")
     } else if (data.choice === "IMPRISONED") {
-      Engine.play("IntroApostateSadWasImprisoned");
+      Engine.play("IntroApostate_FaithfulSadWhy_WasImprisoned");
     } else if (data.choice === "SHAME") {
-      Engine.play("IntroApostateSadShame");
+      Engine.play("IntroApostate_FaithfulSadWhy_Shame");
     } else if (data.choice === "REFUSE") {
-      Engine.play("IntroApostateSadRefuse");
+      Engine.play("IntroApostate_FaithfulSadWhy_Refuse");
     } else {
-      Engine.play("IntroApostateSadLater");
+      Engine.play("IntroApostate_FaithfulSadWhy_Later");
     }
   }
 <</script>><</receive>><</nobr>>
 
 
-:: IntroApostateSadCouldntStandMaTiger
+:: IntroApostate_FaithfulSadWhy_CouldntStandMaTiger
+You drop your voice to match his. "I just couldn't take living with Ma Tiger."
+
+Jekusheke opens his mouth, shuts it. He remembers just as well as you the suffocating expectations, the stern disappointment whenever you snuck back through the back door with blood on your hands, the quiet fury when she learned of your first relationships, the pain when you started failing out of school and she found herself too alien to understand what she needed to do to help. She was never cruel. She never beat you, or starved you, or absued you. She simply held you to <<tooltip "high standards">>Jekusheke could meet them. You could not.<</tooltip>>.
+
+He averts his eyes, but you can feel the <<tooltip "hurt">>Well, that's how it goes. Nothing to be done for it now.<</tooltip>> in them. He takes a deep breath and looks you in the eyes. "Why are you here, then?"
+
+<<include "IntroApostate_FaithfulSadWhy_Conclusion">>
 
 
-:: IntroApostateSadWasImprisoned
+:: IntroApostate_FaithfulSadWhy_WasImprisoned
+You drop your voice to match his. "I was imprisoned in a <<tooltip "blacksite">>A Disney blacksite, no less. That's practically an honor.<</tooltip>>. It was five years before they let me out. After five years, I just didn't feel like going back. Nothing more to it."
+
+For a while there's silence. Then: "Why didn't you tell us, at least?"
+
+"It seemed best to leave it in the past."
+
+He stares at you, looks away, looks back. "Then why are you here?"
+
+<<include "IntroApostate_FaithfulSadWhy_Conclusion">>
 
 
-:: IntroApostateSadShame
+:: IntroApostate_FaithfulSadWhy_Shame
+TODO
+You drop your voice to match his. "I was too ashamed to face Ma." You pause. "And you."
+
+He frowns. "Why?"
+
+"I killed a man." You see him opening his mouth. "It wasn't an accident. Still, I don't think Ma would have approved."
+
+<<tooltip "\"Jesus.\"">>He wasn't Christian when you last knew him, but who knows?<</tooltip>> He leans back. "Jesus. Really?"
+
+"Yeah."
+
+He frowns. "Was it - was it - you know what, nevermind." He frowns, then takes a deep breath. "Fine. So, why are you here then?"
+
+<<include "IntroApostate_FaithfulSadWhy_Conclusion">>
 
 
-:: IntroApostateSadRefuse
+:: IntroApostate_FaithfulSadWhy_Refuse
+TODO
 
 
-:: IntroApostateSadLater
+:: IntroApostate_FaithfulSadWhy_Later
+TODO
 
+:: IntroApostate_FaithfulSadWhy_Conclusion
+"I got a letter from her. She said she needed help with a family matter."
+
+"Did she explain?" He doesn't know, either.
+
+"She didn't tell you?"
+
+Your former brother shakes his head. "No," he says. "No, she didn't. She said she'd explain when we met."
+
+"Then I guess we wait."
+
+<<include "IntroApostate_WaitingAwkwardly">>
 
 :: IntroApostateReactionChoiceAngry
 Jekusheke pulls himself up, leans forward. "I -" he blinks. "Seriously? What the fuck!" He recoils, eyes flashing. "Why didn't you tell us? I mean it's been, it's been fucking, fucking - <<tooltip "how long?">>Thirteen years.<</tooltip>> Nearly ten fucking years!" Out of the corner of your eye, the bartender has started moving. You hold a hand up to him as Jekusheke's voice climbs further. "You're not even - I - how can you be so casual about this?" He pauses, anger falling into confusion. "What the hell were you doing? You just fucking walk into a bar and, and, just drop in like it's nothing! After ten fucking years!" His jaw is tense and he's leaning forward <<tooltip "aggressively.">>Unarmed, and not at the level of violence yet. Unless he's changed significantly, he's unlikely to have any experience in fighting, whether real or sport, but you'd hate to have to hurt him.<</tooltip>> "Why the fuck didn't you tell us!?"
