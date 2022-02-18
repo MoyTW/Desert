@@ -353,10 +353,75 @@ She stands up straight as a statue, and suddenly she seems to be a completely di
 :: IntroFaithfulReactionChoiceSad
 You take a deep breath and steel yourself. "Then why didn't you come back?" Your voice is steadier than you expected, but there's a hint of anger. "We tried to find you, but, well, after a while, we figured that if you wanted to be found so we thought, you know, you must be dead, otherwise you'd have - you'd have told us, at least, we thought - and maybe even, you know, come back?" Her face is steady as stone.
 
-TODO: WAITING CODE
+<span id="i-iamf-waiting-text"><strong>Waiting for partner...</strong></span>\
+<<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    const data = State.temporary.receiveData;
+    if (data.choice === "MOTHER") {
+      Engine.play("IntroFaithful_FaithfulSadWhy_CouldntStandMaTiger")
+    } else if (data.choice === "IMPRISONED") {
+      Engine.play("IntroFaithful_FaithfulSadWhy_WasImprisoned");
+    } else if (data.choice === "SHAME") {
+      Engine.play("IntroFaithful_FaithfulSadWhy_Shame");
+    } else if (data.choice === "LATER") {
+      Engine.play("IntroFaithful_FaithfulSadWhy_Later");
+    } else {
+      Engine.play("IntroFaithful_FaithfulSadWhy_Refuse");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: IntroFaithful_FaithfulSadWhy_CouldntStandMaTiger
+Her voice is low, hesitant. "I just couldn't take living with Ma Tiger."
+
+<<tooltip "But.">>The word on your lips. You press them together.<</tooltip>> But! Was the life we had before we met her better? Yes, you had your issues. Yes, she was angry and sad and disappointed whenever you snuck in the back door with bloody fists, but what parent wouldn't be? Was that life of stealing and fights and constant violence any better?
+
+Was it really necessary? Couldn't you have talked? Couldn't you have told us? Maybe she wouldn't have understood, but couldn't you have at least tried, instead of vanishing into the night?
+
+And, if you resented your life so much that you vanished for thirteen years, what brought you back? You take a deep breath. "Why are you here, then?"
+
+<<include "IntroFaithful_FaithfulSadWhy_Conclusion">>
+
+
+:: IntroFaithful_FaithfulSadWhy_WasImprisoned
+Her voice is low, hesitant. "I was imprisoned in a <<tooltip "blacksite">>A blacksite? What did you do, Ebiaishe?<</tooltip>>. It was five years before they let me out." She lets out an almost-laugh. "After five years, I just didn't feel like going back. <<tooltip "Nothing more to it.">>Bull fucking shit.<</tooltip>>"
+
+She stops. That's all you're gonna get. Fine. You'll ask. "Why didn't you tell us, at least?"
+
+"It seemed best to leave it in the past."
+
+You watch her face. "Then why are you here?"
+
+<<include "IntroFaithful_FaithfulSadWhy_Conclusion">>
+
+
+:: IntroFaithful_FaithfulSadWhy_Shame
+TODO
+
+:: IntroFaithful_FaithfulSadWhy_Later
+TODO
+
+:: IntroFaithful_FaithfulSadWhy_Refuse
+TODO
+
+:: IntroFaithful_FaithfulSadWhy_Conclusion
+"I got a letter from her. She said she needed help with a family matter."
+
+"Did she explain?"
+
+"She didn't tell you?"
+
+If only! Having some warning would have helped. "No. No, she didn't. She said she'd explain when we met."
+
+She nods. "Then I guess we wait."
+
+<<include "IntroFaithful_WaitingAwkwardly">>
+
 
 :: IntroFaithfulReactionChoiceAngry
 TODO: you mad
 
 
 :: IntroFaithful_WaitingAwkwardly
+TODO

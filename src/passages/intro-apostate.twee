@@ -290,11 +290,11 @@ Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady
 <<button "\"I was too ashamed to face Ma. And you.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "SHAME" }>><</send>>
 <</button>>
+<<button "\"I'll tell you later, when Ma shows up.\"">>
+  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
+<</button>>
 <<button "\"My reasons are your own.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "REFUSE" }>><</send>>
-<</button>>
-<<button "\"We'll talk about it later.\"">>
-  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
 <</button>>
 <<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Apostate">><<script>>
   if (setup.isApostate()) {
@@ -305,10 +305,10 @@ Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady
       Engine.play("IntroApostate_FaithfulSadWhy_WasImprisoned");
     } else if (data.choice === "SHAME") {
       Engine.play("IntroApostate_FaithfulSadWhy_Shame");
-    } else if (data.choice === "REFUSE") {
-      Engine.play("IntroApostate_FaithfulSadWhy_Refuse");
-    } else {
+    } else if (data.choice === "LATER") {
       Engine.play("IntroApostate_FaithfulSadWhy_Later");
+    } else {
+      Engine.play("IntroApostate_FaithfulSadWhy_Refuse");
     }
   }
 <</script>><</receive>><</nobr>>
@@ -337,12 +337,11 @@ He stares at you, looks away, looks back. "Then why are you here?"
 
 
 :: IntroApostate_FaithfulSadWhy_Shame
-TODO
 You drop your voice to match his. "I was too ashamed to face Ma." You pause. "And you."
 
 He frowns. "Why?"
 
-"I killed a man." You see him opening his mouth. "It wasn't an accident. Still, I don't think Ma would have approved."
+"I killed a someone." You see him opening his mouth. "It wasn't an accident. Still, I don't think Ma would have approved."
 
 <<tooltip "\"Jesus.\"">>He wasn't Christian when you last knew him, but who knows?<</tooltip>> He leans back. "Jesus. Really?"
 
@@ -353,17 +352,39 @@ He frowns. "Was it - was it - you know what, nevermind." He frowns, then takes a
 <<include "IntroApostate_FaithfulSadWhy_Conclusion">>
 
 
-:: IntroApostate_FaithfulSadWhy_Refuse
-TODO
-
-
 :: IntroApostate_FaithfulSadWhy_Later
-TODO
+You drop your voice to match his. "I'll tell you later, when Ma shows up." He opens his mouth to protest. "She'll ask," you say. "We can talk then. I promise."
+
+He frowns. "You knew Mom was coming?"
+
+"Yeah. She didn't tell me to expect you."
+
+"Well she didn't tell me you'd be here either." His frown deepends. "Did she call you? What did she say?"
+
+<<include "IntroApostate_FaithfulSadWhy_Conclusion">>
+
+
+:: IntroApostate_FaithfulSadWhy_Refuse
+/* TODO: Let Jekusheke insist. */\
+You drop your voice to match his. "My reasons are my own."
+
+He stares at you, morose and silent. You let it grow. He cracks first. "So that's it, then?"
+
+"That's it."
+
+"You vanish for - what, thirteen years - you vanish for thirteen years, then you just walk into a bar one day and say you had your reasons?"
+
+"Yeah."
+
+He turns away, jaw grinding. "Fine," he spits. "Fine. Why are you here, if all you're going to do is refuse to talk?"
+
+<<include "IntroApostate_FaithfulSadWhy_Conclusion">>
+
 
 :: IntroApostate_FaithfulSadWhy_Conclusion
 "I got a letter from her. She said she needed help with a family matter."
 
-"Did she explain?" He doesn't know, either.
+"Did she explain?"
 
 "She didn't tell you?"
 
