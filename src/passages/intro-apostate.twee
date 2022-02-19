@@ -432,7 +432,6 @@ TODO:
 
 
 :: IntroApostate_WaitingAwkwardly
-TODO: THIS!
 <span id="ia-wa-wait-btn" class="expand-btn"><<button "Wait.">>
   <<send 'IntroApostate_WaitingAwkwardly_1' {}>>
     <<hideandshow "#ia-wa-wait-btn" "#ia-wa-wait-text">>
@@ -494,11 +493,30 @@ TODO: THIS!
   </span>\
 </span>\
 <span id="ia-wa-ma-family-troubes" class="hidden">\
-FAMILY TROUBLES
+  It's possible that she has some sort of feud with another member of her family, which could explain why she has to try and call on someone she hasn't seen for thirteen years to help her.
+
+  Still, her family is -
+
+  <<include "IntroApostate_MercsEnter">>
 </span>\
 <span id="ia-wa-ma-lost-wealth" class="hidden">\
-LOST WEALTH
+  It's possible that she lost control of her wealth over the last thirteen years, and her family has refused to help her out. It's unlikely, as she's always been extremely meticulous, and managed to stay out of most family drama.
+
+  Unlikely doesn't -
+
+  <<include "IntroApostate_MercsEnter">>
 </span>\
 <span id="ia-wa-ma-hard-to-keep-quiet" class="hidden">\
-MONEY IS LOUD
+  Large sums of money are loud, if you don't want to be detected, and even moreso if what you want to do is illegal. Still, it's not too loud to hide. You've managed, after all.
+
+  If anybody was capable of hiding it, it'd be -
+
+  <<include "IntroApostate_MercsEnter">>
 </span>\
+
+:: IntroApostate_MercsEnter
+A loud creaking announces the opening of the doors. You look back. A pair of people enter, one <<tooltip "muscular,">>Tall male, heavy build, close-cut orange hair, squat face with an unruly beard, wrap-around shades, likely with concealed armor and some sort of weapon in a shoulder holster.<</tooltip>> one <<tooltip "slight.">>Tall male, lean build, close-cut blond hair, long face with a well-groomed mustache, wrap-around shades, likely with concealed armor and some sort of weapon in a shoulder holster.<</tooltip>> Bad news.
+
+The two of them see you, size you up, dismiss you. Instead, they advance straight for Jekusheke. The slimmer one takes off his shades. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting.
+
+TODO: Interrupt OR Jekusheke replies

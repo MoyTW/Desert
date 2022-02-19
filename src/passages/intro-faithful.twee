@@ -459,7 +459,6 @@ TODO: you mad
 
 
 :: IntroFaithful_WaitingAwkwardly
-TODO
 <span id="if-wa-wait-btn" class="expand-btn"><<button "Wait.">>
   <<send "IntroFaithful_WaitingAwkwardly_1" {}>>
     <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
@@ -469,5 +468,52 @@ TODO
   <</receive>>
 <</button>></span>\
 <span id="if-wa-wait-text" class="hidden">\
-TODO TEXT
+  What could you even say to Ebiaishe?
+
+  She's not interested in talking much more, that much is plain. You steal a glance, and she's staring straight ahead, gears turning, <<tooltip "silent">>When she used to brood, she'd do what she's doing now, just sit and stare without moving a muscle. Sometimes for hours.<</tooltip>>.
+
+  You have questions, a hundred questions, but how would you even start to ask them? How do you even approach this? She seemed, well, did she seem happy to see you? She certainly wasn't shy, but she's never been shy. Then again, it's been so long, and if you met the you from back then and compared him to yourself...you're different people, after so long.
+
+  How do you know she's the <<tooltip "same person?">>You can't - and even less if you don't ask.<</tooltip>>
+
+  <span id="if-wa-say-something-btn" class="expand-btn"><<button "Say something.">>\
+    <<send "IntroFaithful_WaitingAwkwardly_2" {}>>
+      <<hideandshow "#if-wa-say-something-btn" "#if-wa-say-something-text">>
+    <</send>>
+    <<receive "IntroFaithful_WaitingAwkwardly_2" "Faithful">>
+      <<hideandshow "#if-wa-say-something-btn" "#if-wa-say-something-text">>
+    <</receive>>
+  <</button>></span>\
+</span>\
+<span id="if-wa-say-something-text" class="hidden">\
+  You take a deep breath, moisten your lips, and -
+
+  You close your mouth.
+
+  Something? What is something? You know what something is before you can say something. What thing is something?
+
+  <span id="if-wa-say-what-choices">\
+    <<button "Something about yourself.">>
+      <<send "IntroFaithful_WaitingAwkwardly_3A" {}>>
+        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-yourself-text">>
+      <</send>>
+      <<receive "IntroFaithful_WaitingAwkwardly_3A" "Faithful">>
+        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-yourself-text">>
+      <</receive>>
+    <</button>>
+    <<button "Something about her.">>
+      <<send "IntroFaithful_WaitingAwkwardly_3B" {}>>
+        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-her-text">>
+      <</send>>
+      <<receive "IntroFaithful_WaitingAwkwardly_3B" "Faithful">>
+        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-her-text">>
+      <</receive>>
+    <</button>>
+  </span>\
+</span>\
+<span id="if-wa-say-yourself-text" class="hidden">\
+TODO
+</span>\
+<span id="if-wa-say-her-text" class="hidden">\
+TODO
 </span>\
