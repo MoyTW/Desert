@@ -442,7 +442,63 @@ TODO: THIS!
   <</receive>>
 <</button>></span>\
 <span id="ia-wa-wait-text" class="hidden">\
+  Seconds turn into minutes, ticking by in silence.
+
   Jekusheke is fidgety. He keeps glancing at you, trying to to glance at you, glancing at you anyways. He seems <<tooltip "unwilling">>Unable.<</tooltip>> to say any more, but you can tell that if he found the courage he would.
 
   As for you, well, what would you say? It's been too long. He's got nothing to do with you, and you've got nothing to do with him.
-</span>
+
+  <span id="ia-wa-ma-puzzle-btn" class="expand-btn"><<button "What is Ma Tiger up to?">>\
+    <<send "IntroApostate_WaitingAwkwardly_2" {}>>
+      <<hideandshow "#ia-wa-ma-puzzle-btn" "#ia-wa-ma-puzzle-text">>
+    <</send>>
+    <<receive "IntroApostate_WaitingAwkwardly_2" "Apostate">>
+      <<hideandshow "#ia-wa-ma-puzzle-btn" "#ia-wa-ma-puzzle-text">>
+    <</receive>>
+  <</button>></span>\
+</span>\
+<span id="ia-wa-ma-puzzle-text" class="hidden">\
+  Instead, for the hundredth time, you contemplate the letter, and Ma Tiger's purpose in sending it.
+
+  She's pretty clearly gotten into some kind of hardcore shit, which seems unreal, but you never know. More unreal is that she's asking you, her daughter who she hasn't seen for thirteen years, to help her. She should have plenty of resources.
+
+  Her family is rich, almost beyond compare. She has a Nine Companies <<tooltip "CEO">>Gary Wang, husband of her mother's sister<</tooltip>> board member in the family. If she needed something done she could surely get it done with <<tooltip "money alone">>PR firms for scandal, private security for violence, butlers for anything else.<</tooltip>>. She may have lived in a humble house in a humble neighborhood, but that was a personal aesthetic choice, a rejection of the flashy lifestyle that her family so loved. She was never shy about exploiting their wealth and influence, so long as it was done quietly.
+
+  So why would she need you? Or Jekusheke?
+
+  <span id="ia-wa-ma-puzzle-choices">\
+    <<button "Maybe the source of her troubles is her family.">>
+      <<send "IntroApostate_WaitingAwkwardly_3A" {}>>
+        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-family-troubles">>
+      <</send>>
+      <<receive "IntroApostate_WaitingAwkwardly_3A" "Apostate">>
+        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-family-troubles">>
+      <</receive>>
+    <</button>>
+    <<button "Did she lose her wealth in these last thirteen years?">>
+      <<send "IntroApostate_WaitingAwkwardly_3B" {}>>
+        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-lost-wealth">>
+      <</send>>
+      <<receive "IntroApostate_WaitingAwkwardly_3B" "Apostate">>
+        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-lost-wealth">>
+      <</receive>>
+    <</button>>
+    <<button "Would solving her problems with money be too hard to keep quiet?">>
+      <<send "IntroApostate_WaitingAwkwardly_3C" {}>>
+        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-hard-to-keep-quiet">>
+      <</send>>
+      <<receive "IntroApostate_WaitingAwkwardly_3C" "Apostate">>
+        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-hard-to-keep-quiet">>
+      <</receive>>
+    <</button>>
+  </span>\
+</span>\
+<span id="ia-wa-ma-family-troubes" class="hidden">\
+FAMILY TROUBLES
+</span>\
+<span id="ia-wa-ma-lost-wealth" class="hidden">\
+LOST WEALTH
+</span>\
+<span id="ia-wa-ma-hard-to-keep-quiet" class="hidden">\
+MONEY IS LOUD
+</span>\

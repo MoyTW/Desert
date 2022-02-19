@@ -460,3 +460,14 @@ TODO: you mad
 
 :: IntroFaithful_WaitingAwkwardly
 TODO
+<span id="if-wa-wait-btn" class="expand-btn"><<button "Wait.">>
+  <<send "IntroFaithful_WaitingAwkwardly_1" {}>>
+    <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
+  <</send>>
+  <<receive "IntroFaithful_WaitingAwkwardly_1" "Faithful">>
+    <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
+  <</receive>>
+<</button>></span>\
+<span id="if-wa-wait-text" class="hidden">\
+TODO TEXT
+</span>\
