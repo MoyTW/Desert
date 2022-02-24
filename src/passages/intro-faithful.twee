@@ -347,7 +347,7 @@ She stands up straight as a statue, and suddenly she seems to be a completely di
 
 "You, uh, I guess you know as much as me." No reaction. You give out a feeble chuckle. She's unmoved.
 
-<<button [[Wait in silence.|IntroFaithful_WaitingAwkwardly]]>><</button>>
+<<include "IntroFaithful_WaitingAwkwardly">>
 
 
 :: IntroFaithfulReactionChoiceSad
@@ -515,5 +515,26 @@ TODO: you mad
 TODO
 </span>\
 <span id="if-wa-say-her-text" class="hidden">\
-TODO
+  Something about her.
+
+  Where have you been? How have you been? What have you been doing, all these years? How has your week been going, Ebiaishe? This all seems a bit unreal, doesn't it. Hey, Ebiaishe, what did you think about the Wolves game last night, Carson was <<tooltip "on fire">>Thirty-seven points, a new personal best for him.<</tooltip>> wasn't he?
+
+  <<tooltip "Stupid.">>Yeah, you haven't seen each other in thirteen years, let's talk about basketball, sure.<</tooltip>>
+
+  <span id="if-wa-mercs-enter-btn" class="expand-btn"><<button "Say anything, it doesn't matter how dumb it is, as long as you start talking.">>\
+    <<send "IntroFaithful_WaitingAwkwardly_4" {}>>
+      <<hideandshow "#if-wa-mercs-enter-btn" "#if-wa-mercs-enter-text">>
+    <</send>>
+    <<receive "IntroFaithful_WaitingAwkwardly_4" "Faithful">>
+      <<hideandshow "#if-wa-mercs-enter-btn" "#if-wa-mercs-enter-text">>
+    <</receive>>
+  <</button>></span>\
 </span>\
+
+<span id="if-wa-mercs-enter-text" class="hidden">\
+  You draw in your breath, only to be interrupted by a loud creaking. You look back to see Silas, the tallest security guard in the <<tooltip "Midas clinic,">>You worked there for a couple of years. It's a pretty rough area, which is why they're often hiring. Like everybody else, you bounced pretty fast.<</tooltip>> alongside some other man you've never seen before.
+
+  Silas grins when he sees you. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting.
+
+  TODO: Choices
+</span>
