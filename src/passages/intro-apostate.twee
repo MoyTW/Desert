@@ -465,7 +465,7 @@ TODO:
 
   So why would she need you? Or Jekusheke?
 
-  <span id="ia-wa-ma-puzzle-choices">\
+  <span id="ia-wa-ma-puzzle-choices" class="expand-btn">\
     <<button "Maybe the source of her troubles is her family.">>
       <<send "IntroApostate_WaitingAwkwardly_3A" {}>>
         <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-family-troubles">>

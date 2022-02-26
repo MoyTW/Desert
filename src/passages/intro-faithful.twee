@@ -512,7 +512,28 @@ TODO: you mad
   </span>\
 </span>\
 <span id="if-wa-say-yourself-text" class="hidden">\
-TODO
+  So, something about yourself. What, exactly, about yourself?
+
+  Hey, Ebiaishe, I picked up climbing lately. There's a gym in walking distance, it's a lot of fun, you should try it.
+
+  How banal.
+
+  Hey, Ebiaishe, did you know that I'm an EMT now? Oh, you know, it's going fine, I like it.
+
+  Awkward.
+
+  Hey, Ebiaishe, I'm getting married in a few months. Oh, I met her at work, actually! Been dating for nearly two years.
+
+  She'll just rib me about it.
+
+  <span id="if-wa-mercs-enter-btn" class="expand-btn"><<button "Say anything, it doesn't matter how dumb it is, as long as you start talking.">>\
+    <<send "IntroFaithful_WaitingAwkwardly_4" {}>>
+      <<hideandshow "#if-wa-mercs-enter-btn" "#if-wa-mercs-enter-text">>
+    <</send>>
+    <<receive "IntroFaithful_WaitingAwkwardly_4" "Faithful">>
+      <<hideandshow "#if-wa-mercs-enter-btn" "#if-wa-mercs-enter-text">>
+    <</receive>>
+  <</button>></span>\
 </span>\
 <span id="if-wa-say-her-text" class="hidden">\
   Something about her.
@@ -530,8 +551,9 @@ TODO
     <</receive>>
   <</button>></span>\
 </span>\
-
 <span id="if-wa-mercs-enter-text" class="hidden">\
+  Just talk!
+  
   You draw in your breath, only to be interrupted by a loud creaking. You look back to see Silas, the tallest security guard in the <<tooltip "Midas clinic,">>You worked there for a couple of years. It's a pretty rough area, which is why they're often hiring. Like everybody else, you bounced pretty fast.<</tooltip>> alongside some other man you've never seen before.
 
   Silas grins when he sees you. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting.
