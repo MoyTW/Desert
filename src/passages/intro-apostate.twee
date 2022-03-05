@@ -521,6 +521,47 @@ The two of them see Jekusheke, see you. The heavy dismisses you; the slim one wh
 
 TODO: Page has ~530 words
 
-TODO: Choices
-1. Ask Jekusheke to introduce you
-2. Stay silent
+<<button "Interesting. They know Jekusheke? This could be fun.">>
+  <<send "IntroApostate_MercsEnter_CHOICE" { choice: "TALK" }>><</send>>
+  /* TODO: Replace with waiting */
+<</button>>
+<<button "Unless they're related to whatever it is Ma Tiger's doing, I don't care.">>
+  <<send "IntroApostate_MercsEnter_CHOICE" { choice: "SILENT" } >><</send>>
+  /* TODO: Replace with waiting */
+<</button>>
+<<nobr>>
+  /* TODO: Replace with waiting */
+  <<receive "IntroApostate_MercsEnter_CHOICE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      const data = State.temporary.receiveData;
+      State.variables.IntroApostate_MercsEnter_CHOICE = data.choice;
+      const vars = State.variables;
+      if (vars.IntroApostate_MercsEnter_CHOICE !== undefined) {
+        if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "CHAT") {
+          Engine.play("IntroApostate_JekuMercsChat")
+        } else if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "REJECT") {
+          Engine.play("IntroApostate_JekuMercsReject")
+        }
+      }
+    }
+  <</script>><</receive>>
+  /* TODO: Replace with waiting */
+  <<receive "IntroFaithful_WaitingAwkwardly_CHOICE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      const data = State.temporary.receiveData;
+      State.variables.IntroFaithful_WaitingAwkwardly_CHOICE = data.choice;
+      const vars = State.variables;
+      if (vars.IntroApostate_MercsEnter_CHOICE !== undefined) {
+        if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "CHAT") {
+          Engine.play("IntroApostate_JekuMercsChat")
+        } else if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "REJECT") {
+          Engine.play("IntroApostate_JekuMercsReject")
+        }
+      }
+    }
+  <</script>><</receive>>
+<</nobr>>\
+
+:: IntroApostate_JekuMercsChat
+
+:: IntroApostate_JekuMercsReject
