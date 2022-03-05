@@ -18,3 +18,6 @@ npm install --save-dev typescript@latest
 npm install --save-dev @types/twine-sugarcube
 npm install --save-dev @types/jquery
 ```
+
+Also, make sure you run redis on 6379
+docker run -p 6379:6379 -d redis:5
