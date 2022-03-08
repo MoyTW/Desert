@@ -240,7 +240,7 @@
       if (openerMatches.length == 0 && closerMatches.length == 0) {
         continue;
       }
-      // We don't actually need to check that they're closed or open - Twine does that for us!
+      // We don't actually need to check that they're closed or open - Sugarcube does that for us!
 
       var previousEndIdx = 0;
       for (let i = 0; i < openerMatches.length; i++) {

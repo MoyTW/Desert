@@ -1,11 +1,4 @@
 :: IntroApostate_Start
-<style>
-.p-tfi-letter {
-  border-style: solid;
-  border-color: #ffd700;
-  border-width: medium;
-}
-</style>\
 <h1>July 19, 2081</h1>\
 <h2>Reno, Nevada</h2>\
 You pull Ma Tiger's letter out of your pocket for the hundredth time as your cab winds its way through Reno's roads. You do not look at it. Instead you stare out at the houses as they pass, watch the casinos with their neon signs, doubtless impressive outside of the light of day. You finger the letter, put it back, pull it out.
@@ -18,35 +11,50 @@ You don't even know how the <<tooltip "courier">>Tall female with a slight build
 
 The car chimes its five minute warning. Almost time. The letter's in your hand.
 
-<span id='tai-open-letter-btn'><<button "Read it again.">>
-  <<send 'IntroApostate_Start_1' {}>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</send>>
-  <<receive 'IntroApostate_Start_1' 'Apostate'>>
-    <<if setup.isApostate()>><<hideandshow "#tai-open-letter-btn" "#tai-open-letter-text">><</if>>
-  <</receive>>
-<</button>></span>\
-<span id="tai-open-letter-text" class='hidden'>\
-  <div class='p-tfi-letter'>Ebiaishe,
+@@#ia-s-btn;<<button "Read it again.">>
+  <<send 'IntroApostate_Start_1' {}>><<script>>
+      $("#ia-s-btn button").text("Sending to server...")
+      $("#ia-s-btn button").prop("disabled", true)
+  <</script>><</send>>
+<</button>>@@
+<<nobr>>
+  <<receive 'IntroApostate_Start_1' 'Apostate'>><<script>>
+    if (setup.isApostate()) { Engine.play("IntroApostate_ReadLetter") }
+  <</script>><</receive>>
+<</nobr>>\
 
-  I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
 
-  You know too that the past is a painful thing. For me, I had learned it twice before, and now it is a lesson I have learned yet again, except that this time I cannot face it alone. So I am asking for your help. Ebiaishe, today I find that I do not know who to trust, and so I beg of you, if you have any love left for the woman who was once your mother, please heed this letter. I will explain once we meet.
+:: IntroApostate_ReadLetter
+<style>
+.p-tfi-letter {
+  border-style: solid;
+  border-color: #ffd700;
+  border-width: medium;
+}
+</style>\
+<div class='p-tfi-letter'>\
+Ebiaishe,
 
-  I will be in Reno, Nevada on July 19th. If you are willing to help me, meet me then at Christie's, 1718 Holcomb Ave. I am sorry, but I can't give an exact time. I will stay until at least 10pm.
+I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
 
-  Don't try to contact me. Don't tell anybody else about this. It's a family matter.
+You know too that the past is a painful thing. For me, I had learned it twice before, and now it is a lesson I have learned yet again, except that this time I cannot face it alone. So I am asking for your help. Ebiaishe, today I find that I do not know who to trust, and so I beg of you, if you have any love left for the woman who was once your mother, please heed this letter. I will explain once we meet.
 
-  With love,
-  Ma Tiger</div>\
+I will be in Reno, Nevada on July 19th. If you are willing to help me, meet me then at Christie's, 1718 Holcomb Ave. I am sorry, but I can't give an exact time. I will stay until at least 10pm.
 
-  The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
+Don't try to contact me. Don't tell anybody else about this. It's a family matter.
 
-  @@#tai-enter;<<button "Enter.">>
-    <<send 'IntroApostate_Start_Done' {}>><<script>>
-      $("#tai-enter button").text("Sending to server...")
-      $("#tai-enter button").prop("disabled", true)
-    <</script>><</send>>
-  <</button>>@@\
-</span>\
+With love,
+Ma Tiger</div>\
+
+The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
+
+@@#tai-enter;<<button "Enter.">>
+  <<send 'IntroApostate_Start_Done' {}>><<script>>
+    $("#tai-enter button").text("Sending to server...")
+    $("#tai-enter button").prop("disabled", true)
+  <</script>><</send>>
+<</button>>@@\
+
 <<nobr>>
   <<receive 'IntroFaithful_WaitInChristies_Done' 'Apostate'>><<script>>
     if (setup.isApostate()) {
@@ -79,21 +87,28 @@ The doors to Christie's Old West Saloon look like genuine wooden saloon doors, t
 
 Jekusheke, your <<tooltip "brother,">>Foster, not bilogical.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
 
-<span id="i-iamf-waiting-text">\
-<strong>Waiting for partner...</strong>
-</span>\
-<nobr><<receive "IntroFaithfulMeetingApostate_GREETING" "Apostate">><<script>>
-  if (setup.isApostate()) {
-    const data = State.temporary.receiveData;
-    if (data.greeting === "FAMILIAR") {
-      Engine.play("IntroApostateFamiliarGreeting");
-    } else if (data.greeting === "STRANGER") {
-      Engine.play("IntroApostateStrangerGreeting");
-    } else {
-      Engine.play("IntroApostateNoGreeting");
+@@#ia-mf-btn;<<button "Does he recognize you?">>
+  <<send 'IntroApostate_MeetingFaithful_Done' {}>><<script>>
+      $("#ia-mf-btn button").text("Sending to server...")
+      $("#ia-mf-btn button").prop("disabled", true)
+  <</script>><</send>>
+<</button>>@@
+<nobr>
+  <<receive "IntroApostate_MeetingFaithful_Done" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      State.variables.IntroApostate_MeetingFaithful_Done = true;
+      $("#ia-mf-btn button").text("Waiting for partner...")
+      $("#ia-mf-btn button").prop("disabled", true)
+      setup.Complete_IntroApostate_MeetingFaithful();
     }
-  }
-<</script>><</receive>></nobr>\
+  <</script>><</receive>>
+  <<receive "IntroFaithfulMeetingApostate_GREETING" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      State.variables.IntroFaithfulMeetingApostate_GREETING = State.temporary.receiveData;
+      setup.Complete_IntroApostate_MeetingFaithful();
+    }
+  <</script>><</receive>>
+</nobr>\
 
 
 :: IntroApostateFamiliarGreeting
