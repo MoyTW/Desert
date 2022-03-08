@@ -16,7 +16,7 @@ Instead you opened it and read it, and now you're sitting in one of the cheap ba
 
 You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table, pushing around their poker hands and muttering about long-gone glory.
 
-<span id="tfi-open-letter-btn" class="expand-btn"><<button "Read Ma Tiger's letter again.">>
+<span id="tfi-open-letter-btn"><<button "Read Ma Tiger's letter again.">>
   <<send 'THE_FAITHFUL_INTRO_1' {}>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</send>>
   <<receive 'THE_FAITHFUL_INTRO_1' 'Faithful'>>
     <<if setup.isFaithful()>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</if>>
@@ -38,7 +38,7 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 
   You fold it neatly and replace it. Nothing to do but wait.
 
-  <span id="tfi-first-wait-btn" class="expand-btn"><<button "Wait.">>
+  <span id="tfi-first-wait-btn"><<button "Wait.">>
     <<send 'THE_FAITHFUL_INTRO_2' {}>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</send>>
     <<receive 'THE_FAITHFUL_INTRO_2' 'Faithful'>>
       <<if setup.isFaithful()>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</if>>
@@ -56,7 +56,7 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
   
   He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
 
-  <span id='tfi-convo-btn' class="expand-btn">\
+  <span id='tfi-convo-btn'>\
     <<button "Seems so.">>
       <<send 'THE_FAITHFUL_INTRO_3A' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</send>>
       <<receive 'THE_FAITHFUL_INTRO_3A' 'Faithful'>>
@@ -459,7 +459,7 @@ TODO: you mad
 
 
 :: IntroFaithful_WaitingAwkwardly
-<span id="if-wa-wait-btn" class="expand-btn"><<button "Wait.">>
+<span id="if-wa-wait-btn"><<button "Wait.">>
   <<send "IntroFaithful_WaitingAwkwardly_1" {}>>
     <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
   <</send>>
@@ -476,7 +476,7 @@ TODO: you mad
 
   How do you know she's the <<tooltip "same person?">>You can't - and even less if you don't ask.<</tooltip>>
 
-  <span id="if-wa-say-something-btn" class="expand-btn"><<button "Say something.">>\
+  <span id="if-wa-say-something-btn"><<button "Say something.">>\
     <<send "IntroFaithful_WaitingAwkwardly_2" {}>>
       <<hideandshow "#if-wa-say-something-btn" "#if-wa-say-something-text">>
     <</send>>

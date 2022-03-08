@@ -13,10 +13,6 @@ body {
   display: block;
 }
 
-.expand-btn button {
-  background-color: #08804c;
-}
-
 /* Row & Column */
 .row {
   display: flex;
