@@ -562,46 +562,52 @@ Silas grins when he sees you. "Jekusheke," he says, "how you doin', man?" He hol
 
 TODO: Count words
 
-<<button "Oh, that's a hell of a coincidence! Any distraction is a welcome distraction.">>
-  /* TODO: Replace with waiting */
-  <<send "IntroFaithful_WaitingAwkwardly_CHOICE" { choice: "CHAT" }>><</send>>
-<</button>>
-<<button "I'm really not up for socializing right now, but I can't be rude.">>
-  /* TODO: Replace with waiting */
-  <<send "IntroFaithful_WaitingAwkwardly_CHOICE" { choice: "REJECT" }>><</send>>
-<</button>>
-<<nobr>>
-  /* TODO: Replace with waiting */
-  <<receive "IntroFaithful_WaitingAwkwardly_CHOICE" "Faithful">><<script>>
-    if (setup.isFaithful()) {
-      const data = State.temporary.receiveData;
-      State.variables.IntroFaithful_WaitingAwkwardly_CHOICE = data.choice;
-      const vars = State.variables;
-      if (vars.IntroApostate_MercsEnter_CHOICE !== undefined) {
-        if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "CHAT") {
-          Engine.play("IntroFaithful_JekuMercsChat")
-        } else if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "REJECT") {
-          Engine.play("IntroFaithful_JekuMercsReject")
+<span id="if-me-btns">\
+  <<button "Oh, that's a hell of a coincidence! Any distraction is a welcome distraction.">>
+    <<send "IntroFaithful_WaitingAwkwardly_CHOICE" { choice: "CHAT" }>>
+      <<run $("#if-me-btns").text("<strong>Sending your choice...</strong>")>>
+    <</send>>
+  <</button>>
+  <<button "I'm really not up for socializing right now, but I can't be rude.">>
+    <<send "IntroFaithful_WaitingAwkwardly_CHOICE" { choice: "REJECT" }>>
+      <<run $("#if-me-btns").html("<strong>Sending your choice...</strong>")>>
+    <</send>>
+  <</button>>
+  <<nobr>>
+    <<receive "IntroFaithful_WaitingAwkwardly_CHOICE" "Faithful">><<script>>
+      if (setup.isFaithful()) {
+        const data = State.temporary.receiveData;
+        State.variables.IntroFaithful_WaitingAwkwardly_CHOICE = data.choice;
+        const vars = State.variables;
+        if (vars.IntroApostate_MercsEnter_CHOICE !== undefined) {
+          if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "CHAT") {
+            Engine.play("IntroFaithful_JekuMercsChat")
+          } else if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "REJECT") {
+            Engine.play("IntroFaithful_JekuMercsReject")
+          }
+        } else {
+          $("#if-me-btns").html("<strong>Waiting for partner...</strong>");
         }
       }
-    }
-  <</script>><</receive>>
-  /* TODO: Replace with waiting */
-  <<receive "IntroApostate_MercsEnter_CHOICE" "Faithful">><<script>>
-    if (setup.isFaithful()) {
-      const data = State.temporary.receiveData;
-      State.variables.IntroApostate_MercsEnter_CHOICE = data.choice;
-      const vars = State.variables;
-      if (vars.IntroApostate_MercsEnter_CHOICE !== undefined) {
-        if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "CHAT") {
-          Engine.play("IntroFaithful_JekuMercsChat")
-        } else if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "REJECT") {
-          Engine.play("IntroFaithful_JekuMercsReject")
+    <</script>><</receive>>
+    <<receive "IntroApostate_MercsEnter_CHOICE" "Faithful">><<script>>
+      if (setup.isFaithful()) {
+        const data = State.temporary.receiveData;
+        State.variables.IntroApostate_MercsEnter_CHOICE = data.choice;
+        const vars = State.variables;
+        if (vars.IntroApostate_MercsEnter_CHOICE !== undefined) {
+          if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "CHAT") {
+            Engine.play("IntroFaithful_JekuMercsChat")
+          } else if (vars.IntroFaithful_WaitingAwkwardly_CHOICE === "REJECT") {
+            Engine.play("IntroFaithful_JekuMercsReject")
+          }
+        } else {
+          $("#if-me-btns").html("<strong>Waiting for partner...</strong>");
         }
       }
-    }
-  <</script>><</receive>>
-<</nobr>>\
+    <</script>><</receive>>
+  <</nobr>>\
+</span>\
 
 :: IntroFaithful_JekuMercsChat
 "Silas," you say, returning his fist bump with your own, "how are you doing?"
@@ -617,7 +623,7 @@ You shake his hand. His grasp is firm but not overbearing. "Nice to meet you too
 
   "Right," you say, releasing Arthur's hand, but Silas beats you to the punch.
 
-  "Silas," he says, extending his hand. "Are you the lovely fiance that Jeku's always talking about?"
+  "Silas," he says, extending his hand. "Are you the lovely fiance that Jay's always talking about?"
 
   "Absolutely not!" she laughs. "Jeku, Jeku," she says, a grin splitting her face in two, "you didn't tell me you were getting married!"
 
@@ -633,7 +639,7 @@ You shake his hand. His grasp is firm but not overbearing. "Nice to meet you too
 
   Ebiaishe laughs and tosses her head. Her reply is quick and breezy. "I'm the woman that dear Jeku isn't gonna marry."
 
-  Your face is hot with <<tooltip "irritation and anger">>Fucking seriously, sis? Goddammit! Stop fucking around!<</tooltip>>. Silas blinks and leans back, and behind Arthur clears his throat, shifting from foot to foot. "Uh," says Arthur, rolling his broad shoulders, "so, uh."
+  Your face is hot with <<tooltip "irritation and anger">>Fucking seriously? Goddammit! Stop fucking around!<</tooltip>>. Silas blinks and leans back, and behind Arthur clears his throat, shifting from foot to foot. "Uh," says Arthur, rolling his broad shoulders, "so, uh."
   
   After a moment, Silas regains his composure. "Right," he says, nodding to your sister, "good to know." He turns back towards you. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and he casts an eye over to Ebiaishe, "a friend?"
 <<else>>\
