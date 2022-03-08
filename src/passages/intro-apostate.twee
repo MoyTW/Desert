@@ -49,29 +49,29 @@ Ma Tiger</div>\
 The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
 
 @@#tai-enter;<<button "Enter.">>
-  <<send 'IntroApostate_Start_Done' {}>><<script>>
+  <<send 'IntroApostate_Start_DONE' {}>><<script>>
     $("#tai-enter button").text("Sending to server...")
     $("#tai-enter button").prop("disabled", true)
   <</script>><</send>>
 <</button>>@@\
 
 <<nobr>>
-  <<receive 'IntroFaithful_WaitInChristies_Done' 'Apostate'>><<script>>
+  <<receive 'IntroFaithful_WaitInChristies_DONE' 'Apostate'>><<script>>
     if (setup.isApostate()) {
-      State.variables.IntroFaithful_WaitInChristies_Done = true;
-      if (State.variables.IntroApostate_Start_Done && State.variables.IntroFaithful_WaitInChristies_Done) {
-        delete State.variables.IntroApostate_Start_Done;
-        delete State.variables.IntroFaithful_WaitInChristies_Done;
+      State.variables.IntroFaithful_WaitInChristies_DONE = true;
+      if (State.variables.IntroApostate_Start_DONE && State.variables.IntroFaithful_WaitInChristies_DONE) {
+        delete State.variables.IntroApostate_Start_DONE;
+        delete State.variables.IntroFaithful_WaitInChristies_DONE;
         Engine.play('IntroApostate_MeetingFaithful');
       }
     }
   <</script>><</receive>>
-  <<receive 'IntroApostate_Start_Done' 'Apostate'>><<script>>
+  <<receive 'IntroApostate_Start_DONE' 'Apostate'>><<script>>
     if (setup.isApostate()) {
-      State.variables.IntroApostate_Start_Done = true;
-      if (State.variables.IntroApostate_Start_Done && State.variables.IntroFaithful_WaitInChristies_Done) {
-        delete State.variables.IntroApostate_Start_Done;
-        delete State.variables.IntroFaithful_WaitInChristies_Done;
+      State.variables.IntroApostate_Start_DONE = true;
+      if (State.variables.IntroApostate_Start_DONE && State.variables.IntroFaithful_WaitInChristies_DONE) {
+        delete State.variables.IntroApostate_Start_DONE;
+        delete State.variables.IntroFaithful_WaitInChristies_DONE;
         Engine.play('IntroApostate_MeetingFaithful');
       } else {
         $("#tai-enter button").text("Waiting for partner...")
@@ -88,15 +88,15 @@ The doors to Christie's Old West Saloon look like genuine wooden saloon doors, t
 Jekusheke, your <<tooltip "brother,">>Foster, not bilogical.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
 
 @@#ia-mf-btn;<<button "Does he recognize you?">>
-  <<send 'IntroApostate_MeetingFaithful_Done' {}>><<script>>
+  <<send 'IntroApostate_MeetingFaithful_DONE' {}>><<script>>
       $("#ia-mf-btn button").text("Sending to server...")
       $("#ia-mf-btn button").prop("disabled", true)
   <</script>><</send>>
 <</button>>@@
 <nobr>
-  <<receive "IntroApostate_MeetingFaithful_Done" "Apostate">><<script>>
+  <<receive "IntroApostate_MeetingFaithful_DONE" "Apostate">><<script>>
     if (setup.isApostate()) {
-      State.variables.IntroApostate_MeetingFaithful_Done = true;
+      State.variables.IntroApostate_MeetingFaithful_DONE = true;
       $("#ia-mf-btn button").text("Waiting for partner...")
       $("#ia-mf-btn button").prop("disabled", true)
       setup.Complete_IntroApostate_MeetingFaithful();

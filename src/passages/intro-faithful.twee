@@ -108,28 +108,28 @@ The bartender shrugs, retreats.
 Come on, Ma. It's been a little over four hours now. What's going on?
 
 @@#fsu-wb;<<button "Wait.">>
-  <<send 'IntroFaithful_WaitInChristies_Done' {}>><<script>>
+  <<send 'IntroFaithful_WaitInChristies_DONE' {}>><<script>>
     $("#fsu-wb button").text("Sending to server...")>> 
     $("#fsu-wb button").prop("disabled", true)
   <</script>><</send>> 
 <</button>>@@\
 <<nobr>>
-  <<receive 'IntroApostate_Start_Done' 'Faithful'>><<script>>
+  <<receive 'IntroApostate_Start_DONE' 'Faithful'>><<script>>
     if (setup.isFaithful()) {
-      State.variables.IntroApostate_Start_Done = true;
-      if (State.variables.IntroApostate_Start_Done && State.variables.IntroFaithful_WaitInChristies_Done) {
-        delete State.variables.IntroApostate_Start_Done;
-        delete State.variables.IntroFaithful_WaitInChristies_Done;
+      State.variables.IntroApostate_Start_DONE = true;
+      if (State.variables.IntroApostate_Start_DONE && State.variables.IntroFaithful_WaitInChristies_DONE) {
+        delete State.variables.IntroApostate_Start_DONE;
+        delete State.variables.IntroFaithful_WaitInChristies_DONE;
         Engine.play('IntroFaithfulMeetingApostate');
       }
     }
   <</script>><</receive>>
-  <<receive 'IntroFaithful_WaitInChristies_Done' 'Faithful'>><<script>>
+  <<receive 'IntroFaithful_WaitInChristies_DONE' 'Faithful'>><<script>>
     if (setup.isFaithful()) {
-      State.variables.IntroFaithful_WaitInChristies_Done = true;
-      if (State.variables.IntroApostate_Start_Done && State.variables.IntroFaithful_WaitInChristies_Done) {
-        delete State.variables.IntroApostate_Start_Done;
-        delete State.variables.IntroFaithful_WaitInChristies_Done;
+      State.variables.IntroFaithful_WaitInChristies_DONE = true;
+      if (State.variables.IntroApostate_Start_DONE && State.variables.IntroFaithful_WaitInChristies_DONE) {
+        delete State.variables.IntroApostate_Start_DONE;
+        delete State.variables.IntroFaithful_WaitInChristies_DONE;
         Engine.play('IntroFaithfulMeetingApostate');
       } else {
         $("#fsu-wb button").text("Waiting for partner...")>>
