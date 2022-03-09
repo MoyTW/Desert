@@ -612,8 +612,9 @@ Arthur gives you a slightly strained smile and holds out his hand. "Nice to meet
 <<else>>\
   You suspect your smile is similarly strained, but you shake his hand. \
 <</if>>\
-His grasp is firm but not overbearing. "Nice to meet you too, Arthur."\
-<<if $IntroApostate_MercsEnter_CHOICE is "CHAT">>\
+His grasp is firm but not overbearing. "Nice to meet you too, Arthur." \
+<<if $IntroApostate_MercsEnter_CHOICE is "TALK">>\
+
 
   Ebiaishe leans over. "Care to introduce us?" she asks, a easygoing grin on her face.
 
@@ -639,11 +640,11 @@ His grasp is firm but not overbearing. "Nice to meet you too, Arthur."\
   
   After a moment, Silas regains his composure. "Right," he says, nodding to your sister, "good to know." He turns back towards you. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and he casts an eye over to Ebiaishe, "a friend?"
 
+  TODO: lol
   <span id="if-jmc-btns">\
     <<button "Chat a bit to pass the time.">>
-      <<send "IntroFaithful_JekuMercsChat_DONE" { }>>
-        <<run setup.replaceWithSending("#if-jmc-btns")>>
-      <</send>>
+      <<run setup.replaceWithSending("#if-jmc-btns")>>
+      <<send "IntroFaithful_JekuMercsChat_DONE" { }>><</send>>
     <</button>>
   </span>\
 <<else>>\
@@ -673,6 +674,7 @@ His grasp is firm but not overbearing. "Nice to meet you too, Arthur."\
     <</button>>\
   </span>\
 <</if>>\
+TODO: FIX THIS (DONE -> CHOICE)
 <<nobr>><<receive "IntroFaithful_JekuMercsChat_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) {
     const data = State.temporary.receiveData;
@@ -687,6 +689,18 @@ His grasp is firm but not overbearing. "Nice to meet you too, Arthur."\
 
 :: IntroFaithful_JekuMercsChatFreely
 TODO
+"Not quite drinks," you laugh, gesturing to your diet coke. Silas' eyes shoot up.
+
+"Ya on call?"
+
+"No," you say, "it's just that it's a little early to be drinking."
+
+Silas grins, a chuckle escaping his lips. "Never too early, Jay. Pick yer pois'n, on me."
+<<if $IntroApostate_MercsEnter_CHOICE is "TALK">>\
+  TODO
+<<else>>\
+  TODO
+<</if>>\
 
 
 :: IntroFaithful_JekuMercsChatDisengage
@@ -706,10 +720,9 @@ The bartender raises his eye as you struggle to extricate yourself. "No," you sa
   Silas sucks in his breath, leans back. "Ah, well, what't'ell. Sure. Pick summin.'"
 
   <span id="if-jmcd-btns">\
-    <<button "Thanks, sis.">>
-      <<send "IntroFaithful_JekuMercsChatDisengage_CHOICE" { choice: "BAR" }>>
-        <<run setup.replaceWithSending("#if-jmcd-btns")>>
-      <</send>>
+    <<button "Thanks.">>
+      <<send "IntroFaithful_JekuMercsChatDisengage_CHOICE" { choice: "BAR" }>><</send>>
+      <<run setup.replaceWithSending("#if-jmcd-btns")>>
     <</button>>\
   </span>\
 <<else>>\
