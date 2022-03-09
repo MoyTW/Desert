@@ -12,10 +12,7 @@ You don't even know how the <<tooltip "courier">>Tall female with a slight build
 The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 @@#ia-s-btn;<<button "Read it again.">>
-  <<send 'IntroApostate_Start_1' {}>><<script>>
-      $("#ia-s-btn button").text("Sending to server...")
-      $("#ia-s-btn button").prop("disabled", true)
-  <</script>><</send>>
+  <<send 'IntroApostate_Start_1' {}>><<run setup.replaceWithSending("#ia-s-btn")>><</send>>
 <</button>>@@
 <<nobr>>
   <<receive 'IntroApostate_Start_1' 'Apostate'>><<script>>
@@ -49,10 +46,7 @@ Ma Tiger</div>\
 The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
 
 @@#tai-enter;<<button "Enter.">>
-  <<send 'IntroApostate_Start_DONE' {}>><<script>>
-    $("#tai-enter button").text("Sending to server...")
-    $("#tai-enter button").prop("disabled", true)
-  <</script>><</send>>
+  <<send 'IntroApostate_Start_DONE' {}>><<run setup.replaceWithSending("#tai-enter")>><</send>>
 <</button>>@@\
 
 <<nobr>>
@@ -74,8 +68,7 @@ The car comes to a stop. "Christie's Old West Saloon" declares the sign above yo
         delete State.variables.IntroFaithful_WaitInChristies_DONE;
         Engine.play('IntroApostate_MeetingFaithful');
       } else {
-        $("#tai-enter button").text("Waiting for partner...")
-        $("#tai-enter button").prop("disabled", true)
+        setup.replaceWithWaiting("#tai-enter")
       }
     }
   <</script>><</receive>>
