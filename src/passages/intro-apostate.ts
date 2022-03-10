@@ -1,6 +1,16 @@
 (function() {
   const _setup = setup as any
 
+  _setup.Complete_IntroApostate_ReadLetter = function() {
+    const _vars = State.variables as any;
+
+    if (_vars.IntroApostate_Start_DONE && _vars.IntroFaithful_WaitInChristies_DONE) {
+      delete _vars.IntroApostate_Start_DONE;
+      delete _vars.IntroFaithful_WaitInChristies_DONE;
+      Engine.play('IntroApostate_MeetingFaithful');
+    }
+  }
+
   _setup.Complete_IntroApostate_MeetingFaithful = function() {
     const _vars = State.variables as any
 
