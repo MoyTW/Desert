@@ -642,9 +642,13 @@ His grasp is firm but not overbearing. "Nice to meet you too, Arthur." \
 
   TODO: lol
   <span id="if-jmc-btns">\
-    <<button "Chat a bit to pass the time.">>
+    <<button "What the fuck, Ebi!?">>
+      <<send "IntroFaithful_JekuMercsChat_CHOICE" { choice: "ANGER" }>><</send>>
       <<run setup.replaceWithSending("#if-jmc-btns")>>
-      <<send "IntroFaithful_JekuMercsChat_DONE" { }>><</send>>
+    <</button>>
+    <<button "Just...just ignore her.">>
+      <<send "IntroFaithful_JekuMercsChat_CHOICE" { choice: "IGNORE" }>><</send>>
+      <<run setup.replaceWithSending("#if-jmc-btns")>>
     <</button>>
   </span>\
 <<else>>\
@@ -668,18 +672,18 @@ His grasp is firm but not overbearing. "Nice to meet you too, Arthur." \
 
   <span id="if-jmc-btns">\
     <<button "I'm definitely not in the mood for this.">>
-      <<send "IntroFaithful_JekuMercsChat_DONE" { }>>
-        <<run setup.replaceWithSending("#if-jmc-btns")>>
-      <</send>>
+      <<send "IntroFaithful_JekuMercsChat_CHOICE" { choice: "DODGE" }>><</send>>
+      <<run setup.replaceWithSending("#if-jmc-btns")>>
     <</button>>\
   </span>\
 <</if>>\
-TODO: FIX THIS (DONE -> CHOICE)
-<<nobr>><<receive "IntroFaithful_JekuMercsChat_DONE" "Faithful">><<script>>
+<<nobr>><<receive "IntroFaithful_JekuMercsChat_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
     const data = State.temporary.receiveData;
-    if (data.choice === "FREELY") {
-      Engine.play("IntroFaithful_JekuMercsChatFreely");
+    if (data.choice === "ANGER") {
+      Engine.play("IntroFaithful_JekuDragsEbiOff");
+    } else if (data.choice === "IGNORE") {
+      Engine.play("IntroFaithful_EbiDragsJekuOff");
     } else {
       Engine.play("IntroFaithful_JekuMercsChatDisengage");
     }
@@ -687,7 +691,11 @@ TODO: FIX THIS (DONE -> CHOICE)
 <</script>><</receive>><</nobr>>\
 
 
-:: IntroFaithful_JekuMercsChatFreely
+:: IntroFaithful_JekuDragsEbiOff
+TODO
+
+
+:: IntroFaithful_EbiDragsJekuOff
 TODO
 "Not quite drinks," you laugh, gesturing to your diet coke. Silas' eyes shoot up.
 
