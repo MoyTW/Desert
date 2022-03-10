@@ -1,11 +1,4 @@
 :: IntroFaithful_Start
-<style>
-.p-tfi-letter {
-  border-style: solid;
-  border-color: #ffd700;
-  border-width: medium;
-}
-</style>\
 <h1>July 19, 2081</h1>\
 <h2>A Letter From Home</h2>\
 Most of <<tooltip "Ma Tiger's">>Legally Ann Wang. Didn't matter. Whether friend, family, or government official, it was always Ma Tiger.<</tooltip>> letters are ornate affairs, with bright envelopes and beautifully brushed handwritten addresses.
@@ -25,7 +18,7 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 <span id="tfi-open-letter-text" class="hidden">\
   You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
 
-  <div class='p-tfi-letter'>Jekusheke,
+  <div class='letter'>Jekusheke,
 
   <<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
 

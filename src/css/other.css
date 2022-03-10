@@ -44,3 +44,9 @@ body {
   background-color: #7f0000;
 }
 */
+
+.letter {
+  border-style: solid;
+  border-color: #ffd700;
+  border-width: medium;
+}

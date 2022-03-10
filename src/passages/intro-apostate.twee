@@ -22,14 +22,7 @@ The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 
 :: IntroApostate_ReadLetter
-<style>
-.p-tfi-letter {
-  border-style: solid;
-  border-color: #ffd700;
-  border-width: medium;
-}
-</style>\
-<div class='p-tfi-letter'>\
+<div class='letter'>\
 Ebiaishe,
 
 I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
