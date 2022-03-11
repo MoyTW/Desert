@@ -12,13 +12,12 @@ You don't even know how the <<tooltip "courier">>Tall female with a slight build
 The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 @@#ia-s-btn;<<button "Read it again.">>
-  <<send 'IntroApostate_Start_1' {}>><<run setup.replaceWithSending("#ia-s-btn")>><</send>>
+  <<run setup.replaceWithSending("#ia-s-btn")>>
+  <<send 'IntroApostate_Start_1' {}>><</send>>
 <</button>>@@
-<<nobr>>
-  <<receive 'IntroApostate_Start_1' 'Apostate'>><<script>>
+<<nobr>><<receive 'IntroApostate_Start_1' 'Apostate'>><<script>>
     if (setup.isApostate()) { Engine.play("IntroApostate_ReadLetter") }
-  <</script>><</receive>>
-<</nobr>>\
+<</script>><</receive>><</nobr>>\
 
 
 :: IntroApostate_ReadLetter
@@ -234,19 +233,26 @@ You stand up straight, drop your voice back to normal. "Jekusheke," you say, put
 
 
 :: IntroApostateWaitForFaithfulReaction
-TODO: convert this <strong>Waiting for partner...</strong>
-<<nobr>><<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Apostate">><<script>>
-  if (setup.isApostate()) {
-    const data = State.temporary.receiveData;
-    if (data.choice === "HAPPY") {
-      Engine.play("IntroApostateReactionChoiceHappy")
-    } else if (data.choice === "SAD") {
-      Engine.play("IntroApostateReactionChoiceSad");
-    } else {
-      Engine.play("IntroApostateReactionChoiceAngry");
+@@#iawffr-btn;<<button "Listen.">>
+  <<send 'IntroApostateWaitForFaithfulReaction_DONE' {}>><</send>>
+  <<run setup.replaceWithSending("#iawffr-btn")>>
+<</button>>@@\
+<<nobr>>
+  <<receive "IntroApostateWaitForFaithfulReaction_DONE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      State.variables.IntroApostateWaitForFaithfulReaction_DONE = true;
+      setup.replaceWithWaiting("#iawffr-btn");
+      setup.Complete_IntroApostateWaitForFaithfulReaction();
     }
-  }
-<</script>><</receive>><</nobr>>\
+  <</script>><</receive>>
+  <<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      const data = State.temporary.receiveData;
+      State.variables.IntroFaithfulAliveReactionChoice_CHOICE = data;
+      setup.Complete_IntroApostateWaitForFaithfulReaction();
+    }
+  <</script>><</receive>>
+<</nobr>>\
 
 
 :: IntroApostateReactionChoiceHappy
@@ -277,21 +283,26 @@ Nothing to do but wait, then. Worrying that her letter implied she'd intended to
 Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady, "why didn't you come back?" He fidgets for a moment, and his words rush out in a torrent. "We tried to find you, but, well, after a while, we figured that if you wanted to be found so we thought, you know, you must be dead, otherwise you'd have - you'd have told us, at least, we thought - and maybe even, you know, come back?" He trails off, shrugs.
 
 /* TODO: Truth/Lie buttons */\
-<<button "\"I just couldn't take living with Ma Tiger.\"">>
+@@#iarcs-btn;<<button "\"I just couldn't take living with Ma Tiger.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "MOTHER" }>><</send>>
+  <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"I was imprisoned in a blacksite for five years.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "IMPRISONED" }>><</send>>
+  <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"I was too ashamed to face Ma. And you.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "SHAME" }>><</send>>
+  <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"I'll tell you later, when Ma shows up.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
+  <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"My reasons are my own.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "REFUSE" }>><</send>>
-<</button>>
+  <<run setup.replaceWithSending("#iarcs-btn")>>
+<</button>>@@\
 <<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Apostate">><<script>>
   if (setup.isApostate()) {
     const data = State.temporary.receiveData;
@@ -395,84 +406,84 @@ Your former brother shakes his head. "No," he says. "No, she didn't. She said sh
 /** ###################################################################### **/\
 /** # AWKWARD WAITING                                                    # **/\
 /** ###################################################################### **/\
-<span id="ia-wa-wait-btn"><<button "Wait.">>
-  <<send 'IntroApostate_WaitingAwkwardly_1' {}>>
-    <<hideandshow "#ia-wa-wait-btn" "#ia-wa-wait-text">>
-  <</send>>
-  <<receive "IntroApostate_WaitingAwkwardly_1" "Apostate">>
-    <<hideandshow "#ia-wa-wait-btn" "#ia-wa-wait-text">>
-  <</receive>>
-<</button>></span>\
-<span id="ia-wa-wait-text" class="hidden">\
-  Seconds turn into minutes, ticking by in silence.
+@@#ia-wa-btn;<<button "Wait.">>
+  <<send 'IntroApostate_WaitingAwkwardly_DONE' {}>><</send>>
+  <<run setup.replaceWithSending("#ia-wa-btn")>>
+<</button>>@@\
+<<nobr>><<receive "IntroApostate_WaitingAwkwardly_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("IntroApostate_WaitingAwkwardly_2") }
+<</script>><</receive>><</nobr>>\
 
-  Jekusheke is fidgety. He keeps glancing at you, trying to to glance at you, glancing at you anyways. He seems <<tooltip "unwilling">>Unable.<</tooltip>> to say any more, but you can tell that if he found the courage he would.
+:: IntroApostate_WaitingAwkwardly_2
+Seconds turn into minutes, ticking by in silence.
 
-  As for you, well, what would you say? It's been too long. He's got nothing to do with you, and you've got nothing to do with him.
+Jekusheke is fidgety. He keeps glancing at you, trying to to glance at you, glancing at you anyways. He seems <<tooltip "unwilling">>Unable.<</tooltip>> to say any more, but you can tell that if he found the courage he would.
 
-  <span id="ia-wa-ma-puzzle-btn"><<button "What is Ma Tiger up to?">>\
-    <<send "IntroApostate_WaitingAwkwardly_2" {}>>
-      <<hideandshow "#ia-wa-ma-puzzle-btn" "#ia-wa-ma-puzzle-text">>
-    <</send>>
-    <<receive "IntroApostate_WaitingAwkwardly_2" "Apostate">>
-      <<hideandshow "#ia-wa-ma-puzzle-btn" "#ia-wa-ma-puzzle-text">>
-    <</receive>>
-  <</button>></span>\
-</span>\
-<span id="ia-wa-ma-puzzle-text" class="hidden">\
-  Instead, for the hundredth time, you contemplate the letter, and Ma Tiger's purpose in sending it.
+As for you, well, what would you say? It's been too long. He's got nothing to do with you, and you've got nothing to do with him.
 
-  She's pretty clearly gotten into some kind of hardcore shit, which seems unreal, but you never know. More unreal is that she's asking you, her daughter who she hasn't seen for thirteen years, to help her. She should have plenty of resources.
+@@#ia-wa2-btn;<<button "What is Ma Tiger up to?">>
+  <<run setup.replaceWithSending("#ia-wa2-btn")>>
+  <<send "IntroApostate_WaitingAwkwardly_2_DONE" {}>><</send>>
+<</button>>@@
+<<nobr>><<receive "IntroApostate_WaitingAwkwardly_2_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("IntroApostate_WaitingAwkwardly_3") }
+<</script>><</receive>><</nobr>>\
 
-  Her family is rich, almost beyond compare. She has a Nine Companies <<tooltip "CEO">>Gary Wang, husband of her mother's sister<</tooltip>> board member in the family. If she needed something done she could surely get it done with <<tooltip "money alone">>There's almost nothing you can't solve with enough of it.<</tooltip>>. Yes, she lived in a humble house in a humble neighborhood, but that was a personal choice, like the color of her curtains or the model of her car. She hated the flashy lifestyle that her family so loved, but she was never shy about exploiting their wealth and influence, just as long as she did it quietly.
 
-  So why would she need you? Or Jekusheke?
+:: IntroApostate_WaitingAwkwardly_3
+Instead, for the hundredth time, you contemplate the letter, and Ma Tiger's purpose in sending it.
 
-  <span id="ia-wa-ma-puzzle-choices">\
-    <<button "Maybe the source of her troubles is her family.">>
-      <<send "IntroApostate_WaitingAwkwardly_3A" {}>>
-        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-family-troubles">>
-      <</send>>
-      <<receive "IntroApostate_WaitingAwkwardly_3A" "Apostate">>
-        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-family-troubles">>
-      <</receive>>
-    <</button>>
-    <<button "Did she lose her wealth in these last thirteen years?">>
-      <<send "IntroApostate_WaitingAwkwardly_3B" {}>>
-        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-lost-wealth">>
-      <</send>>
-      <<receive "IntroApostate_WaitingAwkwardly_3B" "Apostate">>
-        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-lost-wealth">>
-      <</receive>>
-    <</button>>
-    <<button "Would solving her problems with money be too hard to keep quiet?">>
-      <<send "IntroApostate_WaitingAwkwardly_3C" {}>>
-        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-hard-to-keep-quiet">>
-      <</send>>
-      <<receive "IntroApostate_WaitingAwkwardly_3C" "Apostate">>
-        <<hideandshow "#ia-wa-ma-puzzle-choices" "#ia-wa-ma-hard-to-keep-quiet">>
-      <</receive>>
-    <</button>>
-  </span>\
-</span>\
-<span id="ia-wa-ma-family-troubles" class="hidden">\
-  It's possible that she has some sort of feud with another member of her family, which could explain why she has to try and call on someone she hasn't seen for thirteen years to help her.
+She's pretty clearly gotten into some kind of hardcore shit, which seems unreal, but you never know. More unreal is that she's asking you, her daughter who she hasn't seen for thirteen years, to help her. She should have plenty of resources.
 
-  Still, her family is -
+Her family is rich, almost beyond compare. She has a Nine Companies <<tooltip "CEO">>Gary Wang, husband of her mother's sister<</tooltip>> board member in the family. If she needed something done she could surely get it done with <<tooltip "money alone">>There's almost nothing you can't solve with enough of it.<</tooltip>>. Yes, she lived in a humble house in a humble neighborhood, but that was a personal choice, like the color of her curtains or the model of her car. She hated the flashy lifestyle that her family so loved, but she was never shy about exploiting their wealth and influence, just as long as she did it quietly.
 
-  <<include "IntroApostate_MercsEnter">>
-</span>\
-<span id="ia-wa-ma-lost-wealth" class="hidden">\
-  It's possible that she lost control of her wealth over the last thirteen years, and her family has refused to help her out. It's unlikely, as she's always been extremely meticulous, and managed to stay out of most family drama.
+So why would she need you? Or Jekusheke?
 
-  Unlikely doesn't -
+@@#ia-wa3-btn;<<button "Maybe the source of her troubles is her family.">>
+  <<run setup.replaceWithSending("#ia-wa3-btn")>>
+  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE" { choice: "FAMILY" }>><</send>>
+<</button>>
+<<button "Did she lose her wealth in these last thirteen years?">>
+  <<run setup.replaceWithSending("#ia-wa3-btn")>>
+  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE" { choice: "LOST" }>><</send>>
+<</button>>
+<<button "Would solving her problems with money be too hard to keep quiet?">>
+  <<run setup.replaceWithSending("#ia-wa3-btn")>>
+  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE" { choice: "LOUD" }>><</send>>
+<</button>>@@
+<<nobr>><<receive "IntroApostate_WaitingAwkwardly_3_CHOICE" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    const data = State.temporary.receiveData;
+    if (data.choice === "FAMILY") {
+      Engine.play("IntroApostate_WaitingAwkwardly_FamilyTroubles");
+    } else if (data.choice === "LOST") {
+      Engine.play("IntroApostate_WaitingAwkwardly_LostWealth");
+    } else {
+      Engine.play("IntroApostate_WaitingAwkwardly_HardToKeepQuiet");
+    }
+  }
+<</script>><</receive>><</nobr>>\
 
-  <<include "IntroApostate_MercsEnter">>
-</span>\
-<span id="ia-wa-ma-hard-to-keep-quiet" class="hidden">\
-  Large sums of money are loud, if you don't want to be detected, and even moreso if what you want to do is illegal. Still, it's not too loud to hide. You've managed, after all.
 
-  If anybody was capable of hiding it, it'd be -
+:: IntroApostate_WaitingAwkwardly_FamilyTroubles
+It's possible that she has some sort of feud with another member of her family, which could explain why she has to try and call on someone she hasn't seen for thirteen years to help her.
 
-  <<include "IntroApostate_MercsEnter">>
-</span>\
+Still, her family is -
+
+<<include "IntroApostate_MercsEnter">>
+
+
+:: IntroApostate_WaitingAwkwardly_LostWealth
+It's possible that she lost control of her wealth over the last thirteen years, and her family has refused to help her out. It's unlikely, as she's always been extremely meticulous, and managed to stay out of most family drama.
+
+Unlikely doesn't -
+
+<<include "IntroApostate_MercsEnter">>
+
+
+:: IntroApostate_WaitingAwkwardly_HardToKeepQuiet
+Large sums of money are loud, if you don't want to be detected, and even moreso if what you want to do is illegal. Still, it's not too loud to hide. You've managed, after all.
+
+If anybody was capable of hiding it, it'd be -
+
+<<include "IntroApostate_MercsEnter">>

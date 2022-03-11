@@ -312,7 +312,7 @@ She stands up straight as a statue, and suddenly she seems to be a completely di
 <<nobr>><<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
     const data = State.temporary.receiveData;
-    if (data.choice == "HAPPY") {
+    if (data.choice === "HAPPY") {
       Engine.play("IntroFaithfulReactionChoiceHappy")
     } else {
       Engine.play("IntroFaithfulReactionChoiceSad");
@@ -451,7 +451,7 @@ She nods. "Then I guess we wait."
 /** ###################################################################### **/\
 /** # AWKWARD WAITING                                                    # **/\
 /** ###################################################################### **/\
-<span id="if-wa-wait-btn"><<button "Wait.">>
+<span id="if-wa-wait-btn"><<button "There's so much to say.">>
   <<send "IntroFaithful_WaitingAwkwardly_1" {}>>
     <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
   <</send>>

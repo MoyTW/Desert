@@ -9,7 +9,7 @@ The two of them see Jekusheke, see you. The heavy dismisses you; the slim one wh
 TODO: Page has ~530 words
 
 <span id="ia-me-btns">\
-  <<button "Interesting. They know Jekusheke? This could be fun.">>
+  <<button "Possible complications? I'll try and keep them from talking.">>
     <<send "IntroApostate_MercsEnter_CHOICE" { choice: "TALK" }>><</send>>
     <<run setup.replaceWithSending("#ia-me-btns")>>
   <</button>>
@@ -77,7 +77,7 @@ Arthur gives you a slightly strained smile and holds out his hand. "Nice to meet
 
   Silas takes it, shakes it. "Silas. Charmed." His eyes flit between you and your sister. "How you know each other?"
 
-  You know what would be hilarious? Jekusheke would hate it, but...
+  <<tooltip "An idea springs to mind.">>Jeku will hate it, but it's certain to make conversation difficult.<</tooltip>>
 
   Fuck it. Let's go. You put on a grin, toss your head. "I'm the woman that dear Jekusheke isn't gonna marry." You steal a glince at Jekusheke, and he's nearly shaking in anger.
   

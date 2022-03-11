@@ -30,6 +30,22 @@
     }
   }
 
+  _setup.Complete_IntroApostateWaitForFaithfulReaction = function() {
+    const _vars = State.variables as any
+
+    if (_vars.IntroApostateWaitForFaithfulReaction_DONE &&
+        _vars.IntroFaithfulAliveReactionChoice_CHOICE) {
+      const choice = _vars.IntroFaithfulAliveReactionChoice_CHOICE.choice;
+      if (choice === "HAPPY") {
+        Engine.play("IntroApostateReactionChoiceHappy")
+      } else if (choice === "SAD") {
+        Engine.play("IntroApostateReactionChoiceSad");
+      } else {
+        Engine.play("IntroApostateReactionChoiceAngry");
+      }
+    }
+  }
+
   _setup.Complete_IntroApostate_MercsEnter = function() {
     const _vars = State.variables as any;
 
