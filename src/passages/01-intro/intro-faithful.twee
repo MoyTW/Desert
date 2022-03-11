@@ -134,6 +134,9 @@ Come on, Ma. It's been a little over four hours now. What's going on?
 
 
 :: IntroFaithfulMeetingApostate
+/** ###################################################################### **/\
+/** # FIRST MEETING                                                      # **/\
+/** ###################################################################### **/\
 The saloon doors swing open with a creak. Ma Tiger? <<tooltip "No.">>Dammit, Mom, where are you?<</tooltip>> It's some other woman, a tall asian woman about your age. Her face is tanned and weathered, and eerily familiar, in a way that tickles at the back of your mind. Where in the world have you seen her before? Did you meet her at a party? Does she work at the fire station, and you just don't see her much?
 
 You really hope she doesn't recognize you. That would be real awkward.
@@ -453,6 +456,9 @@ TODO: you mad
 
 
 :: IntroFaithful_WaitingAwkwardly
+/** ###################################################################### **/\
+/** # AWKWARD WAITING                                                    # **/\
+/** ###################################################################### **/\
 <span id="if-wa-wait-btn"><<button "Wait.">>
   <<send "IntroFaithful_WaitingAwkwardly_1" {}>>
     <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
@@ -545,215 +551,4 @@ TODO: you mad
 </span>\
 <span id="if-wa-mercs-enter-text" class="hidden">\
   <<include "IntroFaithful_MercsEnter">>
-</span>
-
-:: IntroFaithful_MercsEnter
-Just talk!
-  
-You draw in your breath, only to be interrupted by a loud creaking. You look back to see Silas, the tallest security guard in the <<tooltip "Midas clinic,">>You worked there for a couple of years. It's a pretty rough area, which is why they're often hiring. Like everybody else, you bounced pretty fast.<</tooltip>> alongside some other man you've never seen before.
-
-Silas grins when he sees you. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting.
-
-TODO: Count words
-
-<span id="if-me-btns">\
-  <<button "Oh, that's a hell of a coincidence! Any distraction is a welcome distraction.">>
-    <<send "IntroFaithful_WaitingAwkwardly_CHOICE" { choice: "CHAT" }>>
-      <<run setup.replaceWithSending("#if-me-btns")>>
-    <</send>>
-  <</button>>
-  <<button "I'm really not up for socializing right now, but I can't be rude.">>
-    <<send "IntroFaithful_WaitingAwkwardly_CHOICE" { choice: "REJECT" }>>
-      <<run setup.replaceWithSending("#if-me-btns")>>
-    <</send>>
-  <</button>>
-  <<nobr>>
-    <<receive "IntroFaithful_WaitingAwkwardly_CHOICE" "Faithful">><<script>>
-      if (setup.isFaithful()) {
-        const data = State.temporary.receiveData;
-        State.variables.IntroFaithful_WaitingAwkwardly_CHOICE = data.choice;
-        setup.replaceWithWaiting("#if-me-btns")
-        setup.Complete_IntroFaithful_MercsEnter();
-      }
-    <</script>><</receive>>
-    <<receive "IntroApostate_MercsEnter_CHOICE" "Faithful">><<script>>
-      if (setup.isFaithful()) {
-        const data = State.temporary.receiveData;
-        State.variables.IntroApostate_MercsEnter_CHOICE = data.choice;
-        setup.Complete_IntroFaithful_MercsEnter();
-      }
-    <</script>><</receive>>
-  <</nobr>>\
 </span>\
-
-:: IntroFaithful_JekuMercsChat
-<<if $IntroFaithful_WaitingAwkwardly_CHOICE is "CHAT">>\
-  "Silas," you say, returning his fist bump with your own, "how are you doing?"
-
-  "Doin' good," he says. \
-<<else>>\
-  "Silas," you say, nodding. "What a coincidence."
-
-  "Yeah," he says. "Didn' know ya like Christie's." \
-<</if>>\
-He jerks his head over at his companion. "Arthur. Works 'ith me at Midas, joined 'esterday. Arthur, Jekusheke. E's a former Midas EMT."
-
-Arthur gives you a slightly strained smile and holds out his hand. "Nice to meet you, Jekusheke."
-
-<<if $IntroFaithful_WaitingAwkwardly_CHOICE is "CHAT">>\
-  You smile back amiably and shake his hand. \
-<<else>>\
-  You suspect your smile is similarly strained, but you shake his hand. \
-<</if>>\
-His grasp is firm but not overbearing. "Nice to meet you too, Arthur." \
-<<if $IntroApostate_MercsEnter_CHOICE is "TALK">>\
-
-
-  Ebiaishe leans over. "Care to introduce us?" she asks, a easygoing grin on her face.
-
-  "Right," you say, releasing Arthur's hand, but Silas beats you to the punch.
-
-  "Silas," he says, extending his hand. "Are you the lovely fiance that Jay's always talking about?"
-
-  "Absolutely not!" she laughs. "Jeku, Jeku," she says, a grin splitting her face in two, "you didn't tell me you were getting married!"
-
-  <<tooltip "\"You didn't ask.\"">>The words sound whiny in my ears.<</tooltip>>
-
-  "Congratulations!" she says, punching you lightly in the shoulder. "I knew my boy Jeku was gonna get settled sometime!"
-
-  You turn back to Silas, face burning. "Silas," you say, "this is-"
-
-  "Annalise," says your sister, putting out her hand.
-
-  Silas takes it, shakes it. "Silas. Charmed." His eyes flit between you and your sister. "How you know each other?"
-
-  Ebiaishe laughs and tosses her head. Her reply is quick and breezy. "I'm the woman that dear Jekusheke isn't gonna marry."
-
-  Your face is hot with <<tooltip "irritation and anger">>Fucking seriously? Goddammit! Stop fucking around!<</tooltip>>. Silas blinks and leans back, and behind Arthur clears his throat, shifting from foot to foot. "Uh," says Arthur, rolling his broad shoulders, "so, uh."
-  
-  After a moment, Silas regains his composure. "Right," he says, nodding to your sister, "good to know." He turns back towards you. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and he casts an eye over to Ebiaishe, "a friend?"
-
-  TODO: lol
-  <span id="if-jmc-btns">\
-    <<button "What the fuck, Ebi!?">>
-      <<send "IntroFaithful_JekuMercsChat_CHOICE" { choice: "ANGER" }>><</send>>
-      <<run setup.replaceWithSending("#if-jmc-btns")>>
-    <</button>>
-    <<button "Just...just ignore her.">>
-      <<send "IntroFaithful_JekuMercsChat_CHOICE" { choice: "IGNORE" }>><</send>>
-      <<run setup.replaceWithSending("#if-jmc-btns")>>
-    <</button>>
-  </span>\
-<<else>>\
-  He looks over to Ebiaishe, who's pulled out her phone and started scrolling in the universal signal of indifference. Arthur glances at Silas with a raised eyebrow. Silas shrugs, then turns to you.
-
-  "Friend of yours?" he asks.
-
-  "Well," you say, but Ebiaishe's hand on yours <<tooltip "stops you">>At least she's not kicking me under the table.<</tooltip>> before you continue.
-
-  Your sister turns, looks at you, looks at Silas. She puts on a polite but obviously artifical smile. "Annalise," she says, extending her hand. "It's nice to meet you Silas, Arthur."
-
-  "Charmed," says Silas, shaking it. Arthur shakes it as well, nodding politely. Then Ebiaishe turns back to her phone.
-
-  Silas takes a seat next to you, and Arthur next to him. "That th' <em>fi-an-cee</em> you been tellin' me's much 'bout?" he asks.
-
-  "No," you say, "she's my-"
-
-  "Just a friend," <<tooltip "interrupts">>I wasn't going to tell him, you don't need to interrupt me! Come on, I'm not that dense.<</tooltip>> Ebiaishe, eyes not leaving the screen. "Nothing more, nothing less."
-
-  "Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
-
-  <span id="if-jmc-btns">\
-    <<button "I'm definitely not in the mood for this.">>
-      <<send "IntroFaithful_JekuMercsChat_CHOICE" { choice: "DODGE" }>><</send>>
-      <<run setup.replaceWithSending("#if-jmc-btns")>>
-    <</button>>\
-  </span>\
-<</if>>\
-<<nobr>><<receive "IntroFaithful_JekuMercsChat_CHOICE" "Faithful">><<script>>
-  if (setup.isFaithful()) {
-    const data = State.temporary.receiveData;
-    if (data.choice === "ANGER") {
-      Engine.play("IntroFaithful_JekuDragsEbiOff");
-    } else if (data.choice === "IGNORE") {
-      Engine.play("IntroFaithful_EbiDragsJekuOff");
-    } else {
-      Engine.play("IntroFaithful_JekuMercsChatDisengage");
-    }
-  }
-<</script>><</receive>><</nobr>>\
-
-
-:: IntroFaithful_JekuDragsEbiOff
-TODO
-
-
-:: IntroFaithful_EbiDragsJekuOff
-TODO
-"Not quite drinks," you laugh, gesturing to your diet coke. Silas' eyes shoot up.
-
-"Ya on call?"
-
-"No," you say, "it's just that it's a little early to be drinking."
-
-Silas grins, a chuckle escaping his lips. "Never too early, Jay. Pick yer pois'n, on me."
-<<if $IntroApostate_MercsEnter_CHOICE is "TALK">>\
-  TODO
-<<else>>\
-  TODO
-<</if>>\
-
-
-:: IntroFaithful_JekuMercsChatDisengage
-"Actually," you say, checking <<tooltip "the time">>A little past 2:30 in the afternoon.<</tooltip>>, "we were gonna get an early linner." You lean over the bar, gesture to the bartender. He spots you, starts ambling over.
-
-"Ah," says Silas, no so easily deterred, "drinks 'fore linner?" He spots your coke, notices the lack of drinks in front of Ebiaishe. "'ey, soda, eh? Ya on call?"
-
-"No," you say, "but-"
-
-"Great! Bar-tender! Why'nt we get somethin' stronger? What'cha feelin' tonight Jay?"
-
-The bartender raises his eye as you struggle to extricate yourself. "No," you say, "I'm not on call, but it's kinda early for drinks."
-
-<<if $IntroApostate_MercsEnter_CHOICE is "TALK">>\
-  You can hear Ebiaishe laugh. "Scoot over Jeku, dear," she says, interposing herself between you and your overly enthusiastic friend. You gladly swap seats with her. "Jeku's far too conscientious to get blasted this early in the afternoon," she says, grinning, "but if you're still offering..."
-
-  Silas sucks in his breath, leans back. "Ah, well, what't'ell. Sure. Pick summin.'"
-
-  <span id="if-jmcd-btns">\
-    <<button "Thanks.">>
-      <<send "IntroFaithful_JekuMercsChatDisengage_CHOICE" { choice: "BAR" }>><</send>>
-      <<run setup.replaceWithSending("#if-jmcd-btns")>>
-    <</button>>\
-  </span>\
-<<else>>\
-  "C'mon," says Silas, leaning over, "I know ya drink, Jay. 'Artender," he says, and the bartender raises his eyebrow, "gi' my boy Jay one'a wha'ever 'e wants!"
-
-  "Excuse me," interjected Ebiaishe, staring at the bartender, "can we get a table?"
-
-  "'ey," says Silas, but stops when Ebiaishe stands up.
-
-  "Pleasure to meet you, Silas, Arthur. Now," she says, turning to the bartender, "may we please have a table?"
-
-  "Of course," he says, and you follow him gratefully to one of the window tables for two, all the way across the room. "Will this do?" he asks, placing a pair of menus down. You nod, and Ebiaishe assents as well. You glance over at the bar to see Silas scowling at you, but he turns back to the bar when your eyes meet.
-
-  You turn back to your sister and let out your breath. "Thanks.""
-
-  "No problem." She picks up the menu. "So, split halfway?"
-
-  "Wait, you-"
-
-  "Yep. Split halfway?"
-
-  You shrug. "Sure," you say.
-
-  "Wave when you're ready," says the bartender, returning to serve his other two customers.
-
-  <span id="if-jmcd-btns">\
-    <<button "I guess we're getting linner now.">>
-      <<send "IntroFaithful_JekuMercsChatDisengage_CHOICE" { choice: "TABLE" }>>
-        <<run setup.replaceWithSending("#if-jmcd-btns")>>
-      <</send>>
-    <</button>>\
-  </span>\
-<</if>>\

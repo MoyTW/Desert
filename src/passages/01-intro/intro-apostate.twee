@@ -59,6 +59,9 @@ The car comes to a stop. "Christie's Old West Saloon" declares the sign above yo
 
 
 :: IntroApostate_MeetingFaithful
+/** ###################################################################### **/\
+/** # FIRST MEETING                                                      # **/\
+/** ###################################################################### **/\
 The doors to Christie's Old West Saloon look like genuine wooden saloon doors, though there's a more conventional door hidden tucked away behind. The inside is nicely lit, with polished Western decor, empty tables, and a bar with a single lonely man. The <<tooltip "bartender">>Average height with weathered skin, black hair and exaggerated beard, reasonably strong, probably unarmed but with quick access to security.<</tooltip>> looks over at you, waves. The <<tooltip "only patron">>Tall but hunched over, probably Asian, short black hair, probably unarmed.<</tooltip>> turns away from the bar to to examine you, and as he does so you get a good look at his face.
 
 Jekusheke, your <<tooltip "brother,">>Foster, not bilogical.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
@@ -425,6 +428,9 @@ TODO:
 
 
 :: IntroApostate_WaitingAwkwardly
+/** ###################################################################### **/\
+/** # AWKWARD WAITING                                                    # **/\
+/** ###################################################################### **/\
 <span id="ia-wa-wait-btn"><<button "Wait.">>
   <<send 'IntroApostate_WaitingAwkwardly_1' {}>>
     <<hideandshow "#ia-wa-wait-btn" "#ia-wa-wait-text">>
@@ -506,115 +512,3 @@ TODO:
 
   <<include "IntroApostate_MercsEnter">>
 </span>\
-
-:: IntroApostate_MercsEnter
-A loud creaking announces the opening of the doors. You look back. A pair of people enter, one <<tooltip "muscular,">>Tall male, heavy build, close-cut orange hair, squat face with an unruly beard, wrap-around shades, likely with concealed armor and some sort of weapon in a shoulder holster.<</tooltip>> one <<tooltip "slight.">>Tall male, lean build, close-cut blond hair, long face with a well-groomed mustache, wrap-around shades, likely with concealed armor and some sort of weapon in a shoulder holster.<</tooltip>> Bad news.
-
-The two of them see Jekusheke, see you. The heavy dismisses you; the slim one whistles, then heads straight for Jekusheke, taking off his shades as he leaves his companion behind. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting as his companion awkwardly shuffles behind.
-
-TODO: Page has ~530 words
-
-<span id="ia-me-btns">\
-  <<button "Interesting. They know Jekusheke? This could be fun.">>
-    <<send "IntroApostate_MercsEnter_CHOICE" { choice: "TALK" }>><</send>>
-    <<run setup.replaceWithSending("#ia-me-btns")>>
-  <</button>>
-  <<button "Unless they're related to Ma Tiger's somehow, I don't care.">>
-    <<send "IntroApostate_MercsEnter_CHOICE" { choice: "SILENT" } >><</send>>
-    <<run setup.replaceWithSending("#ia-me-btns")>>
-  <</button>>
-  <<nobr>>
-    <<receive "IntroApostate_MercsEnter_CHOICE" "Apostate">><<script>>
-      if (setup.isApostate()) {
-        const data = State.temporary.receiveData;
-        State.variables.IntroApostate_MercsEnter_CHOICE = data.choice;
-        setup.replaceWithWaiting("#ia-me-btns");
-        setup.Complete_IntroApostate_MercsEnter();
-      }
-    <</script>><</receive>>
-    <<receive "IntroFaithful_WaitingAwkwardly_CHOICE" "Apostate">><<script>>
-      if (setup.isApostate()) {
-        const data = State.temporary.receiveData;
-        State.variables.IntroFaithful_WaitingAwkwardly_CHOICE = data.choice;
-        setup.Complete_IntroApostate_MercsEnter();
-      }
-    <</script>><</receive>>
-  <</nobr>>\
-</span>
-
-:: IntroApostate_JekuMercsChat
-<<if $IntroFaithful_WaitingAwkwardly_CHOICE is "CHAT">>\
-  "Silas," says Jekusheke, returning his fist bump, "how are you doing?"
-
-  "Doin' good," says Silas. \
-<<else>>\
-  "Silas," he says, nodding politely. "What a coincidence."
-
-  "Yeah," says Silas. "Didn' know ya like Christie's." \
-<</if>>\
-He jerks his head over at his companion. "Arthur. Works 'ith me at Midas, joined 'esterday. Arthur, Jekusheke. E's a former Midas EMT."
-
-Arthur gives you a slightly strained smile and holds out his hand. "Nice to meet you, Jekusheke."
-
-<<if $IntroFaithful_WaitingAwkwardly_CHOICE is "CHAT">>\
-  Jekusheke's smile is more genuine, and he takes Arthur's hand without hesitation. \
-<<else>>\
-  If Arthur's smile is strained, Jekusheke's is fraying. Still, he's too polite not to return the handshake. \
-<</if>>\
-"Nice to meet you too, Arthur." \
-<<if $IntroApostate_MercsEnter_CHOICE is "TALK">>\
-
-
-  You lean over, grinning, and catch Jekusheke's eye. "Care to introduce us?"
-
-  "Right," he says, drawing in his breath, but Silas beats him to the punch, extending his hand with what passes for his best smile.
-
-  "Silas. Are you the lovely fiance that Jay's always talking about?"
-
-  <<tooltip "\"Absolutely not!\"">>Holy shit, he's getting married!?<</tooltip>> you say, bursting into laughter. "Jeku, Jeku, you didn't tell me you were getting married!"
-
-  <<tooltip "\"You didn't ask.\"">>Oh, wow, I almost forgot how sulky he could sound.<</tooltip>>
-
-  "Congratulations!" You punch him lightly in the shoulder. "I knew my boy Jeku was gonna get settled sometime!" His face is red, and he turns to look at Silas.
-
-  "Silas," he says, <<tooltip "\"this is-\"">>Don't tell him anything.<</tooltip>>
-
-  "Annalise," you say, putting out your hand.
-
-  Silas takes it, shakes it. "Silas. Charmed." His eyes flit between you and your sister. "How you know each other?"
-
-  You know what would be hilarious? Jekusheke would hate it, but...
-
-  Fuck it. Let's go. You put on a grin, toss your head. "I'm the woman that dear Jekusheke isn't gonna marry." You steal a glince at Jekusheke, and he's nearly shaking in anger.
-  
-  "Uh," says Arthur, rolling his broad shoulders, "so, uh."
-  
-  After a moment, Silas regains his composure. "Right," he says, nodding to you, "good to know." He turns back towards Jekusheke. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and gives you the side-eye, "a friend?"
-
-  TODO: lol
-  <span id="ia-jmc-btns">\
-    <<button "That was a little mean of me.">>
-      <<run setup.replaceWithSending("#ia-jmc-btns")>>
-      <<send "IntroApostate_JekuMercsChat_DONE" { }>><</send>>
-    <</button>>
-  </span>\
-<<else>>\
-  You're next, of course, but you're not interested. You pull out your <<tooltip "public phone">>The minimum is three - a public phone, a private phone, and a burner phone.<</tooltip>> and start browsing.
-
-  Behind you, you hear Silas ask, "Friend of yours?"
-
-  Dammit. At the very least, don't actually tell them anything. Jekusheke starts. "Well," he says, but you grab his hand and he stops. You give him a glance and he pauses, shuts his mouth. He still remembers how this goes.
-
-  You put on a polite, obviously artifical smile and turn to Silas. "Annalise," you say, extending your hand. "It's nice to meet you Silas, Arthur."
-
-  "Charmed," says Silas, shaking it. Arthur shakes it as well, nodding politely. You drop your smile and return to your phone as they sit down at the bar.
-
-  You can hear Silas, voice low, asking after you. "That th' <em>fi-an-cee</em> you been tellin' me's much 'bout?"
-
-  What? He's got a fiance?  In any case, you don't want Jekusheke talking too much. "No," says your brother, "she's my-"
-
-  "Just a friend," you assert, eyes not leaving the screen. "Nothing more, nothing less."
-
-  "Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
-<</if>>\
-TODO RECEIVE
