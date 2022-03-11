@@ -308,18 +308,14 @@ She stands up straight as a statue, and suddenly she seems to be a completely di
 <<button "Then...why didn't come back?">>
   <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "SAD" }>><</send>>
 <</button>>
-<<button "I - seriously? What the fuck! Why didn't you tell us?">>
-  <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "ANGRY" }>><</send>>
-<</button>>
+<<disable>><<button "<s>I - seriously? What the fuck! Why didn't you tell us?</s> No. Be calm.">><</button>><</disable>>
 <<nobr>><<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
     const data = State.temporary.receiveData;
     if (data.choice == "HAPPY") {
       Engine.play("IntroFaithfulReactionChoiceHappy")
-    } else if (data.choice == "SAD") {
-      Engine.play("IntroFaithfulReactionChoiceSad");
     } else {
-      Engine.play("IntroFaithfulReactionChoiceAngry");
+      Engine.play("IntroFaithfulReactionChoiceSad");
     }
   }
 <</script>><</receive>><</nobr>>
@@ -449,10 +445,6 @@ If only! Having some warning would have helped. "No. No, she didn't. She said sh
 She nods. "Then I guess we wait."
 
 <<include "IntroFaithful_WaitingAwkwardly">>
-
-
-:: IntroFaithfulReactionChoiceAngry
-TODO: you mad
 
 
 :: IntroFaithful_WaitingAwkwardly

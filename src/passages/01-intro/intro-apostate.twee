@@ -289,7 +289,7 @@ Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady
 <<button "\"I'll tell you later, when Ma shows up.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
 <</button>>
-<<button "\"My reasons are your own.\"">>
+<<button "\"My reasons are my own.\"">>
   <<send "IntroApostateReactionChoiceSad_REASON" { choice: "REFUSE" }>><</send>>
 <</button>>
 <<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Apostate">><<script>>
@@ -389,42 +389,6 @@ Your former brother shakes his head. "No," he says. "No, she didn't. She said sh
 "Then I guess we wait."
 
 <<include "IntroApostate_WaitingAwkwardly">>
-
-:: IntroApostateReactionChoiceAngry
-Jekusheke pulls himself up, leans forward. "I -" he blinks. "Seriously? What the fuck!" He recoils, eyes flashing. "Why didn't you tell us? I mean it's been, it's been fucking, fucking - <<tooltip "how long?">>Thirteen years.<</tooltip>> Nearly ten fucking years!" Out of the corner of your eye, the bartender has started moving. You hold a hand up to him as Jekusheke's voice climbs further. "You're not even - I - how can you be so casual about this?" He pauses, anger falling into confusion. "What the hell were you doing? You just fucking walk into a bar and, and, just drop in like it's nothing! After ten fucking years!" His jaw is tense and he's leaning forward <<tooltip "aggressively.">>Unarmed, and not at the level of violence yet. Unless he's changed significantly, he's unlikely to have any experience in fighting, whether real or sport, but you'd hate to have to hurt him.<</tooltip>> "Why the fuck didn't you tell us!?"
-
-TODO: Revise these choices
-<<button "\"I'm sorry. I should've told you.\"">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "APOLOGIZE" }>><</send>>
-<</button>>
-<<button "\"I was imprisoned in a blacksite for five years.\"">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "BLACKSITE" }>><</send>>
-<</button>>
-<<button "\"I was too ashamed to face Ma. And you.\"">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "SHAME" }>><</send>>
-<</button>>
-<<button "\"I had my reasons.\"">>
-  <<send "IntroApostateReactionChoiceAngry_REASON" { choice: "REFUSE" }>><</send>>
-<</button>>
-
-:: IntroApostate_FaithfulAngry_ApostateApologize
-TODO
-"I'm sorry," you say. "I should've told you."
-
-
-:: IntroApostate_FaithfulAngry_ApostateBlacksite
-TODO
-"I was imprisoned," you say, staring him in the eye. "I spent five years in a blacksite."
-
-
-:: IntroApostate_FaithfulAngry_ApostateShame
-TODO
-"I was too ashamed," you say. You carefully avoid his gaze. "I couldn't face Ma. Or you."
-
-
-:: IntroApostate_FaithfulAngry_ApostateRefuse
-TODO:
-"I had my reasons."
 
 
 :: IntroApostate_WaitingAwkwardly
