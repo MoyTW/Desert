@@ -9,68 +9,78 @@ Instead you opened it and read it, and now you're sitting in one of the cheap ba
 
 You sip your soda, glance around at the patrons. The last lunch regulars are clearing out. All that's left is a clutch of old men, sitting around a table, pushing around their poker hands and muttering about long-gone glory.
 
-<span id="tfi-open-letter-btn"><<button "Read Ma Tiger's letter again.">>
-  <<send 'THE_FAITHFUL_INTRO_1' {}>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</send>>
-  <<receive 'THE_FAITHFUL_INTRO_1' 'Faithful'>>
-    <<if setup.isFaithful()>><<hideandshow "#tfi-open-letter-btn" "#tfi-open-letter-text">><</if>>
-  <</receive>>
-<</button>></span>\
-<span id="tfi-open-letter-text" class="hidden">\
-  You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
+@@#if-s-btn;<<button "Read Ma Tiger's letter again.">>
+  <<run setup.replaceWithSending("#if-s-btn")>>
+  <<send 'IntroFaithful_Start_DONE' {}>><</send>>
+<</button>>@@\
+<<nobr>><<receive 'IntroFaithful_Start_DONE' 'Faithful'>><<script>>
+  if (setup.isFaithful()) { Engine.play("IntroFaithful_ReadLetter") }
+<</script>><</receive>><</nobr>>\
 
-  <div class='letter'>Jekusheke,
 
-  <<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
+:: IntroFaithful_ReadLetter
+You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
 
-  Don't tell anybody else about this. It's a family matter. I will explain when we meet.
+<div class='letter'>Jekusheke,
 
-  Also, do not call or text or email in response. <<tooltip "Just be there.">>What would've happened if you'd missed the letter?<</tooltip>>
+<<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
 
-  Love,
-  Ma Tiger</div>\
+Don't tell anybody else about this. It's a family matter. I will explain when we meet.
 
-  You fold it neatly and replace it. Nothing to do but wait.
+Also, do not call or text or email in response. <<tooltip "Just be there.">>What would've happened if you'd missed the letter?<</tooltip>>
 
-  <span id="tfi-first-wait-btn"><<button "Wait.">>
-    <<send 'THE_FAITHFUL_INTRO_2' {}>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</send>>
-    <<receive 'THE_FAITHFUL_INTRO_2' 'Faithful'>>
-      <<if setup.isFaithful()>><<hideandshow "#tfi-first-wait-btn" "#tfi-first-wait-text">><</if>>
-    <</receive>>
-  <</button>></span>\
-</span>\
-<span id="tfi-first-wait-text" class="hidden">\
-  The sun creeps across the sky. The old-timers finish up their game, trickle out one by one. Your cup empties.
+Love,
+Ma Tiger</div>\
 
-  "Hey," you say to the bartender. He looks up from his phone. "Can I get another diet coke?"
+You fold it neatly and replace it. Nothing to do but wait.
 
-  He nods, takes your glass, puts it under the soda tap, presses a button. <<tooltip "Ten cents' worth">>They charge $8, $2 for refills.<</tooltip>> of syrup and bubbles fizz into the cup. "Here," he says, handing it back.
+@@#if-rl-btn;<<button "Wait.">>
+  <<run setup.replaceWithSending("#if-rl-btn")>>
+  <<send "IntroFaithful_ReadLetter_DONE" {}>><</send>>
+<</button>>@@
+<<nobr>><<receive 'IntroFaithful_ReadLetter_DONE' 'Faithful'>><<script>>
+  if (setup.isFaithful()) { Engine.play("IntroFaithful_Wait") }
+<</script>><</receive>><</nobr>>\
 
-  "Thanks."
-  
-  He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
 
-  <span id='tfi-convo-btn'>\
-    <<button "Seems so.">>
-      <<send 'THE_FAITHFUL_INTRO_3A' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</send>>
-      <<receive 'THE_FAITHFUL_INTRO_3A' 'Faithful'>>
-        <<if setup.isFaithful()>><<hideandshow "#tfi-convo-btn" "#tfi-convo-seems-so-text">><</if>>
-      <</receive>>
-    <</button>>
-    <<button "Well, we picked a date, not a time.">>
-      <<send 'THE_FAITHFUL_INTRO_3B' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-date-text">><</send>>
-      <<receive 'THE_FAITHFUL_INTRO_3B' 'Faithful'>>
-        <<if setup.isFaithful()>><<hideandshow "#tfi-convo-btn" "#tfi-convo-date-text">><</if>>
-      <</receive>>
-    <</button>>
-    <<button "None of your concern, friend.">>
-      <<send 'THE_FAITHFUL_INTRO_3C' {}>><<hideandshow "#tfi-convo-btn" "#tfi-convo-concern-text">><</send>>
-      <<receive 'THE_FAITHFUL_INTRO_3C' 'Faithful'>>
-        <<if setup.isFaithful()>><<hideandshow "#tfi-convo-btn" "#tfi-convo-concern-text">><</if>>
-      <</receive>>
-    <</button>>
-  </span>\
-</span>\
-<span id="tfi-convo-seems-so-text" class="hidden">\
+:: IntroFaithful_Wait
+The sun creeps across the sky. The old-timers finish up their game, trickle out one by one. Your cup empties.
+
+"Hey," you say to the bartender. He looks up from his phone. "Can I get another diet coke?"
+
+He nods, takes your glass, puts it under the soda tap, presses a button. <<tooltip "Ten cents' worth">>They charge $8, $2 for refills.<</tooltip>> of syrup and bubbles fizz into the cup. "Here," he says, handing it back.
+
+"Thanks."
+
+He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
+
+@@#if-w-btn;<<button "Seems so.">>
+  <<run setup.replaceWithSending("#if-w-btn")>>
+  <<send 'IntroFaithful_Wait_CHOICE' { choice: "AGREE" }>><</send>>
+<</button>>
+<<button "Well, who knows? There's still time.">>
+  <<run setup.replaceWithSending("#if-w-btn")>>
+  <<send 'IntroFaithful_Wait_CHOICE' { choice: "WAIT" }>><</send>>
+<</button>>
+<<button "Thanks, but I'd rather not talk about it.">>
+  <<run setup.replaceWithSending("#if-w-btn")>>
+  <<send 'IntroFaithful_Wait_CHOICE' { choice: "DEMUR" }>><</send>>
+<</button>>@@
+<<nobr>><<receive "IntroFaithful_Wait_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    const data = State.temporary.receiveData;
+    if (data.choice == "AGREE") {
+      Engine.play("IntroFaithful_Wait_StoodUp");
+    } else if (data.choice == "WAIT") {
+      Engine.play("IntroFaithful_Wait_StillTime");
+    } else {
+      Engine.play("IntroFaithful_Wait_RatherNotTalk");
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: IntroFaithful_Wait_StoodUp
 "Seems so," you say.
 
 The bartender nods. "That's rough, buddy."
@@ -78,56 +88,45 @@ The bartender nods. "That's rough, buddy."
 "I'll wait as long as it takes." He steps up, opens his mouth. "Thanks for asking," you say, waving him off. Hint taken, he retreats back along the bar.
 
 <<include "IntroFaithful_WaitInChristies">>
-</span>\
-<span id="tfi-convo-date-text" class="hidden">\
-You toss out a chuckle. "Well," you sigh, "I had the date, but not the time."
+
+
+:: IntroFaithful_Wait_StillTime
+You toss out a chuckle. "Well," you sigh, "who knows? There's still time."
 
 The bartender nods sympathetically. "That's rough, buddy."
 
 "I'll give it a little longer. Thanks for asking," you say, waving him off. He takes the hint and retreats back along the bar.
 
 <<include "IntroFaithful_WaitInChristies">>
-</span>\
-<span id="tfi-convo-concern-text" class="hidden">\
-You clear your throat. "None of your concern, friend."
 
-The bartender shrugs, retreats.
+
+:: IntroFaithful_Wait_RatherNotTalk
+You clear your throat. "Thanks, but I'd rather not talk about it."
+
+The bartender nods and retreats.
 
 <<include "IntroFaithful_WaitInChristies">>
-</span>
 
 
 :: IntroFaithful_WaitInChristies
 Come on, Ma. It's been a little over four hours now. What's going on?
 
 @@#fsu-wb;<<button "Wait.">>
-  <<send 'IntroFaithful_WaitInChristies_DONE' {}>><<script>>
-    $("#fsu-wb button").text("Sending to server...")>> 
-    $("#fsu-wb button").prop("disabled", true)
-  <</script>><</send>> 
+  <<run setup.replaceWithSending("#fsu-wb")>>
+  <<send 'IntroFaithful_WaitInChristies_DONE' {}>><</send>>
 <</button>>@@\
 <<nobr>>
+  <<receive 'IntroFaithful_WaitInChristies_DONE' 'Faithful'>><<script>>
+    if (setup.isFaithful()) {
+      setup.replaceWithWaiting("#fsu-wb")
+      State.variables.IntroFaithful_WaitInChristies_DONE = true;
+      setup.Complete_IntroFaithful_WaitInChristies();
+    }
+  <</script>><</receive>>
   <<receive 'IntroApostate_Start_DONE' 'Faithful'>><<script>>
     if (setup.isFaithful()) {
       State.variables.IntroApostate_Start_DONE = true;
-      if (State.variables.IntroApostate_Start_DONE && State.variables.IntroFaithful_WaitInChristies_DONE) {
-        delete State.variables.IntroApostate_Start_DONE;
-        delete State.variables.IntroFaithful_WaitInChristies_DONE;
-        Engine.play('IntroFaithfulMeetingApostate');
-      }
-    }
-  <</script>><</receive>>
-  <<receive 'IntroFaithful_WaitInChristies_DONE' 'Faithful'>><<script>>
-    if (setup.isFaithful()) {
-      State.variables.IntroFaithful_WaitInChristies_DONE = true;
-      if (State.variables.IntroApostate_Start_DONE && State.variables.IntroFaithful_WaitInChristies_DONE) {
-        delete State.variables.IntroApostate_Start_DONE;
-        delete State.variables.IntroFaithful_WaitInChristies_DONE;
-        Engine.play('IntroFaithfulMeetingApostate');
-      } else {
-        $("#fsu-wb button").text("Waiting for partner...")>>
-        $("#fsu-wb button").prop("disabled", true)
-      }
+      setup.Complete_IntroFaithful_WaitInChristies();
     }
   <</script>><</receive>>
 <</nobr>>\
@@ -143,15 +142,20 @@ You really hope she doesn't recognize you. That would be real awkward.
 
 She takes a moment to look around the room, then starts heading for the bar and, by extension, you. Well, there's nothing for it now, you're going to have to talk to her one way or another.
 
-<<button "Greet her like you know her, because you're sure you do. You're just not sure where from.">>
-  <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "FAMILIAR" }>><</send>>
-<</button>>
-<<button "Greet her as a stranger, and hope that talking to her jogs your memory.">>
-  <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "STRANGER" }>><</send>>
-<</button>>
-<<button "Don't greet her yet - try and remember where you met her before you talk.">>
-  <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "NONE" }>><</send>>
-<</button>>
+<span id="ifmc-btn">\
+  <<button "Greet her like you know her, because you're sure you do. You're just not sure where from.">>
+    <<run setup.replaceWithSending("#ifmc-btn")>>
+    <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "FAMILIAR" }>><</send>>
+  <</button>>
+  <<button "Greet her as a stranger, and hope that talking to her jogs your memory.">>
+    <<run setup.replaceWithSending("#ifmc-btn")>>
+    <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "STRANGER" }>><</send>>
+  <</button>>
+  <<button "Don't greet her yet - try and remember where you met her before you talk.">>
+    <<run setup.replaceWithSending("#ifmc-btn")>>
+    <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "NONE" }>><</send>>
+  <</button>>
+</span>
 <<nobr>><<receive "IntroFaithfulMeetingApostate_GREETING" "Faithful">><<script>>
   if (setup.isFaithful()) {
     const data = State.temporary.receiveData;
@@ -190,19 +194,26 @@ If only you could remember where you've seen her.
 
 
 :: IntroFaithfulWaitForChoices
-<strong>Waiting for partner...</strong>
-<<nobr>><<receive "IntroApostateUnrecognizedChoices_CHOICE" "Faithful">><<script>>
-  if (setup.isFaithful()) {
-    const data = State.temporary.receiveData;
-    if (data.choice === "OFFENDED") {
-      Engine.play("IntroFaithfulChoiceOffended")
-    } else if (data.choice === "RELIEVED") {
-      Engine.play("IntroFaithfulChoiceRelieved");
-    } else {
-      Engine.play("IntroFaithfulChoiceGremlin");
+<span id="ifwfc"><<button "No, really, where do you know her from?">>
+  <<run setup.replaceWithSending("#ifwfc")>>
+  <<send "IntroFaithfulWaitForChoices_DONE" {}>><</send>>
+<</button>></span>
+<<nobr>>
+  <<receive "IntroFaithfulWaitForChoices_DONE" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.IntroFaithfulWaitForChoices_DONE = true;
+      setup.replaceWithWaiting("#ifwfc");
+      setup.Complete_IntroFaithfulWaitForChoices();
     }
-  }
-<</script>><</receive>><</nobr>>\
+  <</script>><</receive>>
+  <<receive "IntroApostateUnrecognizedChoices_CHOICE" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      const data = State.temporary.receiveData;
+      State.variables.IntroApostateUnrecognizedChoices_CHOICE = data;
+      setup.Complete_IntroFaithfulWaitForChoices();
+    }
+  <</script>><</receive>>
+<</nobr>>\
 
 
 :: IntroFaithfulChoiceOffended
@@ -451,96 +462,95 @@ She nods. "Then I guess we wait."
 /** ###################################################################### **/\
 /** # AWKWARD WAITING                                                    # **/\
 /** ###################################################################### **/\
-<span id="if-wa-wait-btn"><<button "There's so much to say.">>
-  <<send "IntroFaithful_WaitingAwkwardly_1" {}>>
-    <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
-  <</send>>
-  <<receive "IntroFaithful_WaitingAwkwardly_1" "Faithful">>
-    <<hideandshow "#if-wa-wait-btn" "#if-wa-wait-text">>
-  <</receive>>
+<span id="if-wa-btn"><<button "That's all you're going to say?">>
+  <<run setup.replaceWithSending("#if-wa-btn")>>
+  <<send "IntroFaithful_WaitingAwkwardly_DONE" {}>><</send>>
 <</button>></span>\
-<span id="if-wa-wait-text" class="hidden">\
-  What could you even say to Ebiaishe?
+<<nobr>><<receive "IntroFaithful_WaitingAwkwardly_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("IntroFaithful_WaitingAwkwardly_2") }
+<</script>><</receive>><</nobr>>
 
-  She's not interested in talking much more, that much is plain. You steal a glance, and she's staring straight ahead, gears turning, <<tooltip "silent">>When she used to brood, she'd do what she's doing now, just sit and stare without moving a muscle. Sometimes for hours.<</tooltip>>.
 
-  You have questions, a hundred questions, but how would you even start to ask them? How do you even approach this? She seemed, well, did she seem happy to see you? She certainly wasn't shy, but she's never been shy. Then again, it's been so long, and if you met the you from back then and compared him to yourself...you're different people, after so long.
+:: IntroFaithful_WaitingAwkwardly_2
+You're just going to sit there, in silence?
 
-  How do you know she's the <<tooltip "same person?">>You can't - and even less if you don't ask.<</tooltip>>
+She's not interested in talking much more, that much is plain. You steal a glance, and she's staring straight ahead, gears turning, <<tooltip "silent">>When she used to brood, she'd do what she's doing now, just sit and stare without moving a muscle. Sometimes for hours.<</tooltip>>.
 
-  <span id="if-wa-say-something-btn"><<button "Say something.">>\
-    <<send "IntroFaithful_WaitingAwkwardly_2" {}>>
-      <<hideandshow "#if-wa-say-something-btn" "#if-wa-say-something-text">>
-    <</send>>
-    <<receive "IntroFaithful_WaitingAwkwardly_2" "Faithful">>
-      <<hideandshow "#if-wa-say-something-btn" "#if-wa-say-something-text">>
-    <</receive>>
-  <</button>></span>\
-</span>\
-<span id="if-wa-say-something-text" class="hidden">\
-  You take a deep breath, moisten your lips, and -
+You have questions, a hundred questions, but how would you even start to ask them? How do you even approach this? She seemed, well, did she seem happy to see you? She certainly wasn't shy, but she's never been shy. Then again, it's been so long, and if you met the you from back then and compared him to yourself...you're different people, after so long.
 
-  You close your mouth.
+How do you know she's the <<tooltip "same person?">>You can't - and even less if you don't ask.<</tooltip>>
 
-  Something? What is something? You know what something is before you can say something. What thing is something?
+<span id="if-wa-2-btn"><<button "Say something.">>
+  <<run setup.replaceWithSending("#if-wa-2-btn")>>
+  <<send "IntroFaithful_WaitingAwkwardly_2_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "IntroFaithful_WaitingAwkwardly_2_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("IntroFaithful_WaitingAwkwardly_3") }
+<</script>><</receive>><</nobr>>
 
-  <span id="if-wa-say-what-choices">\
-    <<button "Something about yourself.">>
-      <<send "IntroFaithful_WaitingAwkwardly_3A" {}>>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-yourself-text">>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-mercs-enter-btn">>
-      <</send>>
-      <<receive "IntroFaithful_WaitingAwkwardly_3A" "Faithful">>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-yourself-text">>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-mercs-enter-btn">>
-      <</receive>>
-    <</button>>
-    <<button "Something about her.">>
-      <<send "IntroFaithful_WaitingAwkwardly_3B" {}>>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-her-text">>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-mercs-enter-btn">>
-      <</send>>
-      <<receive "IntroFaithful_WaitingAwkwardly_3B" "Faithful">>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-say-her-text">>
-        <<hideandshow "#if-wa-say-what-choices" "#if-wa-mercs-enter-btn">>
-      <</receive>>
-    <</button>>
-  </span>\
-</span>\
-<span id="if-wa-say-yourself-text" class="hidden">\
-  So, something about yourself. What, exactly, about yourself?
 
-  Hey, Ebiaishe, I picked up climbing lately. There's a gym in walking distance, it's a lot of fun, you should try it.
+:: IntroFaithful_WaitingAwkwardly_3
+You take a deep breath, moisten your lips, and -
 
-  How banal.
+You close your mouth.
 
-  Hey, Ebiaishe, did you know that I'm an EMT now? Oh, you know, it's going fine, I like it.
+Something? What is something? You know what something is before you can say something. What thing is something?
 
-  Awkward.
-
-  Hey, Ebiaishe, I'm getting married in a few months. Oh, I met her at work, actually! Been dating for nearly two years.
-
-  She'll just rib me about it.
-
-</span>\
-<span id="if-wa-say-her-text" class="hidden">\
-  Something about her.
-
-  Where have you been? How have you been? What have you been doing, all these years? How has your week been going, Ebiaishe? This all seems a bit unreal, doesn't it. Hey, Ebiaishe, what did you think about the Wolves game last night, Carson was <<tooltip "on fire">>Thirty-seven points, a new personal best for him.<</tooltip>> wasn't he?
-
-  <<tooltip "Stupid.">>Yeah, you haven't seen each other in thirteen years, let's talk about basketball, sure.<</tooltip>>
-
-</span>\
-<span id="if-wa-mercs-enter-btn" class="hidden">\
-  <<button "Say anything, it doesn't matter how dumb it is, as long as you start talking.">>\
-    <<send "IntroFaithful_WaitingAwkwardly_4" {}>>
-      <<hideandshow "#if-wa-mercs-enter-btn" "#if-wa-mercs-enter-text">>
-    <</send>>
-    <<receive "IntroFaithful_WaitingAwkwardly_4" "Faithful">>
-      <<hideandshow "#if-wa-mercs-enter-btn" "#if-wa-mercs-enter-text">>
-    <</receive>>
+<span id="if-wa-3-btn">\
+  <<button "Something about yourself.">>
+    <<run setup.replaceWithSending("#if-wa-3-btn")>>
+    <<send "IntroFaithful_WaitingAwkwardly_3_CHOICE" { choice: "YOU" }>><</send>>
+  <</button>>
+  <<button "Something about her.">>
+    <<run setup.replaceWithSending("#if-wa-3-btn")>>
+    <<send "IntroFaithful_WaitingAwkwardly_3_CHOICE" { choice: "HER" }>><</send>>
   <</button>>
 </span>\
-<span id="if-wa-mercs-enter-text" class="hidden">\
-  <<include "IntroFaithful_MercsEnter">>
-</span>\
+<<nobr>><<receive "IntroFaithful_WaitingAwkwardly_3_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    const data = State.temporary.receiveData;
+    if (data.choice == "YOU") {
+      Engine.play("IntroFaithful_WaitingAwkwardly_AboutYou")
+    } else {
+      Engine.play("IntroFaithful_WaitingAwkwardly_AboutHer")
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: IntroFaithful_WaitingAwkwardly_AboutYou
+So, something about yourself. What, exactly, about yourself?
+
+Hey, Ebiaishe, I picked up climbing lately. There's a gym in walking distance, it's a lot of fun, you should try it.
+
+How banal.
+
+Hey, Ebiaishe, did you know that I'm an EMT now? Oh, you know, it's going fine, I like it.
+
+Awkward.
+
+Hey, Ebiaishe, I'm getting married in a few months. Oh, I met her at work, actually! Been dating for nearly two years.
+
+She'll just rib me about it.
+
+<<include "IntroFaithful_WaitingAwkwardly_SayAnything">>
+
+
+:: IntroFaithful_WaitingAwkwardly_AboutHer
+Something about her.
+
+Where have you been? How have you been? What have you been doing, all these years? How has your week been going, Ebiaishe? This all seems a bit unreal, doesn't it. Hey, Ebiaishe, what did you think about the Wolves game last night, Carson was <<tooltip "on fire">>Thirty-seven points, a new personal best for him.<</tooltip>> wasn't he?
+
+<<tooltip "Stupid.">>Yeah, you haven't seen each other in thirteen years, let's talk about basketball, sure.<</tooltip>>
+
+<<include "IntroFaithful_WaitingAwkwardly_SayAnything">>
+
+
+:: IntroFaithful_WaitingAwkwardly_SayAnything
+<span id="if-wa-sa-btn"><<button "Say anything, it doesn't matter how dumb it is, as long as you start talking.">>
+  <<run setup.replaceWithSending("#if-wa-sa-btn")>>
+  <<send "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" {}>><</send>>
+<</button>></span>
+<<nobr>><<receive "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("IntroFaithful_MercsEnter") }
+<</script>><</receive>><</nobr>>
