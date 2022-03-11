@@ -470,7 +470,7 @@ It's possible that she has some sort of feud with another member of her family, 
 
 Still, her family is -
 
-<<include "IntroApostate_MercsEnter">>
+<<include "MercsApostate_Start">>
 
 
 :: IntroApostate_WaitingAwkwardly_LostWealth
@@ -478,7 +478,7 @@ It's possible that she lost control of her wealth over the last thirteen years, 
 
 Unlikely doesn't -
 
-<<include "IntroApostate_MercsEnter">>
+<<include "MercsApostate_Start">>
 
 
 :: IntroApostate_WaitingAwkwardly_HardToKeepQuiet
@@ -486,4 +486,4 @@ Large sums of money are loud, if you don't want to be detected, and even moreso 
 
 If anybody was capable of hiding it, it'd be -
 
-<<include "IntroApostate_MercsEnter">>
+<<include "MercsApostate_Start">>

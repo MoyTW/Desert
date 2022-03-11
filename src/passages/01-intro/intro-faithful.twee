@@ -552,5 +552,5 @@ Where have you been? How have you been? What have you been doing, all these year
   <<send "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" {}>><</send>>
 <</button>></span>
 <<nobr>><<receive "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("IntroFaithful_MercsEnter") }
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_Start") }
 <</script>><</receive>><</nobr>>

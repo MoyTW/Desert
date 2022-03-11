@@ -45,13 +45,4 @@
       }
     }
   }
-
-  _setup.Complete_IntroApostate_MercsEnter = function() {
-    const _vars = State.variables as any;
-
-    if (_vars.IntroFaithful_WaitingAwkwardly_CHOICE &&
-        _vars.IntroApostate_MercsEnter_CHOICE) {
-      Engine.play("IntroApostate_JekuMercsChat")
-    }
-  }
 })()
