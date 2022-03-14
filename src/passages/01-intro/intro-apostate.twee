@@ -233,7 +233,7 @@ You stand up straight, drop your voice back to normal. "Jekusheke," you say, put
 
 
 :: IntroApostateWaitForFaithfulReaction
-@@#iawffr-btn;<<button "Listen.">>
+@@#iawffr-btn;<<button "Poor little Jeku. He didn't see this coming.">>
   <<send 'IntroApostateWaitForFaithfulReaction_DONE' {}>><</send>>
   <<run setup.replaceWithSending("#iawffr-btn")>>
 <</button>>@@\
