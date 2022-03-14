@@ -15,7 +15,7 @@ TODO: Count words
     <<run setup.replaceWithSending("#if-me-btns")>>
     <<send "MercsFaithful_Start_CHOICE" { choice: "CHAT" }>><</send>>
   <</button>>
-  <<button "I'm really not up for socializing right now, but I can't be rude.">>
+  <<button "I'd rather not talk right now, but I can't be rude.">>
     <<run setup.replaceWithSending("#if-me-btns")>>
     <<send "MercsFaithful_Start_CHOICE" { choice: "REJECT" }>><</send>>
   <</button>>
@@ -165,6 +165,100 @@ You march off towards one of the corner seats, your sister in tow, and as soon a
 :: MercsFaithful_DiscussCoverStory
 "We can't talk to anybody about this, not until Ma Tiger shows, so we need a story. I couldn't think of any way to talk to you alone other than to make a scene. I'm sorry, I went off the cuff." She glances back towards Silas. "We need a cover."
 
+She's not - she's not...wrong. But -
+
+<span id="mf-dcs-btn">\
+  <<button "\"I don't see why.\" (You do, but you'll make her work for it.)">>
+    <<run setup.replaceWithSending("#mf-dcs-btn")>>
+    <<send "MercsFaithful_DiscussCoverStory_CHOICE" { choice: "WHY" }>><</send>>
+  <</button>>
+  <<button "\"Fine.\"">>
+    <<run setup.replaceWithSending("#mf-dcs-btn")>>
+    <<send "MercsFaithful_DiscussCoverStory_CHOICE" { choice: "FINE" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "MercsFaithful_DiscussCoverStory_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    if (State.temporary.receiveData === "WHY") {
+      Engine.play("MercsFaithful_DiscussCoverStory_Argue");
+    } else if (State.temporary.receiveData === "FINE") {
+      Engine.play("MercsFaithful_DiscussCoverStory_Fine");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+:: MercsFaithful_DiscussCoverStory_Argue
+You set your jaw. "I don't see why," you say.
+
+She opens her mouth, takes a breath, presses her lips together.
+
+/* TODO: There's a big chance for huge sniping buuut, I don't have time, lol. */\
+<span id="mf-dcs-a-btn"><<button "\"Cat got your tongue, for once?\"">>
+  <<run setup.replaceWithSending("#mf-dcs-a-btn")>>
+  <<send "MercsFaithful_DiscussCoverStory_Argue_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>>
+  <<receive "MercsFaithful_DiscussCoverStory_CHOICE" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      setup.replaceWithWaiting("#mf-dcs-a-btn");
+      State.variables.MercsFaithful_DiscussCoverStory_Argue_CHOICE = true;
+      setup.Complete_MercsFaithful_DiscussCoverStory_Argue();
+    }
+  <</script>><</receive>>
+  <<receive "MercsApostate_DiscussCoverStory_Argue_CHOICE" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      const data = State.temporary.receiveData;
+      State.variables.MercsApostate_DiscussCoverStory_Argue_CHOICE = data;
+      setup.Complete_MercsFaithful_DiscussCoverStory_Argue();
+    }
+  <</script>><</receive>>
+<</nobr>>\
+
+
+:: MercsFaithful_DiscussCoverStory_Argue_Concerns
+"Cat got your tongue, for once?"
+
+She pulls back, looks over at Silas. You resist the urge to follow her gaze. After a moment she meets your eyes. "Jeku, I'm sorry." Her brow furrows. "Everything about this situation is sketchy. Ma's letter was all but begging me for help, and you know Ma's not the begging type. It's worrying. Jeku, I might not look it, but I could barely bring myself to come back; I'm terrified." Her gaze flits over towards Silas, flits back to you. "I'm sorry. I don't know Silas, maybe you trust him with your life, but for my sake, if nothing else, can we do this my way? My life after I parted from you hasn't been comfortable, and I'd feel safer if we kept as much of this secret as we can."
+
+She swallows. "Please."
+
+<span id="mf-dcs-a-c-btn">\
+  <<button "\"I know Silas. He's not a spy or something.\"">>
+    <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
+    <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" { choice: "KNOW" }>><</send>>
+  <</button>>
+  <<button "\"Fine.\"">>
+    <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
+    <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" { choice: "FINE" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    setup.replaceWithWaiting("#mf-dcs-a-c-btn");
+    if (State.temporary.receiveData.choice === "KNOW") {
+      Engine.play("MercsFaithful_DiscussCoverStory_Argue_Concerns_2");
+    } else if (State.temporary.receiveData.choice === "FINE") {
+      Engine.play("MercsFaithful_DiscussCoverStory_Fine");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsFaithful_DiscussCoverStory_Argue_Concerns_2
+TODO
+
+
+:: MercsFaithful_DiscussCoverStory_Argue_Apologize
+"Cat got your tongue, for once?"
+
+TODO
+
+
+:: MercsFaithful_DiscussCoverStory_Argue_Explain
+TODO
+
+
+:: MercsFaithful_DiscussCoverStory_Fine
 TODO
 
 

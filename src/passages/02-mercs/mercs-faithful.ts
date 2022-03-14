@@ -20,4 +20,21 @@
       }
     }
   }
+
+  _setup.Complete_MercsFaithful_DiscussCoverStory_Argue = function() {
+    const _vars = State.variables as any
+
+    if (_vars.MercsFaithful_DiscussCoverStory_Argue_CHOICE &&
+        _vars.MercsApostate_DiscussCoverStory_Argue_CHOICE) {
+      const apostateChoice = _vars.MercsApostate_DiscussCoverStory_Argue_CHOICE.choice
+
+      if (apostateChoice === "CONCERNS") {
+        Engine.play("MercsFaithful_DiscussCoverStory_Argue_Concerns")
+      } else if (apostateChoice === "APOLOGIZE") {
+        Engine.play("MercsFaithful_DiscussCoverStory_Argue_Apologize")
+      } else if (apostateChoice === "EXPLAIN") {
+        Engine.play("MercsFaithful_DiscussCoverStory_Argue_Explain")
+      }
+    }
+  }
 })()
