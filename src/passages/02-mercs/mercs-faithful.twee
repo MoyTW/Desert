@@ -12,20 +12,18 @@ TODO: Count words
 
 <span id="if-me-btns">\
   <<button "Oh, that's a hell of a coincidence! Any distraction is a welcome distraction.">>
-    <<send "MercsFaithful_Start_CHOICE" { choice: "CHAT" }>>
-      <<run setup.replaceWithSending("#if-me-btns")>>
-    <</send>>
+    <<run setup.replaceWithSending("#if-me-btns")>>
+    <<send "MercsFaithful_Start_CHOICE" { choice: "CHAT" }>><</send>>
   <</button>>
   <<button "I'm really not up for socializing right now, but I can't be rude.">>
-    <<send "MercsFaithful_Start_CHOICE" { choice: "REJECT" }>>
-      <<run setup.replaceWithSending("#if-me-btns")>>
-    <</send>>
+    <<run setup.replaceWithSending("#if-me-btns")>>
+    <<send "MercsFaithful_Start_CHOICE" { choice: "REJECT" }>><</send>>
   <</button>>
   <<nobr>>
     <<receive "MercsFaithful_Start_CHOICE" "Faithful">><<script>>
       if (setup.isFaithful()) {
         const data = State.temporary.receiveData;
-        State.variables.MercsFaithful_Start_CHOICE = data.choice;
+        State.variables.MercsFaithful_Start_CHOICE = data;
         setup.replaceWithWaiting("#if-me-btns")
         setup.Complete_MercsFaithful_Start();
       }
@@ -33,7 +31,7 @@ TODO: Count words
     <<receive "MercsApostate_Start_CHOICE" "Faithful">><<script>>
       if (setup.isFaithful()) {
         const data = State.temporary.receiveData;
-        State.variables.MercsApostate_Start_CHOICE = data.choice;
+        State.variables.MercsApostate_Start_CHOICE = data;
         setup.Complete_MercsFaithful_Start();
       }
     <</script>><</receive>>
@@ -107,29 +105,67 @@ Your face is hot with <<tooltip "irritation and anger">>Fucking seriously? Godda
 
 After a moment, Silas regains his composure. "Right," he says, nodding to your sister, "good to know." He turns back towards you. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and he casts an eye over to Ebiaishe, "a friend?"
 
-TODO: This
-<span id="if-jmc-btns">\
+<span id="mf-et-btn">\
   <<button "What the fuck, Ebi!?">>
-    <<send "MercsFaithful_JekuMercsChat_CHOICE" { choice: "ANGER" }>><</send>>
-    <<run setup.replaceWithSending("#if-jmc-btns")>>
+    <<run setup.replaceWithSending("#mf-et-btn")>>
+    <<send "MercsFaithful_EbiTalk_CHOICE" { choice: "ANGER" }>><</send>>
   <</button>>
   <<button "Just...just ignore her.">>
-    <<send "MercsFaithful_JekuMercsChat_CHOICE" { choice: "IGNORE" }>><</send>>
-    <<run setup.replaceWithSending("#if-jmc-btns")>>
+    <<run setup.replaceWithSending("#mf-et-btn")>>
+    <<send "MercsFaithful_EbiTalk_CHOICE" { choice: "IGNORE" }>><</send>>
   <</button>>
 </span>\
-<<nobr>><<receive "MercsFaithful_JekuMercsChat_CHOICE" "Faithful">><<script>>
+<<nobr>><<receive "MercsFaithful_EbiTalk_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
-    const data = State.temporary.receiveData;
-    if (data.choice === "ANGER") {
-      Engine.play("IntroFaithful_JekuDragsEbiOff");
-    } else if (data.choice === "IGNORE") {
-      Engine.play("IntroFaithful_EbiDragsJekuOff");
+    if (State.temporary.receiveData.choice === "ANGER") {
+      Engine.play("MercsFaithful_EbiTalk_JekuAngry");
     } else {
-      Engine.play("MercsFaithful_JekuMercsChatDisengage");
+      Engine.play("MercsFaithful_EbiTalk_JekuIgnore");
     }
   }
 <</script>><</receive>><</nobr>>\
+
+
+:: MercsFaithful_EbiTalk_JekuAngry
+"Excuse me," you say to Silas, deferring your answer. He raises an eyebrow. "I need to have a <em>chat</em> with dear Annalise here." You throw as venomous as a glare as you can in your sister's direction, and she grins, hopping up off her seat. "We'll just be a couple of minutes."
+
+Silas clicks his tongue and turns to the drinks menu.
+
+You march off towards one of the corner seats, your sister in tow, and as soon as you turn to talk to her she grabs your hands in yours and leans in. "I'm sorry," she whispers, "that was mean of me, but I couldn't think of a better way to distract them."
+
+<span id="mf-et-ja-btn"><<button "What?">>
+  <<run setup.replaceWithSending("#mf-et-ja-btn")>>
+  <<send "MercsFaithful_EbiTalk_JekuIgnore_DONE" { }>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaithful_EbiTalk_JekuIgnore_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsFaithful_EbiTalk_JekuIgnore
+"I, uh." You pause to gather your thoughts. "Not quite. Actually, I was going to meet-" You let out a hiss as Ebiaishe grabs your arm, fingernails digging into your skin. "Ebi," you growl, "what the-"
+
+"We need to talk," she growls, her voice low and full of malice, "about your <em>fiancee.</em>"
+
+"Wha-"
+
+"Fucking <em>shut up!</em>" she yells, dragging you up from your seat. You can hear Arthur chuckling nervously and Silas pulling air through his teeth, but neither of them moves a muscle. Ebi marches you over to a corner table, pushes you into a seat, and then pulls out a chair for herself, its legs scraping loudly across the floor, before hurling herself into it.
+
+"Sorry," she whispers, her voice urgent, "I couldn't think of a better way to get you away from them."
+
+<span id="mf-et-ji-btn"><<button "What?">>
+  <<run setup.replaceWithSending("#mf-et-ji-btn")>>
+  <<send "MercsFaithful_EbiTalk_JekuIgnore_DONE" { }>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaithful_EbiTalk_JekuIgnore_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsFaithful_DiscussCoverStory
+"We can't talk to anybody about this, not until Ma Tiger shows, so we need a story. I couldn't think of any way to talk to you alone other than to make a scene. I'm sorry, I went off the cuff." She glances back towards Silas. "We need a cover."
+
+TODO
 
 
 :: MercsFaithful_EbiSilent
@@ -151,38 +187,22 @@ Silas takes a seat next to you, and Arthur next to him. "That th' <em>fi-an-cee<
 
 "Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
 
-<span id="if-jmc-btns">\
-  <<button "I'm definitely not in the mood for this.">>
-    <<send "MercsFaithful_JekuMercsChat_CHOICE" { choice: "DODGE" }>><</send>>
-    <<run setup.replaceWithSending("#if-jmc-btns")>>
-  <</button>>\
-</span>\
-
- 
-
-
-
-:: IntroFaithful_JekuDragsEbiOff
-TODO
-
-
-:: IntroFaithful_EbiDragsJekuOff
-TODO
-"Not quite drinks," you laugh, gesturing to your diet coke. Silas' eyes shoot up.
-
-"Ya on call?"
-
-"No," you say, "it's just that it's a little early to be drinking."
-
-Silas grins, a chuckle escaping his lips. "Never too early, Jay. Pick yer pois'n, on me."
-<<if $MercsApostate_Start_CHOICE is "TALK">>\
-  TODO
-<<else>>\
-  TODO
-<</if>>\
+<span id="mf-es-btn"><<button "I'm definitely not in the mood for this.">>
+  <<run setup.replaceWithSending("#mf-es-btn")>>
+  <<send "MercsFaithful_EbiSilent_DONE" { }>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaithful_EbiSilent_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    if (State.variables.MercsApostate_Start_CHOICE.choice == "TALK") {
+      Engine.play("MercsFaithful_JekuReject_2_EbiTalk")
+    } else {
+      Engine.play("MercsFaithful_JekuReject_2_EbiSilent")
+    }
+  }
+<</script>><</receive>><</nobr>>
 
 
-:: MercsFaithful_JekuMercsChatDisengage
+:: MercsFaithful_JekuReject_2
 "Actually," you say, checking <<tooltip "the time">>A little past 2:30 in the afternoon.<</tooltip>>, "we were gonna get an early linner." You lean over the bar, gesture to the bartender. He spots you, starts ambling over.
 
 "Ah," says Silas, no so easily deterred, "drinks 'fore linner?" He spots your coke, notices the lack of drinks in front of Ebiaishe. "'ey, soda, eh? Ya on call?"
@@ -193,47 +213,68 @@ Silas grins, a chuckle escaping his lips. "Never too early, Jay. Pick yer pois'n
 
 The bartender raises his eye as you struggle to extricate yourself. "No," you say, "I'm not on call, but it's kinda early for drinks."
 
-<<if $MercsApostate_Start_CHOICE is "TALK">>\
-  You can hear Ebiaishe laugh. "Scoot over Jeku, dear," she says, interposing herself between you and your overly enthusiastic friend. You gladly swap seats with her. "Jeku's far too conscientious to get blasted this early in the afternoon," she says, grinning, "but if you're still offering..."
 
-  Silas sucks in his breath, leans back. "Ah, well, what't'ell. Sure. Pick summin.'"
+:: MercsFaithful_JekuReject_2_EbiTalk
+<<include "MercsFaithful_JekuReject_2">>
 
-  <span id="if-jmcd-btns">\
-    <<button "Thanks.">>
-      <<send "MercsFaithful_JekuMercsChatDisengage_CHOICE" { choice: "BAR" }>><</send>>
-      <<run setup.replaceWithSending("#if-jmcd-btns")>>
-    <</button>>\
-  </span>\
-<<else>>\
-  "C'mon," says Silas, leaning over, "I know ya drink, Jay. 'Artender," he says, and the bartender raises his eyebrow, "gi' my boy Jay one'a wha'ever 'e wants!"
+You can hear Ebiaishe laugh. "Scoot over Jeku, dear," she says, interposing herself between you and your overly enthusiastic friend. You gladly swap seats with her. "Jeku's far too conscientious to get blasted this early in the afternoon," she says, grinning, "but if you're still offering..."
 
-  TODO: Page break here!
+Silas sucks in his breath, leans back. "Ah, well, what't'ell. Sure. Pick summin.'"
 
-  "Excuse me," interjects Ebiaishe, staring at the bartender, "can we get a table?"
+TODO
 
-  "'ey," says Silas, but stops when Ebiaishe stands up.
+<span id="mf-jr-2-et-btn"><<button "\"Thanks for the cover.\"">>
+    <<run setup.replaceWithSending("#mf-jr-2-et-btn")>>
+    <<send "MercsFaithful_JekuReject_2_EbiTalk_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaithful_JekuReject_2_EbiTalk_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaitihful_EbiDrinks_SceneEnd") }
+<</script>><</receive>><</nobr>>
 
-  "Pleasure to meet you, Silas, Arthur. Now," she says, turning to the bartender, "may we please have a table?"
 
-  "Of course," he says, and you follow him gratefully to one of the window tables for two, all the way across the room. "Will this do?" he asks, placing a pair of menus down. You nod, and Ebiaishe assents as well. You glance over at the bar to see Silas scowling at you, but he turns back to the bar when your eyes meet.
+:: MercsFaitihful_EbiDrinks_SceneEnd
+You tap Ebi on the arm; she turns to you. You mouth "thanks" to her, and she grins.
 
-  You turn back to your sister and let out your breath. "Thanks.""
+She spends the next half an hour palling around with Silas and Arthur, neatly deflecting all their efforts to get you involved with increasingly unrealistic stories about the times you've spent together. You were unaware, for example, that you'd gone on a cruise to the Caribbean in 2072, where you'd attempted to barter with a local for some touristy figurines. Apparently you'd repeatedly insisted that ninty dollars was all you had, and when you opened your wallet to reveal a hundred dollar bill the local had laughed and given you the figurines for ninty.
 
-  "No problem." She picks up the menu. "So, split halfway?"
+She's as convincing a bullshitter as she ever was.
 
-  "Wait, you-"
+Silas and Arthur stick around for maybe an hour and a half, drinking the day away, but eventually Silas gets a call from his boss and they say their goodbyes. You wave them out politely, having been almost fully shielded from their inquiries by the tireless efforts of your sister.
 
-  "Yep. Split halfway?"
+TODO END
 
-  You shrug. "Sure," you say.
 
-  "Wave when you're ready," says the bartender, returning to serve his other two customers.
+:: MercsFaithful_JekuReject_2_EbiSilent
+"C'mon," says Silas, leaning over, "I know ya drink, Jay. 'Artender," he says, and the bartender raises his eyebrow, "gi' my boy Jay one'a wha'ever 'e wants!"
 
-  <span id="if-jmcd-btns">\
-    <<button "I guess we're getting linner now.">>
-      <<send "MercsFaithful_JekuMercsChatDisengage_CHOICE" { choice: "TABLE" }>>
-        <<run setup.replaceWithSending("#if-jmcd-btns")>>
-      <</send>>
-    <</button>>\
-  </span>\
-<</if>>\
+"Excuse me," interjects Ebiaishe, staring at the bartender, "can we get a table?"
+
+"'ey," says Silas, but stops when Ebiaishe stands up.
+
+"Pleasure to meet you, Silas, Arthur. Now," she says, turning to the bartender, "may we please have a table?"
+
+"Of course," he says, and you follow him gratefully to one of the window tables for two, all the way across the room. "Will this do?" he asks, placing a pair of menus down. You nod, and Ebiaishe assents as well. You glance over at the bar to see Silas scowling at you, but he turns back to the bar when your eyes meet.
+
+You turn back to your sister and let out your breath. "Thanks.""
+
+"No problem." She picks up the menu. "So, split halfway?"
+
+"Wait, you-"
+
+"Yep. Split halfway?"
+
+You shrug. "Sure," you say.
+
+"Wave when you're ready," says the bartender, returning to serve his other two customers.
+
+<span id="mf-jr-2-es"><<button "I guess we're getting linner now.">>
+  <<run setup.replaceWithSending("#mf-jr-2-es")>>
+  <<send "MercsFaithful_JekuReject_2_EbiSilent_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsFaithful_JekuReject_2_EbiSilent_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsFaithful_Linner_SceneEnd
+TODO

@@ -87,7 +87,7 @@ Arthur gives you a slightly strained smile and holds out his hand. "Nice to meet
 
   TODO: lol
   <span id="ia-jmc-btns">\
-    <<button "That was a little mean of me.">>
+    <<button "Jeku's quite angry now. That's a problem.">>
       <<run setup.replaceWithSending("#ia-jmc-btns")>>
       <<send "MercsApostate_JekuMercsChat_DONE" { }>><</send>>
     <</button>>

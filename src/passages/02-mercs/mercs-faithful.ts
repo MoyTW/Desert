@@ -15,7 +15,7 @@
         Engine.play("MercsFaithful_JekuChat_EbiSilent")
       } else if (faithfulChoice === "REJECT" && apostateChoice === "TALK") {
         Engine.play("MercsFaithful_JekuReject_EbiTalk")
-      } else {
+      } else if (faithfulChoice === "REJECT" && apostateChoice === "SILENT") {
         Engine.play("MercsFaithful_JekuReject_EbiSilent")
       }
     }
