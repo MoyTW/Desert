@@ -2,7 +2,7 @@
 /** ###################################################################### **/\
 /** # SETUP                                                              # **/\
 /** ###################################################################### **/\
-<<set $chaseTurn to 1>>\
+<<include "ChaseShared_Init">>
 <div class="instructions">\
   <<include "ChaseShared_Text">>
 
@@ -90,19 +90,19 @@
 /** ###################################################################### **/\
 <<include "ChaseApostate_TurnIndicator">>\
 <<include "ChaseShared_KidnapperStatus">>
-<<timed 8s t8n>>\
+<<timed $timerString t8n>>
   <<include "ChaseShared_DogStatus">>
-<<next 8s>>\
+<<next $timerString>>
   <<include "ChaseShared_BarStatus">>
 <</timed>>\
 /* TODO: If you refresh, it still shows all of this! */\
-<<timed 24s t8n>><span id="ca-timer">\
+<<timed $optionsString t8n>><span id="ca-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   /* ~30 seconds */\
   <<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
     "You're giving chase on foot.">>
-  <<ca-button "Call 911. (You can report King's injuries or the kidnapping and injuries, but getting the law involved might be a bad idea in the long run.)"
+  <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but getting the law involved might be a bad idea in the long run.)"
     "911"
     "You're calling 911.">>
   <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
@@ -122,23 +122,22 @@
 :: ChaseApostate_OnFoot
 <<include "ChaseApostate_TurnIndicator">>\
   You narrow your eyes and will your legs into high gear. Your heart hammers in your ears; your breaths come faster and faster; your legs burst with energy. You <em>run.</em>
-
-<<timed 8s t8n>>\
+<<timed $timerString t8n>>
   <<include "ChaseShared_KidnapperStatus">>
-<<next 8s>>\
+<<next $timerString>>
   <<if $ChaseFaithful_CHOICE_LAST is "FOOT">>\
     Out of the corner of your eye, you catch somebody following you. You cast a glance back. Jekusheke's sprinting behind you. He's fast, but he's got no chance at all.
   <<else>>\
     You don't dare glance back. Your eyes are on the car, the sidewalk, and the street. All you can do now for King is to hope that Jeku has it handled. He's an EMT, right?
   <</if>>\
 <</timed>>\
-<<timed 24s t8n>><span id="ca-timer">\
+<<timed $optionsString t8n>><span id="ca-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   /* TODO: Vary button on how far they are? */\
   <<ca-button "Run them down. (They may have an electric engine, but you don't need to worry about lights. Unless something changes, you'll catch them.)"
     "FOOT"
     "You're continuing the chase.">>
-  <<ca-button "Dash back to Christie's. (Did you miss something? Is King going to be all right? Does Jeku need help with something?)"
+  <<ca-button "Dash back to Christie's. (Did you miss something important? Is King going to survive? Nevermind that. Ma Tiger's more important.)"
     "BACK"
     "You're running back to Christie's.">>
 </span><</timed>>\

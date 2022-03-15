@@ -1,16 +1,24 @@
+:: ChaseShared_Init
+<<set $chaseTurn to 1>>\
+/* TODO: Set back to 8 */\
+<<set $timerSeconds to 1>>\
+<<set $timerString to $timerSeconds + 's'>>\
+<<set $optionsString to $timerSeconds * 3 + 's'>>\
+
+
 :: ChaseShared_Text
 <h1>This next section is timed!</h1>\
 Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will force a resynchronization, which may cause you to lose time. This will never make the game unfinishable, but it might make certain options unavailable.
 
 :: ChaseShared_KidnapperStatus
 <<if $chaseTurn is 1>>\
-  The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars behind it. The van stops, stymied by the traffic.
+  The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars behind it. The van stops, stymied by the traffic.\
 <<elseif $chaseTurn is 2>>\
-  The van sits uneasily behind the red light. A dark tinted window rolls down to produce a masked face, scanning desperately. As soon as he sees you, he retreats.
+  The van sits uneasily behind the red light. A dark tinted window rolls down to produce a masked face, scanning desperately. As soon as he sees you, he retreats.\
 <<elseif $chaseTurn is 3>>\
-  The light restraining the van turns green. Traffic starts to move, and the kidnapper's van moves with them, skidding recklessly between lanes as it tears off.
+  The light restraining the van turns green. Traffic starts to move, and the kidnapper's van moves with them, skidding recklessly between lanes as it tears off.\
 <<elseif $chaseTurn is 4>>\
-  The next light turns red; they couldn't beat it. In a flash they swerve into the right lane, followed by a flurry of horns, and take the turn onto a side street.
+  The next light turns red; they couldn't beat it. In a flash they swerve into the right lane, followed by a flurry of horns, and take the turn onto a side street.\
 <<elseif $chaseTurn is 5>>\
   TODO
 <<elseif $chaseTurn is 6>>\
@@ -19,20 +27,30 @@ Network interruptions will not break the game, but they may cause your clients t
 
 :: ChaseShared_DogStatus
 <<if $chaseTurn is 1>>\
-  Dog blood trickles down the sidewalk and pools in the gutter. King heaves himself up on his broken leg. It buckles, collapses. He falls. He's losing a lot of blood.
+  Dog blood trickles down the sidewalk and pools in the gutter. King heaves himself up on his broken leg. It buckles, collapses. He falls. He's losing a lot of blood.\
 <<elseif $chaseTurn is 2>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 3>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 4>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 5>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 6>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <</if>>\
 
 :: ChaseShared_BarStatus
 <<if $chaseTurn is 1>>\
-  The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims, her face ashen. The bartender recoils.
+  The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims, her face ashen. The bartender recoils.\
 <<elseif $chaseTurn is 2>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 3>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 4>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 5>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 6>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <</if>>\

@@ -22,11 +22,12 @@
       ["CAR", "ChaseApostate_Car"],
       ["KING", "ChaseApostate_King"],
       ["BAR", "ChaseApostate_Bar"],
-      ["FREEZE", "ChaseApostate_Freeze"],
+      ["FREEZE", "ChaseApostate_Christies"],
     ])],
     ["ChaseApostate_OnFoot", new Map<string,string>([
       ["FOOT", "ChaseApostate_OnFoot_2"],
       ["BACK", "ChaseApostate_Christies"],
+      ["FREEZE", "ChaseApostate_OnFoot"],
     ])]
   ])
 

@@ -2,10 +2,7 @@
 /** ###################################################################### **/\
 /** # SETUP                                                              # **/\
 /** ###################################################################### **/\
-<<set $chaseTurn to 1>>\
-<<set $timerSeconds to 1>>\
-<<set $timerString to $timerSeconds + 's'>>\
-<<set $optionsString to $timerSeconds * 3 + 's'>>\
+<<include "ChaseShared_Init">>
 <div class="instructions">\
   <<include "ChaseShared_Text">>
 
