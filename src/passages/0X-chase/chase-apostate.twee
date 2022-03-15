@@ -1,4 +1,7 @@
 :: ChaseApostate_Start
+/** ###################################################################### **/\
+/** # SETUP                                                              # **/\
+/** ###################################################################### **/\
 <<set $chaseTurn to 1>>\
 <div class="instructions">\
   <<include "ChaseShared_Text">>
@@ -65,7 +68,6 @@
 <</widget>>\
 
 
-
 :: ChaseApostate_Router
 <<receive "ChaseApostate_CHOICE" "Apostate">><<script>>
   if (setup.isApostate()) {
@@ -83,6 +85,9 @@
 
 
 :: ChaseApostate_Christies
+/** ###################################################################### **/\
+/** # CONTENT START                                                      # **/\
+/** ###################################################################### **/\
 <<include "ChaseApostate_TurnIndicator">>\
 <<include "ChaseShared_KidnapperStatus">>
 <<timed 8s t8n>>\

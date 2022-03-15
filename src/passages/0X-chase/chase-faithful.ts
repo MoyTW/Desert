@@ -15,6 +15,22 @@
     (State.variables as any).chaseTurn++
   }
 
+  const _routingTable = new Map<string, Map<string,string>>([
+    ["ChaseFaithful_Christies", new Map<string,string>([
+      ["FOOT", "ChaseFaithful_OnFoot"],
+      ["911", "ChaseFaithful_911"],
+      ["FRANCIS", "ChaseFaithful_Francis"],
+      ["CAR", "ChaseFaithful_Car"],
+      ["KING", "ChaseFaithful_King"],
+      ["BAR", "ChaseFaithful_Bar"],
+      ["FREEZE", "ChaseFaithful_Freeze"],
+    ])],
+    ["ChaseFaithful_OnFoot", new Map<string,string>([
+      ["FOOT", "ChaseFaithful_OnFoot_2"],
+      ["BACK", "ChaseFaithful_Christies"],
+    ])],
+  ])
+
   _setup.Complete_ChaseFaithful_Christies = function() {
     const _vars = State.variables as any;
 
@@ -28,20 +44,6 @@
     delete _vars.ChaseFaithful_CHOICE
 
     const faithfulChoice = _vars.ChaseFaithful_CHOICE_LAST.choice
-    if (faithfulChoice === "FOOT") {
-      Engine.play("ChaseFaithful_OnFoot")
-    } else if (faithfulChoice === "911" ) {
-      Engine.play("ChaseFaithful_911")
-    } else if (faithfulChoice === "FRANCIS" ) {
-      Engine.play("ChaseFaithful_Francis")
-    } else if (faithfulChoice === "CAR" ) {
-      Engine.play("ChaseFaithful_Car")
-    } else if (faithfulChoice === "KING" ) {
-      Engine.play("ChaseFaithful_King")
-    } else if (faithfulChoice === "BAR" ) {
-      Engine.play("ChaseFaithful_Bar")
-    } else if (faithfulChoice === "FREEZE" ) {
-      Engine.play("ChaseFaithful_Freeze")
-    }
+    Engine.play(_routingTable.get(passage())?.get(faithfulChoice)!)
   }
 })()

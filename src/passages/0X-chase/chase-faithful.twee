@@ -1,5 +1,11 @@
 :: ChaseFaithful_Start
+/** ###################################################################### **/\
+/** # SETUP                                                              # **/\
+/** ###################################################################### **/\
 <<set $chaseTurn to 1>>\
+<<set $timerSeconds to 1>>\
+<<set $timerString to $timerSeconds + 's'>>\
+<<set $optionsString to $timerSeconds * 3 + 's'>>\
 <div class="instructions">\
   <<include "ChaseShared_Text">>
 
@@ -29,62 +35,9 @@
 <h1>Turn $chaseTurn</h1>\
 
 
-:: ChaseFaithful_Christies
-<<include "ChaseFaithful_TurnIndicator">>\
-<<include "ChaseShared_KidnapperStatus">>
-<<timed 8s t8n>>
-  <<include "ChaseShared_DogStatus">>
-<<next 8s>>
-  <<include "ChaseShared_BarStatus">>
-<</timed>>\
-<<timed 25s t8n>><span id="cf-c-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-  <<button "Chase after them on foot. (You're fit, but it's still a long shot.)">>
-    <<send "ChaseFaithful_CHOICE" { choice: "FOOT" }>><</send>>
-    <<replace "#cf-c-timer">><h1>You're giving chase on foot.</h1><</replace>>
-    <<set _stopTimer to true>>
-    <<run $("#cf-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-c-msg-status")>>
-  <</button>>
-  <<button "Call 911. (Ma Tiger did want to keep this on the down low, but this is crazy, we're already well past the stage where that was realistic.)">>
-    <<send "ChaseFaithful_CHOICE" { choice: "911" }>><</send>>
-    <<replace "#cf-c-timer">><h1>You're calling 911.</h1><</replace>>
-    <<set _stopTimer to true>>
-    <<run $("#cf-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-c-msg-status")>>
-  <</button>>
-  <<button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)">>
-    <<send "ChaseFaithful_CHOICE" { choice: "FRANCIS" }>><</send>>
-    <<replace "#cf-c-timer">><h1>You're calling St. Francis' Emergency Pet Clinic.</h1><</replace>>
-    <<set _stopTimer to true>>
-    <<run $("#cf-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-c-msg-status")>>
-  <</button>>
-  <<button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)">>
-    <<send "ChaseFaithful_CHOICE" { choice: "CAR" }>><</send>>
-    <<replace "#cf-c-timer">><h1>You're starting Ma Tiger's car.</h1><</replace>>
-    <<set _stopTimer to true>>
-    <<run $("#cf-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-c-msg-status")>>
-  <</button>>
-  <<button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)">>
-    <<send "ChaseFaithful_CHOICE" { choice: "KING" }>><</send>>
-    <<replace "#cf-c-timer">><h1>You're stopping King's bleeding.</h1><</replace>>
-    <<set _stopTimer to true>>
-    <<run $("#cf-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-c-msg-status")>>
-  <</button>>
-  <<button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)">>
-    <<send "ChaseFaithful_CHOICE" { choice: "BAR" }>><</send>>
-    <<replace "#cf-c-timer">><h1>You're enlisting the bar staff.</h1><</replace>>
-    <<set _stopTimer to true>>
-    <<run $("#cf-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-c-msg-status")>>
-  <</button>>
-</span><</timed>>\
-<span id="cf-c-msg-status" class="hidden"></span>
-<<nobr>>
-  <<silently>>
+:: ChaseFaithful_TimerWidget [widget]
+<<widget "cf-timer">>\
+  <<nobr>><<silently>>
     <<set $seconds to 24+90>>
     <<repeat 1s>>
       <<if _stopTimer is true>>
@@ -95,40 +48,136 @@
           <<replace "#timer-seconds">>$seconds<</replace>>
         <<elseif $seconds eq 0>>
           <<send "ChaseFaithful_CHOICE" { choice: "FREEZE" }>><</send>>
-          <<replace "#cf-c-timer">><h1>You freeze up.</h1><</replace>>
-          <<run $("#cf-c-msg-status").removeClass("hidden")>>
-          <<run setup.replaceWithSending("#cf-c-msg-status")>>
+          <<replace "#cf-timer">><h1>You freeze up.</h1><</replace>>
+          <<run $("#cf-msg-status").removeClass("hidden")>>
+          <<run setup.replaceWithSending("#cf-msg-status")>>
           <<stop>>
         <</if>>
       <</if>>
     <</repeat>>
-  <</silently>>
-  <<receive "ChaseFaithful_CHOICE" "Faithful">><<script>>
-    if (setup.isFaithful()) {
-      State.variables.ChaseFaithful_CHOICE = State.temporary.receiveData;
-      setup.replaceWithWaiting("#cf-c-msg-status")
-      setup.Complete_ChaseFaithful_Christies();
-    }
-  <</script>><</receive>>
-  <<receive "ChaseApostate_CHOICE" "Faithful">><<script>>
-    if (setup.isFaithful()) {
-      State.variables.ChaseApostate_CHOICE = State.temporary.receiveData;
-      setup.Complete_ChaseFaithful_Christies();
-    }
-  <</script>><</receive>>
-<</nobr>>
+  <</silently>><</nobr>>\
+<</widget>>\
+
+
+:: ChaseFaithful_ButtonWidget [widget]
+<<widget "cf-button">>\
+  <<button _args[0]>>
+    <<send "ChaseFaithful_CHOICE" { choice: _args[1] }>><</send>>
+    <<replace "#cf-timer">><h1>_args[2]</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-msg-status")>>
+  <</button>>\
+<</widget>>\
+
+
+:: ChaseFaithful_Router
+<<receive "ChaseFaithful_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    State.variables.ChaseFaithful_CHOICE = State.temporary.receiveData;
+    setup.replaceWithWaiting("#cf-msg-status")
+    setup.Complete_ChaseFaithful_Christies();
+  }
+<</script>><</receive>>
+<<receive "ChaseApostate_CHOICE" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    State.variables.ChaseApostate_CHOICE = State.temporary.receiveData;
+    setup.Complete_ChaseFaithful_Christies();
+  }
+<</script>><</receive>>
+
+
+:: ChaseFaithful_Christies
+/** ###################################################################### **/\
+/** # CONTENT START                                                      # **/\
+/** ###################################################################### **/\
+<<include "ChaseFaithful_TurnIndicator">>\
+<<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  <<include "ChaseShared_DogStatus">>
+<<next $timerString>>
+  <<include "ChaseShared_BarStatus">>
+<</timed>>\
+<<timed $optionsString t8n>><span id="cf-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
+    "FOOT"
+    "You're giving chase on foot.">>
+  <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
+    "911"
+    "You're calling 911.">>
+  <<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
+    "FRANCIS"
+    "You're calling St. Francis' Emergency Pet Clinic.">>
+  <<cf-button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
+    "CAR"
+    "You're starting Ma Tiger's car.">>
+  <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
+    "KING"
+    "You're stopping King's bleeding.">>
+  <<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
+    "BAR"
+    "You're enlisting the bar staff.">>
+</span><</timed>>\
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
 
 
 :: ChaseFaithful_OnFoot
+<<include "ChaseFaithful_TurnIndicator">>\
+TODO: Content!
+<span id="cf-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  /* TODO: Vary button on how far they are? */\
+  <<cf-button "Run, dammit! (Can you really run down a car? Luckily you're in the city core; all the streets nearby have lights.)"
+    "FOOT"
+    "You're continuing the chase.">>
+  <<cf-button "Dash back to Christie's. (Dammit, should've taken the car. Is King okay? You're fit, but can you win a race with a car?)"
+    "BACK"
+    "You're running back to Christie's.">>
+</span>
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
+
+
+:: ChaseFaithful_OnFoot_2
+TODO
 
 
 :: ChaseFaithful_911
+<<include "ChaseFaithful_TurnIndicator">>\
+TODO: Content
+<span id="cf-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<cf-button "Report a kidnapping in progress. (It's unlikely to garner a fast response, but it's better than running after a van.)"
+    "TIGER"
+    "You're reporting a kidnapping to 911.">>
+  <<cf-button "Report King's injuries. (911 is almost certain to be useless here.)"
+    "KING"
+    "You're reporting King's injuries to 911.">>
+  <<cf-button "Report a kidnapping and King's injuries. (Reporting both can't hurt.)"
+    "BOTH"
+    "You're reporting a kidnapping and King's injuries to 911.">>
+  <<cf-button "End the call. (On second thought, getting the law involved seems like a bad idea.)"
+    "NONE"
+    "You're ending the 911 call.">>
+</span>
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
 
 
 :: ChaseFaithful_Francis
+<<include "ChaseFaithful_TurnIndicator">>\
+TODO: Content
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
 
 
 :: ChaseFaithful_Car
+<<include "ChaseFaithful_TurnIndicator">>\
+TODO: Content
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
 
 
 :: ChaseFaithful_King
