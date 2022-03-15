@@ -31,74 +31,68 @@
 
 :: ChaseApostate_Christies
 <<include "ChaseApostate_TurnIndicator">>\
-/* 8 seconds */\
-The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars waiting, and they're forced to wait for it to change.
+<<include "ChaseShared_KidnapperStatus">>
 <<timed 8s t8n>>\
-  /* 11 seconds */\
-
-  Dog blood trickles down the drain. King heaves himself up on his broken leg and it collapses beneath him. He slaps against the sidewalk with the sickening plop of meat on a butcher's block. He's losing a lot of blood.
-<</timed>>\
-<<timed 19s t8n>>\
-  /* 6 seconds */\
-
-  The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims.
+  <<include "ChaseShared_DogStatus">>
+<<next 8s>>\
+  <<include "ChaseShared_BarStatus">>
 <</timed>>\
 /* TODO: If you refresh, it still shows all of this! */\
-<<timed 25s t8n>><span id="ca-c-timer">\
+<<timed 24s t8n>><span id="ca-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   /* ~30 seconds */\
   <<button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)">>
     <<send "ChaseApostate_CHOICE" { choice: "FOOT" }>><</send>>
-    <<replace "#ca-c-timer">><h1>You're giving chase on foot.</h1><</replace>>
+    <<replace "#ca-timer">><h1>You're giving chase on foot.</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#ca-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#ca-c-msg-status")>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
   <</button>>
   <<button "Call 911. (You can report King's injuries or the kidnapping and injuries, but getting the law involved might be a bad idea in the long run.)">>
     <<send "ChaseApostate_CHOICE" { choice: "911" }>><</send>>
-    <<replace "#ca-c-timer">><h1>You're calling 911.</h1><</replace>>
+    <<replace "#ca-timer">><h1>You're calling 911.</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#ca-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#ca-c-msg-status")>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
   <</button>>
   <<button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)">>
     <<send "ChaseApostate_CHOICE" { choice: "CAR" }>><</send>>
-    <<replace "#ca-c-timer">><h1>You're starting Ma Tiger's car.</h1><</replace>>
+    <<replace "#ca-timer">><h1>You're starting Ma Tiger's car.</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#ca-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#ca-c-msg-status")>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
   <</button>>
   <<button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)">>
     <<send "ChaseApostate_CHOICE" { choice: "KING" }>><</send>>
-    <<replace "#ca-c-timer">><h1>You're stopping King's bleeding.</h1><</replace>>
+    <<replace "#ca-timer">><h1>You're stopping King's bleeding.</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#ca-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#ca-c-msg-status")>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
   <</button>>
   <<button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)">>
     <<send "ChaseApostate_CHOICE" { choice: "BAR" }>><</send>>
-    <<replace "#ca-c-timer">><h1>You're enlisting the bar staff.</h1><</replace>>
+    <<replace "#ca-timer">><h1>You're enlisting the bar staff.</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#ca-c-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#ca-c-msg-status")>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
   <</button>>
 </span><</timed>>\
-<span id="ca-c-msg-status" class="hidden"></span>
+<span id="ca-msg-status" class="hidden"></span>
 <<nobr>>
   <<silently>>
-    <<set $seconds to 8+11+6+30+60>>
+    <<set $seconds to 24+90>>
     <<repeat 1s>>
       <<if _stopTimer is true>>
         <<stop>>
       <<else>>
         <<set $seconds to $seconds - 1>>
-        <<if $seconds gt 0>>
+        <<if $seconds gt 0 and $seconds lt 90>>
           <<replace "#timer-seconds">>$seconds<</replace>>
-        <<else>>
+        <<elseif $seconds eq 0>>
           <<send "ChaseApostate_CHOICE" { choice: "FREEZE" }>><</send>>
-          <<replace "#ca-c-timer">><h1>You freeze up.</h1><</replace>>
-          <<run $("#ca-c-msg-status").removeClass("hidden")>>
-          <<run setup.replaceWithSending("#ca-c-msg-status")>>
+          <<replace "#ca-timer">><h1>You freeze up.</h1><</replace>>
+          <<run $("#ca-msg-status").removeClass("hidden")>>
+          <<run setup.replaceWithSending("#ca-msg-status")>>
           <<stop>>
         <</if>>
       <</if>>
@@ -107,7 +101,7 @@ The kidnappers accelerate away - but the next light, some three hundred feet awa
   <<receive "ChaseApostate_CHOICE" "Apostate">><<script>>
     if (setup.isApostate()) {
       State.variables.ChaseApostate_CHOICE = State.temporary.receiveData;
-      setup.replaceWithWaiting("#ca-c-msg-status");
+      setup.replaceWithWaiting("#ca-msg-status");
       setup.Complete_ChaseApostate_Christies();
     }
   <</script>><</receive>>
@@ -122,11 +116,42 @@ The kidnappers accelerate away - but the next light, some three hundred feet awa
 
 :: ChaseApostate_OnFoot
 <<include "ChaseApostate_TurnIndicator">>\
-You run.
+  You narrow your eyes and will your legs into high gear. Your heart hammers in your ears; your breaths come faster and faster; your legs burst with energy. You <em>run.</em>
 
-TODO Choices:
-* go forwards
-* go backwards
+<<timed 8s t8n>>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<next 8s>>\
+  <<if $ChaseFaithful_CHOICE_LAST is "FOOT">>\
+    Out of the corner of your eye, you catch somebody following you. You cast a glance back. Jekusheke's sprinting behind you. He's fast, but he's got no chance at all.
+  <<else>>\
+    You don't dare glance back. Your eyes are on the car, the sidewalk, and the street. All you can do now for King is to hope that Jeku has it handled. He's an EMT, right?
+  <</if>>\
+<</timed>>\
+<<timed 24s t8n>><span id="ca-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  /* TODO: Vary button on how far they are? */\
+  <<button "Run them down. (They may have an electric engine, but you don't need to worry about lights. Unless something changes, you'll catch them.)">>
+    <<send "ChaseApostate_CHOICE" { choice: "FOOT" }>><</send>>
+    <<replace "#ca-timer">><h1>You're continuing the chase.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
+  <</button>>
+  <<button "Dash back to Christie's. (Did you miss something? Is King going to be all right?)">>
+    <<send "ChaseApostate_CHOICE" { choice: "FOOT_BACK" }>><</send>>
+    <<replace "#ca-timer">><h1>You're running back to Christie's.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#ca-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#ca-msg-status")>>
+  <</button>>
+</span><</timed>>\
+<span id="ca-msg-status" class="hidden"></span>
+/* TODO: Timer & choice receiver */\
+
+
+:: ChaseApostate_OnFoot_2
+<<include "ChaseApostate_TurnIndicator">>\
+
 
 
 :: ChaseApostate_911

@@ -30,18 +30,12 @@
 
 
 :: ChaseFaithful_Christies
-<<include "ChaseFaithful_TurnIndicator">>
-/* 8 seconds */\
-The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars waiting, and they're forced to wait for it to change.
-<<timed 8s t8n>>\
-  /* 11 seconds */\
-
-  Dog blood trickles down the drain. King heaves himself up on his broken leg and it collapses beneath him. He slaps against the sidewalk with the sickening plop of meat on a butcher's block. He's losing a lot of blood.
-<</timed>>\
-<<timed 19s t8n>>\
-  /* 6 seconds */\
-
-  The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims.
+<<include "ChaseFaithful_TurnIndicator">>\
+<<include "ChaseShared_KidnapperStatus">>
+<<timed 8s t8n>>
+  <<include "ChaseShared_DogStatus">>
+<<next 8s>>
+  <<include "ChaseShared_BarStatus">>
 <</timed>>\
 <<timed 25s t8n>><span id="cf-c-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
@@ -91,15 +85,15 @@ The kidnappers accelerate away - but the next light, some three hundred feet awa
 <span id="cf-c-msg-status" class="hidden"></span>
 <<nobr>>
   <<silently>>
-    <<set $seconds to 8+11+6+30+60>>
+    <<set $seconds to 24+90>>
     <<repeat 1s>>
       <<if _stopTimer is true>>
         <<stop>>
       <<else>>
         <<set $seconds to $seconds - 1>>
-        <<if $seconds gt 0>>
+        <<if $seconds gt 0 and $seconds lt 90>>
           <<replace "#timer-seconds">>$seconds<</replace>>
-        <<else>>
+        <<elseif $seconds eq 0>>
           <<send "ChaseFaithful_CHOICE" { choice: "FREEZE" }>><</send>>
           <<replace "#cf-c-timer">><h1>You freeze up.</h1><</replace>>
           <<run $("#cf-c-msg-status").removeClass("hidden")>>
