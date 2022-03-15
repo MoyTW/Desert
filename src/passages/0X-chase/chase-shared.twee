@@ -1,0 +1,3 @@
+:: ChaseShared_Text
+  <h1>This next section is timed!</h1>\
+  Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will force a resynchronization, which may cause you to lose time. This will never make the game unfinishable, but it might make certain options unavailable.

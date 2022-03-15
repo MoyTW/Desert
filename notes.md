@@ -44,7 +44,7 @@ Now somebody has arisen who claims to be her secret son; whose DNA is of hers an
 
 The only issue is that she is confident that this is impossible, as her son is dead. She checked, discreetly, after she pulled out the iron bar, and discovered to her shock and horror that he'd signed up for the navy and died in a burning wreck of Taiwan. She confirmed it by public records. It all checked out.
 
-So who is this imposter? Laura believes it to be a Hayter family plot; Kin believes that Tor is backing him. Ann doesn't know whether or not this is true, but she does know that buried with the documents is a full sequence, and that this sequence almost certainly cannot match. So she drives to Reno in secret with her guardian dog, War, in hopes of resolving this issue.
+So who is this imposter? Laura believes it to be a Hayter family plot; Kin believes that Tor is backing him. Ann doesn't know whether or not this is true, but she does know that buried with the documents is a full sequence, and that this sequence almost certainly cannot match. So she drives to Reno in secret with her guardian dog, King, in hopes of resolving this issue.
 
 ## Plot
 Ann is coming, but miscalculated her timing. On top of that, she's been pulled over and cited repeatedly for unsafe driving (any manual driving is viewed with extreme suspicion) further delaying her. She won't arrive until 7:15 in the evening, far after Jekusheke and Ebiaishe arrive.

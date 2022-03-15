@@ -1,0 +1,146 @@
+:: ChaseFaithful_Start
+<<set $chaseTurn to 1>>\
+<div class="instructions">\
+  <<include "ChaseShared_Text">>
+
+  <span id="cf-s-btn"><<button "I'm ready.">>
+    <<run setup.replaceWithSending("#cf-s-btn")>>
+    <<send "ChaseFaithful_Start_DONE" {}>><</send>>
+  <</button>></span>
+  <<nobr>>
+    <<receive "ChaseFaithful_Start_DONE" "Faithful">><<script>>
+      if (setup.isFaithful()) {
+        setup.replaceWithWaiting("#cf-s-btn");
+        State.variables.ChaseFaithful_Start_DONE = true;
+        setup.Complete_ChaseFaithful_Start();
+      }
+    <</script>><</receive>>
+    <<receive "ChaseApostate_Start_DONE" "Faithful">><<script>>
+      if (setup.isFaithful()) {
+        State.variables.ChaseApostate_Start_DONE = true;
+        setup.Complete_ChaseFaithful_Start();
+      }
+    <</script>><</receive>>
+  <</nobr>>\
+</div>
+
+
+:: ChaseFaithful_TurnIndicator
+<h1>Turn $chaseTurn</h1>\
+
+
+:: ChaseFaithful_Christies
+<<include "ChaseFaithful_TurnIndicator">>
+/* 8 seconds */\
+The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars waiting, and they're forced to wait for it to change.
+<<timed 8s t8n>>\
+  /* 11 seconds */\
+
+  Dog blood trickles down the drain. King heaves himself up on his broken leg and it collapses beneath him. He slaps against the sidewalk with the sickening plop of meat on a butcher's block. He's losing a lot of blood.
+<</timed>>\
+<<timed 19s t8n>>\
+  /* 6 seconds */\
+
+  The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims.
+<</timed>>\
+<<timed 25s t8n>><span id="cf-c-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<button "Chase after them on foot. (You're fit, but it's still a long shot.)">>
+    <<send "ChaseFaithful_CHOICE" { choice: "FOOT" }>><</send>>
+    <<replace "#cf-c-timer">><h1>You're giving chase on foot.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-c-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-c-msg-status")>>
+  <</button>>
+  <<button "Call 911. (Ma Tiger did want to keep this on the down low, but this is crazy, we're already well past the stage where that was realistic.)">>
+    <<send "ChaseFaithful_CHOICE" { choice: "911" }>><</send>>
+    <<replace "#cf-c-timer">><h1>You're calling 911.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-c-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-c-msg-status")>>
+  <</button>>
+  <<button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)">>
+    <<send "ChaseFaithful_CHOICE" { choice: "FRANCIS" }>><</send>>
+    <<replace "#cf-c-timer">><h1>You're calling St. Francis' Emergency Pet Clinic.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-c-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-c-msg-status")>>
+  <</button>>
+  <<button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)">>
+    <<send "ChaseFaithful_CHOICE" { choice: "CAR" }>><</send>>
+    <<replace "#cf-c-timer">><h1>You're starting Ma Tiger's car.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-c-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-c-msg-status")>>
+  <</button>>
+  <<button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)">>
+    <<send "ChaseFaithful_CHOICE" { choice: "KING" }>><</send>>
+    <<replace "#cf-c-timer">><h1>You're stopping King's bleeding.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-c-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-c-msg-status")>>
+  <</button>>
+  <<button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)">>
+    <<send "ChaseFaithful_CHOICE" { choice: "BAR" }>><</send>>
+    <<replace "#cf-c-timer">><h1>You're enlisting the bar staff.</h1><</replace>>
+    <<set _stopTimer to true>>
+    <<run $("#cf-c-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#cf-c-msg-status")>>
+  <</button>>
+</span><</timed>>\
+<span id="cf-c-msg-status" class="hidden"></span>
+<<nobr>>
+  <<silently>>
+    <<set $seconds to 8+11+6+30+60>>
+    <<repeat 1s>>
+      <<if _stopTimer is true>>
+        <<stop>>
+      <<else>>
+        <<set $seconds to $seconds - 1>>
+        <<if $seconds gt 0>>
+          <<replace "#timer-seconds">>$seconds<</replace>>
+        <<else>>
+          <<send "ChaseFaithful_CHOICE" { choice: "FREEZE" }>><</send>>
+          <<replace "#cf-c-timer">><h1>You freeze up.</h1><</replace>>
+          <<run $("#cf-c-msg-status").removeClass("hidden")>>
+          <<run setup.replaceWithSending("#cf-c-msg-status")>>
+          <<stop>>
+        <</if>>
+      <</if>>
+    <</repeat>>
+  <</silently>>
+  <<receive "ChaseFaithful_CHOICE" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.ChaseFaithful_CHOICE = State.temporary.receiveData;
+      setup.replaceWithWaiting("#cf-c-msg-status")
+      setup.Complete_ChaseFaithful_Christies();
+    }
+  <</script>><</receive>>
+  <<receive "ChaseApostate_CHOICE" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.ChaseApostate_CHOICE = State.temporary.receiveData;
+      setup.Complete_ChaseFaithful_Christies();
+    }
+  <</script>><</receive>>
+<</nobr>>
+
+
+:: ChaseFaithful_OnFoot
+
+
+:: ChaseFaithful_911
+
+
+:: ChaseFaithful_Francis
+
+
+:: ChaseFaithful_Car
+
+
+:: ChaseFaithful_King
+
+
+:: ChaseFaithful_Bar
+
+
+:: ChaseFaithful_Freeze
