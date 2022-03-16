@@ -100,10 +100,11 @@
 <<timed $optionsString t8n>><span id="ca-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   /* ~30 seconds */\
-  /* TODO: Disable instead of hiding? also it leaves a space */
+  /* TODO: Disable instead of hiding? also it leaves a space */\
   <<if $canChaseOnFoot>><<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
     "You're giving chase on foot.">><</if>>
+  /* TODO: can call*/\
   <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but getting the law involved might be a bad idea in the long run.)"
     "911"
     "You're calling 911.">>
@@ -176,7 +177,7 @@
 <<timed $timerString t8n>>
   Unless something changes, you'll catch them. You're too fast, your cybernetic legs and lungs too powerful, and the city is too congested. Surely they've realized?
 <<next $timerString>>
-  Ahead of you, the van's side door slides open and a man leans out and spots you. He vanishes. Now he's back, and he has a mag rifle. He kneels down and takes aim.
+  Ahead of you, the van's side door slides open and a man leans. He spots you, vanishes. Seconds later he returns, mag rifle in hand, and kneels down, taking aim.
 <</timed>>\
 <<timed $optionsString t8n>><span id="ca-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
@@ -192,11 +193,13 @@
 
 
 :: ChaseApostate_OnFoot_Road
-
+<<include "ChaseApostate_TurnIndicator">>\
+TODO
 
 
 :: ChaseApostate_OnFoot_Sidewalk
-
+<<include "ChaseApostate_TurnIndicator">>\
+TODO
 
 
 :: ChaseApostate_911

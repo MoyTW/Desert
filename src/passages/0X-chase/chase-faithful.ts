@@ -36,20 +36,32 @@
       ["BACK", ["ChaseFaithful_Christies", () => {
         (State.variables as any).canChaseOnFoot = false
       }]],
-      ["FREEZE", ["ChaseFaithful_OnFoot", () => {}]],
+      ["FREEZE", ["ChaseFaithful_OnFoot_2", () => {}]],
     ])],
     ["ChaseFaithful_911", new Map<string,[string, () => void]>([
       ["TIGER", ["ChaseFaithful_911_Tiger", () => {}]],
       ["KING", ["ChaseFaithful_911_King", () => {}]],
       ["BOTH", ["ChaseFaithful_911_Both", () => {}]],
-      ["NONE", ["ChaseFaithful_Christies", () => {}]], // TODO: First line should be 'your action'
-      ["FREEZE", ["ChaseFaithful_OnFoot", () => {}]],
+      ["NONE", ["ChaseFaithful_Christies", () => {
+        (State.variables as any).canCall911 = false
+      }]], // TODO: First line should be 'your action'
+      ["FREEZE", ["ChaseFaithful_911", () => {}]],
     ])],
     ["ChaseFaithful_911_Tiger", new Map<string,[string, () => void]>([
-      ["TIGER", ["ChaseFaithful_Christies", () => {}]], // TODO: Actually modify the state!
-      ["BOTH", ["ChaseFaithful_911_Both", () => {}]],
-      ["NONE", ["ChaseFaithful_Christies", () => {}]], // TODO: First line should be 'your action'
-      ["FREEZE", ["ChaseFaithful_OnFoot", () => {}]],
+      ["TIGER", ["ChaseFaithful_911_Tiger_2", () => {}]], // TODO: Actually modify the state!
+      ["BOTH", ["ChaseFaithful_911_Both", () => {}]], // TODO: Maybe not
+      ["NONE", ["ChaseFaithful_Christies", () => {
+        (State.variables as any).canCall911 = false
+      }]], // TODO: First line should be 'your action'
+      ["FREEZE", ["ChaseFaithful_911_Tiger", () => {}]],
+    ])],
+    ["ChaseFaithful_911_Tiger_2", new Map<string,[string, () => void]>([
+      ["STAY", ["ChaseFaithful_911_Tiger_3", () => {}]], // TODO: Actually modify the state!
+      ["BARTENDER", ["ChaseFaithful_911_Tiger_Bartender", () => {}]],
+      ["NONE", ["ChaseFaithful_Christies", () => {
+        (State.variables as any).canCall911 = false
+      }]], // TODO: First line should be 'your action'
+      ["FREEZE", ["ChaseFaithful_911_Tiger_2", () => {}]],
     ])],
   ])
 

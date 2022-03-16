@@ -97,13 +97,21 @@
 <</timed>>\
 <<timed $optionsString t8n>><span id="cf-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-  /* TODO: Disable instead of hiding? also it leaves a space */
-  <<if $canChaseOnFoot>><<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
-    "FOOT"
-    "You're giving chase on foot.">><</if>>
-  <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
-    "911"
-    "You're calling 911.">>
+  /* TODO: Disable instead of hiding? also it leaves a space */\
+  <<if $canChaseOnFoot>>\
+    <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
+      "FOOT"
+      "You're giving chase on foot.">>
+  <<else>>\
+    <<disable>><<button "Chase after them on foot. (No chance.)">><</button>><</disable>>
+  <</if>>\
+  <<if $canCall911>>\
+    <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
+      "911"
+      "You're calling 911.">>
+  <<else>>\
+    <<disable>><<button "Call 911. (Already tried.)">><</button>><</disable>>
+  <</if>>\
   <<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
     "FRANCIS"
     "You're calling St. Francis' Emergency Pet Clinic.">>
@@ -119,6 +127,9 @@
 </span><</timed>>\
 <span id="cf-msg-status" class="hidden"></span>\
 <<cf-timer>>\
+
+
+:: ChaseFaithful_Christies_Buttons
 
 
 :: ChaseFaithful_OnFoot
@@ -168,8 +179,13 @@
 
 :: ChaseFaithful_911
 <<include "ChaseFaithful_TurnIndicator">>\
-TODO: Content
-<span id="cf-timer">\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  <<include "ChaseShared_DogStatus">>
+<<next $timerString>>
+  You pull your phone out of your pocket, dial 911, hold it up to your ear. It connects immediately. "This is 911," says the AI, "what is your emergency?"
+<</timed>>\
+<<timed $optionsString t8n>><span id="cf-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   <<cf-button "Report a kidnapping in progress. (It's unlikely to garner a fast response, but it's better than running after a van.)"
     "TIGER"
@@ -183,35 +199,80 @@ TODO: Content
   <<cf-button "End the call. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
-</span>
+</span><</timed>>\
 <span id="cf-msg-status" class="hidden"></span>\
 <<cf-timer>>\
 
 :: ChaseFaithful_911_Tiger
 <<include "ChaseFaithful_TurnIndicator">>\
-TODO: Content
-<span id="cf-timer">\
+  "There's a kidnapping in progress," you say, making sure to speak as clearly as possible. "I am not the kidnapped party. The kidnappers are still present."
+<<timed $timerString t8n>>
+  Best practices for calling 911 is to answer only. Don't talk too much - what you think is important is often not what they want. "What is your location?" they ask.
+<<next $timerString>>
+  You glance over at the facade to find the address number. "1718 Holcomb Ave, Reno, Nevada, 89502." Why did you give the zip code? They don't need the zip code.
+<</timed>>\
+<<timed $optionsString t8n>><span id="cf-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-  <<cf-button "Give her the details. (Location, callback number, nature of emergency. Sort it out before you start talking.)"
+  <<cf-button "Continue giving the report. (Come on, come on, this is taking way too long, speed this up!)"
     "TIGER"
-    "You're giving the dispatcher the details.">>
+    "You're reporting the kidnapping.">>
   <<cf-button "Give her the details and report King, too. (This will take longer, and 911 almost never services pets.)"
     "BOTH"
-    "You're giving the dispatcher the details.">>
+    "You're also reporting King's injuries.">>
   <<cf-button "End the call. (Was this a bad idea, or is it wasting too much time?)"
     "NONE"
     "You're ending the 911 call.">>
-</span>
+</span><</timed>>\
 <span id="cf-msg-status" class="hidden"></span>\
 <<cf-timer>>\
 
 
-:: ChaseFaithful_911_King
+:: ChaseFaithful_911_Tiger_2
+<<include "ChaseFaithful_TurnIndicator">>\
+  "Can you still see the kidnappers?"
+<<timed 2s t8n>>
+  "Yes, I can still see them."
+<<next 2s>>
+  "I'm sending an alert now. Please stay on the line. Can you describe the clothes that the kidnappers are wearing?"
+<<next 6s>>
+  "They were wearing street clothes, and they had their faces covered, but they're in a van and I can't see them right now."
+<<next 6s>>
+  "Okay. Can you describe the van?"
+<<next 2s>>
+  "It's white, very plain, I don't know make or model."
+<<next 4s>>
+  "Did you catch the license plates?"
+<</timed>>\
+<<timed $optionsString t8n>><span id="cf-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<cf-button "Keep giving the report. (It's normal for 911 to ask callers to stay on the line - shit. You'll be tied to your phone if you do this.)"
+    "STAY"
+    "You're staying on the line.">>
+  <<cf-button "Give the phone to the bartender. (That'll free you up to give chase or do first aid.)"
+    "BARTENDER"
+    "You're ending the 911 call.">>
+  <<cf-button "End the call. (That's enough already. You can't stay tied to your phone while King is right here, wounded.)"
+    "NONE"
+    "You're ending the 911 call.">>
+</span><</timed>>\
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
 
+
+:: ChaseFaithful_911_Tiger_Bartender
+TODO
+
+
+:: ChaseFaithful_911_Tiger_3
+TODO
+
+
+:: ChaseFaithful_911_King
+TODO
 
 
 :: ChaseFaithful_911_Both
-
+TODO
 
 
 :: ChaseFaithful_Francis

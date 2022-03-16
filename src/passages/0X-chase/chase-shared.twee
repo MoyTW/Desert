@@ -9,7 +9,8 @@
   <<set $optionsString to $timerSeconds * 3 + 's'>>
 
   /* Action Availability */
-  <<set $canChaseOnFoot to true>> /* TODO: Set this! */
+  <<set $canChaseOnFoot to true>>
+  <<set $canCall911 to true>> /* TODO: Set this! */
 <</nobr>>\
 
 
