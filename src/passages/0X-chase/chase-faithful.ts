@@ -30,6 +30,23 @@
       ["BACK", "ChaseFaithful_Christies"],
       ["FREEZE", "ChaseFaithful_OnFoot"],
     ])],
+    ["ChaseFaithful_OnFoot_2", new Map<string,string>([
+      ["BACK", "ChaseFaithful_Christies"],
+      ["FREEZE", "ChaseFaithful_OnFoot"],
+    ])],
+    ["ChaseFaithful_911", new Map<string,string>([
+      ["TIGER", "ChaseFaithful_911_Tiger"],
+      ["KING", "ChaseFaithful_911_King"],
+      ["BOTH", "ChaseFaithful_911_Both"],
+      ["NONE", "ChaseFaithful_Christies"], // TODO: First line should be 'your action'
+      ["FREEZE", "ChaseFaithful_OnFoot"],
+    ])],
+    ["ChaseFaithful_911_Tiger", new Map<string,string>([
+      ["TIGER", "ChaseFaithful_Christies"], // TODO: Actually modify the state!
+      ["BOTH", "ChaseFaithful_911_Both"],
+      ["NONE", "ChaseFaithful_Christies"], // TODO: First line should be 'your action'
+      ["FREEZE", "ChaseFaithful_OnFoot"],
+    ])],
   ])
 
   _setup.Complete_ChaseFaithful_Christies = function() {

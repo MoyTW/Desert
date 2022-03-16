@@ -28,7 +28,17 @@
       ["FOOT", "ChaseApostate_OnFoot_2"],
       ["BACK", "ChaseApostate_Christies"],
       ["FREEZE", "ChaseApostate_OnFoot"],
-    ])]
+    ])],
+    ["ChaseApostate_OnFoot_2", new Map<string,string>([
+      ["FOOT", "ChaseApostate_OnFoot_3"],
+      ["BACK", "ChaseApostate_Christies"],
+      ["FREEZE", "ChaseApostate_OnFoot_2"],
+    ])],
+    ["ChaseApostate_OnFoot_3", new Map<string,string>([
+      ["ROAD", "ChaseApostate_OnFoot_Road"],
+      ["SIDEWALK", "ChaseApostate_OnFoot_Sidewalk"],
+      ["FREEZE", "ChaseApostate_OnFoot_3"], /* TODO: You get shot */
+    ])],
   ])
 
   _setup.Route_ChaseApostate_Choice = function() {

@@ -8,7 +8,7 @@
 
 :: ChaseShared_Text
 <h1>This next section is timed!</h1>\
-Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will force a resynchronization, which may cause you to lose time. This will never make the game unfinishable, but it might make certain options unavailable.
+Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will reset the page and throw your games out of sync. This will never make the game unfinishable, but it will mean that your partner needs to wait for you.
 
 :: ChaseShared_KidnapperStatus
 <<if $chaseTurn is 1>>\
@@ -20,7 +20,7 @@ Network interruptions will not break the game, but they may cause your clients t
 <<elseif $chaseTurn is 4>>\
   The next light turns red; they couldn't beat it. In a flash they swerve into the right lane, followed by a flurry of horns, and take the turn onto a side street.\
 <<elseif $chaseTurn is 5>>\
-  TODO
+  In the city core, even the side streets have traffic. The kidnappers manage to get nearly a whole block before they're stopped again, and this time there's no right.\
 <<elseif $chaseTurn is 6>>\
   TODO
 <</if>>\

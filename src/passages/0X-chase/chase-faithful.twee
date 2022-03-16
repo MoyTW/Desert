@@ -121,9 +121,19 @@
 
 
 :: ChaseFaithful_OnFoot
+/* TODO: Disable further chase on foot if you go back. */\
 <<include "ChaseFaithful_TurnIndicator">>\
-TODO: Content!
-<span id="cf-timer">\
+  You sprint down the sidewalk after the kidnappers. Thankfully, even in the city core, there aren't many walkers. Most people drive. You keep your eyes on the van.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  <<if $ChaseApostate_CHOICE_LAST.choice is "FOOT">>\
+    You see Ebiaishe ahead of you, running with inhuman speed. You're fit. You work out. EMTs have to. She's both fit and augmented, impossibly fast, maybe fast enough.
+  <<else>>\
+    You resist the urge to look back. You can't let your eyes off the van; if you lose it, you're not sure you can find it again. You push your worries about King away.
+  <</if>>\
+<</timed>>\
+<<timed $optionsString t8n>><span id="cf-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   /* TODO: Vary button on how far they are? */\
   <<cf-button "Run, dammit! (Can you really run down a car? Luckily you're in the city core; all the streets nearby have lights.)"
@@ -132,13 +142,27 @@ TODO: Content!
   <<cf-button "Dash back to Christie's. (Dammit, should've taken the car. Is King okay? You're fit, but can you win a race with a car?)"
     "BACK"
     "You're running back to Christie's.">>
-</span>
+</span><</timed>>\
 <span id="cf-msg-status" class="hidden"></span>\
 <<cf-timer>>\
 
 
 :: ChaseFaithful_OnFoot_2
-TODO
+<<include "ChaseFaithful_TurnIndicator">>\
+  Your breath is loud, your eyes watering. Not from exertion. Stress. You can keep your speed for three minutes normally. Longer now. Your mind feels slightly fuzzy.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  You realize with a sinking feeling that the kidnappers are pulling away, despite the evening traffic. Your human heart can't keep up with their electric engine.
+<</timed>>\
+<<timed $optionsString t8n>><span id="cf-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<cf-button "Dash back to Christie's. (Fuck, fuck, fuck. Stupid idea in the first place. Of course you can't race a car.)"
+    "BACK"
+    "You're running back to Christie's.">>
+</span><</timed>>\
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
 
 
 :: ChaseFaithful_911
@@ -161,6 +185,32 @@ TODO: Content
 </span>
 <span id="cf-msg-status" class="hidden"></span>\
 <<cf-timer>>\
+
+:: ChaseFaithful_911_Tiger
+<<include "ChaseFaithful_TurnIndicator">>\
+TODO: Content
+<span id="cf-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<cf-button "Give her the details. (Location, callback number, nature of emergency. Sort it out before you start talking.)"
+    "TIGER"
+    "You're giving the dispatcher the details.">>
+  <<cf-button "Give her the details and report King, too. (This will take longer, and 911 almost never services pets.)"
+    "BOTH"
+    "You're giving the dispatcher the details.">>
+  <<cf-button "End the call. (Was this a bad idea, or is it wasting too much time?)"
+    "NONE"
+    "You're ending the 911 call.">>
+</span>
+<span id="cf-msg-status" class="hidden"></span>\
+<<cf-timer>>\
+
+
+:: ChaseFaithful_911_King
+
+
+
+:: ChaseFaithful_911_Both
+
 
 
 :: ChaseFaithful_Francis

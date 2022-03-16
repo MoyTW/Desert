@@ -96,6 +96,7 @@
   <<include "ChaseShared_BarStatus">>
 <</timed>>\
 /* TODO: If you refresh, it still shows all of this! */\
+/* TODO: save the "you're X" action string & redisplay if choice */\
 <<timed $optionsString t8n>><span id="ca-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
   /* ~30 seconds */\
@@ -120,12 +121,13 @@
 
 
 :: ChaseApostate_OnFoot
+/* TODO: Disable further chase on foot if you go back. */\
 <<include "ChaseApostate_TurnIndicator">>\
   You narrow your eyes and will your legs into high gear. Your heart hammers in your ears; your breaths come faster and faster; your legs burst with energy. You <em>run.</em>
 <<timed $timerString t8n>>
   <<include "ChaseShared_KidnapperStatus">>
 <<next $timerString>>
-  <<if $ChaseFaithful_CHOICE_LAST is "FOOT">>\
+  <<if $ChaseFaithful_CHOICE_LAST.choice is "FOOT">>\
     Out of the corner of your eye, you catch somebody following you. You cast a glance back. Jekusheke's sprinting behind you. He's fast, but he's got no chance at all.
   <<else>>\
     You don't dare glance back. Your eyes are on the car, the sidewalk, and the street. All you can do now for King is to hope that Jeku has it handled. He's an EMT, right?
@@ -147,6 +149,52 @@
 
 :: ChaseApostate_OnFoot_2
 <<include "ChaseApostate_TurnIndicator">>\
+  You're running steady, now, lungs working at full capacity, legs pumping. You're in the groove. You have about nine or ten minutes before you pump out. Long enough.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  Once you catch them, what's the plan? There are four of them. Three known armed. One probably armed. If any of them are augmented, this might be hard to pull off.
+<</timed>>\
+<<timed $optionsString t8n>><span id="ca-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  /* TODO: Vary button on how far they are? */\
+  <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need, it's just a question of traffic and reds.)"
+    "FOOT"
+    "You're continuing the chase.">>
+  <<ca-button "Dash back to Christie's. (If you chase any further than this, you won't have the time to return.)"
+    "BACK"
+    "You're running back to Christie's.">>
+</span><</timed>>\
+<span id="ca-msg-status" class="hidden"></span>
+<<ca-timer>>
+
+
+:: ChaseApostate_OnFoot_3
+<<include "ChaseApostate_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  Unless something changes, you'll catch them. You're too fast, your cybernetic legs and lungs too powerful, and the city is too congested. Surely they've realized?
+<<next $timerString>>
+  Ahead of you, the van's side door slides open and a man leans out and spots you. He vanishes. Now he's back, and he has a mag rifle. He kneels down and takes aim.
+<</timed>>\
+<<timed $optionsString t8n>><span id="ca-timer">\
+  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+  <<ca-button "Run into the road, using traffic as cover. (Extraordinarily dangerous, but he probably won't shoot into random traffic.)"
+    "ROAD"
+    "You're running into the street.">>
+  <<ca-button "Keep running along the sidewalks and risk gunfire. (Parked cars offer some cover, but the sidewalk is relatively exposed.)"
+    "SIDEWALK"
+    "You're running along the sidewalk.">>
+</span><</timed>>\
+<span id="ca-msg-status" class="hidden"></span>
+<<ca-timer>>
+
+
+:: ChaseApostate_OnFoot_Road
+
+
+
+:: ChaseApostate_OnFoot_Sidewalk
 
 
 
