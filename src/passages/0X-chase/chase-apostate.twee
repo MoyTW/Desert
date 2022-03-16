@@ -40,7 +40,7 @@
   </span><</timed>>\
   <span id="ca-msg-status" class="hidden"></span>
   <<nobr>><<silently>>
-    <<set $seconds to 24+90>>
+    <<set $seconds to $optionsSeconds + 90>>
     <<repeat 1s>>
       <<if _stopTimer is true>>
         <<stop>>
@@ -58,7 +58,7 @@
       <</if>>
     <</repeat>>
   <</silently>><</nobr>>\
-<</widget>>
+<</widget>>\
 
 
 :: ChaseApostate_ButtonWidget [widget]
@@ -116,7 +116,7 @@
   <<disable>><<button "Chase after them on foot. (No time now, not after coming back.)">><</button>><</disable>>
 <</if>>\
 <<if $canCall911>>\
-  <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but getting the law involved might be a bad idea in the long run.)"
+  <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but 911 is slow. Plus, getting them involved might be a bad idea.)"
     "911"
     "You're calling 911.">>
 <<else>>\
@@ -206,12 +206,37 @@ TODO
 
 :: ChaseApostate_911
 <<include "ChaseApostate_TurnIndicator">>\
-You get somebody on the line.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_DogStatus">>
+<<next $timerString>>
+  You grab your burner phone and dial 911. It connects immediately. Your location will be shot, but with a burner you'll be anonymous. "This is 911," says the AI.
+<</timed>>\
+<<ca-options-section>>\
+  <<ca-button "Report a kidnapping in progress. (They'll ask you to stay on the line. It'll eat up a lot of time.)"
+    "TIGER"
+    "You're reporting a kidnapping to 911.">>
+  <<ca-button "Report King's injuries. (You're not sure if 911 dispatches for animals.)"
+    "KING"
+    "You're reporting King's injuries to 911.">>
+  <<ca-button "Report a kidnapping and King's injuries. (This will probably take more time than you want.)"
+    "BOTH"
+    "You're reporting a kidnapping and King's injuries to 911.">>
+  <<ca-button "End the call and ditch the burner. (On second thought, getting the law involved seems like a bad idea.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</ca-options-section>>\
 
-TODO Choices:
-* report both the kidnapping and request medical aid
-* tell them about King, but not about Ma Tiger
-* abort your call
+
+:: ChaseApostate_911_Tiger
+TODO
+
+
+:: ChaseApostate_911_King
+TODO
+
+
+:: ChaseApostate_911_Both
+TODO
 
 
 :: ChaseApostate_Car

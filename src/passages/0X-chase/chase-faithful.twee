@@ -40,7 +40,7 @@
   </span><</timed>>\
   <span id="cf-msg-status" class="hidden"></span>\
   <<nobr>><<silently>>
-    <<set $seconds to 24+90>>
+    <<set $seconds to $optionsSeconds + 90>>
     <<repeat 1s>>
       <<if _stopTimer is true>>
         <<stop>>
@@ -219,17 +219,17 @@
 :: ChaseFaithful_911_Tiger_2
 <<include "ChaseFaithful_TurnIndicator">>\
   "Can you still see the kidnappers?"
-<<timed 2s t8n>>
+<<timed 1s t8n>>
   "Yes, I can still see them."
-<<next 2s>>
+<<next 1s>>
   "I'm sending an alert now. Please stay on the line. Can you describe the clothes that the kidnappers are wearing?"
-<<next 6s>>
+<<next 3s>>
   "They were wearing street clothes, and they had their faces covered, but they're in a van and I can't see them right now."
-<<next 6s>>
+<<next 3s>>
   "Okay. Can you describe the van?"
-<<next 2s>>
+<<next 1s>>
   "It's white, very plain, I don't know make or model."
-<<next 4s>>
+<<next 2s>>
   "Did you catch the license plates?"
 <</timed>>\
 <<cf-options-section>>\

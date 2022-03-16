@@ -43,6 +43,15 @@
       ["SIDEWALK", ["ChaseApostate_OnFoot_Sidewalk", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_3", () => {}]], /* TODO: You get shot */
     ])],
+    ["ChaseApostate_911", new Map<string,[string, () => void]>([
+      ["TIGER", ["ChaseApostate_911_Tiger", () => {}]],
+      ["KING", ["ChaseApostate_911_King", () => {}]],
+      ["BOTH", ["ChaseApostate_911_Both", () => {}]],
+      ["NONE", ["ChaseApostate_Christies", () => {
+        (State.variables as any).canCall911 = false
+      }]],
+      ["FREEZE", ["ChaseApostate_911", () => {}]],
+    ])],
   ])
 
   _setup.Route_ChaseApostate_Choice = function() {

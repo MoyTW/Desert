@@ -3,9 +3,10 @@
   <<set $chaseTurn to 1>>
 
   /* Timer Stuff */
-  /* TODO: Set back to 8 */
+  /* TODO: Set to 4! */
   <<set $timerSeconds to 1>>
   <<set $timerString to $timerSeconds + 's'>>
+  <<set $optionsSeconds to $timerSeconds * 3>>
   <<set $optionsString to $timerSeconds * 3 + 's'>>
 
   /* Action Availability */
