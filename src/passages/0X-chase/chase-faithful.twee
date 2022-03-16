@@ -32,8 +32,13 @@
 <h1>Turn $chaseTurn</h1>\
 
 
-:: ChaseFaithful_TimerWidget [widget]
-<<widget "cf-timer">>\
+:: ChaseFaithful_OptionsWidget [widget]
+<<widget "cf-options-section" container>>\
+  <<timed $optionsString t8n>><span id="cf-timer">\
+    <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+    _contents
+  </span><</timed>>\
+  <span id="cf-msg-status" class="hidden"></span>\
   <<nobr>><<silently>>
     <<set $seconds to 24+90>>
     <<repeat 1s>>
@@ -53,17 +58,6 @@
       <</if>>
     <</repeat>>
   <</silently>><</nobr>>\
-<</widget>>\
-
-
-:: ChaseFaithful_OptionsWidget [widget]
-<<widget "cf-options-section" container>>\
-  <<timed $optionsString t8n>><span id="cf-timer">\
-    <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-    _contents
-  </span><</timed>>\
-  <span id="cf-msg-status" class="hidden"></span>\
-  <<cf-timer>>\
 <</widget>>\
 
 
@@ -124,7 +118,7 @@
     "911"
     "You're calling 911.">>
 <<else>>\
-  <<disable>><<button "Call 911. (Already tried.)">><</button>><</disable>>
+  <<disable>><<button "Call 911. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
 <<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
   "FRANCIS"
@@ -268,17 +262,11 @@ TODO
 
 
 :: ChaseFaithful_Francis
-<<include "ChaseFaithful_TurnIndicator">>\
 TODO: Content
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
 
 
 :: ChaseFaithful_Car
-<<include "ChaseFaithful_TurnIndicator">>\
 TODO: Content
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
 
 
 :: ChaseFaithful_King

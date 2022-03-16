@@ -32,8 +32,13 @@
 <h1>Turn $chaseTurn</h1>\
 
 
-:: ChaseApostate_TimerWidget [widget]
-<<widget "ca-timer">>\
+:: ChaseApostate_OptionsWidget [widget]
+<<widget "ca-options-section" container>>
+  <<timed $optionsString t8n>><span id="ca-timer">\
+    <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+    _contents
+  </span><</timed>>\
+  <span id="ca-msg-status" class="hidden"></span>
   <<nobr>><<silently>>
     <<set $seconds to 24+90>>
     <<repeat 1s>>
@@ -53,7 +58,7 @@
       <</if>>
     <</repeat>>
   <</silently>><</nobr>>\
-<</widget>>\
+<</widget>>
 
 
 :: ChaseApostate_ButtonWidget [widget]
@@ -97,29 +102,35 @@
 <</timed>>\
 /* TODO: If you refresh, it still shows all of this! */\
 /* TODO: save the "you're X" action string & redisplay if choice */\
-<<timed $optionsString t8n>><span id="ca-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-  /* ~30 seconds */\
-  /* TODO: Disable instead of hiding? also it leaves a space */\
-  <<if $canChaseOnFoot>><<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
+<<ca-options-section>>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</ca-options-section>>\
+
+
+:: ChaseApostate_Christies_Buttons
+<<if $canChaseOnFoot>>\
+  <<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
-    "You're giving chase on foot.">><</if>>
-  /* TODO: can call*/\
+    "You're giving chase on foot.">>
+<<else>>\
+  <<disable>><<button "Chase after them on foot. (No time now, not after coming back.)">><</button>><</disable>>
+<</if>>\
+<<if $canCall911>>\
   <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but getting the law involved might be a bad idea in the long run.)"
     "911"
     "You're calling 911.">>
-  <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
-    "CAR"
-    "You're starting Ma Tiger's car.">>
-  <<ca-button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)"
-    "KING"
-    "You're stopping King's bleeding.">>
-  <<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
-    "BAR"
-    "You're enlisting the bar staff.">>
-</span><</timed>>\
-<span id="ca-msg-status" class="hidden"></span>\
-<<ca-timer>>\
+<<else>>\
+  <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
+<</if>>\
+<<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
+  "CAR"
+  "You're starting Ma Tiger's car.">>
+<<ca-button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)"
+  "KING"
+  "You're stopping King's bleeding.">>
+<<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
+  "BAR"
+  "You're enlisting the bar staff.">>
 
 
 :: ChaseApostate_OnFoot
@@ -135,8 +146,7 @@
     You don't dare glance back. Your eyes are on the car, the sidewalk, and the street. All you can do now for King is to hope that Jeku has it handled. He's an EMT, right?
   <</if>>\
 <</timed>>\
-<<timed $optionsString t8n>><span id="ca-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<ca-options-section>>\
   /* TODO: Vary button on how far they are? */\
   <<ca-button "Run them down. (They may have an electric engine, but you don't need to worry about lights. Unless something changes, you'll catch them.)"
     "FOOT"
@@ -144,9 +154,7 @@
   <<ca-button "Dash back to Christie's. (Did you miss something important? Is King going to survive? Nevermind that. Ma Tiger's more important.)"
     "BACK"
     "You're running back to Christie's.">>
-</span><</timed>>\
-<span id="ca-msg-status" class="hidden"></span>
-<<ca-timer>>
+<</ca-options-section>>\
 
 
 :: ChaseApostate_OnFoot_2
@@ -157,8 +165,7 @@
 <<next $timerString>>
   Once you catch them, what's the plan? There are four of them. Three known armed. One probably armed. If any of them are augmented, this might be hard to pull off.
 <</timed>>\
-<<timed $optionsString t8n>><span id="ca-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<ca-options-section>>\
   /* TODO: Vary button on how far they are? */\
   <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need, it's just a question of traffic and reds.)"
     "FOOT"
@@ -166,9 +173,7 @@
   <<ca-button "Dash back to Christie's. (If you chase any further than this, you won't have the time to return.)"
     "BACK"
     "You're running back to Christie's.">>
-</span><</timed>>\
-<span id="ca-msg-status" class="hidden"></span>
-<<ca-timer>>
+<</ca-options-section>>\
 
 
 :: ChaseApostate_OnFoot_3
@@ -179,17 +184,14 @@
 <<next $timerString>>
   Ahead of you, the van's side door slides open and a man leans. He spots you, vanishes. Seconds later he returns, mag rifle in hand, and kneels down, taking aim.
 <</timed>>\
-<<timed $optionsString t8n>><span id="ca-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<ca-options-section>>\
   <<ca-button "Run into the road, using traffic as cover. (Extraordinarily dangerous, but he probably won't shoot into random traffic.)"
     "ROAD"
     "You're running into the street.">>
   <<ca-button "Keep running along the sidewalks and risk gunfire. (Parked cars offer some cover, but the sidewalk is relatively exposed.)"
     "SIDEWALK"
     "You're running along the sidewalk.">>
-</span><</timed>>\
-<span id="ca-msg-status" class="hidden"></span>
-<<ca-timer>>
+<</ca-options-section>>\
 
 
 :: ChaseApostate_OnFoot_Road
