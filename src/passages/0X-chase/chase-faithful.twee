@@ -56,6 +56,17 @@
 <</widget>>\
 
 
+:: ChaseFaithful_OptionsWidget [widget]
+<<widget "cf-options-section" container>>\
+  <<timed $optionsString t8n>><span id="cf-timer">\
+    <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+    _contents
+  </span><</timed>>\
+  <span id="cf-msg-status" class="hidden"></span>\
+  <<cf-timer>>\
+<</widget>>\
+
+
 :: ChaseFaithful_ButtonWidget [widget]
 <<widget "cf-button">>\
   <<button _args[0]>>
@@ -95,45 +106,41 @@
 <<next $timerString>>
   <<include "ChaseShared_BarStatus">>
 <</timed>>\
-<<timed $optionsString t8n>><span id="cf-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-  /* TODO: Disable instead of hiding? also it leaves a space */\
-  <<if $canChaseOnFoot>>\
-    <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
-      "FOOT"
-      "You're giving chase on foot.">>
-  <<else>>\
-    <<disable>><<button "Chase after them on foot. (No chance.)">><</button>><</disable>>
-  <</if>>\
-  <<if $canCall911>>\
-    <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
-      "911"
-      "You're calling 911.">>
-  <<else>>\
-    <<disable>><<button "Call 911. (Already tried.)">><</button>><</disable>>
-  <</if>>\
-  <<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
-    "FRANCIS"
-    "You're calling St. Francis' Emergency Pet Clinic.">>
-  <<cf-button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
-    "CAR"
-    "You're starting Ma Tiger's car.">>
-  <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
-    "KING"
-    "You're stopping King's bleeding.">>
-  <<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
-    "BAR"
-    "You're enlisting the bar staff.">>
-</span><</timed>>\
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
+<<cf-options-section>>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</cf-options-section>>\
 
 
 :: ChaseFaithful_Christies_Buttons
+<<if $canChaseOnFoot>>\
+  <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
+    "FOOT"
+    "You're giving chase on foot.">>
+<<else>>\
+  <<disable>><<button "Chase after them on foot. (No chance.)">><</button>><</disable>>
+<</if>>\
+<<if $canCall911>>\
+  <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
+    "911"
+    "You're calling 911.">>
+<<else>>\
+  <<disable>><<button "Call 911. (Already tried.)">><</button>><</disable>>
+<</if>>\
+<<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
+  "FRANCIS"
+  "You're calling St. Francis' Emergency Pet Clinic.">>
+<<cf-button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
+  "CAR"
+  "You're starting Ma Tiger's car.">>
+<<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
+  "KING"
+  "You're stopping King's bleeding.">>
+<<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
+  "BAR"
+  "You're enlisting the bar staff.">>
 
 
 :: ChaseFaithful_OnFoot
-/* TODO: Disable further chase on foot if you go back. */\
 <<include "ChaseFaithful_TurnIndicator">>\
   You sprint down the sidewalk after the kidnappers. Thankfully, even in the city core, there aren't many walkers. Most people drive. You keep your eyes on the van.
 <<timed $timerString t8n>>
@@ -145,8 +152,7 @@
     You resist the urge to look back. You can't let your eyes off the van; if you lose it, you're not sure you can find it again. You push your worries about King away.
   <</if>>\
 <</timed>>\
-<<timed $optionsString t8n>><span id="cf-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<cf-options-section>>\
   /* TODO: Vary button on how far they are? */\
   <<cf-button "Run, dammit! (Can you really run down a car? Luckily you're in the city core; all the streets nearby have lights.)"
     "FOOT"
@@ -154,9 +160,7 @@
   <<cf-button "Dash back to Christie's. (Dammit, should've taken the car. Is King okay? You're fit, but can you win a race with a car?)"
     "BACK"
     "You're running back to Christie's.">>
-</span><</timed>>\
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
+<</cf-options-section>>\
 
 
 :: ChaseFaithful_OnFoot_2
@@ -167,14 +171,11 @@
 <<next $timerString>>
   You realize with a sinking feeling that the kidnappers are pulling away, despite the evening traffic. Your human heart can't keep up with their electric engine.
 <</timed>>\
-<<timed $optionsString t8n>><span id="cf-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<cf-options-section>>\
   <<cf-button "Dash back to Christie's. (Fuck, fuck, fuck. Stupid idea in the first place. Of course you can't race a car.)"
     "BACK"
     "You're running back to Christie's.">>
-</span><</timed>>\
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
+<</cf-options-section>>\
 
 
 :: ChaseFaithful_911
@@ -185,8 +186,7 @@
 <<next $timerString>>
   You pull your phone out of your pocket, dial 911, hold it up to your ear. It connects immediately. "This is 911," says the AI, "what is your emergency?"
 <</timed>>\
-<<timed $optionsString t8n>><span id="cf-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<cf-options-section>>\
   <<cf-button "Report a kidnapping in progress. (It's unlikely to garner a fast response, but it's better than running after a van.)"
     "TIGER"
     "You're reporting a kidnapping to 911.">>
@@ -199,9 +199,7 @@
   <<cf-button "End the call. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
-</span><</timed>>\
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
+<</cf-options-section>>\
 
 :: ChaseFaithful_911_Tiger
 <<include "ChaseFaithful_TurnIndicator">>\
@@ -211,8 +209,7 @@
 <<next $timerString>>
   You glance over at the facade to find the address number. "1718 Holcomb Ave, Reno, Nevada, 89502." Why did you give the zip code? They don't need the zip code.
 <</timed>>\
-<<timed $optionsString t8n>><span id="cf-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<cf-options-section>>\
   <<cf-button "Continue giving the report. (Come on, come on, this is taking way too long, speed this up!)"
     "TIGER"
     "You're reporting the kidnapping.">>
@@ -222,9 +219,7 @@
   <<cf-button "End the call. (Was this a bad idea, or is it wasting too much time?)"
     "NONE"
     "You're ending the 911 call.">>
-</span><</timed>>\
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
+<</cf-options-section>>\
 
 
 :: ChaseFaithful_911_Tiger_2
@@ -243,8 +238,7 @@
 <<next 4s>>
   "Did you catch the license plates?"
 <</timed>>\
-<<timed $optionsString t8n>><span id="cf-timer">\
-  <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
+<<cf-options-section>>\
   <<cf-button "Keep giving the report. (It's normal for 911 to ask callers to stay on the line - shit. You'll be tied to your phone if you do this.)"
     "STAY"
     "You're staying on the line.">>
@@ -254,9 +248,7 @@
   <<cf-button "End the call. (That's enough already. You can't stay tied to your phone while King is right here, wounded.)"
     "NONE"
     "You're ending the 911 call.">>
-</span><</timed>>\
-<span id="cf-msg-status" class="hidden"></span>\
-<<cf-timer>>\
+<</cf-options-section>>\
 
 
 :: ChaseFaithful_911_Tiger_Bartender
