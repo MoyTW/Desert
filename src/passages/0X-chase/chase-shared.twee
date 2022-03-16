@@ -1,9 +1,16 @@
 :: ChaseShared_Init
-<<set $chaseTurn to 1>>\
-/* TODO: Set back to 8 */\
-<<set $timerSeconds to 1>>\
-<<set $timerString to $timerSeconds + 's'>>\
-<<set $optionsString to $timerSeconds * 3 + 's'>>\
+<<nobr>>
+  <<set $chaseTurn to 1>>
+
+  /* Timer Stuff */
+  /* TODO: Set back to 8 */
+  <<set $timerSeconds to 1>>
+  <<set $timerString to $timerSeconds + 's'>>
+  <<set $optionsString to $timerSeconds * 3 + 's'>>
+
+  /* Action Availability */
+  <<set $canChaseOnFoot to true>> /* TODO: Set this! */
+<</nobr>>\
 
 
 :: ChaseShared_Text

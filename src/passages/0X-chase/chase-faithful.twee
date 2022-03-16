@@ -97,9 +97,10 @@
 <</timed>>\
 <<timed $optionsString t8n>><span id="cf-timer">\
   <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-  <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
+  /* TODO: Disable instead of hiding? also it leaves a space */
+  <<if $canChaseOnFoot>><<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
     "FOOT"
-    "You're giving chase on foot.">>
+    "You're giving chase on foot.">><</if>>
   <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
     "911"
     "You're calling 911.">>

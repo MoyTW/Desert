@@ -15,29 +15,33 @@
     (State.variables as any).chaseTurn++
   }
 
-  const _routingTable = new Map<string, Map<string,string>>([
-    ["ChaseApostate_Christies", new Map<string,string>([
-      ["FOOT", "ChaseApostate_OnFoot"],
-      ["911", "ChaseApostate_911"],
-      ["CAR", "ChaseApostate_Car"],
-      ["KING", "ChaseApostate_King"],
-      ["BAR", "ChaseApostate_Bar"],
-      ["FREEZE", "ChaseApostate_Christies"],
+  const _routingTable = new Map<string, Map<string,[string, () => void]>>([
+    ["ChaseApostate_Christies", new Map<string,[string, () => void]>([
+      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
+      ["911", ["ChaseApostate_911", () => {}]],
+      ["CAR", ["ChaseApostate_Car", () => {}]],
+      ["KING", ["ChaseApostate_King", () => {}]],
+      ["BAR", ["ChaseApostate_Bar", () => {}]],
+      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
     ])],
-    ["ChaseApostate_OnFoot", new Map<string,string>([
-      ["FOOT", "ChaseApostate_OnFoot_2"],
-      ["BACK", "ChaseApostate_Christies"],
-      ["FREEZE", "ChaseApostate_OnFoot"],
+    ["ChaseApostate_OnFoot", new Map<string,[string, () => void]>([
+      ["FOOT", ["ChaseApostate_OnFoot_2", () => {}]],
+      ["BACK", ["ChaseApostate_Christies", () => {
+        (State.variables as any).canChaseOnFoot = false
+      }]],
+      ["FREEZE", ["ChaseApostate_OnFoot", () => {}]],
     ])],
-    ["ChaseApostate_OnFoot_2", new Map<string,string>([
-      ["FOOT", "ChaseApostate_OnFoot_3"],
-      ["BACK", "ChaseApostate_Christies"],
-      ["FREEZE", "ChaseApostate_OnFoot_2"],
+    ["ChaseApostate_OnFoot_2", new Map<string,[string, () => void]>([
+      ["FOOT", ["ChaseApostate_OnFoot_3", () => {}]],
+      ["BACK", ["ChaseApostate_Christies", () => {
+        (State.variables as any).canChaseOnFoot = false
+      }]],
+      ["FREEZE", ["ChaseApostate_OnFoot_2", () => {}]],
     ])],
-    ["ChaseApostate_OnFoot_3", new Map<string,string>([
-      ["ROAD", "ChaseApostate_OnFoot_Road"],
-      ["SIDEWALK", "ChaseApostate_OnFoot_Sidewalk"],
-      ["FREEZE", "ChaseApostate_OnFoot_3"], /* TODO: You get shot */
+    ["ChaseApostate_OnFoot_3", new Map<string,[string, () => void]>([
+      ["ROAD", ["ChaseApostate_OnFoot_Road", () => {}]],
+      ["SIDEWALK", ["ChaseApostate_OnFoot_Sidewalk", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_3", () => {}]], /* TODO: You get shot */
     ])],
   ])
 
@@ -54,6 +58,8 @@
     delete _vars.ChaseFaithful_CHOICE
 
     const apostateChoice: string = _vars.ChaseApostate_CHOICE_LAST.choice
-    Engine.play(_routingTable.get(passage())?.get(apostateChoice)!)
+    const [nextPassage, passageFn] =_routingTable.get(passage())?.get(apostateChoice)!
+    passageFn()
+    Engine.play(nextPassage)
   }
 })()
