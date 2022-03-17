@@ -104,9 +104,14 @@
 <<else>>\
   <<disable>><<button "Help King. (Ma Tiger's more important.)">><</button>><</disable>>
 <</if>>\
-<<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
-  "BAR"
-  "You're enlisting the bar staff.">>
+<<if $bartenderAction is "NONE">>\
+  <<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
+    "BAR"
+    "You're enlisting the bar staff.">>
+<<else>>\
+  /* TODO: Vary this! */\
+  <<disable>><<button "Enlist the bar staff. (They're busy.)">><</button>><</disable>>
+<</if>>\
 
 
 :: ChaseApostate_OnFoot
@@ -288,7 +293,7 @@ TODO
 /* TODO: Write a Jeku conflict path. */\
 /* TODO: Lock out bartender for future! */\
 <<include "ChaseApostate_TurnIndicator">>\
-  "Bartender!" you yell, pointing at him. He starts. "Do you have a first aid kit? Do you know first aid?" He looks at the cook. Wordlessly, she dashes back into the bar.
+  "Hey!" you yell, pointing at the bartender. He starts. "Do you have a first aid kit behind the bar?" He looks at the cook. Wordlessly, she dashes back into the bar.
 <<timed $timerString t8n>>
   The bartender swallows. "I know first aid," he says, "but I've never - I've never used it. I've never treated a dog." He swallows, kneels down gingerly beside King.
 <<next $timerString>>
@@ -303,7 +308,7 @@ TODO
     "You're telling the cook to treat King.">>
   <<ca-button "Let her do what she wants. (She likely can't make things worse.)"
     "ALLOW"
-    "You're stopping the cook from calling 911.">>
+    "You're letting the cook do what she wants.">>
 <</chase-shared-options-section>>\
 
 

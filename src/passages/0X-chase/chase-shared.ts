@@ -64,26 +64,41 @@
     ["ChaseApostate_King_Leave", _apostateChristiesRouting],
     // Ebi's Bar options all conclude with Christie's options
     ["ChaseApostate_Bar", new Map<string,[string, () => void]>([
-      ["PREVENT", ["ChaseApostate_Bar_Prevent", () => {}]], /* TODO: last action */
-      ["TREAT", ["ChaseApostate_Bar_Treat", () => {}]], /* TODO: record side effect */
-      ["ALLOW", ["ChaseApostate_Bar_Allow", () => {}]], /* TODO: record side effect */
-      ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
+      ["PREVENT", ["ChaseApostate_Bar_Prevent", () => {
+        (State.variables as any).calledFrancis = true;
+        (State.variables as any).cookAction = "PET_CLINIC"
+      }]],
+      ["TREAT", ["ChaseApostate_Bar_Treat", () => {
+        (State.variables as any).cookAction = "FIRST_AID"
+      }]],
+      ["ALLOW", ["ChaseApostate_Bar_Allow", () => {
+        // TODO: Vary the lockout message
+        (State.variables as any).apostateCanCall911 = false;
+        (State.variables as any).called911 = true;
+        (State.variables as any).cookAction = "911";
+      }]],
+      ["FREEZE", ["ChaseApostate_Bar", () => {}]], /* TODO: explainer line? */
     ])],
     ["ChaseApostate_Bar_Prevent", _apostateChristiesRouting],
     ["ChaseApostate_Bar_Treat", _apostateChristiesRouting],
     ["ChaseApostate_Bar_Allow", _apostateChristiesRouting],
   ])
 
+  const _faithfulChristiesRouting = new Map<string,[string, () => void]>([
+    ["FOOT", ["ChaseFaithful_OnFoot", () => {}]],
+    ["911", ["ChaseFaithful_911", () => {}]],
+    ["FRANCIS", ["ChaseFaithful_Francis", () => {}]],
+    ["CAR", ["ChaseFaithful_Car", () => {}]],
+    ["KING", ["ChaseFaithful_King", () => {}]],
+    ["BAR", ["ChaseFaithful_Bar", () => {
+      (State.variables as any).bartenderAction = "TALK";
+      (State.variables as any).cookAction = "TALK";
+    }]],
+    ["FREEZE", ["ChaseFaithful_Christies", () => {}]],
+  ])
+
   const _faithfulRoutingTable = new Map<string, Map<string,[string, () => void]>>([
-    ["ChaseFaithful_Christies", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseFaithful_OnFoot", () => {}]],
-      ["911", ["ChaseFaithful_911", () => {}]],
-      ["FRANCIS", ["ChaseFaithful_Francis", () => {}]],
-      ["CAR", ["ChaseFaithful_Car", () => {}]],
-      ["KING", ["ChaseFaithful_King", () => {}]],
-      ["BAR", ["ChaseFaithful_Bar", () => {}]],
-      ["FREEZE", ["ChaseFaithful_Christies", () => {}]],
-    ])],
+    ["ChaseFaithful_Christies", _faithfulChristiesRouting],
     ["ChaseFaithful_OnFoot", new Map<string,[string, () => void]>([
       ["FOOT", ["ChaseFaithful_OnFoot_2", () => {}]],
       ["BACK", ["ChaseFaithful_Christies", () => {
@@ -122,5 +137,26 @@
       }]], // TODO: First line should be 'your action'
       ["FREEZE", ["ChaseFaithful_911_Tiger_2", () => {}]],
     ])],
+    ["ChaseFaithful_Bar", new Map<string,[string, () => void]>([
+      ["PET", ["ChaseFaithful_Bar_Pet", () => {
+        // TODO: Vary the lockout message
+        (State.variables as any).faithfulCanCallFrancis = false;
+        (State.variables as any).calledFrancis = true;
+        (State.variables as any).cookAction = "PET_CLINIC"
+      }]],
+      ["TREAT", ["ChaseFaithful_Bar_Treat", () => {
+        (State.variables as any).cookAction = "FIRST_AID"
+      }]],
+      ["ALLOW", ["ChaseFaithful_Bar_Allow", () => {
+        // TODO: Vary the lockout message
+        (State.variables as any).faithfulCanCall911 = false;
+        (State.variables as any).called911 = true;
+        (State.variables as any).cookAction = "911";
+      }]],
+      ["FREEZE", ["ChaseFaithful_Bar", () => {}]],
+    ])],
+    ["ChaseFaithful_Bar_Pet", _faithfulChristiesRouting],
+    ["ChaseFaithful_Bar_Treat", _faithfulChristiesRouting],
+    ["ChaseFaithful_Bar_Allow", _faithfulChristiesRouting],
   ])
 })()

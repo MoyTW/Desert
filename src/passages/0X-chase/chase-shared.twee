@@ -16,12 +16,16 @@
   <<set $faithfulCanChaseOnFoot to true>>
   <<set $apostateCanCall911 to true>>
   <<set $faithfulCanCall911 to true>>
+  <<set $faithfulCanCallFrancis to true>>
   <<set $apostateCanTriageKing to true>>
   <<set $faithfulCanTriageKing to true>> /* TODO: this */
 
   /* World State */
   <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID", "911" ] TODO: Set! */
   <<set $cookAction to "NONE">> /* [ "NONE", "TALK", "PET_CLINIC", "FIRST_AID", "911" ] TODO: Set! */
+
+  <<set $called911 to false>>
+  <<set $calledFrancis to false>>
 <</nobr>>\
 
 

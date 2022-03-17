@@ -91,18 +91,28 @@
 <<else>>\
   <<disable>><<button "Call 911. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
-<<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
-  "FRANCIS"
-  "You're calling St. Francis' Emergency Pet Clinic.">>
+<<if $faithfulCanCallFrancis>>\
+  <<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
+    "FRANCIS"
+    "You're calling St. Francis' Emergency Pet Clinic.">>
+<<else>>\
+  /* TODO: Vary this! */\
+  <<disable>><<button "Call St. Francis' Emergency Pet Clinic. (Already tried. Don't want to waste time.)">><</button>><</disable>>
+<</if>>\
 <<cf-button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
   "CAR"
   "You're starting Ma Tiger's car.">>
 <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
   "KING"
   "You're stopping King's bleeding.">>
-<<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
-  "BAR"
-  "You're enlisting the bar staff.">>
+<<if $bartenderAction is "NONE">>\
+  <<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
+    "BAR"
+    "You're enlisting the bar staff.">>
+<<else>>\
+  /* TODO: Vary this! */\
+  <<disable>><<button "Ask the bar staff for help. (They're busy.)">><</button>><</disable>>
+<</if>>\
 
 
 :: ChaseFaithful_OnFoot
@@ -261,7 +271,64 @@ TODO
 
 :: ChaseFaithful_Bar
 /** ###################################################################### **/\
-/** # ON FOOT                                                            # **/\
+/** # BAR                                                                # **/\
 /** ###################################################################### **/\
-TODO
+/* TODO: Write an Ebi conflict path. */\
+/* TODO: Lock out bartender for future! */\
+<<include "ChaseFaithful_TurnIndicator">>\
+  "Bartender!" you yell, pointing at him. He starts. "Do you know first aid?" He pauses, looking at King, then grimaces and starts to roll up his sleeves.
+<<timed $timerString t8n>>
+  "Yeah," he says, "I do, but I've never used it. I don't - I don't know how to treat a dog, but I can help." He looks at the cook, and she flies back into the bar.
+<<next $timerString>>
+  The cook bursts back out, a first aid kit in hand. "Here!" she yells, shoving it towards her coworker. "I'll call 911!" She grabs her phone out of her pocket.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Tell her to call the the Emergency Pet Clinic instead. (911 is for humans only, they don't handle pets.)"
+    "PET"
+    "You're telling the cook to call the pet clinic instead.">>
+  <<cf-button "Tell her to help treat King. (King is bleeding badly, from multiple wounds, and having more people to apply pressure will help.)"
+    "TREAT"
+    "You're telling the cook to treat King.">>
+  <<cf-button "Let her do what she wants. (You don't have the time to manage her.)"
+    "ALLOW"
+    "You're letting the cook do as she wants.">>
+<</chase-shared-options-section>>\
 
+
+:: ChaseFaithful_Bar_Pet
+<<include "ChaseFaithful_TurnIndicator">>\
+  "Don't call 911!" you yell, and the cook freezes. She stares at you. "911 won't respond for animals. Call St. Francis instead, tell them that it's an emergency!"
+<<timed $timerString t8n>>
+  "Okay. Okay! Xara," she says to her phone, "call St. Francis - is it a vet? Call the St. Francis vet!" She holds her phone up. "Yes," she says, "an emergency..."
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Bar_Treat
+<<include "ChaseFaithful_TurnIndicator">>\
+  "Wait!" you yell, and the cook freezes. She stares at you. "King has too many wounds," you say, "we need you to help apply pressure!" You point to the bartender.
+<<timed $timerString t8n>>
+  She swallows. "I don't know - okay. Okay." She takes a deep breath. She shucks her apron joins the bartender on the sidewalk. "Adam," she says, "what should I do?"
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Bar_Allow
+<<include "ChaseFaithful_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  You hear the cook yelling into her phone. "Yes," she says, "it's an emergency, they just kidnapped a woman! She's a woman, Asian, an Asian woman, in a white van..."
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
