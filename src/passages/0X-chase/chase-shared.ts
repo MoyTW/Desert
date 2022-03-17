@@ -10,15 +10,17 @@
     return _faithfulRoutingTable.get(passage)?.get(choice)!
   }
 
+  const _apostateChristiesRouting = new Map<string,[string, () => void]>([
+    ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
+    ["911", ["ChaseApostate_911", () => {}]],
+    ["CAR", ["ChaseApostate_Car", () => {}]],
+    ["KING", ["ChaseApostate_King", () => {}]],
+    ["BAR", ["ChaseApostate_Bar", () => {}]],
+    ["FREEZE", ["ChaseApostate_Christies", () => {}]],
+  ])
+
   const _apostateRoutingTable = new Map<string, Map<string,[string, () => void]>>([
-    ["ChaseApostate_Christies", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
-      ["911", ["ChaseApostate_911", () => {}]],
-      ["CAR", ["ChaseApostate_Car", () => {}]],
-      ["KING", ["ChaseApostate_King", () => {}]],
-      ["BAR", ["ChaseApostate_Bar", () => {}]],
-      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
-    ])],
+    ["ChaseApostate_Christies", _apostateChristiesRouting],
     ["ChaseApostate_OnFoot", new Map<string,[string, () => void]>([
       ["FOOT", ["ChaseApostate_OnFoot_2", () => {}]],
       ["BACK", ["ChaseApostate_Christies", () => {
@@ -51,6 +53,15 @@
       ["EXIT", ["ChaseApostate_Christies", () => {}]], /* TODO: "what did you last do" */
       ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
     ])],
+    ["ChaseApostate_King", new Map<string,[string, () => void]>([
+      ["BLEEDING", ["ChaseApostate_King_2", () => {}]],
+      ["BAR", ["ChaseApostate_King_Bar", () => {}]],
+      ["LEAVE", ["ChaseApostate_King_Leave", () => {
+        (State.variables as any).apostateCanTriageKing = false
+      }]],
+      ["FREEZE", ["ChaseApostate_King", () => {}]],
+    ])],
+    ["ChaseApostate_King_Leave", _apostateChristiesRouting],
     // Ebi's Bar options all conclude with Christie's options
     ["ChaseApostate_Bar", new Map<string,[string, () => void]>([
       ["PREVENT", ["ChaseApostate_Bar_Prevent", () => {}]], /* TODO: last action */
@@ -58,27 +69,9 @@
       ["ALLOW", ["ChaseApostate_Bar_Allow", () => {}]], /* TODO: record side effect */
       ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
     ])],
-    ["ChaseApostate_Bar_Prevent", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
-      ["911", ["ChaseApostate_911", () => {}]],
-      ["CAR", ["ChaseApostate_Car", () => {}]],
-      ["KING", ["ChaseApostate_King", () => {}]],
-      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
-    ])],
-    ["ChaseApostate_Bar_Treat", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
-      ["911", ["ChaseApostate_911", () => {}]],
-      ["CAR", ["ChaseApostate_Car", () => {}]],
-      ["KING", ["ChaseApostate_King", () => {}]],
-      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
-    ])],
-    ["ChaseApostate_Bar_Allow", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
-      ["911", ["ChaseApostate_911", () => {}]],
-      ["CAR", ["ChaseApostate_Car", () => {}]],
-      ["KING", ["ChaseApostate_King", () => {}]],
-      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
-    ])],
+    ["ChaseApostate_Bar_Prevent", _apostateChristiesRouting],
+    ["ChaseApostate_Bar_Treat", _apostateChristiesRouting],
+    ["ChaseApostate_Bar_Allow", _apostateChristiesRouting],
   ])
 
   const _faithfulRoutingTable = new Map<string, Map<string,[string, () => void]>>([

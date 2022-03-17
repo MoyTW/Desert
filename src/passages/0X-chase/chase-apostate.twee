@@ -93,19 +93,26 @@
 <<else>>\
   <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
 <</if>>\
+/* TODO: add "can do" to this */\
 <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
   "CAR"
   "You're starting Ma Tiger's car.">>
-<<ca-button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)"
-  "KING"
-  "You're stopping King's bleeding.">>
+<<if $apostateCanTriageKing>>\
+  <<ca-button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)"
+    "KING"
+    "You're helping King.">>
+<<else>>\
+  <<disable>><<button "Help King. (Ma Tiger's more important.)">><</button>><</disable>>
+<</if>>\
 <<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
   "BAR"
   "You're enlisting the bar staff.">>
 
 
 :: ChaseApostate_OnFoot
-/* TODO: Disable further chase on foot if you go back. */\
+/** ###################################################################### **/\
+/** # ON FOOT                                                            # **/\
+/** ###################################################################### **/\
 <<include "ChaseApostate_TurnIndicator">>\
   You narrow your eyes and will your legs into high gear. Your heart hammers in your ears; your breaths come faster and faster; your legs burst with energy. You <em>run.</em>
 <<timed $timerString t8n>>
@@ -176,6 +183,9 @@ TODO
 
 
 :: ChaseApostate_911
+/** ###################################################################### **/\
+/** # 911                                                                # **/\
+/** ###################################################################### **/\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
@@ -212,6 +222,9 @@ TODO
 
 
 :: ChaseApostate_Car
+/** ###################################################################### **/\
+/** # CAR                                                                # **/\
+/** ###################################################################### **/\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
@@ -229,16 +242,51 @@ TODO
 
 
 :: ChaseApostate_King
+/** ###################################################################### **/\
+/** # KING                                                               # **/\
+/** ###################################################################### **/\
+/* TODO: IF JEKU: other */\
+/* TODO: IF BARTENDER: other */\
 <<include "ChaseApostate_TurnIndicator">>\
-You manage to calm King down.
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  You kneel down next to King. His front right leg is broken, bone shards protruding from the bloody mess. He has two bullet holes on his underbelly and one in the back.
+<<next $timerString>>
+  He's bleeding out at an alarming rate. His chest heaves. His growling has turned to whimpers, but at least he's stopped trying to push himself up. This is very bad.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Stop King's bleeding. (This will take a long time. It might not work. If you do this, you won't have time to give chase.)"
+    "BLEEDING"
+    "You're stopping King from bleeding out.">>
+  /* TODO: Jeku conflict! */\
+  <<if $bartenderAction is "NONE">>\
+    <<ca-button "Get the bar staff to help. (Trained or not, they can at least get supplies or apply pressure. Better than nothing.)"
+      "BAR"
+      "You're enlisting the bar staff.">>
+  <</if>>\
+  <<ca-button "Leave King as he is. (Ma Tiger is more important.)"
+    "LEAVE"
+    "You're leaving King as he is.">>
+<</chase-shared-options-section>>\
 
-TODO Choices:
-* try and stop the bleeding
-* do something else
+
+:: ChaseApostate_King_Bar
+TODO
+
+
+:: ChaseApostate_King_Leave
+TODO
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_Bar
+/** ###################################################################### **/\
+/** # BAR                                                                # **/\
+/** ###################################################################### **/\
 /* TODO: Write a Jeku conflict path. */\
+/* TODO: Lock out bartender for future! */\
 <<include "ChaseApostate_TurnIndicator">>\
   "Bartender!" you yell, pointing at him. He starts. "Do you have a first aid kit? Do you know first aid?" He looks at the cook. Wordlessly, she dashes back into the bar.
 <<timed $timerString t8n>>
