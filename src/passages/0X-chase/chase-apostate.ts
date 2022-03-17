@@ -52,6 +52,38 @@
       }]],
       ["FREEZE", ["ChaseApostate_911", () => {}]],
     ])],
+    ["ChaseApostate_Car", new Map<string,[string, () => void]>([
+      ["EXIT", ["ChaseApostate_Christies", () => {}]], /* TODO: "what did you last do" */
+      ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
+    ])],
+    // Ebi's Bar options all conclude with Christie's options
+    ["ChaseApostate_Bar", new Map<string,[string, () => void]>([
+      ["PREVENT", ["ChaseApostate_Bar_Prevent", () => {}]], /* TODO: last action */
+      ["TREAT", ["ChaseApostate_Bar_Treat", () => {}]], /* TODO: record side effect */
+      ["ALLOW", ["ChaseApostate_Bar_Allow", () => {}]], /* TODO: record side effect */
+      ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
+    ])],
+    ["ChaseApostate_Bar_Prevent", new Map<string,[string, () => void]>([
+      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
+      ["911", ["ChaseApostate_911", () => {}]],
+      ["CAR", ["ChaseApostate_Car", () => {}]],
+      ["KING", ["ChaseApostate_King", () => {}]],
+      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
+    ])],
+    ["ChaseApostate_Bar_Treat", new Map<string,[string, () => void]>([
+      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
+      ["911", ["ChaseApostate_911", () => {}]],
+      ["CAR", ["ChaseApostate_Car", () => {}]],
+      ["KING", ["ChaseApostate_King", () => {}]],
+      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
+    ])],
+    ["ChaseApostate_Bar_Allow", new Map<string,[string, () => void]>([
+      ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
+      ["911", ["ChaseApostate_911", () => {}]],
+      ["CAR", ["ChaseApostate_Car", () => {}]],
+      ["KING", ["ChaseApostate_King", () => {}]],
+      ["FREEZE", ["ChaseApostate_Christies", () => {}]],
+    ])],
   ])
 
   _setup.Route_ChaseApostate_Choice = function() {

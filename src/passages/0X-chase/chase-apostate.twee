@@ -177,6 +177,7 @@ TODO
 
 :: ChaseApostate_911
 <<include "ChaseApostate_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
   <<include "ChaseShared_DogStatus">>
 <<next $timerString>>
@@ -212,11 +213,19 @@ TODO
 
 :: ChaseApostate_Car
 <<include "ChaseApostate_TurnIndicator">>\
-You grab the keys and get in the car and you have no idea how to work it.
-
-TODO Choices:
-* drive even though you don't know how
-* get out and throw the keys at Jekusheke
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  /* TODO: Jekusheke */\
+  You drive for the keys, snatching them off the ground and leaping into the car. There's a wheel, but maybe it has an AI. "Follow the closest white van!" you yell.
+<<next $timerString>>
+  The car doesn't respond. It hasn't even started. You press the key to the dash. Nothing. You can't even turn it on, and you couldn't drive it if you could.
+<</timed>>\
+/* TODO: Stay in the car and let Jeku drive it */\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Drop the keys on the seat and get out. (It'd be faster to get out and run.)"
+    "EXIT"
+    "You're exiting the car.">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_King
@@ -229,16 +238,59 @@ TODO Choices:
 
 
 :: ChaseApostate_Bar
+/* TODO: Write a Jeku conflict path. */\
 <<include "ChaseApostate_TurnIndicator">>\
-You talk to the people and they go and get first aid.
+  "Bartender!" you yell, pointing at him. He starts. "Do you have a first aid kit? Do you know first aid?" He looks at the cook. Wordlessly, she dashes back into the bar.
+<<timed $timerString t8n>>
+  The bartender swallows. "I know first aid," he says, "but I've never - I've never used it. I've never treated a dog." He swallows, kneels down gingerly beside King.
+<<next $timerString>>
+  "Here!" yells the cook, bursting out the bar with a kit. She hands it to her coworker. "I'll call 911!" she says, grabbing her phone out of her pockets.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Stop her from calling 911. (Ma Tiger didn't involve the law for a reason. Best to follow her lead on that.)"
+    "PREVENT"
+    "You're stopping the cook from calling 911.">>
+  <<ca-button "Tell her to help treat King. (Maybe you need to bring the law in, maybe not, but if you do you'd rather it be on your terms.)"
+    "TREAT"
+    "You're telling the cook to treat King.">>
+  <<ca-button "Let her do what she wants. (She likely can't make things worse.)"
+    "ALLOW"
+    "You're stopping the cook from calling 911.">>
+<</chase-shared-options-section>>\
 
-TODO Choices:
-* do something else
 
-
-:: ChaseApostate_Freeze
+:: ChaseApostate_Bar_Prevent
 <<include "ChaseApostate_TurnIndicator">>\
-You freeze.
+  "Stop!" you call, pointing at the cook. She freezes. "911 doesn't treat animals! Call an all-hours pet clinic!" She nods, panicked. Is that true? Probably.
+<<timed $timerString t8n>>
+  "Xara," she tells her phone, "call the nearest emergency pet clinic!" She holds her phone up, nervously slapping her leg. "Yes! It's an emergency - there's a dog..."
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
-TODO Choices:
-* do something else
+:: ChaseApostate_Bar_Treat
+<<include "ChaseApostate_TurnIndicator">>\
+  "Stop!" you call, pointing at the cook. She freezes. "Help with the first aid!" You point to King, whining pitifully on the sidewalk. She stares, hesitant.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  After a moment, she shuffles over to King and kneels. You breathe a sign of relief. No complaints. Hopefully that will keep her busy. She might even help.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+:: ChaseApostate_Bar_Allow
+<<include "ChaseApostate_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  You hear the cook yelling into her phone. "Yes," she says, "it's an emergency, they just kidnapped a woman! She's a woman, Asian, an Asian woman, in a white van..."
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
