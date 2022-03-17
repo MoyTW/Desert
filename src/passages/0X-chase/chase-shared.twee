@@ -50,9 +50,9 @@
           <<replace "#timer-seconds">>$seconds<</replace>>
         <<elseif $seconds eq 0>>
           <<if _args[0] is "Apostate">>
-            <<send "ChaseApostate_CHOICE" { choice: "FREEZE" }>><</send>>
+            <<send "ChaseApostate_CHOICE" { choice: "FREEZE", passage: passage() }>><</send>>
           <<elseif _args[0] is "Faithful">>
-            <<send "ChaseFaithful_CHOICE" { choice: "FREEZE" }>><</send>>
+            <<send "ChaseFaithful_CHOICE" { choice: "FREEZE", passage: passage() }>><</send>>
           <<else>>
             <<run console.error('Options widget choice was wrong!')>>
           <</if>>
