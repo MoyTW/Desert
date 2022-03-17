@@ -35,7 +35,7 @@
 :: ChaseApostate_ButtonWidget [widget]
 <<widget "ca-button">>\
   <<button _args[0]>>
-    <<send "ChaseApostate_CHOICE" { choice: _args[1] }>><</send>>
+    <<send "ChaseApostate_CHOICE" { choice: _args[1], passage: passage() }>><</send>>
     <<replace "#chase-shared-timer">><h1>_args[2]</h1><</replace>>
     <<set _stopTimer to true>>
     <<run $("#chase-shared-msg-status").removeClass("hidden")>>
@@ -79,14 +79,14 @@
 
 
 :: ChaseApostate_Christies_Buttons
-<<if $canChaseOnFoot>>\
+<<if $apostateCanChaseOnFoot>>\
   <<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
     "You're giving chase on foot.">>
 <<else>>\
   <<disable>><<button "Chase after them on foot. (No time now, not after coming back.)">><</button>><</disable>>
 <</if>>\
-<<if $canCall911>>\
+<<if $apostateCanCall911>>\
   <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but 911 is slow. Plus, getting them involved might be a bad idea.)"
     "911"
     "You're calling 911.">>

@@ -35,7 +35,7 @@
 :: ChaseFaithful_ButtonWidget [widget]
 <<widget "cf-button">>\
   <<button _args[0]>>
-    <<send "ChaseFaithful_CHOICE" { choice: _args[1] }>><</send>>
+    <<send "ChaseFaithful_CHOICE" { choice: _args[1], passage: passage() }>><</send>>
     <<replace "#chase-shared-timer">><h1>_args[2]</h1><</replace>>
     <<set _stopTimer to true>>
     <<run $("#chase-shared-msg-status").removeClass("hidden")>>
@@ -77,14 +77,14 @@
 
 
 :: ChaseFaithful_Christies_Buttons
-<<if $canChaseOnFoot>>\
+<<if $faithfulCanChaseOnFoot>>\
   <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
     "FOOT"
     "You're giving chase on foot.">>
 <<else>>\
   <<disable>><<button "Chase after them on foot. (No chance.)">><</button>><</disable>>
 <</if>>\
-<<if $canCall911>>\
+<<if $faithfulCanCall911>>\
   <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
     "911"
     "You're calling 911.">>

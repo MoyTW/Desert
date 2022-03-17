@@ -15,56 +15,6 @@
     (State.variables as any).chaseTurn++
   }
 
-  const _routingTable = new Map<string, Map<string,[string, () => void]>>([
-    ["ChaseFaithful_Christies", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseFaithful_OnFoot", () => {}]],
-      ["911", ["ChaseFaithful_911", () => {}]],
-      ["FRANCIS", ["ChaseFaithful_Francis", () => {}]],
-      ["CAR", ["ChaseFaithful_Car", () => {}]],
-      ["KING", ["ChaseFaithful_King", () => {}]],
-      ["BAR", ["ChaseFaithful_Bar", () => {}]],
-      ["FREEZE", ["ChaseFaithful_Christies", () => {}]],
-    ])],
-    ["ChaseFaithful_OnFoot", new Map<string,[string, () => void]>([
-      ["FOOT", ["ChaseFaithful_OnFoot_2", () => {}]],
-      ["BACK", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).canChaseOnFoot = false
-      }]],
-      ["FREEZE", ["ChaseFaithful_OnFoot", () => {}]],
-    ])],
-    ["ChaseFaithful_OnFoot_2", new Map<string,[string, () => void]>([
-      ["BACK", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).canChaseOnFoot = false
-      }]],
-      ["FREEZE", ["ChaseFaithful_OnFoot_2", () => {}]],
-    ])],
-    ["ChaseFaithful_911", new Map<string,[string, () => void]>([
-      ["TIGER", ["ChaseFaithful_911_Tiger", () => {}]],
-      ["KING", ["ChaseFaithful_911_King", () => {}]],
-      ["BOTH", ["ChaseFaithful_911_Both", () => {}]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).canCall911 = false
-      }]], // TODO: First line should be 'your action'
-      ["FREEZE", ["ChaseFaithful_911", () => {}]],
-    ])],
-    ["ChaseFaithful_911_Tiger", new Map<string,[string, () => void]>([
-      ["TIGER", ["ChaseFaithful_911_Tiger_2", () => {}]], // TODO: Actually modify the state!
-      ["BOTH", ["ChaseFaithful_911_Both", () => {}]], // TODO: Maybe not
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).canCall911 = false
-      }]], // TODO: First line should be 'your action'
-      ["FREEZE", ["ChaseFaithful_911_Tiger", () => {}]],
-    ])],
-    ["ChaseFaithful_911_Tiger_2", new Map<string,[string, () => void]>([
-      ["STAY", ["ChaseFaithful_911_Tiger_3", () => {}]], // TODO: Actually modify the state!
-      ["BARTENDER", ["ChaseFaithful_911_Tiger_Bartender", () => {}]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).canCall911 = false
-      }]], // TODO: First line should be 'your action'
-      ["FREEZE", ["ChaseFaithful_911_Tiger_2", () => {}]],
-    ])],
-  ])
-
   _setup.Complete_ChaseFaithful_Christies = function() {
     const _vars = State.variables as any;
 
@@ -77,8 +27,15 @@
     delete _vars.ChaseApostate_CHOICE
     delete _vars.ChaseFaithful_CHOICE
 
-    const faithfulChoice = _vars.ChaseFaithful_CHOICE_LAST.choice
-    const [nextPassage, passageFn] =_routingTable.get(passage())?.get(faithfulChoice)!
+    const faithfulChoice: string = _vars.ChaseFaithful_CHOICE_LAST.choice
+    const faithfulPassage: string = _vars.ChaseFaithful_CHOICE_LAST.passage
+    const apostateChoice: string = _vars.ChaseApostate_CHOICE_LAST.choice
+    const apostatePassage: string = _vars.ChaseApostate_CHOICE_LAST.passage
+
+    const [_, apostatePassageFn] = _setup.Chase.GetApostateData(apostatePassage, apostateChoice)
+    apostatePassageFn()
+
+    const [nextPassage, passageFn] = _setup.Chase.GetFaithfulData(faithfulPassage, faithfulChoice)
     passageFn()
     Engine.play(nextPassage)
   }

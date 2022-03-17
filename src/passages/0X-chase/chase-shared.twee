@@ -12,8 +12,10 @@
   <<set $restTurnSeconds to 45>>
 
   /* Action Availability */
-  <<set $canChaseOnFoot to true>>
-  <<set $canCall911 to true>> /* TODO: Set this! */
+  <<set $apostateCanChaseOnFoot to true>>
+  <<set $faithfulCanChaseOnFoot to true>>
+  <<set $apostateCanCall911 to true>>
+  <<set $faithfulCanCall911 to true>>
 <</nobr>>\
 
 
