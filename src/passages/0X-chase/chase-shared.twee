@@ -8,11 +8,55 @@
   <<set $timerString to $timerSeconds + 's'>>
   <<set $optionsSeconds to $timerSeconds * 3>>
   <<set $optionsString to $timerSeconds * 3 + 's'>>
+  <<set $firstTurnSeconds to 90>>
+  <<set $restTurnSeconds to 45>>
 
   /* Action Availability */
   <<set $canChaseOnFoot to true>>
   <<set $canCall911 to true>> /* TODO: Set this! */
 <</nobr>>\
+
+
+:: CharedShared_OptionsWidget [widget]
+<<widget "chase-shared-options-section" container>>\
+  <<nobr>>
+    <<if $chaseTurn is 1>>
+      <<set _turnSeconds to $firstTurnSeconds>>
+    <<else>>
+      <<set _turnSeconds to $restTurnSeconds>>
+    <</if>>
+  <</nobr>>\
+  <<timed $optionsString t8n>><span id="chase-shared-timer">\
+    <h1><span id="timer-seconds">_turnSeconds</span> seconds remaining.</h1>\
+    _contents
+  </span><</timed>>\
+  <span id="chase-shared-msg-status" class="hidden"></span>
+  <<nobr>><<silently>>
+    <<set $seconds to $optionsSeconds + _turnSeconds>>
+    <<repeat 1s>>
+      <<if _stopTimer is true>>
+        <<stop>>
+      <<else>>
+        <<set $seconds to $seconds - 1>>
+        <<if $seconds gt 0 and $seconds lt _turnSeconds>>
+          <<replace "#timer-seconds">>$seconds<</replace>>
+        <<elseif $seconds eq 0>>
+          <<if _args[0] is "Apostate">>
+            <<send "ChaseApostate_CHOICE" { choice: "FREEZE" }>><</send>>
+          <<elseif _args[0] is "Faithful">>
+            <<send "ChaseFaithful_CHOICE" { choice: "FREEZE" }>><</send>>
+          <<else>>
+            <<run console.error('Options widget choice was wrong!')>>
+          <</if>>
+          <<replace "#chase-shared-timer">><h1>You freeze up.</h1><</replace>>
+          <<run $("#chase-shared-msg-status").removeClass("hidden")>>
+          <<run setup.replaceWithSending("#chase-shared-msg-status")>>
+          <<stop>>
+        <</if>>
+      <</if>>
+    <</repeat>>
+  <</silently>><</nobr>>\
+<</widget>>\
 
 
 :: ChaseShared_Text

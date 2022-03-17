@@ -32,43 +32,14 @@
 <h1>Turn $chaseTurn</h1>\
 
 
-:: ChaseApostate_OptionsWidget [widget]
-<<widget "ca-options-section" container>>
-  <<timed $optionsString t8n>><span id="ca-timer">\
-    <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-    _contents
-  </span><</timed>>\
-  <span id="ca-msg-status" class="hidden"></span>
-  <<nobr>><<silently>>
-    <<set $seconds to $optionsSeconds + 90>>
-    <<repeat 1s>>
-      <<if _stopTimer is true>>
-        <<stop>>
-      <<else>>
-        <<set $seconds to $seconds - 1>>
-        <<if $seconds gt 0 and $seconds lt 90>>
-          <<replace "#timer-seconds">>$seconds<</replace>>
-        <<elseif $seconds eq 0>>
-          <<send "ChaseApostate_CHOICE" { choice: "FREEZE" }>><</send>>
-          <<replace "#ca-timer">><h1>You freeze up.</h1><</replace>>
-          <<run $("#ca-msg-status").removeClass("hidden")>>
-          <<run setup.replaceWithSending("#ca-msg-status")>>
-          <<stop>>
-        <</if>>
-      <</if>>
-    <</repeat>>
-  <</silently>><</nobr>>\
-<</widget>>\
-
-
 :: ChaseApostate_ButtonWidget [widget]
 <<widget "ca-button">>\
   <<button _args[0]>>
     <<send "ChaseApostate_CHOICE" { choice: _args[1] }>><</send>>
-    <<replace "#ca-timer">><h1>_args[2]</h1><</replace>>
+    <<replace "#chase-shared-timer">><h1>_args[2]</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#ca-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#ca-msg-status")>>
+    <<run $("#chase-shared-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#chase-shared-msg-status")>>
   <</button>>\
 <</widget>>\
 
@@ -102,9 +73,9 @@
 <</timed>>\
 /* TODO: If you refresh, it still shows all of this! */\
 /* TODO: save the "you're X" action string & redisplay if choice */\
-<<ca-options-section>>\
+<<chase-shared-options-section "Apostate">>\
   <<include "ChaseApostate_Christies_Buttons">>
-<</ca-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_Christies_Buttons
@@ -146,7 +117,7 @@
     You don't dare glance back. Your eyes are on the car, the sidewalk, and the street. All you can do now for King is to hope that Jeku has it handled. He's an EMT, right?
   <</if>>\
 <</timed>>\
-<<ca-options-section>>\
+<<chase-shared-options-section "Apostate">>\
   /* TODO: Vary button on how far they are? */\
   <<ca-button "Run them down. (They may have an electric engine, but you don't need to worry about lights. Unless something changes, you'll catch them.)"
     "FOOT"
@@ -154,7 +125,7 @@
   <<ca-button "Dash back to Christie's. (Did you miss something important? Is King going to survive? Nevermind that. Ma Tiger's more important.)"
     "BACK"
     "You're running back to Christie's.">>
-<</ca-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_OnFoot_2
@@ -165,7 +136,7 @@
 <<next $timerString>>
   Once you catch them, what's the plan? There are four of them. Three known armed. One probably armed. If any of them are augmented, this might be hard to pull off.
 <</timed>>\
-<<ca-options-section>>\
+<<chase-shared-options-section "Apostate">>\
   /* TODO: Vary button on how far they are? */\
   <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need, it's just a question of traffic and reds.)"
     "FOOT"
@@ -173,7 +144,7 @@
   <<ca-button "Dash back to Christie's. (If you chase any further than this, you won't have the time to return.)"
     "BACK"
     "You're running back to Christie's.">>
-<</ca-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_OnFoot_3
@@ -184,14 +155,14 @@
 <<next $timerString>>
   Ahead of you, the van's side door slides open and a man leans. He spots you, vanishes. Seconds later he returns, mag rifle in hand, and kneels down, taking aim.
 <</timed>>\
-<<ca-options-section>>\
+<<chase-shared-options-section "Apostate">>\
   <<ca-button "Run into the road, using traffic as cover. (Extraordinarily dangerous, but he probably won't shoot into random traffic.)"
     "ROAD"
     "You're running into the street.">>
   <<ca-button "Keep running along the sidewalks and risk gunfire. (Parked cars offer some cover, but the sidewalk is relatively exposed.)"
     "SIDEWALK"
     "You're running along the sidewalk.">>
-<</ca-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_OnFoot_Road
@@ -211,7 +182,7 @@ TODO
 <<next $timerString>>
   You grab your burner phone and dial 911. It connects immediately. Your location will be shot, but with a burner you'll be anonymous. "This is 911," says the AI.
 <</timed>>\
-<<ca-options-section>>\
+<<chase-shared-options-section "Apostate">>\
   <<ca-button "Report a kidnapping in progress. (They'll ask you to stay on the line. It'll eat up a lot of time.)"
     "TIGER"
     "You're reporting a kidnapping to 911.">>
@@ -224,7 +195,7 @@ TODO
   <<ca-button "End the call and ditch the burner. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
-<</ca-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_911_Tiger

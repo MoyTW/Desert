@@ -32,43 +32,14 @@
 <h1>Turn $chaseTurn</h1>\
 
 
-:: ChaseFaithful_OptionsWidget [widget]
-<<widget "cf-options-section" container>>\
-  <<timed $optionsString t8n>><span id="cf-timer">\
-    <h1><span id="timer-seconds">90</span> seconds remaining.</h1>\
-    _contents
-  </span><</timed>>\
-  <span id="cf-msg-status" class="hidden"></span>\
-  <<nobr>><<silently>>
-    <<set $seconds to $optionsSeconds + 90>>
-    <<repeat 1s>>
-      <<if _stopTimer is true>>
-        <<stop>>
-      <<else>>
-        <<set $seconds to $seconds - 1>>
-        <<if $seconds gt 0 and $seconds lt 90>>
-          <<replace "#timer-seconds">>$seconds<</replace>>
-        <<elseif $seconds eq 0>>
-          <<send "ChaseFaithful_CHOICE" { choice: "FREEZE" }>><</send>>
-          <<replace "#cf-timer">><h1>You freeze up.</h1><</replace>>
-          <<run $("#cf-msg-status").removeClass("hidden")>>
-          <<run setup.replaceWithSending("#cf-msg-status")>>
-          <<stop>>
-        <</if>>
-      <</if>>
-    <</repeat>>
-  <</silently>><</nobr>>\
-<</widget>>\
-
-
 :: ChaseFaithful_ButtonWidget [widget]
 <<widget "cf-button">>\
   <<button _args[0]>>
     <<send "ChaseFaithful_CHOICE" { choice: _args[1] }>><</send>>
-    <<replace "#cf-timer">><h1>_args[2]</h1><</replace>>
+    <<replace "#chase-shared-timer">><h1>_args[2]</h1><</replace>>
     <<set _stopTimer to true>>
-    <<run $("#cf-msg-status").removeClass("hidden")>>
-    <<run setup.replaceWithSending("#cf-msg-status")>>
+    <<run $("#chase-shared-msg-status").removeClass("hidden")>>
+    <<run setup.replaceWithSending("#chase-shared-msg-status")>>
   <</button>>\
 <</widget>>\
 
@@ -100,9 +71,9 @@
 <<next $timerString>>
   <<include "ChaseShared_BarStatus">>
 <</timed>>\
-<<cf-options-section>>\
+<<chase-shared-options-section "Faithful">>\
   <<include "ChaseFaithful_Christies_Buttons">>
-<</cf-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_Christies_Buttons
@@ -146,7 +117,7 @@
     You resist the urge to look back. You can't let your eyes off the van; if you lose it, you're not sure you can find it again. You push your worries about King away.
   <</if>>\
 <</timed>>\
-<<cf-options-section>>\
+<<chase-shared-options-section "Faithful">>\
   /* TODO: Vary button on how far they are? */\
   <<cf-button "Run, dammit! (Can you really run down a car? Luckily you're in the city core; all the streets nearby have lights.)"
     "FOOT"
@@ -154,7 +125,7 @@
   <<cf-button "Dash back to Christie's. (Dammit, should've taken the car. Is King okay? You're fit, but can you win a race with a car?)"
     "BACK"
     "You're running back to Christie's.">>
-<</cf-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_OnFoot_2
@@ -165,11 +136,11 @@
 <<next $timerString>>
   You realize with a sinking feeling that the kidnappers are pulling away, despite the evening traffic. Your human heart can't keep up with their electric engine.
 <</timed>>\
-<<cf-options-section>>\
+<<chase-shared-options-section "Faithful">>\
   <<cf-button "Dash back to Christie's. (Fuck, fuck, fuck. Stupid idea in the first place. Of course you can't race a car.)"
     "BACK"
     "You're running back to Christie's.">>
-<</cf-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_911
@@ -180,7 +151,7 @@
 <<next $timerString>>
   You pull your phone out of your pocket, dial 911, hold it up to your ear. It connects immediately. "This is 911," says the AI, "what is your emergency?"
 <</timed>>\
-<<cf-options-section>>\
+<<chase-shared-options-section "Faithful">>\
   <<cf-button "Report a kidnapping in progress. (It's unlikely to garner a fast response, but it's better than running after a van.)"
     "TIGER"
     "You're reporting a kidnapping to 911.">>
@@ -193,7 +164,7 @@
   <<cf-button "End the call. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
-<</cf-options-section>>\
+<</chase-shared-options-section>>\
 
 :: ChaseFaithful_911_Tiger
 <<include "ChaseFaithful_TurnIndicator">>\
@@ -203,7 +174,7 @@
 <<next $timerString>>
   You glance over at the facade to find the address number. "1718 Holcomb Ave, Reno, Nevada, 89502." Why did you give the zip code? They don't need the zip code.
 <</timed>>\
-<<cf-options-section>>\
+<<chase-shared-options-section "Faithful">>\
   <<cf-button "Continue giving the report. (Come on, come on, this is taking way too long, speed this up!)"
     "TIGER"
     "You're reporting the kidnapping.">>
@@ -213,7 +184,7 @@
   <<cf-button "End the call. (Was this a bad idea, or is it wasting too much time?)"
     "NONE"
     "You're ending the 911 call.">>
-<</cf-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_911_Tiger_2
@@ -232,7 +203,7 @@
 <<next 2s>>
   "Did you catch the license plates?"
 <</timed>>\
-<<cf-options-section>>\
+<<chase-shared-options-section "Faithful">>\
   <<cf-button "Keep giving the report. (It's normal for 911 to ask callers to stay on the line - shit. You'll be tied to your phone if you do this.)"
     "STAY"
     "You're staying on the line.">>
@@ -242,7 +213,7 @@
   <<cf-button "End the call. (That's enough already. You can't stay tied to your phone while King is right here, wounded.)"
     "NONE"
     "You're ending the 911 call.">>
-<</cf-options-section>>\
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_911_Tiger_Bartender
