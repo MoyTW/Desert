@@ -14,19 +14,31 @@
   /* Action Availability */
   <<set $apostateCanChaseOnFoot to true>>
   <<set $faithfulCanChaseOnFoot to true>>
+  
   <<set $apostateCanCall911 to true>>
   <<set $faithfulCanCall911 to true>>
+  <<set $faithfulReportedTiger to false>>
+  <<set $faithfulCanReportKingTo911 to true>>
+  <<set $faithfulKingReturnScene to undefined>> /* TODO: SET THIS! */
+  
   <<set $faithfulCanCallFrancis to true>>
+  
   <<set $apostateCanTriageKing to true>>
   <<set $faithfulCanTriageKing to true>> /* TODO: this */
 
   /* World State */
-  <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID", "911" ] TODO: Set! */
+  <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID"] TODO: SET EBI */
   <<set $cookAction to "NONE">> /* [ "NONE", "TALK", "PET_CLINIC", "FIRST_AID", "911" ] TODO: Set! */
 
   <<set $called911 to false>>
   <<set $calledFrancis to false>>
 <</nobr>>\
+
+
+:: ChasedShared_DisabledButton [widget]
+<<widget "disabled-button">>\
+  <<disable>><<button _args[0]>><</button>><</disable>>\
+<</widget>>\
 
 
 :: CharedShared_OptionsWidget [widget]
@@ -88,6 +100,8 @@ Network interruptions will not break the game, but they may cause your clients t
   In the city core, even the side streets have traffic. The kidnappers manage to get nearly a whole block before they're stopped again, and this time there's no right.\
 <<elseif $chaseTurn is 6>>\
   TODO
+<<else>>\
+  TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE\
 <</if>>\
 
 :: ChaseShared_DogStatus
@@ -102,6 +116,8 @@ Network interruptions will not break the game, but they may cause your clients t
 <<elseif $chaseTurn is 5>>\
   TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <<elseif $chaseTurn is 6>>\
+  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
+<<else>>\
   TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <</if>>\
 

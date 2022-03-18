@@ -174,29 +174,54 @@
   <<cf-button "Report King's injuries. (911 is almost certain to be useless here.)"
     "KING"
     "You're reporting King's injuries to 911.">>
-  <<cf-button "Report a kidnapping and King's injuries. (Reporting both can't hurt.)"
-    "BOTH"
-    "You're reporting a kidnapping and King's injuries to 911.">>
   <<cf-button "End the call. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
 <</chase-shared-options-section>>\
 
+
+:: ChaseFaithful_911_Tiger_BartenderButton
+/* TODO: Add a conflict with Ebi */\
+<<if $bartenderAction is "NONE">>\
+  <<cf-button "Give the phone to the bartender. (That'll free you up to do something else.)"
+    "BARTENDER"
+    "You're having the bartender stay on the line.">>\
+<<elseif $bartenderAction is "TALK">>\
+  <<disabled-button "Give the phone to the bartender. (Ebi's talking urgently to the bar staff, and the cook just ran back inside. They're busy.)">>\
+<<elseif $cookAction is "FIRST_AID">>\
+  <<disabled-button "Give the phone to the bartender. (Both the bartender and cook are pressing on King's wounds, their hands all red.)">>\
+<<else>>\
+  <<disabled-button "Give the phone to the bartender. (The bartender is pressing on King's wounds; the cook is talking frantically on her phone.)">>\
+<</if>>\
+
+
 :: ChaseFaithful_911_Tiger
 <<include "ChaseFaithful_TurnIndicator">>\
-  "There's a kidnapping in progress," you say, making sure to speak as clearly as possible. "I am not the kidnapped party. The kidnappers are still present."
-<<timed $timerString t8n>>
-  Best practices for calling 911 is to answer only. Don't talk too much - what you think is important is often not what they want. "What is your location?" they ask.
-<<next $timerString>>
-  You glance over at the facade to find the address number. "1718 Holcomb Ave, Reno, Nevada, 89502." Why did you give the zip code? They don't need the zip code.
+  CALLER: "There's a kidnapping in progress. I am not the kidnapped party. The kidnappers and victim are still present."
+<<timed 3s t8n>>
+  911: "What is your location?"
+<<next 1s>>
+  CALLER: "1718 Holcomb Ave, Reno, Nevada, 89502. Right outside of Christie's Saloon."
+<<next 2s>>
+  911: "I'm sending a police alert. Can you describe the clothes that the victim is wearing?"
+<<next 2s>>
+  CALLER: "The victim is wearing a black shirt and a brown jacket. She's an Asian woman around 60 years of age and is thin and tall."
+<<next 3s>>
+  911: "Please stay on the line."
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
   <<cf-button "Continue giving the report. (Come on, come on, this is taking way too long, speed this up!)"
     "TIGER"
     "You're reporting the kidnapping.">>
-  <<cf-button "Give her the details and report King, too. (This will take longer, and 911 almost never services pets.)"
-    "BOTH"
-    "You're also reporting King's injuries.">>
+    /* King button */\
+  <<if $faithfulCanReportKingTo911>>\
+    <<cf-button "Report King, too. (This will take longer, and 911 almost never services pets.)"
+      "KING"
+      "You're also reporting King's injuries.">>
+  <<else>>\
+    <<disabled-button "Report King, too. (That was a bust.)">>
+  <</if>>\
+  <<include "ChaseFaithful_911_Tiger_BartenderButton">>
   <<cf-button "End the call. (Was this a bad idea, or is it wasting too much time?)"
     "NONE"
     "You're ending the 911 call.">>
@@ -205,47 +230,188 @@
 
 :: ChaseFaithful_911_Tiger_2
 <<include "ChaseFaithful_TurnIndicator">>\
-  "Can you still see the kidnappers?"
+  911: "Can you still see the kidnappers?"
 <<timed 1s t8n>>
-  "Yes, I can still see them."
+  CALLER: "Yes, I can still see them."
 <<next 1s>>
-  "I'm sending an alert now. Please stay on the line. Can you describe the clothes that the kidnappers are wearing?"
+  911: "I'm updating the alert now. Please stay on the line. Can you describe the clothes that the kidnappers are wearing?"
 <<next 3s>>
-  "They were wearing street clothes, and they had their faces covered, but they're in a van and I can't see them right now."
+  CALLER: "They were wearing street clothes, and they had their faces covered, but they're in a van and I can't see them right now."
 <<next 3s>>
-  "Okay. Can you describe the van?"
+  911: "Okay. Can you describe the van?"
 <<next 1s>>
-  "It's white, very plain, I don't know make or model."
+  CALLER: "It's white, very plain, I don't know make or model."
 <<next 2s>>
-  "Did you catch the license plates?"
+  911: "Did you catch the license plates?"
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
   <<cf-button "Keep giving the report. (It's normal for 911 to ask callers to stay on the line - shit. You'll be tied to your phone if you do this.)"
     "STAY"
     "You're staying on the line.">>
-  <<cf-button "Give the phone to the bartender. (That'll free you up to give chase or do first aid.)"
-    "BARTENDER"
-    "You're ending the 911 call.">>
+  <<if $faithfulCanReportKingTo911>>\
+    <<cf-button "Report King, too. (This will take longer, and 911 almost never services pets.)"
+      "KING"
+      "You're also reporting King's injuries.">>
+  <<else>>\
+    <<disabled-button "Report King, too. (That was a bust.)">>
+  <</if>>\
+  <<include "ChaseFaithful_911_Tiger_BartenderButton">>
   <<cf-button "End the call. (That's enough already. You can't stay tied to your phone while King is right here, wounded.)"
     "NONE"
     "You're ending the 911 call.">>
 <</chase-shared-options-section>>\
 
 
-:: ChaseFaithful_911_Tiger_Bartender
-TODO
-
-
 :: ChaseFaithful_911_Tiger_3
-TODO
+<<include "ChaseFaithful_TurnIndicator">>\
+  CALLER: "Right. The plates? I didn't catch them."
+<<timed 1s t8n>>
+  911: "In what direction did the kidnappers leave?"
+<<next 1s>>
+  CALLER: "I - they went left, looking out from Christie's. That's down Holcombe."
+<<next 2s>>
+  911: "Okay. Is it correct that the kidnappers drove towards Arnie's Fish Sticks on Holcombe? There should be a sign visible."
+<<next 3s>>
+  CALLER: "Yes, that's correct. They're past it."
+<<next 1s>>
+  911: "Thank you. I'm updating the alert. Please stay on the line."
+<<next 2s>>
+  911: "Is anybody at the scene injured or in need medical of attention?"
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Continue with the call. (The best way to resolve this is to give them everything they need.)"
+    "STAY"
+    "You're staying on the line.">>
+  <<if $faithfulCanReportKingTo911>>\
+    <<cf-button "Report that King is in need of medical attention. (It's unlikely that this will work.)"
+      "KING"
+      "You're also reporting King's injuries.">>
+  <<else>>\
+    <<disabled-button "Report King, too. (That was a bust.)">>
+  <</if>>\
+  <<include "ChaseFaithful_911_Tiger_BartenderButton">>
+  <<cf-button "End the call. (You can't spend the next ten minutes tethered to the phone.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_911_Tiger_4
+<<include "ChaseFaithful_TurnIndicator">>\
+  CALLER: "No. Nobody currently has any injuries."
+<<timed 1s t8n>>
+  911: "Okay. I will not dispatch any medical services at this time. Is that okay?"
+<<next 2s>>
+  CALLER: "Yes."
+<<next 1s>>
+  911: "Okay. Can you give me a callback number?"
+<<next 1s>>
+  CALLER: "My number is 775-555-0194. That is 775-555-0194."
+<<next 1s>>
+  911: "Thank you. What is your name?"
+<<next 1s>>
+  CALLER: "Jekusheke Wang."
+<<next 1s>>
+  911: "Thank you. Again, please stay on the line."
+<<next 1s>>
+  911: "Jekhushkay, I'm going to ask you to stay on the scene and on the line until the police arrive. Can you do that?"
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Agree to stay on the scene and on the line. (You won't be able to give chase - but they're already gone anyways.)"
+    "STAY"
+    "You're staying on the line.">>
+  <<include "ChaseFaithful_911_Tiger_BartenderButton">>
+  <<cf-button "End the call. (You can't spend the next ten minutes tethered to the phone.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_911_Tiger_5
+<<include "ChaseFaithful_TurnIndicator">>\
+  911: "Okay, Jekhushkay, police are on their way. Can you reconfirm some details for me?"
+<<timed 2s t8n>>
+  CALLER: "Yes."
+<<next 1s>>
+  911: "Okay. Say stop if I say anything wrong. From what you've said, there is a kidnapping in progress outside of Christie's Saloon on Holcombe. Is this right?"
+<<next 4s>>
+  CALLER: "Yes."
+<<next 1s>>
+  911: "The kidnappers are dressed in street clothes with covered faces, and escaped in a white van. They drove towards Arnie's Fish Sticks. Was the victim in the van?"
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Agree to stay on the scene and on the line. (You won't be able to give chase - but they're already gone anyways.)"
+    "STAY"
+    "You're staying on the line.">>
+  <<include "ChaseFaithful_911_Tiger_BartenderButton">>
+  <<cf-button "End the call. (You can't spend the next ten minutes tethered to the phone.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_911_Tiger_6
+TODO: THIS
+
+
+:: ChaseFaithful_911_Tiger_Bartender
+/* TODO: Set variables */\
+<<include "ChaseFaithful_TurnIndicator">>\
+  CALLER: "Hey! Bartender! Yes, can you [inausible] [inaudible] phone? First aid? Yes, thank you!"
+<<timed 2s t8n>>
+  CALLER: "911, heads up, I'm going to give the phone to another bystander. Are you ready?"
+<<next 2s>>
+  911: "Before you do that, can you-"
+<<next 1s>>
+  BYSTANDER: "Hello? Hello? Is this 911?"
+<<next 1s>>
+  911: "This is 911. What is your name?"
+<<next 1s>>
+  BYSTANDER: "Neena Lucarno."
+<<next 1s>>
+  You leave your phone with the cook. The bartender bursts out of the doors, first aid kit in hand, and kneels next to King. He starts to press on the wounds.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_911_King
-TODO
+<<include "ChaseFaithful_TurnIndicator">>\
+  CALLER: "911, heads up. I have an injury to report."
+<<timed 1s t8n>>
+  911: "Okay. Is the injury serious or life-threatening?"
+<<next 1s>>
+  CALLER: "Yes, it is. The injured has been shot multiple times and has a broken leg. He is bleeding heavily. However, he, uh, he's a dog."
+<<next 3s>>
+  911: "Say again? The injured party is a dog?"
+<<next 1s>>
+  CALLER: "That's correct."
+<<next 1s>>
+  911: "Okay. Are there any injured humans present?"
+<<next 1s>>
+  CALLER: "No. Just the dog."
+<<next 1s>>
+  911: "Okay. Please be advised: 911 does not provide medical care to animals. 911 is intended for human emergencies only."
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<if $faithfulReportedTiger>>\
+    <<cf-button "Stay on the line. (They'll need more details on the kidnappers.)"
+      $faithfulKingReturnScene
+      "You're staying on the line.">>
+  <<else>>\
+    <<cf-button "Report the kidnapping. (You're not going to be able to fight armed assassins. This is a job for the police.)"
+      $faithfulKingReturnScene
+      "You're reporting the kidnapping.">>
+  <</if>>\
+  <<cf-button "End the call. (You can't spend the next ten minutes tethered to the phone.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
 
 
-:: ChaseFaithful_911_Both
-TODO
+:: ChaseFaithful_911_End_Call
+TODO: You end the call
 
 
 :: ChaseFaithful_Francis
