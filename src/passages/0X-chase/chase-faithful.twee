@@ -92,12 +92,12 @@
   <<disable>><<button "Call 911. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
 <<if $faithfulCanCallFrancis>>\
-  <<cf-button "Call St. Francis' Emergency Pet Clinic. (They're fast and reliable.)"
+  <<cf-button "Call St. Francis' 24-Hour Pet Clinic. (They're fast and reliable.)"
     "FRANCIS"
-    "You're calling St. Francis' Emergency Pet Clinic.">>
+    "You're calling St. Francis' 24-Hour Pet Clinic.">>
 <<else>>\
   /* TODO: Vary this! */\
-  <<disable>><<button "Call St. Francis' Emergency Pet Clinic. (Already tried. Don't want to waste time.)">><</button>><</disable>>
+  <<disable>><<button "Call St. Francis' 24-Hour Pet Clinic. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
 <<cf-button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
   "CAR"
@@ -268,9 +268,9 @@
 <<timed 1s t8n>>
   911: "In what direction did the kidnappers leave?"
 <<next 1s>>
-  CALLER: "I - they went left, looking out from Christie's. That's down Holcombe."
+  CALLER: "I - they went left, looking out from Christie's. That's down Holcomb."
 <<next 2s>>
-  911: "Okay. Is it correct that the kidnappers drove towards Arnie's Fish Sticks on Holcombe? There should be a sign visible."
+  911: "Okay. Is it correct that the kidnappers drove towards Arnie's Fish Sticks on Holcomb? There should be a sign visible."
 <<next 3s>>
   CALLER: "Yes, that's correct. They're past it."
 <<next 1s>>
@@ -333,7 +333,7 @@
 <<timed 2s t8n>>
   CALLER: "Yes."
 <<next 1s>>
-  911: "Okay. Say stop if I say anything wrong. From what you've said, there is a kidnapping in progress outside of Christie's Saloon on Holcombe. Is this right?"
+  911: "Okay. Say stop if I say anything wrong. From what you've said, there is a kidnapping in progress outside of Christie's Saloon on Holcomb. Is this right?"
 <<next 4s>>
   CALLER: "Yes."
 <<next 1s>>
@@ -418,7 +418,117 @@ TODO: You end the call
 /** ###################################################################### **/\
 /** # FRANCIS                                                            # **/\
 /** ###################################################################### **/\
-TODO: Content
+<<include "ChaseFaithful_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  You pull your phone out of your pocket and hold it up to your face. "Phone, call the St. Francis 24-Hour Pet Clinic's emergency hotline!" You put it to your ear.
+<<next $timerString>>
+  There's a brief tone, lasting longer than you'd like. Finally it connects. "St Francis 24-Hour Pet Clinic, emergency hotline. What is your emergency?"
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Report King's injuries. (Situation, location, and contact info.)"
+    "KING"
+    "You're reporting King's injuries to St. Francis.">>
+  <<cf-button "End the call. (You don't have much time, and you've got more pressing priorities.)"
+    "NONE"
+    "You're ending the call to St. Francis.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Francis_End_Call_Immediately
+<<include "ChaseFaithful_TurnIndicator">>\
+  You end the call without a word. It'd take too long to get them all the details, and there are more immediate matters to deal with. They won't call back.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Francis_King
+<<include "ChaseFaithful_TurnIndicator">>\
+  "There's an injured dog here. It has a broken leg and multiple gunshot wounds. It's bleeding at a rapid pace. My location is Christie's Saloon on Holcomb Ave."
+<<timed $timerString t8n>>
+  "Okay," says the receptionist, "I'm going to dispatch a team. Stay on the line, I'll have some more questions for you. First, is the address 1718 Holcomb Ave?"
+<<next $timerString>>
+  "Yes," you say, "that's the correct address. If you need to call me back, call back on this number. That is 775-555-0194. My name is Jekusheke Wang."
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Stay on the line. (They'll have more questions. Best to help them.)"
+    "STAY"
+    "You're reporting King's injuries to St. Francis.">>
+  <<cf-button "End the call. (That should be enough for them to dispatch a team.)"
+    "NONE"
+    "You're ending the call to St. Francis.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Francis_King_2
+<<include "ChaseFaithful_TurnIndicator">>\
+  "Okay. Let me recap. There's a badly injured dog with a broken leg and gunshot wounds at Christie's. Your number is 775-555-0194. You're Jekusheke Wang."
+<<timed $timerString t8n>>
+  "Yes," you say, "that's all correct. Do you need me to stay on the line? If that's enough I'm going to hang up. You have my callback number, so that's fine, right?"
+<<next $timerString>>
+  "Uh, one moment. Okay, the team's en route. They'll be arriving in about ten minutes." There's a pause. "Okay, now, I'll walk you through first aid steps."
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Follow their instructions. (Dog care and human care are probably similar, but you could use the help.)"
+    "FOLLOW"
+    "You're following St. Francis' instructions.">>
+  /* TODO NICE TO HAVE: Bartender */\
+  <<cf-button "End the call. (That last statement is tacit permission if you ever heard it.)"
+    "NONE"
+    "You're ending the call to St. Francis.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Francis_King_3
+/* TODO: DOG STATUS */\
+<<include "ChaseFaithful_TurnIndicator">>\
+  You pause. "Okay," you say, "I'm going to start trying to stop the bleeding by applying pressure to the wounds. I'm an EMT. Will my training work on dogs?"
+<<timed $timerString t8n>>
+  "Wait! Before you approach the dog, make sure that the dog is not aggressive. Make sure it won't bite you or injure you by first touching it with your foot."
+<<next $timerString>>
+  You kneel down next to King as he whimpers, pushing down your impatiance. "Yes," you say, "the dog is not aggressive. Should I treat it like a human?"
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "See if they'll give you any useful information. (This is taking too long.)"
+    "FOLLOW"
+    "You're trying to get St. Francis to be helpful.">>
+  /* TODO NICE TO HAVE: Bartender */\
+  <<cf-button "End the call. (That last statement is tacit permission if you ever heard it.)"
+    "NONE"
+    "You're ending the call to St. Francis.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Francis_King_4
+<<include "ChaseFaithful_TurnIndicator">>\
+  "Okay, to stop the bleeding, you'll want to take a cloth - any cloth you can find - and lay it over the wound. Press it against the wound until the bleeding slows."
+<<timed $timerString t8n>>
+  This isn't helpful. You'd do faster just doing it yourself. "I'm going to hang up now," you growl. You stop the call immediately, before they can object.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Francis_End_Call_Safely
+<<include "ChaseFaithful_TurnIndicator">>\
+  All right, time to end the call. There's more useful things that you can be doing than babysitting a line. "Hold on. Can you confirm that you've dispatched a team?"
+<<timed $timerString t8n>>
+  "Yes," they respond, "we've dispatched a team. They'll be arriving in about ten minutes to Christie's on Holcomb. The ambulance is yellow with orange stripes."
+<<next $timerString>>
+  Good. If the team's already on their way, you're free to help in other ways. "Thank you. I'm going to hang up now." You do so before they can object.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_Car

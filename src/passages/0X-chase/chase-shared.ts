@@ -95,7 +95,9 @@
     ["911", ["ChaseFaithful_911", () => {
       (State.variables as any).faithfulCanCall911 = false
     }]],
-    ["FRANCIS", ["ChaseFaithful_Francis", () => {}]],
+    ["FRANCIS", ["ChaseFaithful_Francis", () => {
+      (State.variables as any).faithfulCanCallFrancis = false
+    }]],
     ["CAR", ["ChaseFaithful_Car", () => {}]],
     ["KING", ["ChaseFaithful_King", () => {}]],
     ["BAR", ["ChaseFaithful_Bar", () => {
@@ -215,6 +217,34 @@
       }]], // TODO: First line should be 'your action'
       ["FREEZE", ["ChaseFaithful_911_King", () => {}]],
     ])],
+    // ########################################################################
+    // # FRANCIS                                                              #
+    // ########################################################################
+    ["ChaseFaithful_Francis", new Map<string,[string, () => void]>([
+      ["KING", ["ChaseFaithful_Francis_King", () => {
+        (State.variables as any).calledFrancis = true
+      }]],
+      ["NONE", ["ChaseFaithful_Francis_End_Call_Immediately", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Francis", () => {}]],
+    ])],
+    ["ChaseFaithful_Francis_End_Call_Immediately", _faithfulChristiesRouting],
+    ["ChaseFaithful_Francis_King", new Map<string,[string, () => void]>([
+      ["STAY", ["ChaseFaithful_Francis_King_2", () => {}]],
+      ["NONE", ["ChaseFaithful_Francis_End_Call_Safely", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Francis_King", () => {}]],
+    ])],
+    ["ChaseFaithful_Francis_King_2", new Map<string,[string, () => void]>([
+      ["FOLLOW", ["ChaseFaithful_Francis_King_3", () => {}]],
+      ["NONE", ["ChaseFaithful_Francis_End_Call_Safely", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Francis_King_2", () => {}]],
+    ])],
+    ["ChaseFaithful_Francis_King_3", new Map<string,[string, () => void]>([
+      ["FOLLOW", ["ChaseFaithful_Francis_King_4", () => {}]],
+      ["NONE", ["ChaseFaithful_Francis_End_Call_Safely", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Francis_King_3", () => {}]],
+    ])],
+    ["ChaseFaithful_Francis_King_4", _faithfulChristiesRouting],
+    ["ChaseFaithful_Francis_End_Call_Safely", _faithfulChristiesRouting],
     // ########################################################################
     // # BAR                                                                  #
     // ########################################################################
