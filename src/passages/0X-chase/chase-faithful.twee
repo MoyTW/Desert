@@ -793,21 +793,27 @@ TODO
 TODO
 
 
-
-
 :: ChaseFaithful_Bar
 /** ###################################################################### **/\
 /** # BAR                                                                # **/\
 /** ###################################################################### **/\
-/* TODO: Write an Ebi conflict path. */\
-/* TODO: Lock out bartender for future! */\
+/* TODO: Write Ebi's side. */\
 <<include "ChaseFaithful_TurnIndicator">>\
-  "Bartender!" you yell, pointing at him. He starts. "Do you know first aid?" He pauses, looking at King, then grimaces and starts to roll up his sleeves.
-<<timed $timerString t8n>>
-  "Yeah," he says, "I do, but I've never used it. I don't - I don't know how to treat a dog, but I can help." He looks at the cook, and she flies back into the bar.
-<<next $timerString>>
-  The cook bursts back out, a first aid kit in hand. "Here!" she yells, shoving it towards her coworker. "I'll call 911!" She grabs her phone out of her pocket.
-<</timed>>\
+<<if $apostatePassage is "ChaseApostate_Bar">>\
+    "Bartender!" you yell, as Ebi does the same. Both of you are pointing directly at him. His eyes flick back and forth, confused. "Get a first aid kit!" yells Ebi.
+  <<timed $timerString t8n>>
+    The bartender vanishes back into Christie's. "You deal with them," commands Ebi, pointing at you, and you glance at King, at the cook, who's pulling out her phone.
+  <<next $timerString>>
+    The bartender bursts out of the doors with a small medical backpack. He rips it open, dumps the contents on the ground. "I'll call 911!" exclaims the cook.
+  <</timed>>\
+<<else>>\
+    "Bartender!" you yell, pointing at him. He starts. "Do you know first aid?" He pauses, looking at King, then grimaces and starts to roll up his sleeves.
+  <<timed $timerString t8n>>
+    "Yeah," he says, "I do, but I've never used it. I don't - I don't know how to treat a dog, but I can help." He looks at the cook, and she flies back into the bar.
+  <<next $timerString>>
+    The cook bursts back out, a first aid kit in hand. "Here!" she yells, shoving it towards her coworker. "I'll call 911!" She grabs her phone out of her pocket.
+  <</timed>>\
+<</if>>\
 <<chase-shared-options-section "Faithful">>\
   <<cf-button "Tell her to call the the Emergency Pet Clinic instead. (911 is for humans only, they don't handle pets.)"
     "PET"
