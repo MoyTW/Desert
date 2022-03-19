@@ -65,7 +65,7 @@
 /** # CONTENT START                                                      # **/\
 /** ###################################################################### **/\
 <<include "ChaseApostate_TurnIndicator">>\
-<<include "ChaseShared_KidnapperStatus">>
+  <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
   <<include "ChaseShared_DogStatus">>
 <<next $timerString>>
@@ -256,7 +256,7 @@ TODO
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
-  You kneel down next to King. His front right leg is broken, bone shards protruding from the bloody mess. He has two bullet holes on his underbelly and one in the back.
+  You inspect King. His front right leg is broken, bone shards protruding from the bloody mess. Two bullet holes in the back, but he's also bleeding from the stomach.
 <<next $timerString>>
   He's bleeding out at an alarming rate. His chest heaves. His growling has turned to whimpers, but at least he's stopped trying to push himself up. This is very bad.
 <</timed>>\

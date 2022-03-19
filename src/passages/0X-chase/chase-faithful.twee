@@ -715,7 +715,84 @@ TODO: Did you just kill somebody?
 /** ###################################################################### **/\
 /** # KING                                                               # **/\
 /** ###################################################################### **/\
+/* TODO: Ebi conflict */\
+/* TODO: Bartender sync issues */\
+<<include "ChaseFaithful_TurnIndicator">>\
+  You kneel down next to King. He's collapsed onto his stomach. His right front leg is broken. Multiple gunshot wounds, two in the back, one or more on his underside.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  You'll need to move him to see his underside, but you're not sure how to move dogs. Later. Is there a first aid kit somewhere? Equipment would help.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Improvise. (There's no time to hunt around.)"
+    "IMPROVISE"
+    "You're improvising medical supplies.">>
+  <<if $bartenderAction is "NONE">>\
+    <<cf-button "Ask the bar staff if they have a first aid kit. (Probably - that seems like something bars should have.)"
+      "BARSTAFF"
+      "You're asking the bar staff for a first aid kit.">>
+  <<else>>\
+    TODO: THIS
+  <</if>>\
+  <<cf-button "Leave King. (Ma Tiger's getting further away by the second.)"
+    "LEAVE"
+    "You're leaving King.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Leave_Immediately
 TODO
+
+
+:: ChaseFaithful_King_Improvise
+/* TODO: Bar staff! */
+/* TODO: Ebi conflict! */
+<<include "ChaseFaithful_TurnIndicator">>\
+  Okay, the two wounds on the back are pretty close together. You pull off your jacket, tossing it on the ground. Your shirt comes off next. You fold twice.
+<<timed $timerString t8n>>
+  You press the rectangle over King's back with both hands. Blood seeps through the shirt. "It's okay," you say, pressing your knee to the wound, "it's okay."
+<<next $timerString>>
+  Knee still on the wound, you check his breathing. He's breathing fast, panting. You don't know enough about dogs, but his airways are definitely clear.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Keep giving first aid. (This is fucking awful. Jesus.)"
+    "CONTINUE"
+    "You're continuing to give first aid.">>
+  <<cf-button "Leave King. (This isn't working. You need to get help, or call emergency services.)"
+    "LEAVE"
+    "You're leaving King.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Improvise_2
+/* TODO: Bar staff! */
+/* TODO: Ebi conflict! */
+<<include "ChaseFaithful_TurnIndicator">>\
+  The blood slows. You press down harder, put more of your weight. You check King's breathing. The panting is labored, heavy. Is it always so heavy? How do dogs work?
+<<timed $timerString t8n>>
+  The blood's not stopping. Worse, the main source of bleeding seems to be on his underbelly, on his arms. You'll have to move him to see it - but that's a bad idea.
+<<next $timerString>>
+  Shit. This would be so much easier if this was a human. How do you safely roll a dog onto its side? Would moving him just make it worse? You've ruined your shirt.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Roll him. (You'll need to secure your shirt somehow, too)"
+    "ROLL"
+    "You're rolling King on his side.">>
+  <<cf-button "Leave King. (This isn't working. You need to get help, or call emergency services.)"
+    "LEAVE"
+    "You're leaving King.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Leave_Dangerously
+TODO
+
+
+:: ChaseFaithful_King_Barstaff
+TODO
+
+
 
 
 :: ChaseFaithful_Bar

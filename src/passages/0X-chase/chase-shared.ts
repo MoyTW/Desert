@@ -283,6 +283,24 @@
     ])],
     ["ChaseFaithful_Car_Exit", _faithfulChristiesRouting],
     // ########################################################################
+    // # KING                                                                 #
+    // ########################################################################
+    ["ChaseFaithful_King", new Map<string,[string, () => void]>([
+      ["IMPROVISE", ["ChaseFaithful_King_Improvise", () => {}]],
+      ["BARSTAFF", ["ChaseFaithful_King_Barstaff", () => {}]],
+      ["LEAVE", ["ChaseFaithful_King_Leave_Immediately", () => {}]],
+      ["FREEZE", ["ChaseFaithful_King", () => {}]],
+    ])],
+    ["ChaseFaithful_King_Improvise", new Map<string,[string, () => void]>([
+      ["CONTINUE", ["ChaseFaithful_King_Improvise", () => {}]],
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]],
+      ["FREEZE", ["ChaseFaithful_King", () => {}]],
+    ])],
+    ["ChaseFaithful_King_Improvise_2", new Map<string,[string, () => void]>([
+      ["CONTINUE", ["ChaseFaithful_King_Improvise", () => {}]],
+      ["FREEZE", ["ChaseFaithful_King", () => {}]],
+    ])],
+    // ########################################################################
     // # BAR                                                                  #
     // ########################################################################
     ["ChaseFaithful_Bar", new Map<string,[string, () => void]>([
