@@ -57,7 +57,6 @@
       ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
     ])],
     ["ChaseApostate_King", new Map<string,[string, () => void]>([
-      ["BLEEDING", ["ChaseApostate_King_2", () => {}]],
       ["BAR", ["ChaseApostate_King_Bar", () => {}]],
       ["LEAVE", ["ChaseApostate_King_Leave", () => {
         (State.variables as any).apostateCanTriageKing = false

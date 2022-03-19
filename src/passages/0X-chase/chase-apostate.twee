@@ -258,19 +258,17 @@ TODO
 <<timed $timerString t8n>>
   You inspect King. His front right leg is broken, bone shards protruding from the bloody mess. Two bullet holes in the back, but he's also bleeding from the stomach.
 <<next $timerString>>
-  He's bleeding out at an alarming rate. His chest heaves. His growling has turned to whimpers, but at least he's stopped trying to push himself up. This is very bad.
+  He's bleeding out at an alarming rate. His chest heaves. His growling has turned to whimpers. At least he's not moving. This is beyond you. Far beyond you.
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
-  <<ca-button "Stop King's bleeding. (This will take a long time. It might not work. If you do this, you won't have time to give chase.)"
-    "BLEEDING"
-    "You're stopping King from bleeding out.">>
   /* TODO: Jeku conflict! */\
+  /* TODO: bar stuff */\
   <<if $bartenderAction is "NONE">>\
-    <<ca-button "Get the bar staff to help. (Trained or not, they can at least get supplies or apply pressure. Better than nothing.)"
+    <<ca-button "Get the bar staff to help. (Bartenders usually know first aid, right?)"
       "BAR"
       "You're enlisting the bar staff.">>
   <</if>>\
-  <<ca-button "Leave King as he is. (Ma Tiger is more important.)"
+  <<ca-button "Leave King as he is. (This is beyond your abilities.)"
     "LEAVE"
     "You're leaving King as he is.">>
 <</chase-shared-options-section>>\
