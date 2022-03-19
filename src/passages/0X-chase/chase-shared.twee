@@ -22,6 +22,9 @@
   <<set $faithfulKingReturnScene to undefined>> /* TODO: SET THIS! */
   
   <<set $faithfulCanCallFrancis to true>>
+
+  <<set $apostateAlreadyTriedDriving to false>> /* TODO: Set & use this!!! */
+  <<set $faithfulAlreadyTriedDriving to false>> /* TODO: Set & use this!!! */
   
   <<set $apostateCanTriageKing to true>>
   <<set $faithfulCanTriageKing to true>> /* TODO: this */
@@ -29,9 +32,10 @@
   /* World State */
   <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID"] TODO: SET EBI */
   <<set $cookAction to "NONE">> /* [ "NONE", "TALK", "PET_CLINIC", "FIRST_AID", "911" ] TODO: Set! */
-
+  
   <<set $called911 to false>>
   <<set $calledFrancis to false>>
+  <<set $carPresent to true>> /* TODO: Set! */
 <</nobr>>\
 
 
@@ -87,6 +91,7 @@
 <h1>This next section is timed!</h1>\
 Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will reset the page and throw your games out of sync. This will never make the game unfinishable, but it will mean that your partner needs to wait for you.
 
+
 :: ChaseShared_KidnapperStatus
 <<if $chaseTurn is 1>>\
   The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars behind it. The van stops, stymied by the traffic.\
@@ -103,6 +108,7 @@ Network interruptions will not break the game, but they may cause your clients t
 <<else>>\
   TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE\
 <</if>>\
+
 
 :: ChaseShared_DogStatus
 <<if $chaseTurn is 1>>\
@@ -121,6 +127,7 @@ Network interruptions will not break the game, but they may cause your clients t
   TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <</if>>\
 
+
 :: ChaseShared_BarStatus
 <<if $chaseTurn is 1>>\
   The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims, her face ashen. The bartender recoils.\
@@ -135,3 +142,7 @@ Network interruptions will not break the game, but they may cause your clients t
 <<elseif $chaseTurn is 6>>\
   TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
 <</if>>\
+
+
+:: ChaseShared_EbiStatus
+  TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS 

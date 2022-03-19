@@ -99,9 +99,16 @@
   /* TODO: Vary this! */\
   <<disable>><<button "Call St. Francis' 24-Hour Pet Clinic. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
-<<cf-button "Grab Ma Tiger's keys and give chase in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
-  "CAR"
-  "You're starting Ma Tiger's car.">>
+/* Jeku doesn't need to check for presence because Ebi can't drive!*/\
+<<if $faithfulAlreadyTriedDriving is true>>\
+  <<cf-button "Grab Ma Tiger's keys and get in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
+    "CAR"
+    "You're getting in Ma Tiger's car.">>
+<<else>>\
+  <<cf-button "Grab Ma Tiger's keys and get in her car. (Maybe you've changed your mind about giving chase?)"
+    "CAR"
+    "You're getting in Ma Tiger's car.">>
+<</if>>\
 <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
   "KING"
   "You're stopping King's bleeding.">>
@@ -535,7 +542,173 @@ TODO: You end the call
 /** ###################################################################### **/\
 /** # CAR                                                                # **/\
 /** ###################################################################### **/\
+<<include "ChaseFaithful_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  /* TODO: Ebi conflict */\
+  You scramble for the keys to Ma Tiger's car. Your hand closes over them and you leap into the driver's seat, slamming the start button. The dash lights up.
+<<next $timerString>>
+  You put your right foot on the pedals, grab the shifter and push it into drive, disengage the parking break. Been a while. You check traffic. You're clear.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Chase the van. (This is going to get dicey.)"
+    "DRIVE"
+    "You're driving after the van.">>
+  /* TODO: if Ebi is running, chase after */\
+  /* TODO: if Ebi is present */\
+  <<cf-button "Wait for Ebi to get in. (Come on! Get in already!)"
+    "WAIT"
+    "You're giving Ebi a chance to get in.">>
+  <<cf-button "Exit the car. (There are other things that need your attention.)"
+    "EXIT"
+    "You're getting out of the car.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive
+<<include "ChaseFaithful_TurnIndicator">>\
+  You throw a glance over your shoulder and peel off into traffic, fast as you can. Hopefully you'll be the only human on the road. Otherwise this will be ugly.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  You squeeze into the right lane, practically running a truck off the road. It's automatic. It beaches itself harmlessly on the sidewalk, a pedestrian cursing.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Drive. (Shit, shit, shit.)"
+    "DRIVE"
+    "You're driving after the van.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_2
+<<include "ChaseFaithful_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  A pair of teenagers step into a crosswalk ahead of you, crossing right to left. You lean on the horn. They look around, confused, but don't stop their walk.
+<<next $timerString>>
+  Fuck, have they never heard a horn? Maybe they don't even know cars can be manual. Shit. They're not gonna scatter; they think your car is self-driving. Dammit!
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Accelerate. (Risky. Very risky. You can't make this.)"
+    "ACCELERATE"
+    "You're accelerating past the teenagers.">>
+  <<cf-button "Swerve left. (Left lane's not clear, but maybe the cars will avoid you?)"
+    "LEFT"
+    "You're swerving to avoid the teenagers.">>
+  <<cf-button "Swerve right. (The sidewalk is clear. You can probably make it?)"
+    "RIGHT"
+    "You're swerving to avoid the teenagers.">>
+  <<cf-button "Slam the brakes. (Goddammit. This will slow you down.)"
+    "BRAKE"
+    "You're slamming the brakes.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_Accelerate
+<<include "ChaseFaithful_TurnIndicator">>\
+  You push down on the pedal. It depressed all the way. The car speeds up, but it's not a powerful car. They're too far into the road now. You can't believe it.
+<<timed 4s t8n>>
+  The teenager in front looks up.
+<<next 1s>>
+  They're looking directly at you.
+<<next 1s>>
+  Black eyes, long white hair.
+<<next 1s>>
+  Their friend is grabbing at them.
+<<next 1s>>
+  His hand's on their arm.
+<<next 1s>>
+  They take another step.
+<<next 1s>>
+  There's a crunch and your car shudders.
+<<next 1s>>
+  Fuck.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<disabled-button "Drive.">>
+  <<disabled-button "Stop.">>
+  <<disabled-button "Help.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_Left
+<<include "ChaseFaithful_TurnIndicator">>\
+  You swerve to the left. The blue sedan to your left swerves to its left, pushing out into oncoming traffic. Horns blare. The teenagers stop in the road, shocked.
+<<timed 4s t8n>>
+  There's a terrible smashing sound.
+<<next 1s>>
+  You slam the breaks, steer right.
+<<next 1s>>
+  You're on the sidewalk now, somehow. Stopped. You crane your neck back behind you.
+<<next 2s>>
+  The blue sedan is intermingled with a silver truck, half ripped open. There's a half-crushed woman yelling in pain and a man lying in the road with only one arm.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<disabled-button "Drive.">>
+  <<disabled-button "Stop.">>
+  <<disabled-button "Help.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_Right
+<<include "ChaseFaithful_TurnIndicator">>\
+  You swerve to the right, running onto the sidewalk. The jolt almost jars your hands off the wheel. The teenagers freeze in the street, shocked.
+<<timed $timerString t8n>>
+  You're past them now, and there's a gap in the cars ahead of you. You accelerate to close it. That was too risky. Hopefully it hasn't damaged the wheels.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  TODO: THIS
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_Brake
 TODO
+
+
+:: ChaseFaithful_Car_Wait
+<<include "ChaseFaithful_TurnIndicator">>\
+  <<include "ChaseShared_KidnapperStatus">>
+<<timed $timerString t8n>>
+  <<include "ChaseShared_EbiStatus">>
+<<next $timerString>>
+  /* TODO: if Ebi is running, just go */\
+  You unlock all the doors, roll down the window. "Ebi," you yell, "get in!" You grind your teeth, your foot pressing the brake pedal to the floor.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Chase the van. (The longer you wait, the further they'll get. You've got to get on the road soon.)"
+    "DRIVE"
+    "You're driving after the van.">>
+  /* TODO: if Ebi is present */\
+  <<cf-button "Wait for Ebi to get in. (Come on, come on!)"
+    "WAIT"
+    "You're giving Ebi a chance to get in.">>
+  <<cf-button "Exit the car. (There are other things that need your attention.)"
+    "EXIT"
+    "You're getting out of the car.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Wait_2
+TODO
+
+
+:: ChaseFaithful_Car_Exit
+<<include "ChaseFaithful_TurnIndicator">>\
+  You slam the unlock button, just in case, and throw the keys down on the seat. You jump back onto the sidewalk, dodge King, and stumble before catching yourself.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_EbiStatus">>
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_Manslaughter
+TODO: Did you just kill somebody?
 
 
 :: ChaseFaithful_King

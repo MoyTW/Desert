@@ -234,10 +234,11 @@ TODO
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
   /* TODO: Jekusheke */\
-  You drive for the keys, snatching them off the ground and leaping into the car. There's a wheel, but maybe it has an AI. "Follow the closest white van!" you yell.
+  You dive for the keys, snatching them off the ground and leaping into the car. There's a wheel, but maybe it has an AI. "Follow the closest white van!" you yell.
 <<next $timerString>>
   The car doesn't respond. It hasn't even started. You press the key to the dash. Nothing. You can't even turn it on, and you couldn't drive it if you could.
 <</timed>>\
+/* TODO: hacking instead of driving */\
 /* TODO: Stay in the car and let Jeku drive it */\
 <<chase-shared-options-section "Apostate">>\
   <<ca-button "Drop the keys on the seat and get out. (It'd be faster to get out and run.)"

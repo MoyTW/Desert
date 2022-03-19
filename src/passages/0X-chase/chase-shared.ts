@@ -246,6 +246,44 @@
     ["ChaseFaithful_Francis_King_4", _faithfulChristiesRouting],
     ["ChaseFaithful_Francis_End_Call_Safely", _faithfulChristiesRouting],
     // ########################################################################
+    // # CAR                                                                  #
+    // ########################################################################
+    ["ChaseFaithful_Car", new Map<string,[string, () => void]>([
+      ["DRIVE", ["ChaseFaithful_Car_Drive", () => {
+        (State.variables as any).carPresent = false;
+      }]],
+      ["WAIT",["ChaseFaithful_Car_Wait", () => {}]],
+      ["EXIT", ["ChaseFaithful_Car_Exit", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Car", () => {}]],
+    ])],
+    ["ChaseFaithful_Car_Drive", new Map<string,[string, () => void]>([
+      ["DRIVE", ["ChaseFaithful_Car_Drive_2", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Car_Drive", () => {}]],
+    ])],
+    ["ChaseFaithful_Car_Drive_2", new Map<string,[string, () => void]>([
+      ["ACCELERATE", ["ChaseFaithful_Car_Drive_Accelerate", () => {}]],
+      ["LEFT", ["ChaseFaithful_Car_Drive_Left", () => {}]],
+      ["RIGHT", ["ChaseFaithful_Car_Drive_Right", () => {}]],
+      ["BRAKE", ["ChaseFaithful_Car_Drive_Brake", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]], // TODO: custom
+    ])],
+    ["ChaseFaithful_Car_Drive_Accelerate", new Map<string,[string, () => void]>([
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
+    ])],
+    ["ChaseFaithful_Car_Drive_Left", new Map<string,[string, () => void]>([
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
+    ])],
+    
+    ["ChaseFaithful_Car_Wait", new Map<string,[string, () => void]>([
+      ["DRIVE", ["ChaseFaithful_Car_Drive", () => {
+        (State.variables as any).carPresent = false;
+      }]],
+      ["WAIT",["ChaseFaithful_Car_Wait_2", () => {}]],
+      ["EXIT", ["ChaseFaithful_Car_Exit", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Car_Wait", () => {}]],
+    ])],
+    ["ChaseFaithful_Car_Exit", _faithfulChristiesRouting],
+    // ########################################################################
     // # BAR                                                                  #
     // ########################################################################
     ["ChaseFaithful_Bar", new Map<string,[string, () => void]>([
