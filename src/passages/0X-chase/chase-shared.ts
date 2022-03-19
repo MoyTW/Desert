@@ -12,7 +12,9 @@
 
   const _apostateChristiesRouting = new Map<string,[string, () => void]>([
     ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
-    ["911", ["ChaseApostate_911", () => {}]],
+    ["911", ["ChaseApostate_911", () => {
+      (State.variables as any).apostateCanCall911 = false
+    }]],
     ["CAR", ["ChaseApostate_Car", () => {}]],
     ["KING", ["ChaseApostate_King", () => {}]],
     ["BAR", ["ChaseApostate_Bar", () => {
@@ -43,15 +45,49 @@
       ["SIDEWALK", ["ChaseApostate_OnFoot_Sidewalk", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_3", () => {}]], /* TODO: You get shot */
     ])],
+    // ########################################################################
+    // # 911                                                                  #
+    // ########################################################################
     ["ChaseApostate_911", new Map<string,[string, () => void]>([
       ["TIGER", ["ChaseApostate_911_Tiger", () => {}]],
-      ["KING", ["ChaseApostate_911_King", () => {}]],
-      ["BOTH", ["ChaseApostate_911_Both", () => {}]],
-      ["NONE", ["ChaseApostate_Christies", () => {
-        (State.variables as any).apostateCanCall911 = false
+      ["KING", ["ChaseApostate_911_King", () => {
+        (State.variables as any).apostateCanReportKing = false;
       }]],
+      ["NONE", ["ChaseApostate_911_End", () => {}]],
       ["FREEZE", ["ChaseApostate_911", () => {}]],
     ])],
+    ["ChaseApostate_911_King", new Map<string,[string, () => void]>([
+      ["TIGER", ["ChaseApostate_911_Tiger", () => {
+        (State.variables as any).called911 = true;
+      }]],
+      ["NONE", ["ChaseApostate_911_End", () => {}]],
+      ["FREEZE", ["ChaseApostate_911_King", () => {}]],
+    ])],
+    ["ChaseApostate_911_Tiger", new Map<string,[string, () => void]>([
+      ["TIGER", ["ChaseApostate_911_Tiger_2", () => {}]],
+      ["KING", ["ChaseApostate_911_Tiger_King", () => {
+        (State.variables as any).apostateCanReportKing = false;
+      }]],
+      ["NONE", ["ChaseApostate_911_End", () => {}]],
+      ["FREEZE", ["ChaseApostate_911_Tiger", () => {}]],
+    ])],
+    ["ChaseApostate_911_Tiger_King", new Map<string,[string, () => void]>([
+      ["TIGER", ["ChaseApostate_911_Tiger_2", () => {}]],
+      ["NONE", ["ChaseApostate_911_End", () => {}]],
+      ["FREEZE", ["ChaseApostate_911_Tiger_King", () => {}]],
+    ])],
+    ["ChaseApostate_911_Tiger_2", new Map<string,[string, () => void]>([
+      ["KING", ["ChaseApostate_911_Tiger_2_King", () => {
+        (State.variables as any).apostateCanReportKing = false;
+      }]],
+      ["NONE", ["ChaseApostate_911_End", () => {}]],
+      ["FREEZE", ["ChaseApostate_911_Tiger_2", () => {}]],
+    ])],
+    ["ChaseApostate_911_Tiger_2_King", _apostateChristiesRouting],
+    ["ChaseApostate_911_End", _apostateChristiesRouting],
+    // ########################################################################
+    // # CAR                                                                  #
+    // ########################################################################
     ["ChaseApostate_Car", new Map<string,[string, () => void]>([
       ["EXIT", ["ChaseApostate_Christies", () => {}]], /* TODO: "what did you last do" */
       ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
@@ -155,7 +191,7 @@
     ])],
     ["ChaseFaithful_911_Tiger_2", new Map<string,[string, () => void]>([
       ["STAY", ["ChaseFaithful_911_Tiger_3", () => {}]],
-      ["KING", ["ChaseFaithful_911_Tiger_King", () => {
+      ["KING", ["ChaseFaithful_911_King", () => {
         (State.variables as any).faithfulKingReturnScene = "TIGER_3";
         (State.variables as any).faithfulCanReportKingTo911 = false;
       }]],
@@ -170,7 +206,7 @@
     ])],
     ["ChaseFaithful_911_Tiger_3", new Map<string,[string, () => void]>([
       ["STAY", ["ChaseFaithful_911_Tiger_4", () => {}]],
-      ["KING", ["ChaseFaithful_911_Tiger_King", () => {
+      ["KING", ["ChaseFaithful_911_King", () => {
         (State.variables as any).faithfulKingReturnScene = "TIGER_4";
         (State.variables as any).faithfulCanReportKingTo911 = false;
       }]],

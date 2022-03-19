@@ -16,6 +16,7 @@
   <<set $faithfulCanChaseOnFoot to true>>
   
   <<set $apostateCanCall911 to true>>
+  <<set $apostateCanReportKing to true>>
   <<set $faithfulCanCall911 to true>>
   <<set $faithfulReportedTiger to false>>
   <<set $faithfulCanReportKingTo911 to true>>

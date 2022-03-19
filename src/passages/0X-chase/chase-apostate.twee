@@ -191,6 +191,7 @@ TODO
 /** ###################################################################### **/\
 /** # 911                                                                # **/\
 /** ###################################################################### **/\
+/* TODO: Confirm that Ebi can 911 and also chase! */\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
@@ -205,25 +206,116 @@ TODO
   <<ca-button "Report King's injuries. (You're not sure if 911 dispatches for animals.)"
     "KING"
     "You're reporting King's injuries to 911.">>
-  <<ca-button "Report a kidnapping and King's injuries. (This will probably take more time than you want.)"
-    "BOTH"
-    "You're reporting a kidnapping and King's injuries to 911.">>
   <<ca-button "End the call and ditch the burner. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
 <</chase-shared-options-section>>\
 
 
-:: ChaseApostate_911_Tiger
-TODO
-
-
 :: ChaseApostate_911_King
-TODO
+<<include "ChaseApostate_TurnIndicator">>\
+  "There's a dog here that got shot twice, maybe more, and its right leg is broken. It's bleeding bad." 911 pauses. They sympathize. They ask after any injured humans.
+<<timed $timerString t8n>>
+  You tell them no. They tell you that 911 only handles human emergencies, but to stay on the line. They ask for more info on what why the dog was shot.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Tell them about the kidnapping. (Do you really want to involve the law?)"
+    "TIGER"
+    "You're reporting Ma Tiger's kidnapping.">>
+  <<ca-button "End the call and ditch the burner. (You don't want to involve the police in this.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
 
 
-:: ChaseApostate_911_Both
-TODO
+:: ChaseApostate_911_Tiger
+<<include "ChaseApostate_TurnIndicator">>\
+  "There are four armed people who just kidnapped an older Asian woman. They're in a white van with plates UD, then either a 1 or an l, I didn't catch the rest."
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  911 asks you where they went. You say down Holcomb. They ask you about Ma Tiger's clothes. You describe them. You tell them the attackers are armed with firearms.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Stay on the line. (That should be enough to get them to send the law. They'll want more. Is it worth the time it'll take?)"
+    "TIGER"
+    "You're staying on the line.">>
+  <<include "ChaseApostate_911_Tiger_KingButton">>
+  <<ca-button "End the call and ditch the burner. (They'll send somebody to check it out.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_911_Tiger_King
+<<include "ChaseApostate_TurnIndicator">>\
+  "Also," you say, "There's a dog here that got shot twice, maybe more, and its right leg is broken. It's bleeding bad, it needs a medic now." There's a pause.
+<<timed $timerString t8n>>
+  911 tells you, sympathetically, that 911 is for human emergencies. They say that the best thing you can do is stay on the line. They repeat: stay on the line.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Stay on the line. (Fine, but speed this up. Just dispatch your fucking cops already!)"
+    "TIGER"
+    "You're staying on the line.">>
+  <<ca-button "End the call and ditch the burner. (They're not going to ignore a report of an armed kidnapping, even if the call cuts.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_911_Tiger_2
+<<include "ChaseApostate_TurnIndicator">>\
+  911 asks for details about the kidnappers. You tell them that they were in street clothes, that they had face coverings, that they were all armed with firearms.
+<<timed $timerString t8n>>
+  911 asks for your location, says that they're dispatching the police. Okay. That's all you needed. They ask if anybody at the scene is injured or needs medical care.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_911_Tiger_KingButton">>
+  <<ca-button "End the call and ditch the burner. (If they've already started dispatching a unit, there's no need to stay on the line.)"
+    "NONE"
+    "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_911_Tiger_2_King
+<<include "ChaseApostate_TurnIndicator">>\
+  You tell them that there's a dog here. He has a broken leg and has been shot multiple times. 911 says, very nicely, that 911 cannot handle animal health care.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  They've already said they dispatched the police. Staying on the line would just be wasting time. You press the end call button, shove the burner into a pocket.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_911_End
+<<include "ChaseApostate_TurnIndicator">>\
+  You press the end call button and power down your burner so they can't call back or track it. You'll have to ditch it later. For now you shove it in your pocket.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+:: ChaseApostate_911_Tiger_KingButton
+<<if $apostateCanReportKing is true>>\
+  <<ca-button "Report King's injuries. (They asked, so you'll answer. Will it work?)"
+      "KING"
+      "You're reporting King's injuries to 911.">>\
+<<else>>\
+  <<disabled-button "Report King's injures. (They don't do animals.)">>\
+<</if>>\
 
 
 :: ChaseApostate_Car
