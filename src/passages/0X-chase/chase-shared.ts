@@ -273,7 +273,6 @@
     ["ChaseFaithful_Car_Drive_Left", new Map<string,[string, () => void]>([
       ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
     ])],
-    
     ["ChaseFaithful_Car_Wait", new Map<string,[string, () => void]>([
       ["DRIVE", ["ChaseFaithful_Car_Drive", () => {
         (State.variables as any).carPresent = false;

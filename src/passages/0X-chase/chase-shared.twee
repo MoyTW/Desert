@@ -30,12 +30,23 @@
   <<set $faithfulCanTriageKing to true>> /* TODO: this */
 
   /* World State */
+  <<set $apostatePassage to "ChaseApostate_Christies">>
+  <<set $faithfulPassage to "ChaseFaithful_Christies">>
+
   <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID"] TODO: SET EBI */
   <<set $cookAction to "NONE">> /* [ "NONE", "TALK", "PET_CLINIC", "FIRST_AID", "911" ] TODO: Set! */
   
   <<set $called911 to false>>
   <<set $calledFrancis to false>>
   <<set $carPresent to true>> /* TODO: Set! */
+
+  /* TODO: Set all these! */
+  <<set $apostateIsChasing to false>>
+  <<set $faithfulIsChasing to false>>
+  <<set $kidnappersEscaped to false>>
+  /* TODO: If King doesn't start first aid by turn 4, King will die */
+  /* TODO: If nobody calls the vet, King will die UNLESS Jeku starts first aid as the first action */
+  <<set $kingStartedTreatmentOnTurn to undefined>> /* TODO: This, bartender this. */
 <</nobr>>\
 
 
@@ -93,6 +104,11 @@ Network interruptions will not break the game, but they may cause your clients t
 
 
 :: ChaseShared_KidnapperStatus
+<<nobr>>
+  /* The players have 4 turns to start the chase. If they don't start by turn 4, the kidnappers escape. */
+  /* TODO: SET THIS! */
+  <<set _isChasing to false>>
+<</nobr>>\
 <<if $chaseTurn is 1>>\
   The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars behind it. The van stops, stymied by the traffic.\
 <<elseif $chaseTurn is 2>>\
@@ -100,11 +116,15 @@ Network interruptions will not break the game, but they may cause your clients t
 <<elseif $chaseTurn is 3>>\
   The light restraining the van turns green. Traffic starts to move, and the kidnapper's van moves with them, skidding recklessly between lanes as it tears off.\
 <<elseif $chaseTurn is 4>>\
-  The next light turns red; they couldn't beat it. In a flash they swerve into the right lane, followed by a flurry of horns, and take the turn onto a side street.\
+  The kidnappers hit a slow patch of traffic, cars too tightly packed to switch lanes. Foot by foot they creep forwards. After long seconds, it opens up.\
 <<elseif $chaseTurn is 5>>\
-  In the city core, even the side streets have traffic. The kidnappers manage to get nearly a whole block before they're stopped again, and this time there's no right.\
+  The next light turns red; they couldn't beat it. In a flash they swerve into the right lane, followed by a flurry of horns, and take the turn onto a side street.\
 <<elseif $chaseTurn is 6>>\
-  TODO
+  <<if $_isChasing is true>>\
+    In the city core, even the side streets have traffic. The kidnappers manage to get nearly a whole block before they're stopped again, and this time there's no right.\
+  <<else>>\
+    You throw a glance down the road but you've lost the van. They've vanished down the side street. If there was any hope of catching up with them, it's gone now.\
+  <</if>>\
 <<else>>\
   TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE\
 <</if>>\

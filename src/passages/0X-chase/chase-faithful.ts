@@ -32,11 +32,14 @@
     const apostateChoice: string = _vars.ChaseApostate_CHOICE_LAST.choice
     const apostatePassage: string = _vars.ChaseApostate_CHOICE_LAST.passage
 
-    const [_, apostatePassageFn] = _setup.Chase.GetApostateData(apostatePassage, apostateChoice)
+    const [nextApostatePassage, apostatePassageFn] = _setup.Chase.GetApostateData(apostatePassage, apostateChoice)
+    _vars.apostatePassage = nextApostatePassage
     apostatePassageFn()
 
     const [nextPassage, passageFn] = _setup.Chase.GetFaithfulData(faithfulPassage, faithfulChoice)
+    _vars.faithfulPassage = nextPassage
     passageFn()
+
     Engine.play(nextPassage)
   }
 })()
