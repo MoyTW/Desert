@@ -79,12 +79,14 @@
 
 
 :: ChaseApostate_Christies_Buttons
-<<if $apostateCanChaseOnFoot>>\
+<<if $kidnappersInSightOfChristies and $apostateCanChaseOnFoot>>\
   <<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
     "You're giving chase on foot.">>
+<<elseif $kidnappersInSightOfChristies>>\
+  <<disabled-button "Chase after them on foot. (You wasted too much time coming back, there's no chance now.)">>
 <<else>>\
-  <<disable>><<button "Chase after them on foot. (No time now, not after coming back.)">><</button>><</disable>>
+  <<disabled-button "Chase after them on foot. (They're out of sight now.)">>
 <</if>>\
 <<if $apostateCanCall911>>\
   <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but 911 is slow. Plus, getting them involved might be a bad idea.)"
@@ -94,9 +96,15 @@
   <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
 <</if>>\
 /* TODO: add "can do" to this */\
-<<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
-  "CAR"
-  "You're starting Ma Tiger's car.">>
+<<if $apostateAlreadyTriedDriving is false and $kidnappersInSightOfChristies is true>>\
+  <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
+    "CAR"
+    "You're starting Ma Tiger's car.">>
+<<elseif $kidnappersInSightOfChristies>>\
+  <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You don't know how to drive it.)">>
+<<else>>\
+  <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (They're gone. Useless.)">>
+<</if>>\
 <<if $apostateCanTriageKing>>\
   <<ca-button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)"
     "KING"

@@ -77,12 +77,14 @@
 
 
 :: ChaseFaithful_Christies_Buttons
-<<if $faithfulCanChaseOnFoot>>\
+<<if $kidnappersInSightOfChristies and $faithfulCanChaseOnFoot>>\
   <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
     "FOOT"
     "You're giving chase on foot.">>
+<<elseif $kidnappersInSightOfChristies>>\
+  <<disabled-button "Chase after them on foot. (Already tried, no chance now.)">>
 <<else>>\
-  <<disable>><<button "Chase after them on foot. (No chance.)">><</button>><</disable>>
+  <<disabled-button "Chase after them on foot. (They're out of sight, it'd be no use.)">>
 <</if>>\
 <<if $faithfulCanCall911>>\
   <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
@@ -100,14 +102,16 @@
   <<disable>><<button "Call St. Francis' 24-Hour Pet Clinic. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
 /* Jeku doesn't need to check for presence because Ebi can't drive!*/\
-<<if $faithfulAlreadyTriedDriving is true>>\
+<<if $kidnappersInSightOfChristies and $faithfulAlreadyTriedDriving is false>>\
   <<cf-button "Grab Ma Tiger's keys and get in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
     "CAR"
     "You're getting in Ma Tiger's car.">>
-<<else>>\
-  <<cf-button "Grab Ma Tiger's keys and get in her car. (Maybe you've changed your mind about giving chase?)"
+<<elseif $kidnappersInSightOfChristies>>\
+  <<cf-button "Grab Ma Tiger's keys and get in her car. (There's still time to give chase.)"
     "CAR"
     "You're getting in Ma Tiger's car.">>
+<<else>>\
+  <<disabled-button "Grab Ma Tiger's keys and get in her car. (The kidnappers are well out of sight. It'd be useless.)">>
 <</if>>\
 <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
   "KING"

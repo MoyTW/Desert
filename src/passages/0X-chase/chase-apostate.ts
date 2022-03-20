@@ -11,17 +11,11 @@
     }
   }
 
-  const _incrementTurn = function() {
-    (State.variables as any).chaseTurn++
-  }
-
   _setup.Route_ChaseApostate_Choice = function() {
     const _vars = State.variables as any;
 
     if (!_vars.ChaseApostate_CHOICE || !_vars.ChaseFaithful_CHOICE) { return }
 
-    _incrementTurn();
-  
     _vars.ChaseApostate_CHOICE_LAST = _vars.ChaseApostate_CHOICE
     _vars.ChaseFaithful_CHOICE_LAST = _vars.ChaseFaithful_CHOICE
     delete _vars.ChaseApostate_CHOICE
@@ -40,6 +34,7 @@
     _vars.apostatePassage = nextPassage
     apostatePassageFn()
 
+    _setup.Chase.IncrementTurn()
     Engine.play(nextPassage)
   }
 })()

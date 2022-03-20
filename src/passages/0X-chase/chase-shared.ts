@@ -2,6 +2,28 @@
   const _setup = setup as any
   _setup.Chase = {}
 
+  _setup.Chase.IncrementTurn = function() {
+    const _vars = State.variables as any
+    
+    _vars.chaseTurn++
+
+    // Set kidnappers variables
+    if (_vars.chaseTurn >= 6) { // If you change this, update ChaseShared_KidnapperStatus
+      _vars.kidnappersInSightOfChristies = false
+      if (!_vars.apostateIsChasing && !_vars.faithfulIsChasing) {
+        _vars.kidnappersEscaped = true
+      }
+    }
+
+    /* TODO: Write a "It's over" scene */
+    /*
+    The scene is over when any of the following happen:
+      + both of the players catch the kidnappers
+      + if neither of the players catch the kidnappers, they reach an "end" point
+      + you can't catch the kidnappers AND King has bled out
+    */
+  }
+
   _setup.Chase.GetApostateData = function(passage: string, choice: string): [string, () => void] {
     return _apostateRoutingTable.get(passage)?.get(choice)!
   }

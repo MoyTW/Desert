@@ -44,6 +44,7 @@
   /* TODO: Set all these! */
   <<set $apostateIsChasing to false>>
   <<set $faithfulIsChasing to false>>
+  <<set $kidnappersInSightOfChristies to true>>
   <<set $kidnappersEscaped to false>>
   /* TODO: If King doesn't start first aid by turn 4, King will die */
   /* TODO: If nobody calls the vet, King will die UNLESS Jeku starts first aid as the first action */

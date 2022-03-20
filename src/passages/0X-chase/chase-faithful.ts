@@ -11,16 +11,10 @@
     }
   }
 
-  const _incrementTurn = function() {
-    (State.variables as any).chaseTurn++
-  }
-
   _setup.Complete_ChaseFaithful_Christies = function() {
     const _vars = State.variables as any;
 
     if (!_vars.ChaseFaithful_CHOICE || !_vars.ChaseApostate_CHOICE) { return }
-
-    _incrementTurn();
 
     _vars.ChaseApostate_CHOICE_LAST = _vars.ChaseApostate_CHOICE
     _vars.ChaseFaithful_CHOICE_LAST = _vars.ChaseFaithful_CHOICE
@@ -40,6 +34,7 @@
     _vars.faithfulPassage = nextPassage
     passageFn()
 
+    _setup.Chase.IncrementTurn()
     Engine.play(nextPassage)
   }
 })()
