@@ -138,7 +138,6 @@
   <</if>>\
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
-  /* TODO: Vary button on how far they are? */\
   <<ca-button "Run them down. (They may have an electric engine, but you don't need to worry about lights. Unless something changes, you'll catch them.)"
     "FOOT"
     "You're continuing the chase.">>
@@ -157,7 +156,6 @@
   Once you catch them, what's the plan? There are four of them. Three known armed. One probably armed. If any of them are augmented, this might be hard to pull off.
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
-  /* TODO: Vary button on how far they are? */\
   <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need, it's just a question of traffic and reds.)"
     "FOOT"
     "You're continuing the chase.">>
@@ -173,7 +171,7 @@
 <<timed $timerString t8n>>
   Unless something changes, you'll catch them. You're too fast, your cybernetic legs and lungs too powerful, and the city is too congested. Surely they've realized?
 <<next $timerString>>
-  Ahead of you, the van's side door slides open and a man leans. He spots you, vanishes. Seconds later he returns, mag rifle in hand, and kneels down, taking aim.
+  Ahead of you, the van's rear doors burst open. A man is standing there with a mag rifle, held in his right hand. He spots you and kneels down, taking aim.
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
   <<ca-button "Run into the road, using traffic as cover. (Extraordinarily dangerous, but he probably won't shoot into random traffic.)"
@@ -187,11 +185,140 @@
 
 :: ChaseApostate_OnFoot_Road
 <<include "ChaseApostate_TurnIndicator">>\
-TODO
+  You throw a glance over into the street. 2 lanes, the left slower than the right. The van's in the right. You stop, duck behind a parked car. You wait for a chance.
+<<timed $timerString t8n>>
+  A gap in traffic. You make your break, dash across the right line, run down the median strip, the left lane's traffic shielding you from the van. Almost there.
+<<next $timerString>>
+  The shooter either can't get a shot, or isn't willing to shoot into traffic. He lowers the rifle. Good. They've got limits. They're not just spraying bullets.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Catch the van. (Shit, what's the plan here?)"
+    "CATCH"
+    "You're catching the van.">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_OnFoot_Sidewalk
 <<include "ChaseApostate_TurnIndicator">>\
+  You dash along the sidewalk. Hopefully he's a bad shot. You run past past the occasional parked car but otherwise, you're wide open. You brace yourself.
+<<timed $timerString t8n>>
+  He doesn't take the shot. He could, if he wanted to. Not confident in his aim? Not willing to actually commit murder? Interesting. You'd take the shot.
+<<next $timerString>>
+  They've got limits. You're going to catch them at the next red. If he's going to shoot you, now's the time. Instead he drops the rifle, pulls out a taser and baton.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Catch the van. (Shit, what's the plan here?)"
+    "CATCH"
+    "You're catching the van.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Caught
+/* TODO: Figure all this out!!! */\
+/* TODO: If Jeku is in the car */\
+<<include "ChaseApostate_TurnIndicator">>\
+  The light ahead turns red, and the van slows, then stops about ninty meters in front of you. The blue sedan behind it stops far short of the van. Seconds away.
+<<timed $timerString t8n>>
+  The doors are still open. Three figures, two standing, one sitting. The two standing figures leap out, batons in hand. The third seems restrained. That's her.
+<<next $timerString>>
+  You've caught them. Woman has a shock baton in her right hand, holstered pistol and taser. Man has a riot baton in his right hand, taser in left, holstered pistol.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Stop them. Anything goes. (Easier.)"
+    "KILL"
+    "You're fighting the kidnappers, no holds barred.">>
+  <<ca-button "Stop them. Try not to kill anybody. (Harder.)"
+    "SUBDUE"
+    "You're fighting the kidnappers, but nonlethally.">>
+  <<ca-button "Try and talk them down. (Unlikely.)"
+    "NEGOTIATE"
+    "You're trying to talk the kidnappers down.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Caught_Kill
+<<include "ChaseApostate_TurnIndicator">>\
+  Can you use your gun? It's a tiny thing, concealable, eight rounds, and unlikely to shoot through the side of the van - but no, you don't want to hit Ma Tiger.
+<<timed $timerString t8n>>
+  You'll have to get them away from the van first. The woman squares up, the man fires his taser. You duck. The darts scream by your ear. You lunge.
+<<next $timerString>>
+  You smash into the woman. You're fast and heavy. She's swinging her baton, off-balance. She slams into the side of the van with a dull crunch, goes limp.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Take the rest down."
+    "FIGHT"
+    "You're taking down the kidnappers.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Caught_Kill_2
+<<include "ChaseApostate_TurnIndicator">>\
+  A baton blow to the legs knocks you off your feet. You roll, scramble up. The man's put himself between you and his friend. The front door opens. Two more.
+<<timed $timerString t8n>>
+  They rush to help the woman while the man keeps you away. You pace to the right, back away. The van's not in the line of fire. Your hand goes to your gun.
+<<next $timerString>>
+  You take a breath. Traffic's stopped. There are probably a dozen cameras on you. You pause. Are you really going to gun them down in broad daylight, in public?
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Kill them."
+    "FIGHT"
+    "You're shooting the kidnappers.">>
+  <<ca-button "Find another way."
+    "NEGOTIATE"
+    "You're going to find another way.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Caught_Kill_3
+<<include "ChaseApostate_TurnIndicator">>\
+  You grab at your waist, pull out your sidearm, aim. The man stiffens in surprise. Before he can react, you put two bullets into his center of mass. He looks down.
+<<timed $timerString t8n>>
+  You fire again; he slumps, staggers. You're already moving on. The two men helping tend to the woman don't seem to realize what's happening. One looks up.
+<<next $timerString>>
+  Your bullet catches him in the head. His partner dives away, scrambling up. You use the last four bullets on him. Your aim is good. He does not get up.
+<</timed>>\
+/* TODO: Ending scene! */
+
+:: ChaseApostate_OnFoot_Caught_Kill_Deescalate
+/* TODO */\
+
+
+:: ChaseApostate_OnFoot_Caught_Subdue
+/* TODO */\
+<<include "ChaseApostate_TurnIndicator">>\
+  You slow your run as you approach. The woman squares up as the man aims his taser. You put on a burst of speed, duck. The taser darts whistle by your ear.
+<<timed $timerString t8n>>
+  You brace your arms, smash into the woman as she swings at you. You're heavy and moving fast. She's neither. She slams into the side of the van with a crunch.
+<<next $timerString>>
+  Something smashes into your back, hard; you dive to the side, come up in a crouch. The man puts himself in between the woman and you. The front door opens. Two more.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Keep fighting. (Three or four on one are tough odds.)"
+    "FIGHT"
+    "">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Caught_Negotiate
+/* TODO */\
+
+
+:: ChaseApostate_OnFoot_Caught_End
+<<include "ChaseApostate_TurnIndicator">>\
+  You step back, hand reaching for your pistol. You hesitate. The cars around you are stopped. There are probably dozens of cameras on you. It's broad daylight.
+<<timed $timerString t8n>>
+  TODO THIS
+<<next $timerString>>
+  Suddenly, from the back of the van, a woman yells out. "Stop that! Stop fighting, all of you! Ebi, get in here! Arnold, put that baton down and get in here!"
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "What? (What?)"
+    "SANCTUARY"
+    "You're catching the van.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Subdue
 TODO
 
 
@@ -200,6 +327,7 @@ TODO
 /** # 911                                                                # **/\
 /** ###################################################################### **/\
 /* TODO: Confirm that Ebi can 911 and also chase! */\
+/* TODO: If Ebi does 911, tries to report King, and stays on the line, she can't chase! */\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
@@ -317,6 +445,7 @@ TODO
 <</chase-shared-options-section>>\
 
 :: ChaseApostate_911_Tiger_KingButton
+/* TODO: You can get this in the second scene of the convo they didn't ask!!! */\
 <<if $apostateCanReportKing is true>>\
   <<ca-button "Report King's injuries. (They asked, so you'll answer. Will it work?)"
       "KING"

@@ -120,9 +120,12 @@
   <<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
     "BAR"
     "You're enlisting the bar staff.">>
+<<elseif $bartenderAction is "TALK">>\
+  <<disabled-button "Ask the bar staff for help. (Ebiaishe is talking urgently to them. They look busy.)">>
+<<elseif $cookAction is "FIRST_AID">>\
+  <<disabled-button "Ask the bar staff for help. (They're hunched around King, pressing bandages to his wounds. You'd best not interrupt.)">>
 <<else>>\
-  /* TODO: Vary this! */\
-  <<disable>><<button "Ask the bar staff for help. (They're busy.)">><</button>><</disable>>
+  <<disabled-button "Ask the bar staff for help. (They bartender already is tending to King, and the cook's calling emergency services.)">>
 <</if>>\
 
 

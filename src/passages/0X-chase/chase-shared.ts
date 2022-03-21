@@ -48,6 +48,9 @@
 
   const _apostateRoutingTable = new Map<string, Map<string,[string, () => void]>>([
     ["ChaseApostate_Christies", _apostateChristiesRouting],
+    // ########################################################################
+    // # ON FOOT                                                              #
+    // ########################################################################
     ["ChaseApostate_OnFoot", new Map<string,[string, () => void]>([
       ["FOOT", ["ChaseApostate_OnFoot_2", () => {}]],
       ["BACK", ["ChaseApostate_Christies", () => {
@@ -66,6 +69,36 @@
       ["ROAD", ["ChaseApostate_OnFoot_Road", () => {}]],
       ["SIDEWALK", ["ChaseApostate_OnFoot_Sidewalk", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_3", () => {}]], /* TODO: You get shot */
+    ])],
+    ["ChaseApostate_OnFoot_Road", new Map<string,[string, () => void]>([
+      ["CATCH", ["ChaseApostate_OnFoot_Caught", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Road", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Sidewalk", new Map<string,[string, () => void]>([
+      ["CATCH", ["ChaseApostate_OnFoot_Caught", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Sidewalk", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught", new Map<string,[string, () => void]>([
+      ["KILL", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]],
+      ["SUBDUE", ["ChaseApostate_OnFoot_Caught_Subdue", () => {}]],
+      ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Negotiate", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Kill", new Map<string,[string, () => void]>([
+      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_2", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Kill_2", new Map<string,[string, () => void]>([
+      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_3", () => {}]],
+      ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Kill_3", new Map<string,[string, () => void]>([
+      ["CHASE_END", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught_2", new Map<string,[string, () => void]>([
+      ["FIGHT", ["", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_2", () => {}]], /* TODO */
     ])],
     // ########################################################################
     // # 911                                                                  #
