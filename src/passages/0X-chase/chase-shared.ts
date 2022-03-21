@@ -38,7 +38,9 @@
       (State.variables as any).apostateCanCall911 = false
     }]],
     ["CAR", ["ChaseApostate_Car", () => {}]],
-    ["KING", ["ChaseApostate_King", () => {}]],
+    ["KING", ["ChaseApostate_King", () => {
+      (State.variables as any).apostateCanTriageKing = false
+    }]],
     ["BAR", ["ChaseApostate_Bar", () => {
       (State.variables as any).bartenderAction = "TALK";
       (State.variables as any).cookAction = "TALK";
@@ -162,12 +164,14 @@
       ["FREEZE", ["ChaseApostate_Car", () => {}]], /* TODO: explainer line? */
     ])],
     ["ChaseApostate_King", new Map<string,[string, () => void]>([
-      ["BAR", ["ChaseApostate_King_Bar", () => {}]],
-      ["LEAVE", ["ChaseApostate_King_Leave", () => {
-        (State.variables as any).apostateCanTriageKing = false
+      ["BAR", ["ChaseApostate_King_Bar", () => {
+        (State.variables as any).bartenderAction = "FIRST_AID";
+        (State.variables as any).cookAction = "FIRST_AID";
       }]],
+      ["LEAVE", ["ChaseApostate_King_Leave", () => {}]],
       ["FREEZE", ["ChaseApostate_King", () => {}]],
     ])],
+    ["ChaseApostate_King_Bar", _apostateChristiesRouting],
     ["ChaseApostate_King_Leave", _apostateChristiesRouting],
     // Ebi's Bar options all conclude with Christie's options
     ["ChaseApostate_Bar", new Map<string,[string, () => void]>([

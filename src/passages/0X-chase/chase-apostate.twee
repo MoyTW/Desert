@@ -519,8 +519,7 @@
 /** ###################################################################### **/\
 /** # KING                                                               # **/\
 /** ###################################################################### **/\
-/* TODO: IF JEKU: other */\
-/* TODO: IF BARTENDER: other */\
+/* TODO: Jeku conflict! */\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
@@ -529,8 +528,6 @@
   He's bleeding out at an alarming rate. His chest heaves. His growling has turned to whimpers. At least he's not moving. This is beyond you. Far beyond you.
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
-  /* TODO: Jeku conflict! */\
-  /* TODO: bar stuff */\
   <<if $bartenderAction is "NONE">>\
     <<ca-button "Get the bar staff to help. (Bartenders usually know first aid, right?)"
       "BAR"
@@ -543,11 +540,27 @@
 
 
 :: ChaseApostate_King_Bar
-TODO
+/* TODO: Jeku conflict! */\
+<<include "ChaseApostate_TurnIndicator">>\
+  "Bartender," you yell pointing at him, "do you know first aid?" You point to the cook. "Do you have a first aid kit somewhere?" Without a word, she dashes inside.
+<<timed $timerString t8n>>
+  "I don't know how to treat dogs," says the bartender, kneeling next to King, "but I can try." The cook bursts out of the bar with a first aid kit, shoving it at him.
+<<next $timerString>>
+  "Neena, help me," says the bartender, ripping it open and dumping its contents onto the ground. "Grab some gauze, wad it up like this..." Will that be enough?
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_King_Leave
-TODO
+<<include "ChaseApostate_TurnIndicator">>\
+  You can't do much more for King. Maybe Jeku can, maybe the bartender can, maybe they can't. It's all up to chance. Not worth spending any more time on.
+<<timed $timerString t8n>>
+  How long has King lived? He was old when you were adopted. He's got to be at least thirty years, now. No. Don't dwell on it. Ma Tiger still needs your help.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
 <<chase-shared-options-section "Apostate">>\
   <<include "ChaseApostate_Christies_Buttons">>
 <</chase-shared-options-section>>\
