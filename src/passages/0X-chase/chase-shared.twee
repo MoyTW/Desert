@@ -20,15 +20,15 @@
   <<set $faithfulCanCall911 to true>>
   <<set $faithfulReportedTiger to false>>
   <<set $faithfulCanReportKingTo911 to true>>
-  <<set $faithfulKingReturnScene to undefined>> /* TODO: SET THIS! */
+  <<set $faithfulKingReturnScene to undefined>> /* NIT: Prefix this with 911 */
   
   <<set $faithfulCanCallFrancis to true>>
 
-  <<set $apostateAlreadyTriedDriving to false>> /* TODO: Set & use this!!! */
-  <<set $faithfulAlreadyTriedDriving to false>> /* TODO: Set & use this!!! */
+  /* <<set $apostateAlreadyTriedDriving to false>> */ /* NIT: this is nonfunctional variable, Ebi can't drive any more. */
+  <<set $faithfulAlreadyTriedDriving to false>>
   
   <<set $apostateCanTriageKing to true>>
-  <<set $faithfulCanTriageKing to true>> /* TODO: this */
+  <<set $faithfulCanTriageKing to true>>
   <<set $faithfulKingBackTreated to false>>
   <<set $faithfulKingLegTreated to false>>
   <<set $faithfulKingIsStable to false>>
@@ -37,16 +37,16 @@
   <<set $apostatePassage to "ChaseApostate_Christies">>
   <<set $faithfulPassage to "ChaseFaithful_Christies">>
 
-  <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID"] TODO: SET EBI */
-  <<set $cookAction to "NONE">> /* [ "NONE", "TALK", "PET_CLINIC", "FIRST_AID", "911" ] TODO: Set! */
+  <<set $bartenderAction to "NONE">> /* [ "NONE", "TALK", "FIRST_AID"] */
+  <<set $cookAction to "NONE">> /* [ "NONE", "TALK", "PET_CLINIC", "FIRST_AID", "911" ] */
   
   <<set $called911 to false>>
   <<set $calledFrancis to false>>
-  <<set $carPresent to true>> /* TODO: Set! */
+  /* <<set $carPresent to true>> */ /* NIT: Nobody can drive anymore! */
 
   /* TODO: Set all these! */
   <<set $apostateIsChasing to false>>
-  <<set $faithfulIsChasing to false>>
+  /* <<set $faithfulIsChasing to false>> */ /* NIT: Apostate can't chase! */
   <<set $kidnappersInSightOfChristies to true>>
   <<set $kidnappersEscaped to false>>
   /* TODO: If King doesn't start first aid by turn 4, King will die */
@@ -114,11 +114,7 @@ The rest of the game is not timed, and will continue as normal.
 
 
 :: ChaseShared_KidnapperStatus
-<<nobr>>
-  /* The players have 4 turns to start the chase. If they don't start by turn 4, the kidnappers escape. */
-  /* TODO: SET THIS! */
-  <<set _isChasing to false>>
-<</nobr>>\
+<<set _isChasing to setup.isApostate() and $apostatePassage.startsWith("ChaseApostate_OnFoot")>>\
 <<if $chaseTurn is 1>>\
   The kidnappers accelerate away - but the next light, some three hundred feet away, is red, with half a dozen cars behind it. The van stops, stymied by the traffic.\
 <<elseif $chaseTurn is 2>>\
@@ -130,49 +126,47 @@ The rest of the game is not timed, and will continue as normal.
 <<elseif $chaseTurn is 5>>\
   The next light turns red; they couldn't beat it. In a flash they swerve into the right lane, followed by a flurry of horns, and take the turn onto a side street.\
 <<elseif $chaseTurn is 6>>\
-  <<if $_isChasing is true>>\
+  <<if _isChasing is true>>\
     In the city core, even the side streets have traffic. The kidnappers manage to get nearly a whole block before they're stopped again, and this time there's no right.\
   <<else>>\
     You throw a glance down the road but you've lost the van. They've vanished down the side street. If there was any hope of catching up with them, it's gone now.\
   <</if>>\
+<<elseif $chaseTurn is 7 and _isChasing is true>>\
+  You can see the van inching forward, but the cars in front of it pay it no heed. As soon as the light turns, they're moving up again, as much as they're allowed.\
+<<elseif _isChasing is true>>\
+  The van is moving erratically, but it's not quite as reckless as your average hacked AI. Whoever's driving it has told it to avoid collisions at all costs.\
 <<else>>\
-  TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE KIDNAPPER STATUS TODO CHASE\
+  The van's gone, vanished behind the lines of cars or stolen onto a side street or maybe just too far out. There's no chance of catching them now. \
 <</if>>\
 
 
 :: ChaseShared_DogStatus
 <<if $chaseTurn is 1>>\
   Dog blood trickles down the sidewalk and pools in the gutter. King heaves himself up on his broken leg. It buckles, collapses. He falls. He's losing a lot of blood.\
-<<elseif $chaseTurn is 2>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 3>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 4>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 5>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 6>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
+<<elseif $faithfulPassage.startsWith("ChaseFaithful_King") is 2>>\
+  Jekusheke is hunched over King, doing first aid. Jekusheke's hands are shaking but he seems determined, more determined than you've ever seen him before.\
+<<elseif $faithfulKingIsStable is true>>\
+  King, with his bleeding stopped, is still in dire distress, but at least he won't bleed out. That doesn't mean he's safe. It just means any danger's not obvious.\
+<<elseif $bartenderAction isnot "NONE">>\
+  King is panting, whimpering, bleeding. The bartender is attending to him, pressing on his wounds with gauze, but his hands are unsteady and his face ashen.\
 <<else>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
+  King, unattended, bleeds steadily. He won't last too much longer like this. Even rudimentary first aid would help, but rudimentary help might not be enough.\
 <</if>>\
 
 
 :: ChaseShared_BarStatus
 <<if $chaseTurn is 1>>\
   The door to Christie's opens. Out bursts the bartender, followed by a woman with a cook's apron. "Oh, fuck," she exclaims, her face ashen. The bartender recoils.\
-<<elseif $chaseTurn is 2>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 3>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 4>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 5>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
-<<elseif $chaseTurn is 6>>\
-  TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO \
+<<elseif  $bartenderAction is "NONE">>\
+  The bartender's standing still, seemingly torn between just walking back inside and helping. The cook is rubbing her hands nervously on her apron.\
+<<elseif $bartenderAction is "TALK">>\
+  The bartender is kneeling gingerly over King, medical kit in hand; the cook is talking with your sibling, shouting something about calling somebody.\
+<<elseif $cookAction is "FIRST_AID">>\
+  The bartender is helping to tend to King. At his side is the cook, fretting over the medical supplies, but seeming more lost than anything else.\
+<<else>>\
+  The bartender is helping to tend to King, and standing over him is the cook, shouting into her phone, repeating the address and requesting an ambulance.\
 <</if>>\
 
 
 :: ChaseShared_EbiStatus
-  TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS TODO: EBI STATUS 
+NIT: This is never used.

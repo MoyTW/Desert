@@ -295,9 +295,7 @@
         (State.variables as any).faithfulKingReturnScene = "TIGER";
         (State.variables as any).faithfulCanReportKingTo911 = false;
       }]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911", () => {}]],
     ])],
     ["ChaseFaithful_911_Tiger", new Map<string,[string, () => void]>([
@@ -310,9 +308,7 @@
         (State.variables as any).bartenderAction = "FIRST_AID";
         (State.variables as any).cookAction = "911";
       }]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911_Tiger", () => {}]],
     ])],
     ["ChaseFaithful_911_Tiger_2", new Map<string,[string, () => void]>([
@@ -325,9 +321,7 @@
         (State.variables as any).bartenderAction = "FIRST_AID";
         (State.variables as any).cookAction = "911";
       }]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911_Tiger_2", () => {}]],
     ])],
     ["ChaseFaithful_911_Tiger_3", new Map<string,[string, () => void]>([
@@ -340,9 +334,7 @@
         (State.variables as any).bartenderAction = "FIRST_AID";
         (State.variables as any).cookAction = "911";
       }]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911_Tiger_3", () => {}]],
     ])],
     ["ChaseFaithful_911_Tiger_4", new Map<string,[string, () => void]>([
@@ -351,9 +343,7 @@
         (State.variables as any).bartenderAction = "FIRST_AID";
         (State.variables as any).cookAction = "911";
       }]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911_Tiger_4", () => {}]],
     ])],
     ["ChaseFaithful_911_Tiger_5", new Map<string,[string, () => void]>([
@@ -362,22 +352,20 @@
         (State.variables as any).bartenderAction = "FIRST_AID";
         (State.variables as any).cookAction = "911";
       }]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911_Tiger_5", () => {}]],
     ])],
+    ["ChaseFaithful_911_Tiger_6", _faithfulChristiesRouting],
     ["ChaseFaithful_911_Tiger_Bartender", _faithfulChristiesRouting],
     ["ChaseFaithful_911_King", new Map<string,[string, () => void]>([
       ["TIGER", ["ChaseFaithful_911_Tiger", () => {}]],
       ["TIGER_2", ["ChaseFaithful_911_Tiger_2", () => {}]],
       ["TIGER_3", ["ChaseFaithful_911_Tiger_3", () => {}]],
       ["TIGER_4", ["ChaseFaithful_911_Tiger_4", () => {}]],
-      ["NONE", ["ChaseFaithful_Christies", () => {
-        (State.variables as any).faithfulCanCall911 = false
-      }]], // TODO: First line should be 'your action'
+      ["NONE", ["ChaseFaithful_911_End_Call", () => {}]],
       ["FREEZE", ["ChaseFaithful_911_King", () => {}]],
     ])],
+    ["ChaseFaithful_911_End_Call", _faithfulChristiesRouting],
     // ########################################################################
     // # FRANCIS                                                              #
     // ########################################################################
@@ -410,9 +398,7 @@
     // # CAR                                                                  #
     // ########################################################################
     ["ChaseFaithful_Car", new Map<string,[string, () => void]>([
-      ["DRIVE", ["ChaseFaithful_Car_Drive", () => {
-        (State.variables as any).carPresent = false;
-      }]],
+      ["DRIVE", ["ChaseFaithful_Car_Drive", () => {}]],
       ["WAIT",["ChaseFaithful_Car_Wait", () => {}]],
       ["EXIT", ["ChaseFaithful_Car_Exit", () => {}]],
       ["FREEZE", ["ChaseFaithful_Car", () => {}]],
@@ -448,9 +434,7 @@
       ["FREEZE", ["ChaseFaithful_Car_Drive_Brake", () => {}]],
     ])],
     ["ChaseFaithful_Car_Wait", new Map<string,[string, () => void]>([
-      ["DRIVE", ["ChaseFaithful_Car_Drive", () => {
-        (State.variables as any).carPresent = false;
-      }]],
+      ["DRIVE", ["ChaseFaithful_Car_Drive", () => {}]],
       ["WAIT",["ChaseFaithful_Car_Wait_2", () => {}]],
       ["EXIT", ["ChaseFaithful_Car_Exit", () => {}]],
       ["FREEZE", ["ChaseFaithful_Car_Wait", () => {}]],

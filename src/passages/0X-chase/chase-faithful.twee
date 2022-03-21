@@ -116,10 +116,13 @@
 <<else>>\
   <<disabled-button "Grab Ma Tiger's keys and get in her car. (The kidnappers are well out of sight. It'd be useless.)">>
 <</if>>\
+/* NIT: Maybe smooth the triage -> leave -> triage loop so the second pass text acknowledges the first pass. */\
 <<if $faithfulCanTriageKing is true>>\
   <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
     "KING"
     "You're stopping King's bleeding.">>
+<<elseif $faithfulKingIsStable is true>>\
+  <<disabled-button "Triage King. (You've done what you can for now.)">>
 <<else>>\
   <<disabled-button "Triage King. (You left this to the bartender, he'll take care of it.)">>
 <</if>>\
@@ -389,12 +392,22 @@
 
 
 :: ChaseFaithful_911_Tiger_6
-TODO: THIS
+<<include "ChaseFaithful_TurnIndicator">>\
+  CALLER: "Yes, the victim was in the van. Look, if you're just confirming things, I'm going to end the call now."
+<<timed 3s t8n>>
+  911: "Wait. Before you end the-"
+<<next 1s>>
+  You thumb the end call button. If they really need you, they have your number. Otherwise, there's more important things you could be doing right now.
+<<next 4s>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_911_Tiger_Bartender
 /* TODO: Ebi conflict */
-/* TODO: Set variables */\
 <<include "ChaseFaithful_TurnIndicator">>\
   CALLER: "Hey! Bartender! Yes, can you [inausible] [inaudible] phone? First aid? Yes, thank you!"
 <<timed 2s t8n>>
@@ -601,6 +614,7 @@ TODO: THIS
 
 
 :: ChaseFaithful_Car_Drive
+/* NIT: Jeku can't drive & this section is unused! */\
 /* <<if $apostatePassage.startsWith("ChaseApostate_OnFoot")>>\ */\
   <<include "ChaseFaithful_Car_Drive_CONFLICT">>
 /* <<else>>\ */\
@@ -926,8 +940,6 @@ TODO: Did you just kill somebody?
 
 
 :: ChaseFaithful_King_Treat_Stable
-/* TODO: change king treatment text */\
-/* TODO: Jeku is now done */\
 <<include "ChaseFaithful_TurnIndicator">>\
   You notice the gel straining, so you repeat the process, and then again. Eventually it sets and holds. Your hands are a sticky, unctuous mess.
 <<timed $timerString t8n>>

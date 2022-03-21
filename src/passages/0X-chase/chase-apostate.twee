@@ -79,11 +79,9 @@
 
 
 :: ChaseApostate_Christies_Buttons
-/* TODO: It's possible to lock yourself here with no options; if that happens go to the end! */
-/* TODO: NICE TO HAVE: <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)" */\
+/* NIT: NICE TO HAVE: <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)" */\
     /* "CAR" */\
     /* "You're starting Ma Tiger's car.">> */\
-/* TODO: Lock chasing on foot if Jeku gets in the car! */\
 <<set _outOfOptions to true>>\
 <<if $kidnappersInSightOfChristies and $apostateCanChaseOnFoot>>\
   <<set _outOfOptions to false>>\
@@ -103,10 +101,7 @@
 <<else>>\
   <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
 <</if>>\
-<<if $apostateAlreadyTriedDriving is false and $kidnappersInSightOfChristies is true>>\
-  <<set _outOfOptions to false>>\
-  <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You have no idea how to drive a manual.)">>
-<<elseif $kidnappersInSightOfChristies>>\
+<<if $kidnappersInSightOfChristies>>\
   <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You have no idea how to drive a manual.)">>
 <<else>>\
   <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (They're gone. Useless.)">>
@@ -168,10 +163,9 @@
   Once you catch them, what's the plan? There are four of them. Three known armed. One probably armed. If any of them are augmented, this might be hard to pull off.
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
-  <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need, it's just a question of traffic and reds.)"
+  <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need. You're gaining. Keep going.)"
     "FOOT"
     "You're continuing the chase.">>
-  /* TODO: Remove this maybe? */\
   <<ca-button "Dash back to Christie's. (If you chase any further than this, you won't have the time to return.)"
     "BACK"
     "You're running back to Christie's.">>
@@ -227,7 +221,7 @@
 
 
 :: ChaseApostate_OnFoot_Caught
-/* TODO: THIS! <<ca-button "Try and talk them down. (Unlikely.)" */\
+/* NIT: Add a negotiation path! <<ca-button "Try and talk them down. (Unlikely.)" */\
   /* "NEGOTIATE" */\
   /* "You're trying to talk the kidnappers down.">> */\
 <<include "ChaseApostate_TurnIndicator">>\
@@ -529,7 +523,6 @@
 /** ###################################################################### **/\
 /** # KING                                                               # **/\
 /** ###################################################################### **/\
-/* TODO: Jeku conflict! */\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
