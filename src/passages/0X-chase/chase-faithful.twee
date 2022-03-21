@@ -107,7 +107,7 @@
     "CAR"
     "You're getting in Ma Tiger's car.">>
 <<elseif $kidnappersInSightOfChristies>>\
-  <<cf-button "Grab Ma Tiger's keys and get in her car. (There's still time to give chase.)"
+  <<cf-button "Grab Ma Tiger's keys and get in her car. (It's locked. Only she can drive it.)"
     "CAR"
     "You're getting in Ma Tiger's car.">>
 <<else>>\
@@ -145,7 +145,6 @@
   <</if>>\
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  /* TODO: Vary button on how far they are? */\
   <<cf-button "Run, dammit! (Can you really run down a car? Luckily you're in the city core; all the streets nearby have lights.)"
     "FOOT"
     "You're continuing the chase.">>
@@ -191,6 +190,19 @@
   <<cf-button "End the call. (On second thought, getting the law involved seems like a bad idea.)"
     "NONE"
     "You're ending the 911 call.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_911_End_Immediately
+<<include "ChaseFaithful_TurnIndicator">>\
+  You can't just call 911 and then hang up silently; they'll call you back. "Sorry," you say, "hit the wrong button. Didn't mean to call 911, sorry!" Then you hang up.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_DogStatus">>
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
 <</chase-shared-options-section>>\
 
 
@@ -369,6 +381,7 @@ TODO: THIS
 
 
 :: ChaseFaithful_911_Tiger_Bartender
+/* TODO: Ebi conflict */
 /* TODO: Set variables */\
 <<include "ChaseFaithful_TurnIndicator">>\
   CALLER: "Hey! Bartender! Yes, can you [inausible] [inaudible] phone? First aid? Yes, thank you!"
@@ -425,7 +438,20 @@ TODO: THIS
 
 
 :: ChaseFaithful_911_End_Call
-TODO: You end the call
+<<include "ChaseFaithful_TurnIndicator">>\
+  CALLER: "Okay, thank you. I'm going to end the call now."
+<<timed 1s t8n>>
+  911: "Wait. Before you end the-"
+<<next 1s>>
+  You thumb the button, cut the call. You silence your phone, in case they call back.
+<<next 2s>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next 4s>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_Francis
@@ -500,7 +526,6 @@ TODO: You end the call
 
 
 :: ChaseFaithful_Francis_King_3
-/* TODO: DOG STATUS */\
 <<include "ChaseFaithful_TurnIndicator">>\
   You pause. "Okay," you say, "I'm going to start trying to stop the bleeding by applying pressure to the wounds. I'm an EMT. Will my training work on dogs?"
 <<timed $timerString t8n>>
@@ -552,8 +577,7 @@ TODO: You end the call
 <<include "ChaseFaithful_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
-  /* TODO: Ebi conflict */\
-  You scramble for the keys to Ma Tiger's car. Your hand closes over them and you leap into the driver's seat, slamming the start button. The dash lights up.
+  You scramble for the keys to Ma Tiger's car. Your hand closes over them and you leap into the driver's seat, slamming the start button. The console lights up.
 <<next $timerString>>
   You put your right foot on the pedals, grab the shifter and push it into drive, disengage the parking break. Been a while. You check traffic. You're clear.
 <</timed>>\
@@ -561,18 +585,31 @@ TODO: You end the call
   <<cf-button "Chase the van. (This is going to get dicey.)"
     "DRIVE"
     "You're driving after the van.">>
-  /* TODO: if Ebi is running, chase after */\
-  /* TODO: if Ebi is present */\
-  <<cf-button "Wait for Ebi to get in. (Come on! Get in already!)"
-    "WAIT"
-    "You're giving Ebi a chance to get in.">>
-  <<cf-button "Exit the car. (There are other things that need your attention.)"
-    "EXIT"
-    "You're getting out of the car.">>
 <</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_Car_Drive
+<<if $apostatePassage.startsWith("ChaseApostate_OnFoot")>>\
+  <<include "ChaseFaithful_Car_Drive_CONFLICT">>
+<<else>>\
+  <<include "ChaseFaithful_Car_Drive_SOLO">>
+<</if>>\
+
+
+:: ChaseFaithful_Car_Drive_CONFLICT
+<<include "ChaseFaithful_TurnIndicator">>\
+  Nothing happens. You turn the wheel, push down on the pedal. Nothing happens. What's wrong? You glance down at the console. "GENETIC ID MISMATCH," it reads.
+<<timed $timerString t8n>>
+  Shit. She must have locked it so only she can drive it. Useless. You unlock the doors and bail, tossing the key onto the seat. What the hell's going on?
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_Car_Drive_SOLO
 <<include "ChaseFaithful_TurnIndicator">>\
   You throw a glance over your shoulder and peel off into traffic, fast as you can. Hopefully you'll be the only human on the road. Otherwise this will be ugly.
 <<timed $timerString t8n>>
@@ -663,41 +700,41 @@ TODO: You end the call
 <<timed $timerString t8n>>
   You're past them now, and there's a gap in the cars ahead of you. You accelerate to close it. That was too risky. Hopefully it hasn't damaged the wheels.
 <<next $timerString>>
-  <<include "ChaseShared_KidnapperStatus">>
+  You're gaining, now. You'll catch up, sooner or later, but what should you do when you catch up? There were four of them, and they're armed - you can't fight them.
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  TODO: THIS
+  <<cf-button "Try and ram them. (Car crashes are dangerous. Would you risk injuring Ma Tiger?.)"
+    "RAM"
+    "You're planning to ram the kidnappers.">>
+  <<cf-button "Cut them off. (Maybe if you can get them to stop, you can talk to them? Or they'll give up? Or something?)"
+    "CUT_OFF"
+    "You're going to try and cut the kidnappers off.">>
 <</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_Car_Drive_Brake
-TODO
-
-
-:: ChaseFaithful_Car_Wait
 <<include "ChaseFaithful_TurnIndicator">>\
-  <<include "ChaseShared_KidnapperStatus">>
+  You slam onto the breaks. Cars behind you screech to a stop. The teenagers freeze in the street, shocked, but one of them recovers and hustles the other across.
 <<timed $timerString t8n>>
-  <<include "ChaseShared_EbiStatus">>
+  The stop has given the kidnappers the chance to extend the distance. You accelerate strongly, almost recklessly, and manage to make up some of the time.
 <<next $timerString>>
-  /* TODO: if Ebi is running, just go */\
-  You unlock all the doors, roll down the window. "Ebi," you yell, "get in!" You grind your teeth, your foot pressing the brake pedal to the floor.
+  You're gaining, now. You'll catch up, sooner or later, but what should you do when you catch up? There were four of them, and they're armed - you can't fight them.
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  <<cf-button "Chase the van. (The longer you wait, the further they'll get. You've got to get on the road soon.)"
-    "DRIVE"
-    "You're driving after the van.">>
-  /* TODO: if Ebi is present */\
-  <<cf-button "Wait for Ebi to get in. (Come on, come on!)"
-    "WAIT"
-    "You're giving Ebi a chance to get in.">>
-  <<cf-button "Exit the car. (There are other things that need your attention.)"
-    "EXIT"
-    "You're getting out of the car.">>
+  <<cf-button "Try and ram them. (Car crashes are dangerous. Would you risk injuring Ma Tiger?.)"
+    "RAM"
+    "You're planning to ram the kidnappers.">>
+  <<cf-button "Cut them off. (Maybe if you can get them to stop, you can talk to them? Or they'll give up? Or something?)"
+    "CUT_OFF"
+    "You're going to try and cut the kidnappers off.">>
 <</chase-shared-options-section>>\
 
 
-:: ChaseFaithful_Car_Wait_2
+:: ChaseFaithful_Car_Drive_Ram
+TODO
+
+
+:: ChaseFaithful_Car_Drive_CutOff
 TODO
 
 

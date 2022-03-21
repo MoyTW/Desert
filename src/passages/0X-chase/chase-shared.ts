@@ -124,7 +124,7 @@
       ["KING", ["ChaseApostate_911_King", () => {
         (State.variables as any).apostateCanReportKing = false;
       }]],
-      ["NONE", ["ChaseApostate_911_End", () => {}]],
+      ["NONE", ["ChaseFaithful_911_End_Immediately", () => {}]],
       ["FREEZE", ["ChaseApostate_911", () => {}]],
     ])],
     ["ChaseApostate_911_King", new Map<string,[string, () => void]>([
@@ -368,9 +368,12 @@
       ["FREEZE", ["ChaseFaithful_Car", () => {}]],
     ])],
     ["ChaseFaithful_Car_Drive", new Map<string,[string, () => void]>([
-      ["DRIVE", ["ChaseFaithful_Car_Drive_2", () => {}]],
-      ["FREEZE", ["ChaseFaithful_Car_Drive", () => {}]],
-    ])],
+      ..._faithfulChristiesRouting,
+      ...new Map<string,[string, () => void]>([
+        ["DRIVE", ["ChaseFaithful_Car_Drive_2", () => {}]],
+        ["FREEZE", ["ChaseFaithful_Car_Drive", () => {}]],
+      ])])
+    ],
     ["ChaseFaithful_Car_Drive_2", new Map<string,[string, () => void]>([
       ["ACCELERATE", ["ChaseFaithful_Car_Drive_Accelerate", () => {}]],
       ["LEFT", ["ChaseFaithful_Car_Drive_Left", () => {}]],
@@ -381,8 +384,18 @@
     ["ChaseFaithful_Car_Drive_Accelerate", new Map<string,[string, () => void]>([
       ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
     ])],
+    ["ChaseFaithful_Car_Drive_Right", new Map<string,[string, () => void]>([
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Right", () => {}]], /* TODO */
+    ])],
     ["ChaseFaithful_Car_Drive_Left", new Map<string,[string, () => void]>([
-      ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
+      ["RAM", ["ChaseFaithful_Car_Drive_Ram", () => {}]],
+      ["CUT_OFF", ["ChaseFaithful_Car_Drive_CutOff", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Left", () => {}]],
+    ])],
+    ["ChaseFaithful_Car_Drive_Brake", new Map<string,[string, () => void]>([
+      ["RAM", ["ChaseFaithful_Car_Drive_Ram", () => {}]],
+      ["CUT_OFF", ["ChaseFaithful_Car_Drive_CutOff", () => {}]],
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Brake", () => {}]],
     ])],
     ["ChaseFaithful_Car_Wait", new Map<string,[string, () => void]>([
       ["DRIVE", ["ChaseFaithful_Car_Drive", () => {

@@ -79,6 +79,10 @@
 
 
 :: ChaseApostate_Christies_Buttons
+/* TODO: NICE TO HAVE: <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)" */\
+    /* "CAR" */\
+    /* "You're starting Ma Tiger's car.">> */\
+/* TODO: Lock chasing on foot if Jeku gets in the car! */\
 <<if $kidnappersInSightOfChristies and $apostateCanChaseOnFoot>>\
   <<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
@@ -96,11 +100,9 @@
   <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
 <</if>>\
 <<if $apostateAlreadyTriedDriving is false and $kidnappersInSightOfChristies is true>>\
-  <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
-    "CAR"
-    "You're starting Ma Tiger's car.">>
+  <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You have no idea how to drive a manual.)">>
 <<elseif $kidnappersInSightOfChristies>>\
-  <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You don't know how to drive it.)">>
+  <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You have no idea how to drive a manual.)">>
 <<else>>\
   <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (They're gone. Useless.)">>
 <</if>>\
@@ -140,9 +142,6 @@
   <<ca-button "Run them down. (They may have an electric engine, but you don't need to worry about lights. Unless something changes, you'll catch them.)"
     "FOOT"
     "You're continuing the chase.">>
-  <<ca-button "Dash back to Christie's. (Did you miss something important? Is King going to survive? Nevermind that. Ma Tiger's more important.)"
-    "BACK"
-    "You're running back to Christie's.">>
 <</chase-shared-options-section>>\
 
 
@@ -213,10 +212,9 @@
 
 
 :: ChaseApostate_OnFoot_Caught
-/* TODO: If Jeku is in the car */\
-  /* TODO: THIS! <<ca-button "Try and talk them down. (Unlikely.)" */\
-    /* "NEGOTIATE" */\
-    /* "You're trying to talk the kidnappers down.">> */\
+/* TODO: THIS! <<ca-button "Try and talk them down. (Unlikely.)" */\
+  /* "NEGOTIATE" */\
+  /* "You're trying to talk the kidnappers down.">> */\
 <<include "ChaseApostate_TurnIndicator">>\
   The light ahead turns red, and the van slows, then stops about ninty meters in front of you. The blue sedan behind it stops far short of the van. Seconds away.
 <<timed $timerString t8n>>
@@ -501,13 +499,10 @@
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
 <<timed $timerString t8n>>
-  /* TODO: Jekusheke */\
   You dive for the keys, snatching them off the ground and leaping into the car. There's a wheel, but maybe it has an AI. "Follow the closest white van!" you yell.
 <<next $timerString>>
   The car doesn't respond. It hasn't even started. You press the key to the dash. Nothing. You can't even turn it on, and you couldn't drive it if you could.
 <</timed>>\
-/* TODO: hacking instead of driving */\
-/* TODO: Stay in the car and let Jeku drive it */\
 <<chase-shared-options-section "Apostate">>\
   <<ca-button "Drop the keys on the seat and get out. (It'd be faster to get out and run.)"
     "EXIT"
