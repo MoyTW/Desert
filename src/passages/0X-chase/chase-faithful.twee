@@ -77,7 +77,9 @@
 
 
 :: ChaseFaithful_Christies_Buttons
+<<set _outOfOptions to true>>\
 <<if $kidnappersInSightOfChristies and $faithfulCanChaseOnFoot>>\
+  <<set _outOfOptions to false>>\
   <<cf-button "Chase after them on foot. (You're fit, but it's still a long shot.)"
     "FOOT"
     "You're giving chase on foot.">>
@@ -87,6 +89,7 @@
   <<disabled-button "Chase after them on foot. (They're out of sight, it'd be no use.)">>
 <</if>>\
 <<if $faithfulCanCall911>>\
+  <<set _outOfOptions to false>>\
   <<cf-button "Call 911. (They'll respond to the kidnapping, but animal injuries are outside of their area of responsibility.)"
     "911"
     "You're calling 911.">>
@@ -94,6 +97,7 @@
   <<disable>><<button "Call 911. (Already tried. Don't want to waste time.)">><</button>><</disable>>
 <</if>>\
 <<if $faithfulCanCallFrancis>>\
+  <<set _outOfOptions to false>>\
   <<cf-button "Call St. Francis' 24-Hour Pet Clinic. (They're fast and reliable.)"
     "FRANCIS"
     "You're calling St. Francis' 24-Hour Pet Clinic.">>
@@ -103,20 +107,24 @@
 <</if>>\
 /* Jeku doesn't need to check for presence because Ebi can't drive!*/\
 <<if $kidnappersInSightOfChristies and $faithfulAlreadyTriedDriving is false>>\
+  <<set _outOfOptions to false>>\
   <<cf-button "Grab Ma Tiger's keys and get in her car. (It's old and manual but you've driven it before. Plus, you know the streets around here.)"
     "CAR"
     "You're getting in Ma Tiger's car.">>
 <<elseif $kidnappersInSightOfChristies>>\
-  <<cf-button "Grab Ma Tiger's keys and get in her car. (It's locked. Only she can drive it.)"
-    "CAR"
-    "You're getting in Ma Tiger's car.">>
+  <<disabled-button "Grab Ma Tiger's keys and get in her car. (It's locked. Only she can drive it.)">>
 <<else>>\
   <<disabled-button "Grab Ma Tiger's keys and get in her car. (The kidnappers are well out of sight. It'd be useless.)">>
 <</if>>\
-<<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
-  "KING"
-  "You're stopping King's bleeding.">>
+<<if $faithfulCanTriageKing is true>>\
+  <<cf-button "Triage King. (You're not a vet, and you don't have equipment, but you can probably stop the bleeding.)"
+    "KING"
+    "You're stopping King's bleeding.">>
+<<else>>\
+  <<disabled-button "Triage King. (You left this to the bartender, he'll take care of it.)">>
+<</if>>\
 <<if $bartenderAction is "NONE">>\
+  <<set _outOfOptions to false>>\
   <<cf-button "Ask the bar staff for help. (They might have first aid equipment, or they can call the vet or police.)"
     "BAR"
     "You're enlisting the bar staff.">>
@@ -127,7 +135,11 @@
 <<else>>\
   <<disabled-button "Ask the bar staff for help. (They bartender already is tending to King, and the cook's calling emergency services.)">>
 <</if>>\
-
+<<if _outOfOptions is true>>\
+  <<cf-button "What now?"
+    "CHASE_END"
+    "What now?">>
+<</if>>\
 
 :: ChaseFaithful_OnFoot
 /** ###################################################################### **/\
@@ -795,7 +807,7 @@ TODO: Did you just kill somebody?
   <<include "ChaseShared_DogStatus">>
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  <<include "ChaseFaithful_King_TreatButtons">>
+  <<include "ChaseFaithful_Christies_Buttons">>
 <</chase-shared-options-section>>\
 
 

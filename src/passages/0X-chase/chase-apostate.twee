@@ -84,7 +84,9 @@
     /* "CAR" */\
     /* "You're starting Ma Tiger's car.">> */\
 /* TODO: Lock chasing on foot if Jeku gets in the car! */\
+<<set _outOfOptions to true>>\
 <<if $kidnappersInSightOfChristies and $apostateCanChaseOnFoot>>\
+  <<set _outOfOptions to false>>\
   <<ca-button "Chase after them on foot. (Between the traffic, red lights, and your augmented strength, you stand a good chance of catching them.)"
     "FOOT"
     "You're giving chase on foot.">>
@@ -94,6 +96,7 @@
   <<disabled-button "Chase after them on foot. (They're out of sight now.)">>
 <</if>>\
 <<if $apostateCanCall911>>\
+  <<set _outOfOptions to false>>\
   <<ca-button "Call 911. (You can report King's injuries, the kidnapping, or both, but 911 is slow. Plus, getting them involved might be a bad idea.)"
     "911"
     "You're calling 911.">>
@@ -101,6 +104,7 @@
   <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
 <</if>>\
 <<if $apostateAlreadyTriedDriving is false and $kidnappersInSightOfChristies is true>>\
+  <<set _outOfOptions to false>>\
   <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You have no idea how to drive a manual.)">>
 <<elseif $kidnappersInSightOfChristies>>\
   <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (You have no idea how to drive a manual.)">>
@@ -108,6 +112,7 @@
   <<disabled-button "Grab Ma Tiger's keys and give chase in her car. (They're gone. Useless.)">>
 <</if>>\
 <<if $apostateCanTriageKing>>\
+  <<set _outOfOptions to false>>\
   <<ca-button "Triage King. (How the fuck do you give first aid to a dog? You have no idea, but you can probably stop the bleeding.)"
     "KING"
     "You're helping King.">>
@@ -117,12 +122,18 @@
 <<if $faithfulPassage.startsWith("ChaseFaithful_King")>>\
   <<disabled-button "Enlist the bar staff. (They're busy helping Jekusheke with King.)">>
 <<elseif $bartenderAction is "NONE">>\
+  <<set _outOfOptions to false>>\
   <<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
     "BAR"
     "You're enlisting the bar staff.">>
 <<else>>\
   /* TODO: Vary this! */\
   <<disable>><<button "Enlist the bar staff. (They're busy.)">><</button>><</disable>>
+<</if>>\
+<<if _outOfOptions is true>>\
+  <<ca-button "Fuck! They got away!"
+    "CHASE_END"
+    "What now?">>
 <</if>>\
 
 

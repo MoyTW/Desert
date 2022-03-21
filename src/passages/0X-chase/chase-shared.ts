@@ -91,6 +91,7 @@
       (State.variables as any).bartenderAction = "TALK";
       (State.variables as any).cookAction = "TALK";
     }]],
+    ["CHASE_END", ["ChaseApostate_End", () => {}]],
     ["FREEZE", ["ChaseApostate_Christies", () => {}]],
   ])
 
@@ -255,12 +256,15 @@
     ["FRANCIS", ["ChaseFaithful_Francis", () => {
       (State.variables as any).faithfulCanCallFrancis = false
     }]],
-    ["CAR", ["ChaseFaithful_Car", () => {}]],
+    ["CAR", ["ChaseFaithful_Car", () => {
+      (State.variables as any).faithfulAlreadyTriedDriving = true
+    }]],
     ["KING", ["ChaseFaithful_King", () => {}]],
     ["BAR", ["ChaseFaithful_Bar", () => {
       (State.variables as any).bartenderAction = "TALK";
       (State.variables as any).cookAction = "TALK";
     }]],
+    ["CHASE_END", ["ChaseFaithful_End", () => {}]],
     ["FREEZE", ["ChaseFaithful_Christies", () => {}]],
   ])
 
@@ -467,7 +471,9 @@
     ["ChaseFaithful_King_Leave_Immediately", _faithfulChristiesRouting],
     ["ChaseFaithful_King_Improvise", new Map<string,[string, () => void]>([
       ["CONTINUE", ["ChaseFaithful_King_Treat", () => {}]],
-      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]],
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {
+        (State.variables as any).faithfulCanTriageKing = false
+      }]],
       ["FREEZE", ["ChaseFaithful_King_Improvise", () => {}]],
     ])],
     ["ChaseFaithful_King_Treat", new Map<string,[string, () => void]>([
@@ -477,7 +483,9 @@
       ["LEG", ["ChaseFaithful_King_Treat_Leg", () => {
         (State.variables as any).faithfulKingLegTreated = true
       }]],
-      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {
+        (State.variables as any).faithfulCanTriageKing = false
+      }]],
       ["FREEZE", ["ChaseFaithful_King_Treat", () => {}]],
     ])],
     ["ChaseFaithful_King_Treat_Back", new Map<string,[string, () => void]>([
@@ -485,7 +493,9 @@
         (State.variables as any).faithfulKingLegTreated = true
       }]],
       ["ROLL", ["ChaseFaithful_King_Treat_Roll", () => {}]],
-      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {
+        (State.variables as any).faithfulCanTriageKing = false
+      }]],
       ["FREEZE", ["ChaseFaithful_King_Treat_Back", () => {}]],
     ])],
     ["ChaseFaithful_King_Treat_Leg", new Map<string,[string, () => void]>([
@@ -493,7 +503,9 @@
         (State.variables as any).faithfulKingBackTreated = true
       }]],
       ["ROLL", ["ChaseFaithful_King_Treat_Roll", () => {}]],
-      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {
+        (State.variables as any).faithfulCanTriageKing = false
+      }]],
       ["FREEZE", ["ChaseFaithful_King_Treat_Leg", () => {}]],
     ])],
     ["ChaseFaithful_King_Treat_Roll", new Map<string,[string, () => void]>([
@@ -501,7 +513,9 @@
       ["FREEZE", ["ChaseFaithful_King_Treat_Roll", () => {}]],
     ])],
     ["ChaseFaithful_King_Treat_Belly", new Map<string,[string, () => void]>([
-      ["STABLE", ["ChaseFaithful_King_Treat_Stable", () => {}]],
+      ["STABLE", ["ChaseFaithful_King_Treat_Stable", () => {
+        (State.variables as any).faithfulKingIsStable = true
+      }]],
       ["FREEZE", ["ChaseFaithful_King_Treat_Belly", () => {}]],
     ])],
     ["ChaseFaithful_King_Leave_Dangerously", _faithfulChristiesRouting],
