@@ -24,6 +24,52 @@
     */
   }
 
+  const _resolveChoice = function() {
+    const _vars = State.variables as any;
+
+    if (!_vars.ChaseApostate_CHOICE || !_vars.ChaseFaithful_CHOICE) {
+      return false
+    }
+
+    _vars.ChaseApostate_CHOICE_LAST = _vars.ChaseApostate_CHOICE
+    _vars.ChaseFaithful_CHOICE_LAST = _vars.ChaseFaithful_CHOICE
+    delete _vars.ChaseApostate_CHOICE
+    delete _vars.ChaseFaithful_CHOICE
+
+    const apostateChoice: string = _vars.ChaseApostate_CHOICE_LAST.choice
+    const apostatePassage: string = _vars.ChaseApostate_CHOICE_LAST.passage
+    const faithfulChoice: string = _vars.ChaseFaithful_CHOICE_LAST.choice
+    const faithfulPassage: string = _vars.ChaseFaithful_CHOICE_LAST.passage
+
+    const [nextApostatePassage, apostatePassageFn] = _setup.Chase.GetApostateData(apostatePassage, apostateChoice)
+    const [nextFaithfulPassage, faithfulPassageFn] = _setup.Chase.GetFaithfulData(faithfulPassage, faithfulChoice)
+    _vars.apostatePassage = nextApostatePassage
+    _vars.faithfulPassage = nextFaithfulPassage
+    apostatePassageFn()
+    faithfulPassageFn()
+
+    _setup.Chase.IncrementTurn()
+
+    // Check for the special "CHASE_END" choice, which immediately terminates the chase
+    if (apostateChoice === "CHASE_END" || faithfulChoice === "CHASE_END") {
+      _vars.apostatePassage = "ChaseApostate_End"
+      _vars.faithfulPassage = "ChaseFaithful_End"
+    }
+    return true
+  }
+
+  _setup.Chase.Route_ChaseApostate_Choice = function() {
+    if (_resolveChoice()) {
+      Engine.play((State.variables as any).apostatePassage)
+    }
+  }
+
+  _setup.Chase.Route_ChaseFaithful_Choice = function() {
+    if (_resolveChoice()) {
+      Engine.play((State.variables as any).faithfulPassage)
+    }
+  }
+
   _setup.Chase.GetApostateData = function(passage: string, choice: string): [string, () => void] {
     return _apostateRoutingTable.get(passage)?.get(choice)!
   }

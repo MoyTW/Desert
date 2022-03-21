@@ -49,13 +49,13 @@
   if (setup.isApostate()) {
     State.variables.ChaseApostate_CHOICE = State.temporary.receiveData;
     setup.replaceWithWaiting("#ca-msg-status");
-    setup.Route_ChaseApostate_Choice();
+    setup.Chase.Route_ChaseApostate_Choice();
   }
 <</script>><</receive>>
 <<receive "ChaseFaithful_CHOICE" "Apostate">><<script>>
   if (setup.isApostate()) {
     State.variables.ChaseFaithful_CHOICE = State.temporary.receiveData;
-    setup.Route_ChaseApostate_Choice();
+    setup.Chase.Route_ChaseApostate_Choice();
   }
 <</script>><</receive>>
 
@@ -160,6 +160,7 @@
   <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need, it's just a question of traffic and reds.)"
     "FOOT"
     "You're continuing the chase.">>
+  /* TODO: Remove this maybe? */\
   <<ca-button "Dash back to Christie's. (If you chase any further than this, you won't have the time to return.)"
     "BACK"
     "You're running back to Christie's.">>
@@ -650,5 +651,26 @@
 /** ###################################################################### **/\
 /** # END                                                                # **/\
 /** ###################################################################### **/\
-<h1>Chase over!</h1>\
-Route to the ending scene here!
+<div class="instructions">\
+  <<include "ChaseShared_End_Text">>
+
+  <span id="ca-e-btn"><<button "Continue.">>
+    <<run setup.replaceWithSending("#ca-e-btn")>>
+    <<send "ChaseApostate_End_DONE" {}>><</send>>
+  <</button>></span>
+  <<nobr>>
+    <<receive "ChaseApostate_End_DONE" "Apostate">><<script>>
+      if (setup.isApostate()) {
+        setup.replaceWithWaiting("#ca-e-btn");
+        State.variables.ChaseApostate_End_DONE = true;
+        setup.Complete_ChaseApostate_End(); // TODO: Write this lol
+      }
+    <</script>><</receive>>
+    <<receive "ChaseFaithful_End_DONE" "Apostate">><<script>>
+      if (setup.isApostate()) {
+        State.variables.ChaseFaithful_End_DONE = true;
+        setup.Complete_ChaseApostate_End();
+      }
+    <</script>><</receive>>
+  <</nobr>>\
+</div>

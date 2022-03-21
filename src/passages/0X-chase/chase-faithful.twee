@@ -49,13 +49,13 @@
   if (setup.isFaithful()) {
     State.variables.ChaseFaithful_CHOICE = State.temporary.receiveData;
     setup.replaceWithWaiting("#cf-msg-status")
-    setup.Complete_ChaseFaithful_Christies();
+    setup.Chase.Route_ChaseFaithful_Choice();
   }
 <</script>><</receive>>
 <<receive "ChaseApostate_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
     State.variables.ChaseApostate_CHOICE = State.temporary.receiveData;
-    setup.Complete_ChaseFaithful_Christies();
+    setup.Chase.Route_ChaseFaithful_Choice();
   }
 <</script>><</receive>>
 
@@ -1011,3 +1011,32 @@ TODO: Did you just kill somebody?
 <<chase-shared-options-section "Faithful">>\
   <<include "ChaseFaithful_Christies_Buttons">>
 <</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_End
+/** ###################################################################### **/\
+/** # END                                                                # **/\
+/** ###################################################################### **/\
+<div class="instructions">\
+  <<include "ChaseShared_End_Text">>
+
+  <span id="cf-e-btn"><<button "Continue.">>
+    <<run setup.replaceWithSending("#cf-e-btn")>>
+    <<send "ChaseFaithful_End_DONE" {}>><</send>>
+  <</button>></span>
+  <<nobr>>
+    <<receive "ChaseFaithful_End_DONE" "Faithful">><<script>>
+      if (setup.isFaithful()) {
+        setup.replaceWithWaiting("#cf-e-btn");
+        State.variables.ChaseFaithful_End_DONE = true;
+        setup.Complete_ChaseFaithful_End(); // TODO: Write this lol
+      }
+    <</script>><</receive>>
+    <<receive "ChaseApostate_End_DONE" "Faithful">><<script>>
+      if (setup.isFaithful()) {
+        State.variables.ChaseApostate_End_DONE = true;
+        setup.Complete_ChaseFaithful_End();
+      }
+    <</script>><</receive>>
+  <</nobr>>\
+</div>

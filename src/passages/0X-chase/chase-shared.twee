@@ -104,7 +104,12 @@
 
 :: ChaseShared_Text
 <h1>This next section is timed!</h1>\
-Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will reset the page and throw your games out of sync. This will never make the game unfinishable, but it will mean that your partner needs to wait for you.
+Network interruptions will not break the game, but they may cause your clients to briefly appear out of sync. Refreshing the page, however, will reset the page and the turn timers. This will never make the game unfinishable, but it will mean that your partner needs to wait longer.
+
+
+:: ChaseShared_End_Text
+<h1>The timed section is over.</h1>\
+The rest of the game is not timed, and will continue as normal.
 
 
 :: ChaseShared_KidnapperStatus
