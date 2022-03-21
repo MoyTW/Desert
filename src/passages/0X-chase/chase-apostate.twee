@@ -111,9 +111,11 @@
     "KING"
     "You're helping King.">>
 <<else>>\
-  <<disable>><<button "Help King. (Ma Tiger's more important.)">><</button>><</disable>>
+  <<disabled-button "Help King. (It's far beyond your level.)">>
 <</if>>\
-<<if $bartenderAction is "NONE">>\
+<<if $faithfulPassage.startsWith("ChaseFaithful_King")>>\
+  <<disabled-button "Enlist the bar staff. (They're busy helping Jekusheke with King.)">>
+<<elseif $bartenderAction is "NONE">>\
   <<ca-button "Bars almost always have first aid kits. Enlist the bar staff. (They probably know fuck all about dog first aid, but neither do you!)"
     "BAR"
     "You're enlisting the bar staff.">>

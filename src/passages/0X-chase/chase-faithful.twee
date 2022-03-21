@@ -759,25 +759,30 @@ TODO: Did you just kill somebody?
 /** ###################################################################### **/\
 /** # KING                                                               # **/\
 /** ###################################################################### **/\
-/* TODO: Ebi conflict */\
 /* TODO: Bartender sync issues */\
 <<include "ChaseFaithful_TurnIndicator">>\
   You kneel down next to King. He's collapsed onto his stomach. His right front leg is broken. Multiple gunshot wounds, two in the back, one or more on his underside.
 <<timed $timerString t8n>>
   <<include "ChaseShared_KidnapperStatus">>
 <<next $timerString>>
-  You'll need to move him to see his underside, but you're not sure how to move dogs. Later. Is there a first aid kit somewhere? Equipment would help.
+  <<if $bartenderAction isnot "NONE">>\
+    The bartender kneels down next to you, ripping open a first aid kit. You grab the biggest dressing you can find and press it to King's back.
+  <<else>>\
+    You'll need to move him to see what's going on with his belly, but you're not sure how to move dogs. First, though, you're going to need medical supplies.
+  <</if>>\
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  <<cf-button "Improvise. (There's no time to hunt around.)"
-    "IMPROVISE"
-    "You're improvising medical supplies.">>
-  <<if $bartenderAction is "NONE">>\
+  <<if $bartenderAction isnot "NONE">>\
+    <<cf-button "Stop the bleeding. (The bartender can help.)"
+      "TREAT"
+      "You're stopping the bleeding.">>
+  <<else>>\
     <<cf-button "Ask the bar staff if they have a first aid kit. (Probably - that seems like something bars should have.)"
       "BARSTAFF"
       "You're asking the bar staff for a first aid kit.">>
-  <<else>>\
-    TODO: THIS
+    <<cf-button "Improvise. (There's no time to hunt around.)"
+      "IMPROVISE"
+      "You're improvising medical supplies.">>
   <</if>>\
   <<cf-button "Leave King. (Ma Tiger's getting further away by the second.)"
     "LEAVE"
@@ -790,17 +795,15 @@ TODO
 
 
 :: ChaseFaithful_King_Improvise
-/* TODO: Bar staff! */
-/* TODO: Ebi conflict! */
 <<include "ChaseFaithful_TurnIndicator">>\
   Okay, the two wounds on the back are pretty close together. You pull off your jacket, tossing it on the ground. Your shirt comes off next. You fold twice.
 <<timed $timerString t8n>>
-  You press the rectangle over King's back with both hands. Blood seeps through the shirt. "It's okay," you say, pressing your knee to the wound, "it's okay."
+  You press the rectangle over King's back with both hands. Blood seeps through the shirt. Suddenly, the bartender is at your side, ripping open a first aid kit.
 <<next $timerString>>
-  Knee still on the wound, you check his breathing. He's breathing fast, panting. You don't know enough about dogs, but his airways are definitely clear.
+  "Here," he says, "I can help." He dumps its contents onto the sidewalk in a mess, and you replace your shirt with the largest dressing you can find.
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  <<cf-button "Keep giving first aid. (This is fucking awful. Jesus.)"
+  <<cf-button "Keep giving first aid. (Supplies!)"
     "CONTINUE"
     "You're continuing to give first aid.">>
   <<cf-button "Leave King. (This isn't working. You need to get help, or call emergency services.)"
@@ -809,24 +812,83 @@ TODO
 <</chase-shared-options-section>>\
 
 
-:: ChaseFaithful_King_Improvise_2
-/* TODO: Bar staff! */
-/* TODO: Ebi conflict! */
+:: ChaseFaithful_King_Treat
 <<include "ChaseFaithful_TurnIndicator">>\
-  The blood slows. You press down harder, put more of your weight. You check King's breathing. The panting is labored, heavy. Is it always so heavy? How do dogs work?
+  "Press here," you say, pointing to the dressing, which is already dyed red. He complies, putting almost all his weight on it. "Watch the breathing," you warn.
 <<timed $timerString t8n>>
-  The blood's not stopping. Worse, the main source of bleeding seems to be on his underbelly, on his arms. You'll have to move him to see it - but that's a bad idea.
+  He nods. You rifle through the medical supplies, which are scattered randomly on the sidewalk. You grab gauze, strips of adhesive tape. Is the bleeding slowing?
 <<next $timerString>>
-  Shit. This would be so much easier if this was a human. How do you safely roll a dog onto its side? Would moving him just make it worse? You've ruined your shirt.
+  The bleeding's slowing, but most of the bleeding is from the underbelly and leg. "Move over," you say, and you wipe away some of the blood around the dressing.
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  <<cf-button "Roll him. (You'll need to secure your shirt somehow, too)"
-    "ROLL"
-    "You're rolling King on his side.">>
-  <<cf-button "Leave King. (This isn't working. You need to get help, or call emergency services.)"
+  <<cf-button "Back first, then you can worry about the leg or underbelly. (Have to work fast.)"
+    "BACK"
+    "You're continuing to give first aid.">>
+  <<cf-button "Tourniquet the leg. (The bleeding on the back is slower, and the bartender can apply pressure.)"
+    "LEG"
+    "You're applying a tourniquet to King's leg.">>
+  <<disabled-button "Roll him over. (Leg and back first.)">>
+  <<cf-button "Leave King. (If you leave him now, you're not sure he'll make it.)"
     "LEAVE"
     "You're leaving King.">>
 <</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_TreatButtons
+  <<if $faithfulKingBackTreated isnot true>>\
+    <<cf-button "Bandage King's back. (It's bleeding, but not as badly.)"
+      "BACK"
+      "You're going to bandage King's back.">>
+  <<else>>\
+    <<disabled-button "Bandage King's back. (Done.)">>
+  <</if>>\
+  <<if $faithfulKingLegTreated isnot true>>\
+    <<cf-button "Tourniquet King's leg. (It might cost him his leg, but it's necessary.)"
+      "LEG"
+      "You're going to bandage King's back.">>
+  <<else>>\
+    <<disabled-button "Tourniquet King's leg. (Done.)">>
+  <</if>>\
+  <<if $faithfulKingBackTreated is true and $faithfulKingLegTreated is true>>\
+    <<cf-button "Roll King over. (Moving a patient is always risky and dangerous, at best, and you're not sure how to move a dog.)"
+      "ROLL"
+      "You're going to roll King over.">>
+  <<else>>\
+    <<disabled-button "Roll King over. (Address the accessible wounds first.)">>
+  <</if>>\
+  <<cf-button "Leave King. (If you leave him now, you're not sure he'll make it.)"
+    "LEAVE"
+    "You're leaving King.">>
+
+
+:: ChaseFaithful_King_Treat_Leg
+<<include "ChaseFaithful_TurnIndicator">>\
+  Tourniquets shouldn't be the first solution but you're taking too long already. You search madly through the various supplies on the sidewalk. There!
+<<timed $timerString t8n>>
+  You pull the tourniquet open. King's leg is broken on what would be the lower leg in the human. You thread it over his paw, up his leg, and pull it tight.
+<<next $timerString>>
+  You rotate the windlass, constricting the leg. King whimpers, but the blood starts to slow, then eventually stops. It might cost his leg, but it might save his life.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_King_TreatButtons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Treat_Back
+<<include "ChaseFaithful_TurnIndicator">>\
+  The dressings on King's back are red, and getting redder, but more slowly. That'll have to be good enough. You wipe away the blood surrounding the dressing.
+<<timed $timerString t8n>>
+  You have the bartender hold the dressing in place while you rip off strips of medical tape and tape down the dressing. Surely the first aid kit had bandage gel?
+<<next $timerString>>
+  You finish taping, glance over. Shit, it did, you missed it. God dammit, it'll have to hold. "Okay," you say, "I think that should hold." You hope.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_King_TreatButtons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Treat_Roll
+TODO
 
 
 :: ChaseFaithful_King_Leave_Dangerously

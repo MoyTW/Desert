@@ -410,20 +410,50 @@
     // # KING                                                                 #
     // ########################################################################
     ["ChaseFaithful_King", new Map<string,[string, () => void]>([
-      ["IMPROVISE", ["ChaseFaithful_King_Improvise", () => {}]],
-      ["BARSTAFF", ["ChaseFaithful_King_Barstaff", () => {}]],
+      ["TREAT", ["ChaseFaithful_King_Treat", () => {}]],
+      ["IMPROVISE", ["ChaseFaithful_King_Improvise", () => {
+        (State.variables as any).bartenderAction = "FIRST_AID";
+        // The cook vanishes here, to avoid conflict with Ebi.
+      }]],
+      ["BARSTAFF", ["ChaseFaithful_King_Barstaff", () => {
+        (State.variables as any).bartenderAction = "FIRST_AID";
+        (State.variables as any).cookAction = "PET_CLINIC";
+      }]],
       ["LEAVE", ["ChaseFaithful_King_Leave_Immediately", () => {}]],
       ["FREEZE", ["ChaseFaithful_King", () => {}]],
     ])],
     ["ChaseFaithful_King_Improvise", new Map<string,[string, () => void]>([
-      ["CONTINUE", ["ChaseFaithful_King_Improvise", () => {}]],
+      ["CONTINUE", ["ChaseFaithful_King_Treat", () => {}]],
       ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]],
-      ["FREEZE", ["ChaseFaithful_King", () => {}]],
+      ["FREEZE", ["ChaseFaithful_King_Improvise", () => {}]],
     ])],
-    ["ChaseFaithful_King_Improvise_2", new Map<string,[string, () => void]>([
-      ["CONTINUE", ["ChaseFaithful_King_Improvise", () => {}]],
-      ["FREEZE", ["ChaseFaithful_King", () => {}]],
+    ["ChaseFaithful_King_Treat", new Map<string,[string, () => void]>([
+      ["BACK", ["ChaseFaithful_King_Treat_Back", () => {
+        (State.variables as any).faithfulKingBackTreated = true
+      }]],
+      ["LEG", ["ChaseFaithful_King_Treat_Leg", () => {
+        (State.variables as any).faithfulKingLegTreated = true
+      }]],
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
+      ["FREEZE", ["ChaseFaithful_King_Treat", () => {}]],
     ])],
+    ["ChaseFaithful_King_Treat_Back", new Map<string,[string, () => void]>([
+      ["LEG", ["ChaseFaithful_King_Treat_Leg", () => {
+        (State.variables as any).faithfulKingLegTreated = true
+      }]],
+      ["ROLL", ["ChaseFaithful_King_Treat_Roll", () => {}]],
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
+      ["FREEZE", ["ChaseFaithful_King_Treat_Back", () => {}]],
+    ])],
+    ["ChaseFaithful_King_Treat_Leg", new Map<string,[string, () => void]>([
+      ["BACK", ["ChaseFaithful_King_Treat_Back", () => {
+        (State.variables as any).faithfulKingBackTreated = true
+      }]],
+      ["ROLL", ["ChaseFaithful_King_Treat_Roll", () => {}]],
+      ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
+      ["FREEZE", ["ChaseFaithful_King_Treat_Leg", () => {}]],
+    ])],
+    
     // ########################################################################
     // # BAR                                                                  #
     // ########################################################################

@@ -29,6 +29,8 @@
   
   <<set $apostateCanTriageKing to true>>
   <<set $faithfulCanTriageKing to true>> /* TODO: this */
+  <<set $faithfulKingBackTreated to false>>
+  <<set $faithfulKingLegTreated to false>>
 
   /* World State */
   <<set $apostatePassage to "ChaseApostate_Christies">>
