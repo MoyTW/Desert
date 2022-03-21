@@ -124,7 +124,7 @@
       ["KING", ["ChaseApostate_911_King", () => {
         (State.variables as any).apostateCanReportKing = false;
       }]],
-      ["NONE", ["ChaseFaithful_911_End_Immediately", () => {}]],
+      ["NONE", ["ChaseApostate_911_End", () => {}]],
       ["FREEZE", ["ChaseApostate_911", () => {}]],
     ])],
     ["ChaseApostate_911_King", new Map<string,[string, () => void]>([
