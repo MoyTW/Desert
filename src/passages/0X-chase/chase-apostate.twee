@@ -79,6 +79,7 @@
 
 
 :: ChaseApostate_Christies_Buttons
+/* TODO: It's possible to lock yourself here with no options; if that happens go to the end! */
 /* TODO: NICE TO HAVE: <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)" */\
     /* "CAR" */\
     /* "You're starting Ma Tiger's car.">> */\

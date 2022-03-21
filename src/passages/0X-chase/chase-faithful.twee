@@ -903,7 +903,6 @@ TODO
 /** ###################################################################### **/\
 /** # BAR                                                                # **/\
 /** ###################################################################### **/\
-/* TODO: Write Ebi's side. */\
 <<include "ChaseFaithful_TurnIndicator">>\
 <<if $apostatePassage is "ChaseApostate_Bar">>\
     "Bartender!" you yell, as Ebi does the same. Both of you are pointing directly at him. His eyes flick back and forth, confused. "Get a first aid kit!" yells Ebi.
