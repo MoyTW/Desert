@@ -379,13 +379,13 @@
       ["LEFT", ["ChaseFaithful_Car_Drive_Left", () => {}]],
       ["RIGHT", ["ChaseFaithful_Car_Drive_Right", () => {}]],
       ["BRAKE", ["ChaseFaithful_Car_Drive_Brake", () => {}]],
-      ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]], // TODO: custom
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
     ])],
     ["ChaseFaithful_Car_Drive_Accelerate", new Map<string,[string, () => void]>([
       ["FREEZE", ["ChaseFaithful_Car_Drive_Manslaughter", () => {}]],
     ])],
     ["ChaseFaithful_Car_Drive_Right", new Map<string,[string, () => void]>([
-      ["FREEZE", ["ChaseFaithful_Car_Drive_Right", () => {}]], /* TODO */
+      ["FREEZE", ["ChaseFaithful_Car_Drive_Right", () => {}]],
     ])],
     ["ChaseFaithful_Car_Drive_Left", new Map<string,[string, () => void]>([
       ["RAM", ["ChaseFaithful_Car_Drive_Ram", () => {}]],
@@ -415,13 +415,10 @@
         (State.variables as any).bartenderAction = "FIRST_AID";
         // The cook vanishes here, to avoid conflict with Ebi.
       }]],
-      ["BARSTAFF", ["ChaseFaithful_King_Barstaff", () => {
-        (State.variables as any).bartenderAction = "FIRST_AID";
-        (State.variables as any).cookAction = "PET_CLINIC";
-      }]],
       ["LEAVE", ["ChaseFaithful_King_Leave_Immediately", () => {}]],
       ["FREEZE", ["ChaseFaithful_King", () => {}]],
     ])],
+    ["ChaseFaithful_King_Leave_Immediately", _faithfulChristiesRouting],
     ["ChaseFaithful_King_Improvise", new Map<string,[string, () => void]>([
       ["CONTINUE", ["ChaseFaithful_King_Treat", () => {}]],
       ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]],
@@ -453,7 +450,15 @@
       ["LEAVE", ["ChaseFaithful_King_Leave_Dangerously", () => {}]], // TODO
       ["FREEZE", ["ChaseFaithful_King_Treat_Leg", () => {}]],
     ])],
-    
+    ["ChaseFaithful_King_Treat_Roll", new Map<string,[string, () => void]>([
+      ["ROLL", ["ChaseFaithful_King_Treat_Belly", () => {}]],
+      ["FREEZE", ["ChaseFaithful_King_Treat_Roll", () => {}]],
+    ])],
+    ["ChaseFaithful_King_Treat_Belly", new Map<string,[string, () => void]>([
+      ["STABLE", ["ChaseFaithful_King_Treat_Stable", () => {}]],
+      ["FREEZE", ["ChaseFaithful_King_Treat_Belly", () => {}]],
+    ])],
+    ["ChaseFaithful_King_Leave_Dangerously", _faithfulChristiesRouting],
     // ########################################################################
     // # BAR                                                                  #
     // ########################################################################

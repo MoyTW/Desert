@@ -759,14 +759,13 @@ TODO: Did you just kill somebody?
 /** ###################################################################### **/\
 /** # KING                                                               # **/\
 /** ###################################################################### **/\
-/* TODO: Bartender sync issues */\
 <<include "ChaseFaithful_TurnIndicator">>\
   You kneel down next to King. He's collapsed onto his stomach. His right front leg is broken. Multiple gunshot wounds, two in the back, one or more on his underside.
 <<timed $timerString t8n>>
   <<include "ChaseShared_KidnapperStatus">>
 <<next $timerString>>
   <<if $bartenderAction isnot "NONE">>\
-    The bartender kneels down next to you, ripping open a first aid kit. You grab the biggest dressing you can find and press it to King's back.
+    The bartender's kneeling next to King, with first aid supplies scattered nearby. You grab the biggest dressing you can find and press it to King's back.
   <<else>>\
     You'll need to move him to see what's going on with his belly, but you're not sure how to move dogs. First, though, you're going to need medical supplies.
   <</if>>\
@@ -777,21 +776,27 @@ TODO: Did you just kill somebody?
       "TREAT"
       "You're stopping the bleeding.">>
   <<else>>\
-    <<cf-button "Ask the bar staff if they have a first aid kit. (Probably - that seems like something bars should have.)"
-      "BARSTAFF"
-      "You're asking the bar staff for a first aid kit.">>
     <<cf-button "Improvise. (There's no time to hunt around.)"
       "IMPROVISE"
       "You're improvising medical supplies.">>
   <</if>>\
-  <<cf-button "Leave King. (Ma Tiger's getting further away by the second.)"
+  <<cf-button "Leave King. (There's time, but not a lot of it.)"
     "LEAVE"
     "You're leaving King.">>
 <</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_King_Leave_Immediately
-TODO
+<<include "ChaseFaithful_TurnIndicator">>\
+  You stand up. King's in a bad place. Very bad. But you might still have time to do something quickly and come back to him, as long you're fast.
+<<timed $timerString t8n>>
+  <<include "ChaseShared_KidnapperStatus">>
+<<next $timerString>>
+  <<include "ChaseShared_DogStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_King_TreatButtons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_King_Improvise
@@ -821,44 +826,35 @@ TODO
   The bleeding's slowing, but most of the bleeding is from the underbelly and leg. "Move over," you say, and you wipe away some of the blood around the dressing.
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
-  <<cf-button "Back first, then you can worry about the leg or underbelly. (Have to work fast.)"
-    "BACK"
-    "You're continuing to give first aid.">>
-  <<cf-button "Tourniquet the leg. (The bleeding on the back is slower, and the bartender can apply pressure.)"
-    "LEG"
-    "You're applying a tourniquet to King's leg.">>
-  <<disabled-button "Roll him over. (Leg and back first.)">>
-  <<cf-button "Leave King. (If you leave him now, you're not sure he'll make it.)"
-    "LEAVE"
-    "You're leaving King.">>
+  <<include "ChaseFaithful_King_TreatButtons">>
 <</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_King_TreatButtons
-  <<if $faithfulKingBackTreated isnot true>>\
-    <<cf-button "Bandage King's back. (It's bleeding, but not as badly.)"
-      "BACK"
-      "You're going to bandage King's back.">>
-  <<else>>\
-    <<disabled-button "Bandage King's back. (Done.)">>
-  <</if>>\
-  <<if $faithfulKingLegTreated isnot true>>\
-    <<cf-button "Tourniquet King's leg. (It might cost him his leg, but it's necessary.)"
-      "LEG"
-      "You're going to bandage King's back.">>
-  <<else>>\
-    <<disabled-button "Tourniquet King's leg. (Done.)">>
-  <</if>>\
-  <<if $faithfulKingBackTreated is true and $faithfulKingLegTreated is true>>\
-    <<cf-button "Roll King over. (Moving a patient is always risky and dangerous, at best, and you're not sure how to move a dog.)"
-      "ROLL"
-      "You're going to roll King over.">>
-  <<else>>\
-    <<disabled-button "Roll King over. (Address the accessible wounds first.)">>
-  <</if>>\
-  <<cf-button "Leave King. (If you leave him now, you're not sure he'll make it.)"
-    "LEAVE"
-    "You're leaving King.">>
+<<if $faithfulKingBackTreated isnot true>>\
+  <<cf-button "Bandage King's back. (It's bleeding, but not as badly.)"
+    "BACK"
+    "You're going to bandage King's back.">>
+<<else>>\
+  <<disabled-button "Bandage King's back. (Done.)">>
+<</if>>\
+<<if $faithfulKingLegTreated isnot true>>\
+  <<cf-button "Tourniquet King's leg. (It might cost him his leg, but it's necessary.)"
+    "LEG"
+    "You're going to bandage King's back.">>
+<<else>>\
+  <<disabled-button "Tourniquet King's leg. (Done.)">>
+<</if>>\
+<<if $faithfulKingBackTreated is true and $faithfulKingLegTreated is true>>\
+  <<cf-button "Roll King over. (Moving a patient is always risky and dangerous, at best, and you're not sure how to move a dog.)"
+    "ROLL"
+    "You're going to roll King over.">>
+<<else>>\
+  <<disabled-button "Roll King over. (Address the accessible wounds first.)">>
+<</if>>\
+<<cf-button "Leave King. (If you leave him now, you're not sure he'll make it.)"
+  "LEAVE"
+  "You're leaving King.">>
 
 
 :: ChaseFaithful_King_Treat_Leg
@@ -888,15 +884,61 @@ TODO
 
 
 :: ChaseFaithful_King_Treat_Roll
-TODO
+<<include "ChaseFaithful_TurnIndicator">>\
+  You swallow and look over at the bartender. "Do you know how to move an injured dog?" He blinks, rips his eyes away from King. You repeat the question.
+<<timed $timerString t8n>>
+  "No, no, I don't - you shouldn't move an injured person." He frowns. "You shouldn't move an injured dog. You might make it worse." He's not wrong.
+<<next $timerString>>
+  "We're doing it. Support his head," you say. He shuffles around, puts an arm under King's head. You wedge your arms under King's belly. "One, two, <em>three!</em>"
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Roll! (He's heavy!)"
+    "ROLL"
+    "You're rolling King on his side.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Treat_Belly
+<<include "ChaseFaithful_TurnIndicator">>\
+  You manage to get King onto his left side, his legs laid out flat on the sidewalk. There's a bullet wound on his belly, much worse than the others.
+<<timed $timerString t8n>>
+  You grab some gauze, press hard. "Bartender," you yell, "put some weight on it!" He takes over while you hunt through the first aid kit. There's the gel bandage!
+<<next $timerString>>
+  You motion the bartender out of the way, push the closed together, slather it in. It sets in seconds, stemming the bleed. Your hands come away sticky.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<cf-button "Is King stable?"
+    "STABLE"
+    "You're checking to see if King is stable.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseFaithful_King_Treat_Stable
+/* TODO: change king treatment text */\
+/* TODO: Jeku is now done */\
+<<include "ChaseFaithful_TurnIndicator">>\
+  You notice the gel straining, so you repeat the process, and then again. Eventually it sets and holds. Your hands are a sticky, unctuous mess.
+<<timed $timerString t8n>>
+  Still, King's mostly stopped bleeding. He's breathing, albeit weakly. You put your ear to his chest. Is that heartbeat strong, or weak? It's beating, at least.
+<<next $timerString>>
+  Dammit, you're not a vet! For all you know, he has a stomach rupture, or a shard of the bullet in his heart. He's not getting obviously worse. It'll have to do.
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_King_Leave_Dangerously
-TODO
-
-
-:: ChaseFaithful_King_Barstaff
-TODO
+<<include "ChaseFaithful_TurnIndicator">>\
+  You point at the bartender. "You! You need to take it from here!" He blanches, hands all bloody, and stares at you, then looks over at King. "Take it!"
+<<timed $timerString t8n>>
+  "I can try," he says, "but - but." He swallows. "I know first aid, but - are you sure? I don't - can you -" By the time he asks, you've already stood up.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Faithful">>\
+  <<include "ChaseFaithful_Christies_Buttons">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseFaithful_Bar
