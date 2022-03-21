@@ -365,7 +365,6 @@
 /** ###################################################################### **/\
 /** # 911                                                                # **/\
 /** ###################################################################### **/\
-/* TODO: Confirm that Ebi can 911 and also chase! */\
 /* TODO: If Ebi does 911, tries to report King, and stays on the line, she can't chase! */\
 <<include "ChaseApostate_TurnIndicator">>\
   <<include "ChaseShared_KidnapperStatus">>
@@ -417,7 +416,13 @@
   <<ca-button "Stay on the line. (That should be enough to get them to send the law. They'll want more. Is it worth the time it'll take?)"
     "TIGER"
     "You're staying on the line.">>
-  <<include "ChaseApostate_911_Tiger_KingButton">>
+  <<if $apostateCanReportKing is true>>\
+    <<ca-button "Report King's injuries. (They asked, so you'll answer. Will it work?)"
+        "KING"
+        "You're reporting King's injuries to 911.">>\
+  <<else>>\
+    <<disabled-button "Report King's injures. (They don't do animals.)">>\
+  <</if>>\
   <<ca-button "End the call and ditch the burner. (They'll send somebody to check it out.)"
     "NONE"
     "You're ending the 911 call.">>
@@ -451,7 +456,13 @@
   <<include "ChaseShared_KidnapperStatus">>
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
-  <<include "ChaseApostate_911_Tiger_KingButton">>
+  <<if $apostateCanReportKing is true>>\
+    <<ca-button "Report King's injuries. (They probably won't care.)"
+        "KING"
+        "You're reporting King's injuries to 911.">>\
+  <<else>>\
+    <<disabled-button "Report King's injures. (They don't do animals.)">>\
+  <</if>>\
   <<ca-button "End the call and ditch the burner. (If they've already started dispatching a unit, there's no need to stay on the line.)"
     "NONE"
     "You're ending the 911 call.">>
@@ -482,16 +493,6 @@
 <<chase-shared-options-section "Apostate">>\
   <<include "ChaseApostate_Christies_Buttons">>
 <</chase-shared-options-section>>\
-
-:: ChaseApostate_911_Tiger_KingButton
-/* TODO: You can get this in the second scene of the convo they didn't ask!!! */\
-<<if $apostateCanReportKing is true>>\
-  <<ca-button "Report King's injuries. (They asked, so you'll answer. Will it work?)"
-      "KING"
-      "You're reporting King's injuries to 911.">>\
-<<else>>\
-  <<disabled-button "Report King's injures. (They don't do animals.)">>\
-<</if>>\
 
 
 :: ChaseApostate_Car
