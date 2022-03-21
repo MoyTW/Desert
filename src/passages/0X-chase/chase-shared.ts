@@ -171,23 +171,26 @@
     ["ChaseApostate_King_Leave", _apostateChristiesRouting],
     // Ebi's Bar options all conclude with Christie's options
     ["ChaseApostate_Bar", new Map<string,[string, () => void]>([
-      ["PREVENT", ["ChaseApostate_Bar_Prevent", () => {
-        (State.variables as any).calledFrancis = true;
-        (State.variables as any).bartenderAction = "FIRST_AID";
-        (State.variables as any).cookAction = "PET_CLINIC";
-      }]],
-      ["TREAT", ["ChaseApostate_Bar_Treat", () => {
-        (State.variables as any).bartenderAction = "FIRST_AID";
-        (State.variables as any).cookAction = "FIRST_AID";
-      }]],
-      ["ALLOW", ["ChaseApostate_Bar_Allow", () => {
-        // TODO: Vary the lockout message
-        (State.variables as any).apostateCanCall911 = false;
-        (State.variables as any).called911 = true;
-        (State.variables as any).bartenderAction = "FIRST_AID";
-        (State.variables as any).cookAction = "911";
-      }]],
-      ["FREEZE", ["ChaseApostate_Bar", () => {}]], /* TODO: explainer line? */
+      ..._apostateChristiesRouting,
+      ...new Map<string,[string, () => void]>([
+        ["PREVENT", ["ChaseApostate_Bar_Prevent", () => {
+          (State.variables as any).calledFrancis = true;
+          (State.variables as any).bartenderAction = "FIRST_AID";
+          (State.variables as any).cookAction = "PET_CLINIC";
+        }]],
+        ["TREAT", ["ChaseApostate_Bar_Treat", () => {
+          (State.variables as any).bartenderAction = "FIRST_AID";
+          (State.variables as any).cookAction = "FIRST_AID";
+        }]],
+        ["ALLOW", ["ChaseApostate_Bar_Allow", () => {
+          // TODO: Vary the lockout message
+          (State.variables as any).apostateCanCall911 = false;
+          (State.variables as any).called911 = true;
+          (State.variables as any).bartenderAction = "FIRST_AID";
+          (State.variables as any).cookAction = "911";
+        }]],
+        ["FREEZE", ["ChaseApostate_Bar", () => {}]], /* TODO: explainer line? */
+      ])
     ])],
     ["ChaseApostate_Bar_Prevent", _apostateChristiesRouting],
     ["ChaseApostate_Bar_Treat", _apostateChristiesRouting],

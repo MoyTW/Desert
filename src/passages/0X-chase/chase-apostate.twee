@@ -95,7 +95,6 @@
 <<else>>\
   <<disable>><<button "Call 911. (It'd just be wasting time to do it again.)">><</button>><</disable>>
 <</if>>\
-/* TODO: add "can do" to this */\
 <<if $apostateAlreadyTriedDriving is false and $kidnappersInSightOfChristies is true>>\
   <<ca-button "Grab Ma Tiger's keys and give chase in her car. (It's old as hell and looks like it's manual. You have no fucking idea how to drive a manual.)"
     "CAR"
@@ -558,10 +557,29 @@ TODO
 /** ###################################################################### **/\
 /** # BAR                                                                # **/\
 /** ###################################################################### **/\
-/* TODO: Write a Jeku conflict path. */\
-/* TODO: Lock out bartender for future! */\
+<<if $faithfulPassage is "ChaseFaithful_Bar">>\
+  <<include "ChaseApostate_Bar_CONFLICT">>
+<<else>>\
+  <<include "ChaseApostate_Bar_SOLO">>
+<</if>>\
+
+
+:: ChaseApostate_Bar_CONFLICT
 <<include "ChaseApostate_TurnIndicator">>\
-  "Hey!" you yell, pointing at the bartender. He starts. "Do you have a first aid kit behind the bar?" He looks at the cook. Wordlessly, she dashes back into the bar.
+  "Bartender!" you yell, as Jeku does the same. He starts, looks at you, looks at Jeku. You respond first. "Get a first aid kit!" He vanishes back into the building.
+<<timed $timerString t8n>>
+  "You deal with them," you say, pointing at Jeku. He nods. The bartender bursts out of the door with a first aid kit in hand, unzipping it, dumping out its contents.
+<<next $timerString>>
+  <<include "ChaseShared_KidnapperStatus">>
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<include "ChaseApostate_Christies_Buttons">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_Bar_SOLO
+<<include "ChaseApostate_TurnIndicator">>\
+  "Bartender!" you yell, pointing at the bartender. He starts. "Do you have a first aid kit behind the bar?" He looks at the cook, and she dashes back into the bar.
 <<timed $timerString t8n>>
   The bartender swallows. "I know first aid," he says, "but I've never - I've never used it. I've never treated a dog." He swallows, kneels down gingerly beside King.
 <<next $timerString>>
