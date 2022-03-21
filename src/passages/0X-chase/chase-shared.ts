@@ -89,16 +89,30 @@
       ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
     ])],
     ["ChaseApostate_OnFoot_Caught_Kill_2", new Map<string,[string, () => void]>([
-      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_3", () => {}]],
+      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_Shoot", () => {}]],
       ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
     ])],
-    ["ChaseApostate_OnFoot_Caught_Kill_3", new Map<string,[string, () => void]>([
-      ["CHASE_END", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
+    ["ChaseApostate_OnFoot_Caught_Kill_Shoot", new Map<string,[string, () => void]>([
+      ["CHASE_END", ["ChaseApostate_End", () => {}]],
     ])],
-    ["ChaseApostate_OnFoot_Caught_2", new Map<string,[string, () => void]>([
-      ["FIGHT", ["", () => {}]],
-      ["FREEZE", ["ChaseApostate_OnFoot_Caught_2", () => {}]], /* TODO */
+    ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", new Map<string,[string, () => void]>([
+      ["CHASE_END", ["ChaseApostate_End", () => {}]],
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Subdue", new Map<string,[string, () => void]>([
+      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Subdue_2", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Subdue", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Subdue_2", new Map<string,[string, () => void]>([
+      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Subdue_Fight", () => {}]],
+      ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Subdue_Negotiate", () => {}]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Subdue", () => {}]], /* TODO */
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Subdue_Fight", new Map<string,[string, () => void]>([
+      ["CHASE_END", ["ChaseApostate_End", () => {}]],
+    ])],
+    ["ChaseApostate_OnFoot_Caught_Subdue_Negotiate", new Map<string,[string, () => void]>([
+      ["CHASE_END", ["ChaseApostate_End", () => {}]],
     ])],
     // ########################################################################
     // # 911                                                                  #

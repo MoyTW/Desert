@@ -214,8 +214,10 @@
 
 
 :: ChaseApostate_OnFoot_Caught
-/* TODO: Figure all this out!!! */\
 /* TODO: If Jeku is in the car */\
+  /* TODO: THIS! <<ca-button "Try and talk them down. (Unlikely.)" */\
+    /* "NEGOTIATE" */\
+    /* "You're trying to talk the kidnappers down.">> */\
 <<include "ChaseApostate_TurnIndicator">>\
   The light ahead turns red, and the van slows, then stops about ninty meters in front of you. The blue sedan behind it stops far short of the van. Seconds away.
 <<timed $timerString t8n>>
@@ -230,15 +232,12 @@
   <<ca-button "Stop them. Try not to kill anybody. (Harder.)"
     "SUBDUE"
     "You're fighting the kidnappers, but nonlethally.">>
-  <<ca-button "Try and talk them down. (Unlikely.)"
-    "NEGOTIATE"
-    "You're trying to talk the kidnappers down.">>
 <</chase-shared-options-section>>\
 
 
 :: ChaseApostate_OnFoot_Caught_Kill
 <<include "ChaseApostate_TurnIndicator">>\
-  Can you use your gun? It's a tiny thing, concealable, eight rounds, and unlikely to shoot through the side of the van - but no, you don't want to hit Ma Tiger.
+  Can you use your gun? It's tiny, concealable, eight rounds, and unlikely to shoot through the side of the van - but it might, and you don't want to hit Ma Tiger.
 <<timed $timerString t8n>>
   You'll have to get them away from the van first. The woman squares up, the man fires his taser. You duck. The darts scream by your ear. You lunge.
 <<next $timerString>>
@@ -269,57 +268,97 @@
 <</chase-shared-options-section>>\
 
 
-:: ChaseApostate_OnFoot_Caught_Kill_3
+:: ChaseApostate_OnFoot_Caught_Kill_Shoot
 <<include "ChaseApostate_TurnIndicator">>\
-  You grab at your waist, pull out your sidearm, aim. The man stiffens in surprise. Before he can react, you put two bullets into his center of mass. He looks down.
+  You grab at your waist, pull out your sidearm, aim. The man stiffens in surprise. Before he can react, you put two bullets into his chest. He looks down.
 <<timed $timerString t8n>>
   You fire again; he slumps, staggers. You're already moving on. The two men helping tend to the woman don't seem to realize what's happening. One looks up.
 <<next $timerString>>
   Your bullet catches him in the head. His partner dives away, scrambling up. You use the last four bullets on him. Your aim is good. He does not get up.
 <</timed>>\
-/* TODO: Ending scene! */
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "It's over. (Shit. How are you going to clean this one up?)"
+    "CHASE_END"
+    "It's over.">>
+<</chase-shared-options-section>>\
+
 
 :: ChaseApostate_OnFoot_Caught_Kill_Deescalate
-/* TODO */\
+<<include "ChaseApostate_TurnIndicator">>\
+  Your hand drops from your gun. They don't attack, they're focused on first aid. Your tackle really messed that woman up. You take a breath. "Give up!" you yell.
+<<timed $timerString t8n>>
+  One of the men from the front seat gets up, rushes into the back of the van. Then comes a woman's voice, loud, angry, the same voice that so often scolded you.
+<<next $timerString>>
+  "Ebi," yells Ma Tiger, "help get Mora into the van! The rest of you, let her help you, or I will see that you never find work again!" She leans out, gestures.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "What? (What?)"
+    "CHASE_END"
+    "What?">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_OnFoot_Caught_Subdue
-/* TODO */\
 <<include "ChaseApostate_TurnIndicator">>\
   You slow your run as you approach. The woman squares up as the man aims his taser. You put on a burst of speed, duck. The taser darts whistle by your ear.
 <<timed $timerString t8n>>
-  You brace your arms, smash into the woman as she swings at you. You're heavy and moving fast. She's neither. She slams into the side of the van with a crunch.
+  You brace your arms, smash into the woman as she swings at you. You're heavy and moving fast. She's neither. She slams into the side of the van, gasping.
 <<next $timerString>>
   Something smashes into your back, hard; you dive to the side, come up in a crouch. The man puts himself in between the woman and you. The front door opens. Two more.
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
   <<ca-button "Keep fighting. (Three or four on one are tough odds.)"
     "FIGHT"
-    "">>
+    "You're subduing the kidnappers.">>
 <</chase-shared-options-section>>\
 
 
-:: ChaseApostate_OnFoot_Caught_Negotiate
-/* TODO */\
-
-
-:: ChaseApostate_OnFoot_Caught_End
+:: ChaseApostate_OnFoot_Caught_Subdue_2
 <<include "ChaseApostate_TurnIndicator">>\
-  You step back, hand reaching for your pistol. You hesitate. The cars around you are stopped. There are probably dozens of cameras on you. It's broad daylight.
+  The woman gets to her feet, groggy. The men from the front compartment pull out batons. One's in a red shirt, the other a jersey. These are very bad odds.
 <<timed $timerString t8n>>
-  TODO THIS
+  The red-shirt man runs at you. A mistake. He swings his baton. He's fit, and big, but his muscles are natural. Yours aren't. You chop at his arm. Bone splinters.
 <<next $timerString>>
-  Suddenly, from the back of the van, a woman yells out. "Stop that! Stop fighting, all of you! Ebi, get in here! Arnold, put that baton down and get in here!"
+  You catch the baton as it falls, kick in his knee; it shatters. He screams, falls. The other three watch in shock and horror. They stick together, near the van.
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "Charge them. (They're scared. They didn't expect this.)"
+    "FIGHT"
+    "You're subduing the kidnappers.">>
+  <<ca-button "Negotiate. (They're caught. Nobody else needs to get hurt.)"
+    "FIGHT"
+    "You're negotiating with the kidnappers.">>
+<</chase-shared-options-section>>\
+
+
+:: ChaseApostate_OnFoot_Caught_Subdue_Fight
+<<include "ChaseApostate_TurnIndicator">>\
+  You charge. Riot baton man gets ready to receive you, squaring up like an old-timey football player, while the woman steps out to the right, ready to strike.
+<<timed $timerString t8n>>
+  Jersey man flees into the van. Good. You veer off to the side, pace back. Out of the back of the van steps Ma Tiger, arms bound. "All of you," she yells, "stop!"
+<<next $timerString>>
+  What in the world? "Get your friend in the van," she yells, jerking her head at the screaming kidnapper, "and you, Ebi! Get in here. We need to be gone."
 <</timed>>\
 <<chase-shared-options-section "Apostate">>\
   <<ca-button "What? (What?)"
-    "SANCTUARY"
-    "You're catching the van.">>
+    "CHASE_END"
+    "What?">>
 <</chase-shared-options-section>>\
 
 
-:: ChaseApostate_OnFoot_Subdue
-TODO
+:: ChaseApostate_OnFoot_Caught_Subdue_Negotiate
+<<include "ChaseApostate_TurnIndicator">>\
+  You step back, gesture to the red-shirted man writhing on the street with his broken arm and knee. "We don't have to do this," you yell. "Let Ma Tiger go!"
+<<timed $timerString t8n>>
+  There's a pause. The man in the jersey says something, too low for you to hear, then runs into the van. Seconds later, he returns with Ma Tiger, her arms unbound.
+<<next $timerString>>
+  "All of you," she yells, "stop your fighting! Get that injured in the van, and get in here! Yes, all of you! That includes you, Ebi! And I want no complaints!"
+<</timed>>\
+<<chase-shared-options-section "Apostate">>\
+  <<ca-button "What? (What?)"
+    "CHASE_END"
+    "What?">>
+<</chase-shared-options-section>>\
 
 
 :: ChaseApostate_911
@@ -575,3 +614,11 @@ TODO
 <<chase-shared-options-section "Apostate">>\
   <<include "ChaseApostate_Christies_Buttons">>
 <</chase-shared-options-section>>\
+
+
+:: ChaseApostate_End
+/** ###################################################################### **/\
+/** # END                                                                # **/\
+/** ###################################################################### **/\
+<h1>Chase over!</h1>\
+Route to the ending scene here!
