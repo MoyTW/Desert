@@ -589,11 +589,11 @@ TODO: THIS
 
 
 :: ChaseFaithful_Car_Drive
-<<if $apostatePassage.startsWith("ChaseApostate_OnFoot")>>\
+/* <<if $apostatePassage.startsWith("ChaseApostate_OnFoot")>>\ */\
   <<include "ChaseFaithful_Car_Drive_CONFLICT">>
-<<else>>\
-  <<include "ChaseFaithful_Car_Drive_SOLO">>
-<</if>>\
+/* <<else>>\ */\
+/*   <<include "ChaseFaithful_Car_Drive_SOLO">> */\
+/* <</if>>\ */\
 
 
 :: ChaseFaithful_Car_Drive_CONFLICT
