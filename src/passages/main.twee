@@ -23,7 +23,8 @@ Desert
   <<set $selectCharacterHostConfirmed to false>>
   <<set $selectCharacterPartnerConfirmed to false>>
 <</nobr>>\
-<h1>Main Menu</h1>
+<h1>Ma Tiger's Terrible Trip</h1>\
+<h2>Main Menu</h2>\
 <<button [[Host a game|HostGame]]>>
   <<set $sessionId to setup.Websocket.uuidv4()>>
   <<set $hostClientId to setup.Websocket.getClientId()>>
