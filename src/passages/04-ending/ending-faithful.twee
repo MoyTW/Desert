@@ -136,7 +136,7 @@ You missed the kidnappers when you had the chance. So did the police. They were 
 
 You leave the police base with Ebiaishe. You suggests a sushi place nearby on the 17th floor of the MiraPlex. The two of you sit, staring out across the city, eating mediocre slices of farmed fish.
 
-You asks what she'll do now.
+You ask what she'll do now.
 
 <span id="ebf-s-btn"><<button "Wait for Ebi's decision.">>
   <<run setup.replaceWithSending("#ebf-s-btn")>>

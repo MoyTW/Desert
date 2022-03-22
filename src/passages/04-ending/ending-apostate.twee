@@ -5,7 +5,7 @@ It's vaguely absured, in the way that so many of these plots are absurd, but the
 
 
 :: EndingApostate_LeaveStayButtons
-<span id="ea-lsb-btn">
+<span id="ea-lsb-btn">\
   <<button "Stay.">>
     <<run setup.replaceWithSending("#ea-lsb-btn")>>
     <<send "EndingApostate_LeaveStayButtons" {}>><</send>>
@@ -68,7 +68,7 @@ Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in t
   <<send "EndingDesertApostate_Start_DONE" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertApostate_Start_DONE" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingDesertApostate_Start_DONE") }
+  if (setup.isApostate()) { Engine.play("EndingDesertApostate_Start_2") }
 <</script>><</receive>><</nobr>>
 
 
