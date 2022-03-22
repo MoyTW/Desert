@@ -315,7 +315,7 @@ You're next, of course, but you're not interested. You pull out your <<tooltip "
 
 Behind you, you hear Silas ask, "Friend of yours?"
 
-Dammit. At the very least, don't actually tell them anything. Jekusheke starts. "Well," he says, but you grab his hand and he stops. You give him a glance and he pauses, shuts his mouth. He still remembers how this goes.
+Dammit. At the very least, don't actually <<tooltip "tell them anything">>Ma Tiger was very clear.<</tooltip>>. "Well," says Jeku, but you grab his hand and he stops. You give him a glance and he pauses, shuts his mouth. He still remembers how this goes.
 
 You put on a polite, obviously artifical smile and turn to Silas. "Annalise," you say, extending your hand. "It's nice to meet you Silas, Arthur."
 
@@ -323,13 +323,133 @@ You put on a polite, obviously artifical smile and turn to Silas. "Annalise," yo
 
 You can hear Silas, voice low, asking after you. "That th' <em>fi-an-cee</em> you been tellin' me's much 'bout?"
 
-What? He's got a fiance?  In any case, you don't want Jekusheke talking too much. "No," says your brother, "she's my-"
+What? He's got a fiance?  "No," says your brother, "she's my-"
 
 "Just a friend," you assert, eyes not leaving the screen. "Nothing more, nothing less."
 
-"Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
+"Well," replies Silas, "pleased to make your acquaintance." You nod in response. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?" You can't have Jeku talking to him, he's too likely to give something away.
 
-TODO
+<span id="ma-es-btn"><<button "Find a way to separate them.">>
+  <<run setup.replaceWithSending("#ma-es-btn")>>
+  <<send "MercsApostate_EbiSilent_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_EbiSilent_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    if (State.variables.MercsFaithful_Start_CHOICE.choice == "CHAT") {
+      Engine.play("MercsApostate_EbiSilent_2_JekuChat")
+    } else if (State.variables.MercsFaithful_Start_CHOICE.choice == "REJECT") {
+      Engine.play("MercsApostate_EbiSilent_2_JekuReject")
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_EbiSilent_2_JekuChat
+You keep half an ear on Jeku and Silas while you think. They're making mostly harmless small talk, and Jeku doesn't seem like he's giving anything away.
+
+Easiest way to get them apart is to physically separate them. There's tables, right? You spy some menus sitting in a pile behind the bar. Well, that's an unobjectionable way to separate them. Just claim tiredness or something and ask Jeku to get a table.
+
+You tune back in. Silas is attempting to get Jeku to start drinking. Looks like it's time to jump in.
+
+<span id="ma-es-2-jc-btn"><<button "Interrupt.">>
+  <<run setup.replaceWithSending("#ma-es-2-jc-btn")>>
+  <<send "MercsApostate_EbiSilent_2_JekuChat_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_EbiSilent_2_JekuChat_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuChat") }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_EbiSilent_2_JekuChat_2
+"You know what," says Jeku, you grab him by the arm. He stops and turns to you. "Need something?"
+
+"Hey," you say, looking at Silas, "mind if I borrow Jeku?" Before he can respond you relocate Jeku a couple of chairs down, then whisper, "Can we get a table? I don't feel like having to deal with small talk, on top of everything else."
+
+Jeku balks. "Well, you don't have to talk to them."
+
+"Please. It's just making things more stressful than it needs to be. This is already stressful enough." Mostly a lie, but you suppose you could make a case for it being the truth. If Ma Tiger didn't want to keep this quiet, you'd have no objection.
+
+"Okay," agrees Jeku, after some thought.
+
+"Thanks."
+
+You follow Jeku back to his seat. "Sorry," he says to Silas, "my friend's kind of shot. We're gonna get a table for linner. Nice seeing you, though."
+
+"Ah, c'mon," responds the security guard, "get a drink, will ya? Won't hurt nothing."
+
+"I appreciate the offer, but-"
+
+"C'mon! Man! Jay, Jay, I'm offerin', right?" He's insistent.
+
+<span id="ma-es-2-jc-2-btn"><<button "Force the issue.">>
+  <<run setup.replaceWithSending("#ma-es-2-jc-2-btn")>>
+  <<send "MercsApostate_EbiSilent_2_JekuChat_2_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_EbiSilent_2_JekuChat_2_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuChat_3") }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_EbiSilent_2_JekuChat_3
+<<include "MercsApostate_EbiAsksForTable">>
+
+
+:: MercsApostate_EbiSilent_2_JekuReject
+"Actually," says Jeku, checking his phone, "we were gonna get an early linner." Interesting. He's looking for a way out, too. Well, that's good, you won't have to worry about him blabbering. He leans over the bar and gestures to the bartender, smiles and wanders over.
+
+"Ah," says Silas, no so easily deterred, "drinks 'fore linner? 'ey, soda, eh? Ya on call?"
+
+"No," responds Jeku, "but-"
+
+"Great! Bar-tender! Why'nt we get somethin' stronger? What'cha feelin' tonight Jay?"
+
+"No, I'm not on call, but it's kinda early for drinks."
+
+"C'mon," says Silas. Out of the corner of your eye, spot him leaning over your brother. "I know ya drink, Jay. 'Artender," he says, disregarding the bartender's disapproving frown, "gi' my boy Jay one'a wha'ever 'e wants!"
+
+<span id="ma-es-2-jr-btn"><<button "All right, time to bail him out.">>
+  <<run setup.replaceWithSending("#ma-es-2-jr-btn")>>
+  <<send "MercsApostate_EbiSilent_2_JekuReject_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsApostate_EbiSilent_2_JekuReject_DONE" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuReject_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsApostate_EbiSilent_2_JekuReject_2
+<<include "MercsApostate_EbiAsksForTable">>
+
+
+:: MercsApostate_EbiAsksForTable
+Jeku struggles to extricate himself. "I appreciate-"
+
+"Excuse me," you interrupt, voice loud, "can we get a table?"
+
+"'ey," starts Silas, but he stops as you stand up and turn to face him.
+
+You put on an insincere smile. "Pleasure to meet you, Silas, Arthur. Now," you say, turning to the bartender, "may we please have a table?"
+
+"Of course," he says. The two of you follow him to one of the window tables, set for two, all the way across the room. "Will this do?" he asks, placing a pair of menus down. You nod and take a seat. You can see Silas scowling from the bar, but you don't turn to meet him.
+
+Jeku sits aside from you, letting out a deep breath. "Thanks."
+
+"No problem." You pick up the menu. "So, split halfway?"
+
+"Wait, you-"
+
+"Yep. Split halfway?"
+
+He shrugs. "Sure."
+
+"Wave when you're ready," says the bartender, returning to serve his other two customers.
+
+<span id="ma-es-2-jr-2-btn"><<button "Browse the menu.">>
+  <<run setup.replaceWithSending("#ma-es-2-jr-2-btn")>>
+  <<send "MercsApostate_EbiSilent_2_JekuReject_2_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsApostate_EbiSilent_2_JekuReject_2_DONE" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd") }
+<</script>><</receive>><</nobr>>
 
 
 :: MercsApostate_Linner_SceneEnd
