@@ -21,7 +21,7 @@ TODO: Page has ~530 words
     <<receive "MercsApostate_Start_CHOICE" "Apostate">><<script>>
       if (setup.isApostate()) {
         const data = State.temporary.receiveData;
-        State.variables.MercsApostate_Start_CHOICE = data.choice;
+        State.variables.MercsApostate_Start_CHOICE = data;
         setup.replaceWithWaiting("#ia-me-btns");
         setup.Complete_MercsApostate_Start();
       }
@@ -29,86 +29,131 @@ TODO: Page has ~530 words
     <<receive "MercsFaithful_Start_CHOICE" "Apostate">><<script>>
       if (setup.isApostate()) {
         const data = State.temporary.receiveData;
-        State.variables.MercsFaithful_Start_CHOICE = data.choice;
+        State.variables.MercsFaithful_Start_CHOICE = data;
         setup.Complete_MercsApostate_Start();
       }
     <</script>><</receive>>
   <</nobr>>\
 </span>
 
-:: MercsApostate_JekuMercsChat
-<<if $MercsFaithful_Start_CHOICE is "CHAT">>\
-  "Silas," says Jekusheke, returning his fist bump, "how are you doing?"
 
-  "Doin' good," says Silas. \
-<<else>>\
-  "Silas," he says, nodding politely. "What a coincidence."
+:: MercsApostate_JekuChat_EbiTalk
+<<include "MercsApostate_JekuChat">>
 
-  "Yeah," says Silas. "Didn' know ya like Christie's." \
-<</if>>\
-He jerks his head over at his companion. "Arthur. Works 'ith me at Midas, joined 'esterday. Arthur, Jekusheke. E's a former Midas EMT."
+<<include "MercsApostate_EbiTalk">>
 
-Arthur gives you a slightly strained smile and holds out his hand. "Nice to meet you, Jekusheke."
+:: MercsApostate_JekuChat_EbiSilent
+<<include "MercsApostate_JekuChat">>
 
-<<if $MercsFaithful_Start_CHOICE is "CHAT">>\
-  Jekusheke's smile is more genuine, and he takes Arthur's hand without hesitation. \
-<<else>>\
-  If Arthur's smile is strained, Jekusheke's is fraying. Still, he's too polite not to return the handshake. \
-<</if>>\
-"Nice to meet you too, Arthur." \
-<<if $MercsApostate_Start_CHOICE is "TALK">>\
+<<include "MercsApostate_EbiSilent">>
+
+:: MercsApostate_JekuReject_EbiTalk
+<<include "MercsApostate_JekuReject">>
+
+<<include "MercsApostate_EbiTalk">>
+
+:: MercsApostate_JekuReject_EbiSilent
+<<include "MercsApostate_JekuReject">>
+
+<<include "MercsApostate_EbiSilent">>
 
 
-  You lean over, grinning, and catch Jekusheke's eye. "Care to introduce us?"
+:: MercsApostate_JekuChat
+"Silas," says Jekusheke, returning his fist bump, "how are you doing?"
 
-  "Right," he says, drawing in his breath, but Silas beats him to the punch, extending his hand with what passes for his best smile.
+"Doin' good," says Silas. He jerks his head over at his companion. "Arthur. Works 'ith me at Midas, joined 'esterday. Arthur, Jekusheke. E's a former Midas EMT."
 
-  "Silas. Are you the lovely fiance that Jay's always talking about?"
+Arthur wears a slightly strained smile and holds out his hand. "Nice to meet you, Jekusheke."
 
-  <<tooltip "\"Absolutely not!\"">>Holy shit, he's getting married!?<</tooltip>> you say, bursting into laughter. "Jeku, Jeku, you didn't tell me you were getting married!"
+Jekusheke's smile is more genuine, and he takes Arthur's hand without hesitation. "Nice to meet you too, Arthur."
 
-  <<tooltip "\"You didn't ask.\"">>Oh, wow, I almost forgot how sulky he could sound.<</tooltip>>
 
-  "Congratulations!" You punch him lightly in the shoulder. "I knew my boy Jeku was gonna get settled sometime!" His face is red, and he turns to look at Silas.
+:: MercsApostate_JekuReject
+"Silas," he says, nodding politely. "What a coincidence."
 
-  "Silas," he says, <<tooltip "\"this is-\"">>Don't tell him anything.<</tooltip>>
+"Yeah," says Silas. "Didn' know ya like Christie's." He jerks his head over at his companion. "Arthur. Works 'ith me at Midas, joined 'esterday. Arthur, Jekusheke. E's a former Midas EMT."
 
-  "Annalise," you say, putting out your hand.
+Arthur wears a slightly strained smile and holds out his hand. "Nice to meet you, Jekusheke."
 
-  Silas takes it, shakes it. "Silas. Charmed." His eyes flit between you and your sister. "How you know each other?"
+If Arthur's smile is strained, Jekusheke's is fraying. Still, he's too polite not to return the handshake. "Nice to meet you too, Arthur."
 
-  <<tooltip "An idea springs to mind.">>Jeku will hate it, but it's certain to make conversation difficult.<</tooltip>>
 
-  Fuck it. Let's go. You put on a grin, toss your head. "I'm the woman that dear Jekusheke isn't gonna marry." You steal a glince at Jekusheke, and he's nearly shaking in anger.
-  
-  "Uh," says Arthur, rolling his broad shoulders, "so, uh."
-  
-  After a moment, Silas regains his composure. "Right," he says, nodding to you, "good to know." He turns back towards Jekusheke. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and gives you the side-eye, "a friend?"
+:: MercsApostate_EbiTalk
+You lean over, grinning, and catch Jekusheke's eye. "Care to introduce us?"
 
-  TODO: lol
-  <span id="ia-jmc-btns">\
-    <<button "Jeku's quite angry now. That's a problem.">>
-      <<run setup.replaceWithSending("#ia-jmc-btns")>>
-      <<send "MercsApostate_JekuMercsChat_DONE" { }>><</send>>
-    <</button>>
-  </span>\
-<<else>>\
-  You're next, of course, but you're not interested. You pull out your <<tooltip "public phone">>The minimum is three - a public phone, a private phone, and a burner phone.<</tooltip>> and start browsing.
+"Right," he says, drawing in his breath, but Silas beats him to the punch, extending his hand with what passes for his best smile.
 
-  Behind you, you hear Silas ask, "Friend of yours?"
+"Silas. Are you the lovely fiance that Jay's always talking about?"
 
-  Dammit. At the very least, don't actually tell them anything. Jekusheke starts. "Well," he says, but you grab his hand and he stops. You give him a glance and he pauses, shuts his mouth. He still remembers how this goes.
+<<tooltip "\"Absolutely not!\"">>Holy shit, he's getting married!?<</tooltip>> you say, bursting into laughter. "Jeku, Jeku, you didn't tell me you were getting married!"
 
-  You put on a polite, obviously artifical smile and turn to Silas. "Annalise," you say, extending your hand. "It's nice to meet you Silas, Arthur."
+<<tooltip "\"You didn't ask.\"">>Oh, wow, I almost forgot how sulky he could sound.<</tooltip>>
 
-  "Charmed," says Silas, shaking it. Arthur shakes it as well, nodding politely. You drop your smile and return to your phone as they sit down at the bar.
+"Congratulations!" You punch him lightly in the shoulder. "I knew my boy Jeku was gonna get settled sometime!" His face is red, and he turns to look at Silas.
 
-  You can hear Silas, voice low, asking after you. "That th' <em>fi-an-cee</em> you been tellin' me's much 'bout?"
+"Silas," he says, <<tooltip "\"this is-\"">>Don't tell him anything.<</tooltip>>
 
-  What? He's got a fiance?  In any case, you don't want Jekusheke talking too much. "No," says your brother, "she's my-"
+"Annalise," you say, putting out your hand.
 
-  "Just a friend," you assert, eyes not leaving the screen. "Nothing more, nothing less."
+Silas takes it, shakes it. "Silas. Charmed." His eyes flit between you and your sister. "How you know each other?"
 
-  "Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
-<</if>>\
-TODO RECEIVE
+<<tooltip "An idea springs to mind.">>Jeku will hate it, but it's certain to make conversation difficult.<</tooltip>>
+
+Fuck it. Let's go. You put on a grin, toss your head. "I'm the woman that dear Jekusheke isn't gonna marry." You steal a glince at Jekusheke, and he's nearly shaking in anger.
+
+"Uh," says Arthur, rolling his broad shoulders, "so, uh."
+
+After a moment, Silas regains his composure. "Right," he says, nodding to you, "good to know." He turns back towards Jekusheke. "So, uh, Jekusheke, what brings you here? Drinks with, uh," and gives you the side-eye, "a friend?"
+
+<span id="ia-jmc-btns">\
+  <<button "Jeku's quite angry now. That's a problem.">>
+    <<run setup.replaceWithSending("#ia-jmc-btns")>>
+    <<send "MercsApostate_EbiTalk_DONE" { }>><</send>>
+  <</button>>
+</span>\
+<<nobr>>
+  <<receive "MercsApostate_EbiTalk_DONE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      setup.replaceWithWaiting("#ia-jmc-btns");
+      State.variables.MercsApostate_EbiTalk_DONE = true;
+      setup.Complete_MercsApostate_EbiTalk();
+    }
+  <</script>><</receive>>
+  <<receive "MercsFaithful_EbiTalk_CHOICE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      State.variables.MercsFaithful_EbiTalk_CHOICE = State.temporary.receiveData;
+      setup.Complete_MercsApostate_EbiTalk();
+    }
+  <</script>><</receive>>
+<</nobr>>\
+
+
+:: MercsApostate_EbiTalk_JekuAngry
+TODO
+
+
+:: MercsApostate_EbiTalk_JekuIgnore
+TODO
+
+
+:: MercsApostate_EbiSilent
+You're next, of course, but you're not interested. You pull out your <<tooltip "public phone">>The minimum is three - a public phone, a private phone, and a burner phone.<</tooltip>> and start browsing.
+
+Behind you, you hear Silas ask, "Friend of yours?"
+
+Dammit. At the very least, don't actually tell them anything. Jekusheke starts. "Well," he says, but you grab his hand and he stops. You give him a glance and he pauses, shuts his mouth. He still remembers how this goes.
+
+You put on a polite, obviously artifical smile and turn to Silas. "Annalise," you say, extending your hand. "It's nice to meet you Silas, Arthur."
+
+"Charmed," says Silas, shaking it. Arthur shakes it as well, nodding politely. You drop your smile and return to your phone as they sit down at the bar.
+
+You can hear Silas, voice low, asking after you. "That th' <em>fi-an-cee</em> you been tellin' me's much 'bout?"
+
+What? He's got a fiance?  In any case, you don't want Jekusheke talking too much. "No," says your brother, "she's my-"
+
+"Just a friend," you assert, eyes not leaving the screen. "Nothing more, nothing less."
+
+"Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
+TODO
+
+
