@@ -1053,13 +1053,13 @@ TODO: Did you just kill somebody?
       if (setup.isFaithful()) {
         setup.replaceWithWaiting("#cf-e-btn");
         State.variables.ChaseFaithful_End_DONE = true;
-        setup.Complete_ChaseFaithful_End(); // TODO: Write this lol
+        setup.Chase.Complete_ChaseFaithful_End();
       }
     <</script>><</receive>>
     <<receive "ChaseApostate_End_DONE" "Faithful">><<script>>
       if (setup.isFaithful()) {
         State.variables.ChaseApostate_End_DONE = true;
-        setup.Complete_ChaseFaithful_End();
+        setup.Chase.Complete_ChaseFaithful_End();
       }
     <</script>><</receive>>
   <</nobr>>\

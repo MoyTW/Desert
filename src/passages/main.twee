@@ -171,11 +171,9 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
   }
   if (State.variables.selectCharacterHostConfirmed && State.variables.selectCharacterPartnerConfirmed) {
     if (setup.isFaithful()) {
-      // TODO: Reset this
-      Engine.play("MercsFaithful_Start")
+      Engine.play("IntroFaithful_Start")
     } else {
-      // TODO: Reset this
-      Engine.play("MercsApostate_Start")
+      Engine.play("IntroApostate_Start")
     }
   }
 <</script>><</receive>><</nobr>>\

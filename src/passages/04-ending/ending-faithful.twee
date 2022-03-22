@@ -23,7 +23,7 @@ Then, she closes her eyes, and is silent for a time.
   <<send "EndingBloodyFaithful_Start_DONE" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBloodyFaithful_Start_DONE" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingBloodyFaithful_Start_2") }
+  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_Start_2") }
 <</script>><</receive>><</nobr>>
 
 
@@ -44,7 +44,7 @@ You feel a queasy unease about the situation, but what can you do about it?
   <<send "EndingBloodyFaithful_Start_2_DONE" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBloodyFaithful_Start_2_DONE" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+  if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
 <</script>><</receive>><</nobr>>
 
 
@@ -63,7 +63,7 @@ Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in t
   <<send "EndingDesertFaithful_Start" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertFaithful_Start" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingDesertFaithful_Start_2") }
+  if (setup.isFaithful()) { Engine.play("EndingDesertFaithful_Start_2") }
 <</script>><</receive>><</nobr>>
 
 
@@ -83,7 +83,7 @@ For you, nothing, because between the two of you, all debts have been paid.
   <<send "EndingDesertFaithful_Start_2" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertFaithful_Start_2" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+  if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
 <</script>><</receive>><</nobr>>
 
 
@@ -100,7 +100,7 @@ Five hours, thirty-four minutes after the incident, Ma Tiger steps into the wait
   <<send "EndingPoliceFaithful_Start" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingPoliceFaithful_Start" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingPoliceFaithful_Start_2") }
+  if (setup.isFaithful()) { Engine.play("EndingPoliceFaithful_Start_2") }
 <</script>><</receive>><</nobr>>
 
 
@@ -122,7 +122,7 @@ For you, nothing, because between the two of you, all debts have been paid.
   <<send "EndingPoliceFaithful_Start_2" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingPoliceFaithful_Start_2" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+  if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
 <</script>><</receive>><</nobr>>
 
 
@@ -143,11 +143,11 @@ You asks what she'll do now.
   <<send "EndingBadFaithful_Start" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBadFaithful_Start" "Faithful">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+  if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
 <</script>><</receive>><</nobr>>
 
 
-:: EndingApostate_ThankYou
+:: EndingFaithful_ThankYou
 /** ###################################################################### **/\
 /** # THANK YOU                                                          # **/\
 /** ###################################################################### **/\

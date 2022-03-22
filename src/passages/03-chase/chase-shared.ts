@@ -41,6 +41,20 @@
     const faithfulChoice: string = _vars.ChaseFaithful_CHOICE_LAST.choice
     const faithfulPassage: string = _vars.ChaseFaithful_CHOICE_LAST.passage
 
+    // Check for the special "CHASE_END" choice, which immediately terminates the chase
+    if (apostateChoice === "CHASE_END" || faithfulChoice === "CHASE_END") {
+      _vars.apostatePassage = "ChaseApostate_End"
+      _vars.faithfulPassage = "ChaseFaithful_End"
+
+      // Special case to catch kidnapping because I don't have to to properly fix this
+      const apostateRoute = _apostateRoutingTable.get(apostatePassage)?.get(apostateChoice)
+      if (apostateRoute != undefined) {
+        apostateRoute[1]()
+      }
+
+      return true
+    }
+
     const [nextApostatePassage, apostatePassageFn] = _apostateRoutingTable.get(apostatePassage)?.get(apostateChoice)!
     const [nextFaithfulPassage, faithfulPassageFn] = _faithfulRoutingTable.get(faithfulPassage)?.get(faithfulChoice)!
     _vars.apostatePassage = nextApostatePassage
@@ -49,12 +63,7 @@
     faithfulPassageFn()
 
     _incrementTurn()
-
-    // Check for the special "CHASE_END" choice, which immediately terminates the chase
-    if (apostateChoice === "CHASE_END" || faithfulChoice === "CHASE_END") {
-      _vars.apostatePassage = "ChaseApostate_End"
-      _vars.faithfulPassage = "ChaseFaithful_End"
-    }
+    
     return true
   }
 
@@ -77,7 +86,7 @@
 
     if (_vars.apostateKidnappersKilled === 4) {
       Engine.play("EndingBloodyApostate_Start")
-    } if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
+    } else if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
       Engine.play("EndingDesertApostate_Start")
     } else if (_vars.called911) {
       Engine.play("EndingPoliceApostate_Start")
@@ -93,7 +102,7 @@
 
     if (_vars.apostateKidnappersKilled === 4) {
       Engine.play("EndingBloodyFaithful_Start")
-    } if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
+    } else if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
       Engine.play("EndingDesertFaithful_Start")
     } else if (_vars.called911) {
       Engine.play("EndingPoliceFaithful_Start")
@@ -155,7 +164,7 @@
     ])],
     ["ChaseApostate_OnFoot_Caught", new Map<string,[string, () => void]>([
       ["KILL", ["ChaseApostate_OnFoot_Caught_Kill", () => {
-        (State.variables as any).apostateKidnappersKilled += 1
+        (State.variables as any).apostateKidnappersKilled = 1
       }]],
       ["SUBDUE", ["ChaseApostate_OnFoot_Caught_Subdue", () => {}]],
       ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Negotiate", () => {}]],
@@ -167,7 +176,7 @@
     ])],
     ["ChaseApostate_OnFoot_Caught_Kill_2", new Map<string,[string, () => void]>([
       ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_Shoot", () => {
-        (State.variables as any).apostateKidnappersKilled += 3
+        (State.variables as any).apostateKidnappersKilled = 4
       }]],
       ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */

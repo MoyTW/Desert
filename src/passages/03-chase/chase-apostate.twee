@@ -666,13 +666,13 @@
       if (setup.isApostate()) {
         setup.replaceWithWaiting("#ca-e-btn");
         State.variables.ChaseApostate_End_DONE = true;
-        setup.Complete_ChaseApostate_End();
+        setup.Chase.Complete_ChaseApostate_End();
       }
     <</script>><</receive>>
     <<receive "ChaseFaithful_End_DONE" "Apostate">><<script>>
       if (setup.isApostate()) {
         State.variables.ChaseFaithful_End_DONE = true;
-        setup.Complete_ChaseApostate_End();
+        setup.Chase.Complete_ChaseApostate_End();
       }
     <</script>><</receive>>
   <</nobr>>\
