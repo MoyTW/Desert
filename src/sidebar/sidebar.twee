@@ -12,8 +12,10 @@
 <</if>>\
 <h2>Character</h2>\
 <<if setup.isFaithful()>>\
+  <strong>Jekusheke Wang</strong>
   The Faithful Son
 <<elseif setup.isApostate()>>\
+  <strong>Ebiaishe Wang</strong>
   The Former Daughter
 <</if>>\
 <h2>DEBUG</h2>\

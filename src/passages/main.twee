@@ -102,32 +102,42 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
 
 :: SelectCharacter
 <h1>Select a character</h1>\
-@@#sc-character-buttons;<<button "The Faithful">>
-  <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful' }>><<script>>
-    if (State.variables.clientId === State.variables.hostClientId) {
-      $("#sc-host-selection").text(`Host has selected Faithful.`)
-    } else {
-      $("#sc-partner-selection").text(`Joiner has selected Faithful.`)
-    }
-  <</script>><</send>>\
-<</button>>\
-<<button "The Apostate">>
-  <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate' }>><<script>>
-    if (State.variables.clientId === State.variables.hostClientId) {
-      $("#sc-host-selection").text(`Host has selected Apostate.`)
-    } else {
-      $("#sc-partner-selection").text(`Joiner has selected Apostate.`)
-    }
-  <</script>><</send>>\
-<</button>>@@
+@@#sc-character-buttons;<div class='row'>\
+  <div class='column'>\
+    Lives in Reno, Nevada. Works as an EMT at a local clinic. Sees his mom every holiday season, due to be married in six months. Got a letter a while ago from Ma Tiger, telling him to meet her on a certain day at a certain place.
+    <<button "Jekusheke Wang">>
+      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful', characterName: "Jekusheke" }>><<script>>
+        if (State.variables.clientId === State.variables.hostClientId) {
+          $("#sc-host-selection").text(`Host has selected Jekusheke Wang.`)
+        } else {
+          $("#sc-partner-selection").text(`Joiner has selected Jekusheke Wang.`)
+        }
+      <</script>><</send>>\
+    <</button>>\
+  </div>\
+  <div class='column'>\
+    Lives nowhere in particular. Does this and that. Vanished out of the house one day. Hasn't seen either her mother or brother in thirteen years. Somehow Ma Tiger's letter has found her, a cry for help with a date and a place.
+    <<button "Ebiaishe Wang">>
+      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate', characterName: "Ebiaishe" }>><<script>>
+        if (State.variables.clientId === State.variables.hostClientId) {
+          $("#sc-host-selection").text(`Host has selected Ebiaishe Wang.`)
+        } else {
+          $("#sc-partner-selection").text(`Joiner has selected Ebiaishe Wang.`)
+        }
+      <</script>><</send>>\
+    <</button>>
+  </div>\
+</div>@@\
 <<nobr>><<receive 'SELECT_CHARACTER_SELECTED' 'All'>><<script>>
   const data = State.temporary.receiveData
   if (data.clientId === State.variables.hostClientId) {
     State.variables.hostCharacterRole = data.characterRole
-    $("#sc-host-selection").text(`Host has selected ${State.variables.hostCharacterRole}.`)
+    State.variables.hostCharacterName = data.characterName
+    $("#sc-host-selection").text(`Host has selected ${State.variables.hostCharacterName}.`)
   } else {
     State.variables.partnerCharacterRole = data.characterRole
-    $("#sc-partner-selection").text(`Joiner has selected ${State.variables.partnerCharacterRole}.`)
+    State.variables.partnerCharacterName = data.characterName
+    $("#sc-partner-selection").text(`Joiner has selected ${State.variables.partnerCharacterName}.`)
   }
   if (State.variables.hostCharacterRole && State.variables.partnerCharacterRole && State.variables.hostCharacterRole != State.variables.partnerCharacterRole) {
     $('#sc-confirm button').prop('disabled', false)
@@ -139,12 +149,12 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
 @@#sc-host-selection;<<if $hostCharacterRole is undefined>>\
   Host has not yet selected a character.\
 <<else>>\
-  Host has selected $hostCharacterRole.\
+  Host has selected $hostCharacterName.\
 <</if>>@@
 @@#sc-partner-selection;<<if $partnerCharacterRole is undefined>>\
   Joiner has not yet selected a character.\
 <<else>>\
-  Joiner has selected $partnerCharacterRole.\
+  Joiner has selected $partnerCharacterName.\
 <</if>>@@
 
 @@#sc-confirm;<<disable>><<button "Confirm choices">>
