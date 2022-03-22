@@ -136,6 +136,7 @@
 /** ###################################################################### **/\
 /** # ON FOOT                                                            # **/\
 /** ###################################################################### **/\
+/* NIT: Later, add back the ability to return. */\
 <<include "ChaseApostate_TurnIndicator">>\
   You narrow your eyes and will your legs into high gear. Your heart hammers in your ears; your breaths come faster and faster; your legs burst with energy. You <em>run.</em>
 <<timed $timerString t8n>>
@@ -155,6 +156,7 @@
 
 
 :: ChaseApostate_OnFoot_2
+/* NIT: Later, add back the ability to return. */\
 <<include "ChaseApostate_TurnIndicator">>\
   You're running steady, now, lungs working at full capacity, legs pumping. You're in the groove. You have about nine or ten minutes before you pump out. Long enough.
 <<timed $timerString t8n>>
@@ -166,9 +168,6 @@
   <<ca-button "You're gaining. Keep running. (You can keep this up for as long as you need. You're gaining. Keep going.)"
     "FOOT"
     "You're continuing the chase.">>
-  <<ca-button "Dash back to Christie's. (If you chase any further than this, you won't have the time to return.)"
-    "BACK"
-    "You're running back to Christie's.">>
 <</chase-shared-options-section>>\
 
 
@@ -667,7 +666,7 @@
       if (setup.isApostate()) {
         setup.replaceWithWaiting("#ca-e-btn");
         State.variables.ChaseApostate_End_DONE = true;
-        setup.Complete_ChaseApostate_End(); // TODO: Write this lol
+        setup.Complete_ChaseApostate_End();
       }
     <</script>><</receive>>
     <<receive "ChaseFaithful_End_DONE" "Apostate">><<script>>

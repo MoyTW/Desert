@@ -2,7 +2,7 @@
   const _setup = setup as any
   _setup.Chase = {}
 
-  _setup.Chase.IncrementTurn = function() {
+  const _incrementTurn = function() {
     const _vars = State.variables as any
     
     _vars.chaseTurn++
@@ -41,14 +41,14 @@
     const faithfulChoice: string = _vars.ChaseFaithful_CHOICE_LAST.choice
     const faithfulPassage: string = _vars.ChaseFaithful_CHOICE_LAST.passage
 
-    const [nextApostatePassage, apostatePassageFn] = _setup.Chase.GetApostateData(apostatePassage, apostateChoice)
-    const [nextFaithfulPassage, faithfulPassageFn] = _setup.Chase.GetFaithfulData(faithfulPassage, faithfulChoice)
+    const [nextApostatePassage, apostatePassageFn] = _apostateRoutingTable.get(apostatePassage)?.get(apostateChoice)!
+    const [nextFaithfulPassage, faithfulPassageFn] = _faithfulRoutingTable.get(faithfulPassage)?.get(faithfulChoice)!
     _vars.apostatePassage = nextApostatePassage
     _vars.faithfulPassage = nextFaithfulPassage
     apostatePassageFn()
     faithfulPassageFn()
 
-    _setup.Chase.IncrementTurn()
+    _incrementTurn()
 
     // Check for the special "CHASE_END" choice, which immediately terminates the chase
     if (apostateChoice === "CHASE_END" || faithfulChoice === "CHASE_END") {
@@ -70,16 +70,28 @@
     }
   }
 
-  _setup.Chase.GetApostateData = function(passage: string, choice: string): [string, () => void] {
-    return _apostateRoutingTable.get(passage)?.get(choice)!
+  _setup.Chase.Complete_ChaseApostate_End = function() {
+    const _vars = State.variables as any;
+    
+    if (!_vars.ChaseApostate_End_DONE || !_vars.ChaseFaithful_End_DONE) { return }
+
+    if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
+      // TODO: If you caught the kidnappers, you wind up in the desert
+    } else if (_vars.called911) {
+      // TODO: If you didn't catch the kidnappers, but did call 911, they end up catching them
+    } else {
+      // TODO: If you did neither, you get a bad end (I'm not sure this is possible!?)
+    }
   }
 
-  _setup.Chase.GetFaithfulData = function(passage: string, choice: string): [string, () => void] {
-    return _faithfulRoutingTable.get(passage)?.get(choice)!
+  _setup.Chase.Complete_ChaseFaithful_End = function() {
+    // TODO
   }
 
   const _apostateChristiesRouting = new Map<string,[string, () => void]>([
-    ["FOOT", ["ChaseApostate_OnFoot", () => {}]],
+    ["FOOT", ["ChaseApostate_OnFoot", () => {
+      (State.variables as any).apostateIsChasing = true
+    }]],
     ["911", ["ChaseApostate_911", () => {
       (State.variables as any).apostateCanCall911 = false
     }]],
@@ -128,7 +140,9 @@
       ["FREEZE", ["ChaseApostate_OnFoot_Sidewalk", () => {}]], /* TODO */
     ])],
     ["ChaseApostate_OnFoot_Caught", new Map<string,[string, () => void]>([
-      ["KILL", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]],
+      ["KILL", ["ChaseApostate_OnFoot_Caught_Kill", () => {
+        (State.variables as any).apostateKidnappersKilled += 1
+      }]],
       ["SUBDUE", ["ChaseApostate_OnFoot_Caught_Subdue", () => {}]],
       ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Negotiate", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_Caught", () => {}]], /* TODO */
@@ -138,15 +152,21 @@
       ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
     ])],
     ["ChaseApostate_OnFoot_Caught_Kill_2", new Map<string,[string, () => void]>([
-      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_Shoot", () => {}]],
+      ["FIGHT", ["ChaseApostate_OnFoot_Caught_Kill_Shoot", () => {
+        (State.variables as any).apostateKidnappersKilled += 3
+      }]],
       ["NEGOTIATE", ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", () => {}]],
       ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill", () => {}]], /* TODO */
     ])],
     ["ChaseApostate_OnFoot_Caught_Kill_Shoot", new Map<string,[string, () => void]>([
-      ["CHASE_END", ["ChaseApostate_End", () => {}]],
+      ["CHASE_END", ["ChaseApostate_End", () => {
+        (State.variables as any).apostateCaughtKidnappers = true
+      }]],
     ])],
     ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", new Map<string,[string, () => void]>([
-      ["CHASE_END", ["ChaseApostate_End", () => {}]],
+      ["CHASE_END", ["ChaseApostate_End", () => {
+        (State.variables as any).apostateCaughtKidnappers = true
+      }]],
     ])],
     ["ChaseApostate_OnFoot_Caught_Subdue", new Map<string,[string, () => void]>([
       ["FIGHT", ["ChaseApostate_OnFoot_Caught_Subdue_2", () => {}]],
@@ -158,10 +178,14 @@
       ["FREEZE", ["ChaseApostate_OnFoot_Caught_Subdue", () => {}]], /* TODO */
     ])],
     ["ChaseApostate_OnFoot_Caught_Subdue_Fight", new Map<string,[string, () => void]>([
-      ["CHASE_END", ["ChaseApostate_End", () => {}]],
+      ["CHASE_END", ["ChaseApostate_End", () => {
+        (State.variables as any).apostateCaughtKidnappers = true
+      }]],
     ])],
     ["ChaseApostate_OnFoot_Caught_Subdue_Negotiate", new Map<string,[string, () => void]>([
-      ["CHASE_END", ["ChaseApostate_End", () => {}]],
+      ["CHASE_END", ["ChaseApostate_End", () => {
+        (State.variables as any).apostateCaughtKidnappers = true
+      }]],
     ])],
     // ########################################################################
     // # 911                                                                  #
@@ -528,4 +552,6 @@
     ["ChaseFaithful_Bar_Treat", _faithfulChristiesRouting],
     ["ChaseFaithful_Bar_Allow", _faithfulChristiesRouting],
   ])
+
+  
 })()

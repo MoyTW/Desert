@@ -44,8 +44,9 @@
   <<set $calledFrancis to false>>
   /* <<set $carPresent to true>> */ /* NIT: Nobody can drive anymore! */
 
-  /* TODO: Set all these! */
   <<set $apostateIsChasing to false>>
+  <<set $apostateCaughtKidnappers to false>>
+  <<set $apostateKidnappersKilled to 0>>
   /* <<set $faithfulIsChasing to false>> */ /* NIT: Apostate can't chase! */
   <<set $kidnappersInSightOfChristies to true>>
   <<set $kidnappersEscaped to false>>
