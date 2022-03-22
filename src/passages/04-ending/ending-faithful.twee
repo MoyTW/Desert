@@ -1,0 +1,170 @@
+:: EndingFaithful_YouLearnText
+You learn that this whole thing was all some sort of power struggle between rival families. Many years ago, before she adopted either of you, Ma Tiger had a lovechild. She put him up for adoption, covered up his existance at the insistence of her family, and never spoke of him again.
+
+Now, a man has shown up claiming to be that lovechild, and, via genetic testing, is provably a child of her and her former love - but she knows he can't be, since her real son died in the Navy years ago. Her family thinks that the imposter is a clone, instigated by a rival family. Who knows? All she knows is that he's an imposter.
+
+You ask why she's brought you here, into the desert. She tells you that she couldn't bring herself to destroy all the evidence, so she buried birth certificate and genetic readout in an unmarked pit. Proof that the imposter is not her son.
+
+
+:: EndingBloodyFaithful_Start
+/** ###################################################################### **/\
+/** # BLOODY ENDING                                                      # **/\
+/** ###################################################################### **/\
+<h1>July 19, 2081</h1>\
+<h2>Somewhere in the desert near Reno, Nevada</h2>\
+Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
+
+"I have turned on a jammer," she says. "We may speak now, if you like. But first," she says, sounding a thousand years old, "daughter, I will admit my own faults. I did not instruct you properly in the situation, or the context surrounding my request, but I did not think you would murder four people in broad daylight. It is my fault, and I do not know if I can fix it. I fear that you will be wanted for the rest of your life." She sighs. "I am sorry. It was my mistake."
+
+Then, she closes her eyes, and is silent for a time.
+
+<span id="ebs-s-btn"><<button "What in the world happened?">>
+  <<run setup.replaceWithSending("#ebs-s-btn")>>
+  <<send "EndingBloodyFaithful_Start_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingBloodyFaithful_Start_DONE" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyFaithful_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyFaithful_Start_2
+The three of you talk for a time.
+
+<<include "EndingFaithful_YouLearnText">>
+
+Ma Tiger chastises Ebi. She shot three of the kidnappers, and crushed spine of the last one. Ma blames herself, for not telling Ebi and you. I was never in mortal danger, she says. It's all a game. You can't kill the person you're tring to blackmail.
+
+But now, Ebiashe has committed four daylight murders, recorded by a dozen cars, in Reno's city core. She's a murderer, now. Maybe she had good intentions, but still, there's no way to paper that over.
+
+You feel a queasy unease about the situation, but what can you do about it?
+
+
+<span id="ebs-s-2-btn"><<button "That's just how it is.">>
+  <<run setup.replaceWithSending("#ebs-s2--btn")>>
+  <<send "EndingBloodyFaithful_Start_2_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingBloodyFaithful_Start_2_DONE" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingDesertFaithful_Start
+/** ###################################################################### **/\
+/** # DESERT ENDING                                                      # **/\
+/** ###################################################################### **/\
+<h1>July 19, 2081</h1>\
+<h2>Somewhere in the desert near Reno, Nevada</h2>\
+Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
+
+"I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a time.
+
+<span id="eds-s-btn"><<button "Talk.">>
+  <<run setup.replaceWithSending("#eds-s-btn")>>
+  <<send "EndingDesertFaithful_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingDesertFaithful_Start" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingDesertFaithful_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingDesertFaithful_Start_2
+The three of you talk for a time.
+
+<<include "EndingFaithful_YouLearnText">>
+
+The kidnapping was never meant to put her in mortal danger. They killed King to send a message, grabbed her to interrogate her, intimdate her, but they wouldn't have killed her. You can't kill the person you're trying to blackmail, after all.
+
+Luckily, Ebi caught them, and they ended up folding. Now you're waiting in a car as Ma Tiger offers to give Ebi whatever she wants. Money, documents, a cushy job, a new life, not as a reward, but because of the guilt that she's carried with her for so long.
+
+For you, nothing, because between the two of you, all debts have been paid.
+
+<span id="eds-s-2-btn"><<button "Wait for Ebi's decision.">>
+  <<run setup.replaceWithSending("#eds-s2--btn")>>
+  <<send "EndingDesertFaithful_Start_2" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingDesertFaithful_Start_2" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingPoliceFaithful_Start
+/** ###################################################################### **/\
+/** # POLICE ENDING                                                      # **/\
+/** ###################################################################### **/\
+<h1>July 20, 2081</h1>\
+<h2>Reno Police, 4th Base, Waiting Room #133</h2>\
+Five hours, thirty-four minutes after the incident, Ma Tiger steps into the waiting room, tired and bedraggled, escorted by an armored officer. "Ebiaishe," she says, nodding, "Jekusheke. Thank you. We cannot talk here. It is not safe." She smiles. "Mr. Tracey will take us elsewhere. Please." She gestures to the policeman, who nods and marches out of the waiting room.
+
+<span id="epf-s-btn"><<button "Follow.">>
+  <<run setup.replaceWithSending("#epf-s-btn")>>
+  <<send "EndingPoliceFaithful_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingPoliceFaithful_Start" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingPoliceFaithful_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingPoliceFaithful_Start_2
+The room that the officer leads you to is four buildings down, in the secure section of the base. You feel a tingle as you pass through the door, a minor distortion causing your muscles to twitch uncomfortably. It's furnished like an old-fashioned reading room, with large leather chairs and nice wooden tables, like an ancient detective film. A table along the side wall has refreshments and snacks.
+
+"Help yourself," says Mr. Tracey, exiting the room and sealing the door with a hiss.
+
+"Now," says Ma Tiger, "we may talk," and collapses onto a couch as if all the bones in her body have vanished.
+
+<<include "EndingApostate_YouLearnText">>
+
+She was, she tells you, never in real danger. Murder would attract too much attention, bring down too much heat. You can't murder the person you're trying to blackmail. She rubs her eyes. The kidnapping was the worst thing she's had to deal with, but not the only one. She looks at Ebi, her wayward daughter. She offers her whatever she wants, Money, documents, a cushy job, a new life, not out of gratitude or in payment, but because of the guilt she's carried for so long.
+
+For you, nothing, because between the two of you, all debts have been paid.
+
+<span id="epf-s-2-btn"><<button "Wait for Ebi's decision.">>
+  <<run setup.replaceWithSending("#epf-s-2-btn")>>
+  <<send "EndingPoliceFaithful_Start_2" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingPoliceFaithful_Start_2" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBadFaithful_Start
+/** ###################################################################### **/\
+/** # BAD ENDING                                                         # **/\
+/** ###################################################################### **/\
+<h1>July 24, 2081</h1>\
+<h2>Reno Police, 4th Base, Waiting Room #329</h2>\
+You missed the kidnappers when you had the chance. So did the police. They were too slow, and the kidnappers managed to get outside of Reno, arrived somewhere in the desert. They left tracks, of course, and the police followed them, managed to find the van. They kidnappers had bailed and boarded a unlisted passenger drone, which flew under the radar to who knows where. They could be anywhere in America by now.
+
+You leave the police base with Ebiaishe. You suggests a sushi place nearby on the 17th floor of the MiraPlex. The two of you sit, staring out across the city, eating mediocre slices of farmed fish.
+
+You asks what she'll do now.
+
+<span id="ebf-s-btn"><<button "Wait for Ebi's decision.">>
+  <<run setup.replaceWithSending("#ebf-s-btn")>>
+  <<send "EndingBadFaithful_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingBadFaithful_Start" "Faithful">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingFaithful_ThankYou") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingApostate_ThankYou
+/** ###################################################################### **/\
+/** # THANK YOU                                                          # **/\
+/** ###################################################################### **/\
+Thanks for playing!
+
+This version of the game is for testing only. Not for individual resale. Or. Look, there's a joke in there, but I'm too tired to find it. Sorry!
+
+Anyways, please send all feedback to moytravis@gmail.com, or whatever method I used to contact you. Here are some questions I'm looking for feedback on:
+
+<ol>
+  <li>Were there any bugs or other technical difficulties you encountered, especially with the network code? If so, please give as detailed a description as you can.</l1>
+  <li>Did you feel like the choices presented gave the impression that you were engaging with the other player in a satisfactory way?</li>
+  <li>How did the timed section feel, in terms of usability, urgency and fun?</li>
+  <li>Are there any suggestions you would have for improving the multiplayer aspect of the game?</li>
+  <li>Did the player playing Ebi communicate to the player play Jeku what the last game decision was?</li>
+</ol>
+
+Of course, any other feedback you have is welcome, up to and including typos, plot criticism, and rants about writing style and prose.
+
+Thanks again!

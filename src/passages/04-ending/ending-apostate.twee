@@ -1,0 +1,157 @@
+:: EndingApostate_YouLearnText
+You learn that this whole thing was all some sort of corporate or familial power struggle. Somebody has cloned Ma Tiger's dead, long-abandoned secret <<tooltip "lovechild">>You never knew she had biological children. How could you? She never brought it up.<</tooltip>>, and shown up claiming to have proof of parentage, and while this has apparently has no force of law everybody in the family cares a lot. She needed help looking for some records she'd stashed in the desert, but she couldn't use anybody else because they might have been comprimised by the other family. Who knows. It's one of those stupid plots that the wealthy families play against each other.
+
+It's vaguely absured, in the way that so many of these plots are absurd, but the consequences are very real.
+
+
+:: EndingApostate_LeaveStayButtons
+<span id="ea-lsb-btn">
+  <<button "Stay.">>
+    <<run setup.replaceWithSending("#ea-lsb-btn")>>
+    <<send "EndingApostate_LeaveStayButtons" {}>><</send>>
+  <</button>>
+  <<button "Leave.">>
+    <<run setup.replaceWithSending("#ea-lsb-btn")>>
+    <<send "EndingApostate_LeaveStayButtons" {}>><</send>>
+  <</button>>
+</span>\ 
+<<nobr>><<receive "EndingApostate_LeaveStayButtons" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingApostate_ThankYou") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Start
+/** ###################################################################### **/\
+/** # BLOODY ENDING                                                      # **/\
+/** ###################################################################### **/\
+<h1>July 19, 2081</h1>\
+<h2>Somewhere in the desert near Reno, Nevada</h2>\
+Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
+
+"I have turned on a jammer," she says. "We may speak now, if you like. But first," she says, sounding a thousand years old, "daughter, I will admit my own faults. I did not instruct you properly in the situation, or the context surrounding my request, but I did not think you would murder four people in broad daylight. It is my fault, and I do not know if I can fix it. I fear that you will be wanted for the rest of your life." She sighs. "I am sorry. It was my mistake."
+
+Then, she closes her eyes, and is silent for a time.
+
+<span id="eba-s-btn"><<button "Talk.">>
+  <<run setup.replaceWithSending("#eba-s-btn")>>
+  <<send "EndingBloodyApostate_Start_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingBloodyApostate_Start_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Start_2
+The three of you talk for a time.
+
+<<include "EndingApostate_YouLearnText">>
+
+Apparently, none of this was supposed to be lethal, either. Makes it harder to cover up. She's not angry that you killed her kidnappers, just disappointed. You asked if it would have been better just to let them take her. She said yes, without hesitating. What the hell.
+
+Now you're sitting in a car in the Nevada desert with your once-mother, four fresh murders to your name. She looks at Jekusheke, at you. You can leave, she says. She can't give you safety, but she can give you money. Or, you can stay, and help her, but even then she can't give you safety. Only money.
+
+<<include "EndingApostate_LeaveStayButtons">>
+
+
+:: EndingDesertApostate_Start
+/** ###################################################################### **/\
+/** # DESERT ENDING                                                      # **/\
+/** ###################################################################### **/\
+<h1>July 19, 2081</h1>\
+<h2>Somewhere in the desert near Reno, Nevada</h2>\
+Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
+
+"I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a time.
+
+<span id="eda-s-btn"><<button "Talk.">>
+  <<run setup.replaceWithSending("#eda-s-btn")>>
+  <<send "EndingDesertApostate_Start_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingDesertApostate_Start_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingDesertApostate_Start_DONE") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingDesertApostate_Start_2
+The three of you talk for a time.
+
+<<include "EndingApostate_YouLearnText">>
+
+That's why the kidnappers freaked out, gave up, dropped you on a nearby corner. None of this is supposed to be lethal, and the injuries you dealt out were bad enough to scare them off. Funny, really. You won the game by not knowing it was a game.
+
+Now you're sitting in a car in the Nevada desert with your once-mother, caught up in some absurd family wealth drama. She looks at Jekusheke, at you. You don't have to help me, she says. You can leave, she says. She'll give you whatever you want. Money, documents, a cushy job or a new life. You ask why. She's silent for a long while.
+
+Guilt, she says.
+
+<<include "EndingApostate_LeaveStayButtons">>
+
+
+:: EndingPoliceApostate_Start
+/** ###################################################################### **/\
+/** # POLICE ENDING                                                      # **/\
+/** ###################################################################### **/\
+<h1>July 20, 2081</h1>\
+<h2>Reno Police, 4th Base, Waiting Room #133</h2>\
+Five hours, thirty-four minutes after the incident, Ma Tiger steps into the waiting room, tired and bedraggled, escorted by an armored officer. "Ebiaishe," she says, nodding, "Jekusheke. Thank you. We cannot talk here. It is not safe." She smiles. "Mr. Tracey will take us elsewhere. Please." She gestures to the policeman, who nods and marches out of the waiting room.
+
+<span id="epa-s-btn"><<button "Follow.">>
+  <<run setup.replaceWithSending("#epa-s-btn")>>
+  <<send "EndingPoliceApostate_Start_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingPoliceApostate_Start_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingPoliceApostate_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingPoliceApostate_Start_2
+The room that the officer leads you to is four buildings down, in the secure section of the base. You feel a tingle as you pass through the door, a minor distortion causing your muscles to twitch uncomfortably. It's furnished like an old-fashioned reading room, with large leather chairs and nice wooden tables, like an ancient detective film. A table along the side wall has refreshments and snacks.
+
+"Help yourself," says Mr. Tracey, exiting the room and sealing the door with a hiss.
+
+"Now," says Ma Tiger, "we may talk," and collapses onto a couch as if all the bones in her body have vanished.
+
+<<include "EndingApostate_YouLearnText">>
+
+She was, she tells you, never in real danger. Murder would attract too much attention, bring down too much heat. You can't murder the person you're trying to blackmail. She rubs her eyes. The kidnapping was the worst thing she's had to deal with, but not the only one. She looks at you, eyes blurry. You don't have to help me, she says. You can leave, she says. She'll give you whatever you want. Money, documents, a cushy job or a new life. You ask why. She's silent for a long while.
+
+Guilt, she says.
+
+<<include "EndingApostate_LeaveStayButtons">>
+
+
+:: EndingBadApostate_Start
+/** ###################################################################### **/\
+/** # BAD ENDING                                                         # **/\
+/** ###################################################################### **/\
+<h1>July 24, 2081</h1>\
+<h2>Reno Police, 4th Base, Waiting Room #329</h2>\
+You missed the kidnappers when you had the chance. So did the police. They were too slow, and the kidnappers managed to get outside of Reno, arrived somewhere in the desert. They left tracks, of course, and the police followed them, managed to find the van. They kidnappers had bailed and boarded a unlisted passenger drone, which flew under the radar to who knows where. They could be anywhere in America by now.
+
+You leave the police base with Jekusheke. He suggests a sushi place nearby on the 17th floor of the MiraPlex. The two of you sit, staring out across the city, eating mediocre slices of farmed fish.
+
+He asks what you'll do now.
+
+<<include "EndingApostate_LeaveStayButtons">>
+
+
+:: EndingApostate_ThankYou
+/** ###################################################################### **/\
+/** # THANK YOU                                                          # **/\
+/** ###################################################################### **/\
+Thanks for playing!
+
+This version of the game is for testing only. Not for individual resale. Or. Look, there's a joke in there, but I'm too tired to find it. Sorry!
+
+Anyways, please send all feedback to moytravis@gmail.com, or whatever method I used to contact you. Here are some questions I'm looking for feedback on:
+
+<ol>
+  <li>Were there any bugs or other technical difficulties you encountered, especially with the network code? If so, please give as detailed a description as you can.</l1>
+  <li>Did you feel like the choices presented gave the impression that you were engaging with the other player in a satisfactory way?</li>
+  <li>How did the timed section feel, in terms of usability, urgency and fun?</li>
+  <li>Are there any suggestions you would have for improving the multiplayer aspect of the game?</li>
+  <li>Did the player playing Ebi communicate to the player play Jeku what the last game decision was?</li>
+</ol>
+
+Of course, any other feedback you have is welcome, up to and including typos, plot criticism, and rants about writing style and prose.
+
+Thanks again!

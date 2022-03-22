@@ -75,17 +75,31 @@
     
     if (!_vars.ChaseApostate_End_DONE || !_vars.ChaseFaithful_End_DONE) { return }
 
-    if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
-      // TODO: If you caught the kidnappers, you wind up in the desert
+    if (_vars.apostateKidnappersKilled === 4) {
+      Engine.play("EndingBloodyApostate_Start")
+    } if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
+      Engine.play("EndingDesertApostate_Start")
     } else if (_vars.called911) {
-      // TODO: If you didn't catch the kidnappers, but did call 911, they end up catching them
+      Engine.play("EndingPoliceApostate_Start")
     } else {
-      // TODO: If you did neither, you get a bad end (I'm not sure this is possible!?)
+      Engine.play("EndingBadApostate_Start")
     }
   }
 
   _setup.Chase.Complete_ChaseFaithful_End = function() {
-    // TODO
+    const _vars = State.variables as any;
+    
+    if (!_vars.ChaseApostate_End_DONE || !_vars.ChaseFaithful_End_DONE) { return }
+
+    if (_vars.apostateKidnappersKilled === 4) {
+      Engine.play("EndingBloodyFaithful_Start")
+    } if (_vars.apostateCaughtKidnappers || _vars.apostateIsChasing) {
+      Engine.play("EndingDesertFaithful_Start")
+    } else if (_vars.called911) {
+      Engine.play("EndingPoliceFaithful_Start")
+    } else {
+      Engine.play("EndingBadFaithful_Start")
+    }
   }
 
   const _apostateChristiesRouting = new Map<string,[string, () => void]>([
