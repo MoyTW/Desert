@@ -21,7 +21,7 @@
     }
   }
 
-  _setup.Complete_MercsApostate_JekuMercsChat = function() {
+  _setup.Complete_MercsApostate_EbiTalk = function() {
     const _vars = State.variables as any
 
     if (_vars.MercsApostate_EbiTalk_DONE &&
@@ -34,6 +34,23 @@
         Engine.play("MercsApostate_EbiTalk_JekuAngry")
       } else if (faithfulChoice === "IGNORE") {
         Engine.play("MercsApostate_EbiTalk_JekuIgnore")
+      }
+    }
+  }
+
+  _setup.Complete_MercsApostate_DiscussCoverStory = function() {
+    const _vars = State.variables as any
+
+    if (_vars.MercsApostate_DiscussCoverStory_DONE &&
+        _vars.MercsFaithful_DiscussCoverStory_CHOICE) {
+      const faithfulChoice: string = _vars.MercsFaithful_DiscussCoverStory_CHOICE.choice;
+      delete _vars.MercsApostate_DiscussCoverStory_DONE
+      delete _vars.MercsFaithful_DiscussCoverStory_CHOICE
+
+      if (faithfulChoice === "WHY") {
+        Engine.play("MercsApostate_DiscussCoverStory_Argue")
+      } else if (faithfulChoice === "FINE") {
+        Engine.play("MercsApostate_DiscussCoverStory_Fine")
       }
     }
   }

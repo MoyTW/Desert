@@ -2,11 +2,10 @@
 /** ###################################################################### **/\
 /** # MERCS ENTER                                                        # **/\
 /** ###################################################################### **/\
+/* TODO: Word count; lead-up ~530 words*/\
 A loud creaking announces the opening of the doors. You look back. A pair of people enter, one <<tooltip "muscular,">>Tall male, heavy build, close-cut orange hair, squat face with an unruly beard, wrap-around shades, likely with concealed armor and some sort of weapon in a shoulder holster.<</tooltip>> one <<tooltip "slight.">>Tall male, lean build, close-cut blond hair, long face with a well-groomed mustache, wrap-around shades, likely with concealed armor and some sort of weapon in a shoulder holster.<</tooltip>> Bad news.
 
 The two of them see Jekusheke, see you. The heavy dismisses you; the slim one whistles, then heads straight for Jekusheke, taking off his shades as he leaves his companion behind. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting as his companion awkwardly shuffles behind.
-
-TODO: Page has ~530 words
 
 <span id="ia-me-btns">\
   <<button "Possible complications? I'll try and keep them from talking.">>
@@ -129,11 +128,186 @@ After a moment, Silas regains his composure. "Right," he says, nodding to you, "
 
 
 :: MercsApostate_EbiTalk_JekuAngry
-TODO
+"Excuse me," says Jeku to Silas, all red in the face, "I need to have a <em>chat</em> with dear Annalise here." Jeku glares at you <<tooltip "petulently">>He's pissed, but he has as little presence as you remember.<</tooltip>>. You grin and hop up off her seat. "We'll just be a couple of minutes."
+
+Silas clicks his tongue, turns to the drinks menu.
+
+This is a problem, though; you need Jeku to cooperate. You'll have to talk fast. You follow him to one of the corner seats, and as soon as he stops you grab his hands in yours and lean in. "I'm sorry," you whisper, "that was mean of me, but I couldn't think of a better way to distract them."
+
+<span id="ma-et-ja-btn"><<button "How's he reacting?">>
+  <<run setup.replaceWithSending("#ma-et-ja-btn")>>
+  <<send "MercsApostate_EbiTalk_JekuAngry_DONE" { }>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_EbiTalk_JekuAngry_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory") }
+<</script>><</receive>><</nobr>>
 
 
 :: MercsApostate_EbiTalk_JekuIgnore
-TODO
+Jeku starts stammering instead of shutting up. "I, uh. Not quite. Actually, I was <<tooltip "going to meet-\"">>Goddammit, shut up!<</tooltip>> You grab his arm, hard, and he hisses in pain. "Ebi, what the-"
+
+"We need to talk," you growl, shoving in a poisoner's kit of venom, "about your <em>fiancee.</em>"
+
+"Wha-"
+
+"Fucking <em>shut up!</em>" you yell, and drag Jeku out of his seat, physically moving him away from the newcomes. You can hear Arthur chuckling nervously and Silas pulling air through his teeth, but neither of them moves a muscle. You hustle him over to a corner table near the window and drop him in a seat, before taking a chair and leaning in. His eyes are wide with shock.
+
+"Sorry," you whisper, "I couldn't think of a better way to get you away from them."
+
+<span id="ma-et-ji-btn"><<button "How's he reacting?">>
+  <<run setup.replaceWithSending("#ma-et-ji-btn")>>
+  <<send "MercsApostate_EbiTalk_JekuIgnore_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_EbiTalk_JekuIgnore_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsApostate_DiscussCoverStory
+He's still wide-eyed. Your voice is brisk, businesslike. "We can't talk to anybody about this, not until Ma Tiger shows, so we need a story. I couldn't think of any way to talk to you alone other than to make a scene. I'm sorry, I went off the cuff." You glance back towards Silas. "We need a cover."
+
+<span id="ma-dcs-btn"><<button "Well?">>
+  <<run setup.replaceWithSending("#ma-dcs-btn")>>
+  <<send "MercsApostate_DiscussCoverStory_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>>
+  <<receive "MercsApostate_DiscussCoverStory_DONE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      setup.replaceWithWaiting("#ma-dcs-btn");
+      State.variables.MercsApostate_DiscussCoverStory_DONE = true;
+      setup.Complete_MercsApostate_DiscussCoverStory();
+    }
+  <</script>><</receive>>
+  <<receive "MercsFaithful_DiscussCoverStory_CHOICE" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      State.variables.MercsFaithful_DiscussCoverStory_CHOICE = State.temporary.receiveData;
+      setup.Complete_MercsApostate_DiscussCoverStory();
+    }
+  <</script>><</receive>>
+<</nobr>>\
+
+
+:: MercsApostate_DiscussCoverStory_Argue
+Jeku sets his jaw. <<tooltip "\"I don't see why.\"">>He's insisting on being obstinate.<</tooltip>>
+
+What's the best way to approach this?
+
+/* NIT: There's a big chance for huge sniping buuut, I don't have time, lol. */\
+<span id="ma-dcs-a-btn">\
+  <<button "Confide in him that you were worried, and made a bad call.">>
+    <<run setup.replaceWithSending("#ma-dcs-a-btn")>>
+    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE" { choice: "CONCERNS" }>><</send>>
+  <</button>>
+  <<button "Apologize for not thinking of how it would effect him.">>
+    <<run setup.replaceWithSending("#ma-dcs-a-btn")>>
+    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE" { choice: "APOLOGIZE" }>><</send>>
+  <</button>>
+  <<button "Explain why it was necessary to stop him talking.">>
+    <<run setup.replaceWithSending("#ma-dcs-a-btn")>>
+    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE" { choice: "EXPLAIN" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_CHOICE" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    if (State.temporary.receiveData.choice == "CONCERNS") {
+      Engine.play("MercsApostate_DiscussCoverStory_Argue_Concerns");
+    } else if (State.temporary.receiveData.choice == "APOLOGIZE") {
+      Engine.play("MercsApostate_DiscussCoverStory_Argue_Apologize");
+    } else if (State.temporary.receiveData.choice == "EXPLAIN") {
+      Engine.play("MercsApostate_DiscussCoverStory_Argue_Explain");
+    }
+  }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_DiscussCoverStory_Argue_Concerns
+Jeku snaps at you. "Cat got your tongue, for once?"
+
+You glance at Silas, then look Jeku directly in the eyes. You smooth your face, then put on an expression of worry. "Jeku, I'm sorry. Everything about this situation is sketchy. Ma's letter was all but begging me for help, and you know Ma's not the begging type. It's worrying. Jeku, I might not look it, but I could barely bring myself to come back; I'm <<tooltip "terrified">>A monumental exaggeration.<</tooltip>>. I'm sorry. I don't know Silas, maybe you trust him with your life, but for my sake, if nothing else, can we do this my way? My life after I parted from you hasn't been comfortable, and I'd feel safer if we kept as much of this secret as we can."
+
+You give it a few seconds, then swallow. "Please."
+
+<span id="ma-dcs-a-c-btn"><<button "Does he buy it?">>
+  <<run setup.replaceWithSending("#ma-dcs-a-c-btn")>>
+  <<send "MercsApostate_DiscussCoverStory_Argue_Concerns_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_Concerns_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory_Fine") }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_DiscussCoverStory_Argue_Apologize
+Jeku snaps at you. "Cat got your tongue, for once?"
+
+You take a moment to think. When you speak, you make sure to false start before you actually speak. "I'm sorry, I didn't mean to be mean. I also didn't think of how embarrassing that was." A frown appears on her face. "And, thinking about it more, I don't want to give you a bad reputation. Look, it was a bad call, and I'm sorry; I should have thought of a different thing to say."
+
+He can't deflect such a direct apology. "Well," he stammers, "we can sort all this out...later. After we meet Ma Tiger. Then we can talk to Silas."
+
+"Right," you agree, nodding, "but before then, we can't just go telling everybody what we're doing."
+
+He sighs.
+
+<span id="ma-dcs-a-a-btn"><<button "He seems to have bought it.">>
+  <<run setup.replaceWithSending("#ma-dcs-a-a-btn")>>
+  <<send "MercsApostate_DiscussCoverStory_Argue_Apologize_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_Apologize_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory_Fine") }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_DiscussCoverStory_Argue_Explain
+Jeku snaps at you. "Cat got your tongue, for once?"
+
+"Look," you say, leaning in, "Ma Tiger explicitly instructed me in her letter not to tell anybody about coming to meet her. I assume that, if she told me that, she told you that." You pause.
+
+He's silent. Assent? <<tooltip "Probably.">>Is he sulking? Come on!<</tooltip>>
+
+"That includes people who know you. I don't know how well you know Silas, but even if you know him well, and even if you trust him, it's a bad idea to tell him. Why would Ma hunt me down after all these years to send me a letter begging her for help? It's something that she can't find anybody else to help with, and that means that whatever she's doing, she wants secret. So we need to come up with a story."
+
+He sits in obstinate silence.
+
+Come on Jeku, are you five? "You can be mad at me later, after we meet Ma Tiger."
+
+<span id="ma-dcs-a-e-btn"><<button "Come on. You're being silly.">>
+  <<run setup.replaceWithSending("#ma-dcs-a-e-btn")>>
+  <<send "MercsApostate_DiscussCoverStory_Argue_Explain_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_Explain_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory_Fine") }
+<</script>><</receive>><</nobr>>\
+
+
+:: MercsApostate_DiscussCoverStory_Fine
+"Fine," he whispers.
+
+Finally. "Right, I already-"
+
+"Look," he interrupts, "if you want me to stop talking to them, why don't we just stay here?"
+
+Interesting idea. "And eat?"
+
+"Sure. Whatever works."
+
+He looks tired, annoyed. Best not to push him. "Okay, I'll go get a couple of menus and insist on taking the table. I'll try not to make too much of a scene."
+
+<<tooltip "\"Fine.\"">>Jeku, what are you, five?<</tooltip>>
+
+You get up and wander over to the bar, make small talk with Silas and Arthur for a few minutes. Silas tries to get up and walk over to Jeku; you crack a ribald joke and awkwardly interpose yourself, calling for the bartender to bring you menus. "Yeah, we're settling in for linner. Turns out we've got a lot to talk about!" You put on an ominous smile, and Silas chuckles nervously. Before either of them can follow you grab the menus, waving to the bartender, and return to your table.
+
+Jeku's staring out the window, brow furrowed. You sit down, slide a menu over. "Pick something."
+
+"We're really eating?"
+
+"That's our cover story now. If you're not hungry, pick something light."
+
+<span id="ma-dcs-f-btn"><<button "Pick something to order.">>
+  <<run setup.replaceWithSending("#ma-dcs-f-btn")>>
+  <<send "MercsApostate_DiscussCoverStory_Fine_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsApostate_DiscussCoverStory_Fine_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd") }
+<</script>><</receive>><</nobr>>\
 
 
 :: MercsApostate_EbiSilent
@@ -154,6 +328,9 @@ What? He's got a fiance?  In any case, you don't want Jekusheke talking too much
 "Just a friend," you assert, eyes not leaving the screen. "Nothing more, nothing less."
 
 "Well," replies Silas, "pleased to make your acquaintance." Your sister nods, and the security guard shrugs. "So, Jekusheke, why ya 'ere? Drinks with a friend, is't?"
+
 TODO
 
 
+:: MercsApostate_Linner_SceneEnd
+TODO
