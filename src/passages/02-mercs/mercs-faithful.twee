@@ -2,13 +2,12 @@
 /** ###################################################################### **/\
 /** # MERCS ENTER                                                        # **/\
 /** ###################################################################### **/\
+/* TODO: Count words */\
 Just talk!
   
 You draw in your breath, only to be interrupted by a loud creaking. You look back to see Silas, the tallest security guard in the <<tooltip "Midas clinic,">>You worked there for a couple of years. It's a pretty rough area, which is why they're often hiring. Like everybody else, you bounced pretty fast.<</tooltip>> alongside another security guard you've never seen before.
 
 Silas grins when he sees you. "Jekusheke," he says, "how you doin', man?" He holds out a fist in greeting.
-
-TODO: Count words
 
 <span id="if-me-btns">\
   <<button "Oh, that's a hell of a coincidence! Any distraction is a welcome distraction.">>
@@ -192,7 +191,7 @@ You set your jaw. "I don't see why," you say.
 
 She opens her mouth, takes a breath, presses her lips together.
 
-/* TODO: There's a big chance for huge sniping buuut, I don't have time, lol. */\
+/* NIT: There's a big chance for huge sniping buuut, I don't have time, lol. */\
 <span id="mf-dcs-a-btn"><<button "\"Cat got your tongue, for once?\"">>
   <<run setup.replaceWithSending("#mf-dcs-a-btn")>>
   <<send "MercsFaithful_DiscussCoverStory_Argue_DONE" {}>><</send>>
@@ -223,43 +222,95 @@ She pulls back, looks over at Silas. You resist the urge to follow her gaze. Aft
 She swallows. "Please."
 
 <span id="mf-dcs-a-c-btn">\
+  /* NIT: Cutting argument for scope!
   <<button "\"I know Silas. He's not a spy or something.\"">>
     <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
     <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" { choice: "KNOW" }>><</send>>
-  <</button>>
+  <</button>> */\
   <<button "\"Fine.\"">>
     <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
-    <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" { choice: "FINE" }>><</send>>
+    <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" {}>><</send>>
   <</button>>
-</span>\
-<<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" "Faithful">><<script>>
-  if (setup.isFaithful()) {
-    setup.replaceWithWaiting("#mf-dcs-a-c-btn");
-    if (State.temporary.receiveData.choice === "KNOW") {
-      Engine.play("MercsFaithful_DiscussCoverStory_Argue_Concerns_2");
-    } else if (State.temporary.receiveData.choice === "FINE") {
-      Engine.play("MercsFaithful_DiscussCoverStory_Fine");
-    }
-  }
+<span>\
+<<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory_Fine") }
 <</script>><</receive>><</nobr>>\
-
-
-:: MercsFaithful_DiscussCoverStory_Argue_Concerns_2
-TODO
 
 
 :: MercsFaithful_DiscussCoverStory_Argue_Apologize
 "Cat got your tongue, for once?"
 
-TODO
+She stops, closes her mouth. She opens it again, and closes it again. "I'm sorry," she says, "I didn't mean to be mean. I also didn't think of how embarrassing that was." A frown appears on her face. "And, thinking about it more, I don't want to give you a bad reputation. Look," she says, "it was a bad call, and I'm sorry; I should have thought of a different thing to say." She looks at you.
+
+You shift uncomfortably. "Well," you say, "we can sort all this out...later. After we meet Ma Tiger. Then we can talk to Silas."
+
+She nods. "Right. But before then, we can't just go telling everybody what we're doing."
+
+You sigh. You're still mad, but it seems gauche to push it after such a direct apology.
+
+<span id="mf-dcs-a-a-btn">\<<button "\"Fine.\"">>
+  <<run setup.replaceWithSending("#mf-dcs-a-a-btn")>>
+  <<send "MercsFaithful_DiscussCoverStory_Argue_Apologize_DONE" {}>><</send>>
+<</button>><span>\
+<<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Apologize_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory_Fine") }
+<</script>><</receive>><</nobr>>\
 
 
 :: MercsFaithful_DiscussCoverStory_Argue_Explain
-TODO
+"Cat got your tongue, for once?"
+
+"Look," she says, leaning in, talking quietly and intensely, "Ma Tiger explicitly instructed me in her letter not to tell anybody about coming to meet her. I assume that, if she told me that, she told you that." She pauses.
+
+<<tooltip "You hold your tongue.">>You'll be dammed if you give her the satisfaction.<</tooltip>>
+
+"That includes people who know you. I don't know how well you know Silas, but even if you know him well, and even if you trust him, it's a bad idea to tell him. Why would Ma hunt me down after all these years to send me a letter begging her for help? It's something that she can't find anybody else to help with, and that means that whatever she's doing, she wants secret. So we need to come up with a story."
+
+You stay silent.
+
+"You can be mad at me later," she says. "After we meet Ma Tiger."
+
+<span id="mf-dcs-a-e-btn">\<<button "\"Fine.\"">>
+  <<run setup.replaceWithSending("#mf-dcs-a-e-btn")>>
+  <<send "MercsFaithful_DiscussCoverStory_Argue_Explain_DONE" {}>><</send>>
+<</button>><span>\
+<<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Explain_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory_Fine") }
+<</script>><</receive>><</nobr>>\
 
 
 :: MercsFaithful_DiscussCoverStory_Fine
-TODO
+"Fine," you whisper.
+
+Ebiaishe regards you evenly. "Right," she says. "I already-"
+
+"Look," you say, "if you want me to stop talking to them, why don't we just stay here?"
+
+She pauses. "And eat?"
+
+"Sure. Whatever works."
+
+She studies your face, then nods. "Okay," she says, "I'll go get a couple of menus and insist on taking the table. I'll try not to make too much of a scene."
+
+"Fine."
+
+She gets up, saunters over to the table. There's a brief conversation, some laughs. You sigh. It's a little early to eat, but maybe it's better than sitting at the bar. At least the view's better. You stare out the window, eyes wandering down the road, giant casino facades giving generous shade to the storefronts and sidewalks, cars chasing each other through the city core. Night's a long way off, but when it falls, the streets will be awash in lights.
+
+Vegas' little brother, always in sin city's shadow.
+
+A menu slides across the table. Ebi sits down, studies the offerings. "Pick something," she says.
+
+"We're really eating?"
+
+"That's our cover story now. If you're not hungry, pick something light."
+
+<span id="mf-dcs-f-btn"><<button "\"Order something. (Something light.)\"">>
+  <<run setup.replaceWithSending("#mf-dcs-f-btn")>>
+  <<send "MercsFaithful_DiscussCoverStory_Fine_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaithful_DiscussCoverStory_Fine_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd") }
+<</script>><</receive>><</nobr>>
 
 
 :: MercsFaithful_EbiSilent
@@ -315,18 +366,16 @@ You can hear Ebiaishe laugh. "Scoot over Jeku, dear," she says, interposing hers
 
 Silas sucks in his breath, leans back. "Ah, well, what't'ell. Sure. Pick summin.'"
 
-TODO
-
 <span id="mf-jr-2-et-btn"><<button "\"Thanks for the cover.\"">>
     <<run setup.replaceWithSending("#mf-jr-2-et-btn")>>
     <<send "MercsFaithful_JekuReject_2_EbiTalk_DONE" {}>><</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_JekuReject_2_EbiTalk_DONE" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("MercsFaitihful_EbiDrinks_SceneEnd") }
+  if (setup.isFaithful()) { Engine.play("MercsFaitihful_EbiDrinks_MercsLeave") }
 <</script>><</receive>><</nobr>>
 
 
-:: MercsFaitihful_EbiDrinks_SceneEnd
+:: MercsFaitihful_EbiDrinks_MercsLeave
 You tap Ebi on the arm; she turns to you. You mouth "thanks" to her, and she grins.
 
 She spends the next half an hour palling around with Silas and Arthur, neatly deflecting all their efforts to get you involved with increasingly unrealistic stories about the times you've spent together. You were unaware, for example, that you'd gone on a cruise to the Caribbean in 2072, where you'd attempted to barter with a local for some touristy figurines. Apparently you'd repeatedly insisted that ninty dollars was all you had, and when you opened your wallet to reveal a hundred dollar bill the local had laughed and given you the figurines for ninty.
@@ -335,7 +384,43 @@ She's as convincing a bullshitter as she ever was.
 
 Silas and Arthur stick around for maybe an hour and a half, drinking the day away, but eventually Silas gets a call from his boss and they say their goodbyes. You wave them out politely, having been almost fully shielded from their inquiries by the tireless efforts of your sister.
 
-TODO END
+And Ma Tiger's still not arrived.
+
+<span id="mf-ed-ml-btn"><<button "\"Wait.\"">>
+  <<run setup.replaceWithSending("#mf-ed-ml-btn")>>
+  <<send "MercsFaitihful_EbiDrinks_MercsLeave_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaitihful_EbiDrinks_MercsLeave_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaitihful_EbiDrinks_Linner") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsFaitihful_EbiDrinks_Linner
+The clock ticks by. 5pm. 6pm. The sun's halfway through its slow descent. It always takes a long time to get dark in July. People trickle in, take seats. You and Ebi move to the end of the bar.
+
+You make some halfhearted attempts at chat. Ebi is noncommital. Well, it's not a surprise, you suppose. At this point silence is practically expected, isn't it?
+
+"You hungry?" asks Ebi.
+
+"What?"
+
+"It's getting late. You hungry?"
+
+<<tooltip "\"I suppose.\"">>If we get a table at least people will stop trying to talk to us.<</tooltip>> You wave down the bartender. "Can we get a table?"
+
+He shrugs. "Best be buying."
+
+You chuckle and grin. "Right. Sure."
+
+The two of you get a table in the corner, next to the window. Ebi grabs her menu and starts perusing it. Now that you think about it, yeah, you're actually hungry.
+
+<span id="mf-ed-l-btn"><<button "\"Order something. (Something light, though.)\"">>
+  <<run setup.replaceWithSending("#mf-ed-l-btn")>>
+  <<send "MercsFaitihful_EbiDrinks_Linner_DONE" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "MercsFaitihful_EbiDrinks_Linner_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd") }
+<</script>><</receive>><</nobr>>
 
 
 :: MercsFaithful_JekuReject_2_EbiSilent
