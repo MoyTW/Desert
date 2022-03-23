@@ -8,7 +8,7 @@
 <</if>>\
 <<if $shouldBeConnected>>\
   /* TODO SAVEGAMES */\
-  <<button 'Leave (game will be saved)'>><<leavemultiplayersession>><</button>>
+  <<button 'Leave (game will not be saved)'>><<run Enigne.restart()>><</button>>
 <</if>>\
 <h2>Character</h2>\
 <<if setup.isFaithful()>>\
