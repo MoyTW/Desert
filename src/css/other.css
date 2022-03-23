@@ -1,5 +1,5 @@
 body {
-  /* background-color: #000000; */
+  background-color: #000000;
   font: 18px/1 Helmet,Freesans,sans-serif
 }
 
@@ -63,4 +63,64 @@ body {
 
 .instructions {
   color: #FFF01F
+}
+
+/* Neon */
+@font-face {
+  font-family: title;
+  src: url(/html/fonts/hello-denver-display-regular.ttf); /* hmm */
+}
+
+.game-title {
+  font-family: title;
+  font-size: 3em; /* 18 * 3 */
+  color: #ffffff;
+  text-align: center;
+  text-shadow:
+  .05em -.05em .4em #ff5f1f7e, .05em -.05em .2em #FF5F1F,
+  .05em .05em .4em #ff5f1f7e, .05em .05em .2em #FF5F1F,
+  -.05em -.05em .4em #ff5f1f7e, -.05em -.05em .2em #FF5F1F,
+  .05em .05em .4em #ff5f1f7e, .05em .05em .2em #FF5F1F;
+  border-width: .075em;
+  border-radius: .25em;
+  border-style: solid;
+  border-color: #ffffff;
+  box-shadow:
+  0 0 .4em .2em #FF5F1F7e, 0 0 .2em .1em #FF5F1F,
+  inset 0 0 .4em .2em #FF5F1F7e, inset 0 0 .2em .1em #FF5F1F;
+}
+
+.neon-pink-text {
+  color: #ffffff;
+  text-shadow:
+  .05em -.05em .4em #FF10F07e, .05em -.05em .2em #FF10F0,
+  .05em .05em .4em #FF10F07e, .05em .05em .2em #FF10F0,
+  -.05em -.05em .4em #FF10F07e, -.05em -.05em .2em #FF10F0,
+  .05em .05em .4em #FF10F07e, .05em .05em .2em #FF10F0
+}
+
+.neon-blue-text {
+  color: #ffffff;
+  text-shadow:
+  .05em -.05em .4em #1F51FF7e, .05em -.05em .2em #1F51FF,
+  .05em .05em .4em #1F51FF7e, .05em .05em .2em #1F51FF,
+  -.05em -.05em .4em #1F51FF7e, -.05em -.05em .2em #1F51FF,
+  .05em .05em .4em #1F51FF7e, .05em .05em .2em #1F51FF
+}
+
+.neon-blue-border {
+  border-width: .075em;
+  border-radius: .25em;
+  border-style: solid;
+  border-color: #ffffff;
+
+}
+
+.neon-orange-text {
+  color: #ffffff;
+  text-shadow:
+  .05em -.05em .4em #ff5f1f7e, .05em -.05em .2em #FF5F1F,
+  .05em .05em .4em #ff5f1f7e, .05em .05em .2em #FF5F1F,
+  -.05em -.05em .4em #ff5f1f7e, -.05em -.05em .2em #FF5F1F,
+  .05em .05em .4em #ff5f1f7e, .05em .05em .2em #FF5F1F
 }
