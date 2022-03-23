@@ -316,7 +316,7 @@ She stands up straight as a statue, and suddenly she seems to be a completely di
 <<button "Holy shit. You're alive! That's - that's incredible!">>
   <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "HAPPY" }>><</send>>
 <</button>>
-<<button "Then...why didn't come back?">>
+<<button "Then...why didn't you come back?">>
   <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "SAD" }>><</send>>
 <</button>>
 <<disable>><<button "<s>I - seriously? What the fuck! Why didn't you tell us?</s> (No. Be calm.)">><</button>><</disable>>

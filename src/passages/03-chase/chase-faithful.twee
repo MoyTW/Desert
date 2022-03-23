@@ -930,7 +930,7 @@ TODO: Did you just kill somebody?
 <<timed $timerString t8n>>
   You grab some gauze, press hard. "Bartender," you yell, "put some weight on it!" He takes over while you hunt through the first aid kit. There's the gel bandage!
 <<next $timerString>>
-  You motion the bartender out of the way, push the closed together, slather it in. It sets in seconds, stemming the bleed. Your hands come away sticky.
+  You motion the bartender out of the way, push the wound closed, slather it on. It sets in seconds, stemming the bleed. Your hands come away sticky.
 <</timed>>\
 <<chase-shared-options-section "Faithful">>\
   <<cf-button "Is King stable?"

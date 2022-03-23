@@ -588,11 +588,11 @@ You tell her about your fiancee, your career as an EMT. She asks about the weath
 
 Time passes. Whenever the server comes by, she orders another round of drinks. Lacking a filter, you don't participate.
 
-It's getting later now, and customers are starting to trickle in. You watch the cars pass by through the windows in the lengthening shadows.
+It's getting later now, and customers are starting to trickle in. You watch the cars pass by through the windows in the lengthening shadows. A white van pulls up outside the bar. Four mismatched characters, all strapped, saunter out, chatting idly.
 
-She puts back a frankly stunning amount of alcohol. You wonder if you should bring up the fact that, despite agreeing to split half and half, she's spending a lot of money running up the bill.
+She puts back a frankly stunning amount of alcohol. You wonder if you should bring up the fact that, despite agreeing to split half and half, she's really running up the bill.
 
-A white van pulls up outside the bar. Four of mismatched characters, all strapped, saunter out. A woman with a giant - oh, that's King. Great. Ma finally made it. Suddenly, the four the characters dash up to Ma, grab her. What? You jump up, point. "That's her!" you yell.
+A woman with a giant dog crosses the street towards the bar. The dog is - oh, that's King and Ma. Great. She finally made it. Suddenly, the four the characters dash up to Ma, grab her. What? You jump up, point. "That's her!" you yell.
 
 <span id="mf-ls-se-2-btn"><<button "Get to the door!">>
   <<run setup.replaceWithSending("#mf-ls-se-2-btn")>>
