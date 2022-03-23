@@ -14,14 +14,6 @@
         _vars.kidnappersEscaped = true
       }
     }
-
-    /* TODO: Write a "It's over" scene */
-    /*
-    The scene is over when any of the following happen:
-      + both of the players catch the kidnappers
-      + if neither of the players catch the kidnappers, they reach an "end" point
-      + you can't catch the kidnappers AND King has bled out
-    */
   }
 
   const _resolveChoice = function() {
