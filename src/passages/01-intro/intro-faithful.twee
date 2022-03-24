@@ -21,16 +21,18 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 :: IntroFaithful_ReadLetter
 You pull the paper out of your pocket. The letter is short, its letters uncharacteristically shaky.
 
-<div class='letter'>Jekusheke,
+<div class="letter"><div class="letter-text">\
+  Jekusheke,
 
-<<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
+  <<tooltip "I'm sorry to impose,">>She's not.<</tooltip>> but I need your help. I'm coming back to Reno next month. Meet me at Christie's on July 19th. I can't give an exact time.
 
-Don't tell anybody else about this. It's a family matter. I will explain when we meet.
+  Don't tell anybody else about this. It's a family matter. I will explain when we meet.
 
-Also, do not call or text or email in response. <<tooltip "Just be there.">>What would've happened if you'd missed the letter?<</tooltip>>
+  Also, do not call or text or email in response. <<tooltip "Just be there.">>What would've happened if you'd missed the letter?<</tooltip>>
 
-Love,
-Ma Tiger</div>\
+  Love,
+  Ma Tiger
+</div></div>\
 
 You fold it neatly and replace it. Nothing to do but wait.
 

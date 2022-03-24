@@ -51,9 +51,14 @@ body {
 */
 
 .letter {
-  border-style: solid;
-  border-color: #ffd700;
-  border-width: medium;
+  margin: 1em;
+  background-color: #fdfdfd;
+  color: #000000;
+}
+
+.letter-text {
+  padding: 3em 2em;
+  margin: 1em;
 }
 
 .instructions {

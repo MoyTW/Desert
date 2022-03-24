@@ -21,7 +21,7 @@ The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 
 :: IntroApostate_ReadLetter
-<div class='letter'>\
+<div class="letter"><div class="letter-text">\
 Ebiaishe,
 
 I know that we haven't spoken since you left. I had thought it best to respect your wishes, though I regret not reaching out before. For that, you have my apologies. I am writing to you now because I am in need.
@@ -33,7 +33,7 @@ I will be in Reno, Nevada on July 19th. If you are willing to help me, meet me t
 Don't try to contact me. Don't tell anybody else about this. It's a family matter.
 
 With love,
-Ma Tiger</div>\
+Ma Tiger</div></div>\
 
 The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
 
