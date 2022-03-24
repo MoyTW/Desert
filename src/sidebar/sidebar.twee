@@ -8,7 +8,11 @@
 <</if>>\
 <<if $shouldBeConnected>>\
   /* TODO SAVEGAMES */\
-  <<button 'Leave (game will not be saved)'>><<run Engine.restart()>><</button>>
+  <<button 'Leave (game will not be saved)'>><<script>>
+    Dialog.setup('Are you sure?', "RESTART_CONFIRMATION");
+    Dialog.wiki(Story.get('RestartConfirmation').processText());
+    Dialog.open();
+  <</script>><</button>>
 <</if>>\
 <h2>Character</h2>\
 <<if setup.isFaithful()>>\
@@ -21,3 +25,13 @@
 <h2>DEBUG</h2>\
 <<print passage()>>
 <<button 'Restart'>><<run Engine.restart()>><</button>>
+
+:: RestartConfirmation
+Are you sure you want to restart? Your current game will be lost.
+
+<<button "Yes, restart.">>
+  <<run Engine.restart()>>
+<</button>>\
+<<button "No, keep playing.">>
+  <<run Dialog.close()>>
+<</button>>
