@@ -8,7 +8,7 @@ we attempt to reconnect.
 
 After the game reconnects, the game state will be synchronized and may forcibly
 refresh you. Depending on the nature of the network error, you might be placed
-in a previous room, or actions taken on the page may be undone.
+in a previous passage, or actions taken on the page may be undone.
 
 Next reconnect attempt in: @@#ttl;_currentTtl@@
 
@@ -19,7 +19,7 @@ Next reconnect attempt in: @@#ttl;_currentTtl@@
   <<run $('#force-btn button').prop('disabled', true)>>
   <<run $('#force-btn button').html('Attempting to reconnect...')>>
 <</button>>@@
-<<button 'Save & quit'>><<leavemultiplayersession>><</button>>
+<<button 'Quit (game will not be saved)'>><<leavemultiplayersession>><</button>>
 <<silently>>
   <<repeat 1s>>
     <<set _currentTtl to _currentTtl - 1>>
