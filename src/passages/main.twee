@@ -24,7 +24,7 @@ Desert
   <<set $selectCharacterPartnerConfirmed to false>>
 <</nobr>>\
 <h1 class="game-title">MA TIGER'S TERRIBLE TRIP</h1>\
-<h2 class="neon-pink-text">Main Menu</h2>\
+<h2 class="passage-h2">Main Menu</h2>\
 <<button [[Host a game|HostGame]]>>
   <<set $sessionId to setup.Websocket.uuidv4()>>
   <<set $hostClientId to setup.Websocket.getClientId()>>
@@ -88,13 +88,13 @@ Please enter the session identifier you'd like to join.
 
 
 :: IntroMaTiger
-<h1>July 19, 2081</h1>\
-<h2>On The Road</h2>\
+<h1 class="passage-h1">July 19, 2081</h1>\
+<h2 class="passage-h2">On The Road</h2>\
 The long drive across the desert gives Ann Wang ample time to contemplate her sixty-two years of mistakes. She does so in silence, not speaking a word to her companion, who could not understand and might not sympathize if he could. Instead, she watches the highway, hands on the wheel, and wonders.
 
 Her car is ancient, one of the models from before electronics crept into every nook and cranny, from that primordial past where cars could not drive themselves and the roads were filled with dangerous drivers, prone to distraction and drunken crashes. She's ditched her phone, too, left it with a friend back home. If she dozes off and wheels off the road, drives into a ditch or overturns herself on a rock, nobody will know and nobody will come.
 
-No. It's not dangerous; the roads are straight and empty, and the terror of isolation only that, terror. Soon she'll have real danger to deal with. The problems of running from your past, perhaps. Or, perhaps, the problems of facing up to it.
+No. It's not dangerous; the roads are straight and empty, and the terror of isolation only that, terror. Soon she'll have real danger to deal with. The problems of running from your past. Or, perhaps, the problems of facing up to it.
 
 She wonders if her plans will pan out. She wonders if it will be as hot as she remembers it, out there in the desert. She wonders if, when she arrives in Reno, she will see her children again.
 
@@ -102,10 +102,12 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
 
 
 :: SelectCharacter
-<h1>Select a character</h1>\
+<h1 class="passage-h1">Pick Your Character</h1>\
 @@#sc-character-buttons;<div class='row'>\
   <div class='column'>\
+    <h2 class="passage-h2">Faithful Son</h2>\
     Lives in Reno, Nevada. Works as an EMT at a local clinic. Sees his mom every holiday season, due to be married in six months. Got a letter a while ago from Ma Tiger, telling him to meet her on a certain day at a certain place.
+
     <<button "Jekusheke Wang">>
       <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful', characterName: "Jekusheke" }>><<script>>
         if (State.variables.clientId === State.variables.hostClientId) {
@@ -117,7 +119,9 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
     <</button>>\
   </div>\
   <div class='column'>\
+    <h2 class="passage-h2">Former Daughter</h2>\
     Lives nowhere in particular. Does this and that. Vanished out of the house one day. Hasn't seen either her mother or brother in thirteen years. Somehow Ma Tiger's letter has found her, a cry for help with a date and a place.
+
     <<button "Ebiaishe Wang">>
       <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate', characterName: "Ebiaishe" }>><<script>>
         if (State.variables.clientId === State.variables.hostClientId) {
@@ -126,7 +130,7 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
           $("#sc-partner-selection").text(`Joiner has selected Ebiaishe Wang.`)
         }
       <</script>><</send>>\
-    <</button>>
+    <</button>>\
   </div>\
 </div>@@\
 <<nobr>><<receive 'SELECT_CHARACTER_SELECTED' 'All'>><<script>>

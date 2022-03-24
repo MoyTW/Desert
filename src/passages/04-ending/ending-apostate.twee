@@ -24,8 +24,8 @@ It's vaguely absured, in the way that so many of these plots are absurd, but the
 /** ###################################################################### **/\
 /** # BLOODY ENDING                                                      # **/\
 /** ###################################################################### **/\
-<h1>July 19, 2081</h1>\
-<h2>Somewhere in the desert near Reno, Nevada</h2>\
+<h1 class="passage-h1">July 19, 2081</h1>\
+<h2 class="passage-h2">Somewhere in the desert near Reno, Nevada</h2>\
 Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
 
 "I have turned on a jammer," she says. "We may speak now, if you like. But first," she says, sounding a thousand years old, "daughter, I will admit my own faults. I did not instruct you properly in the situation, or the context surrounding my request, but I did not think you would murder four people in broad daylight. It is my fault, and I do not know if I can fix it. I fear that you will be wanted for the rest of your life." She sighs. "I am sorry. It was my mistake."
@@ -57,8 +57,8 @@ Now you're sitting in a car in the Nevada desert with your once-mother, four fre
 /** ###################################################################### **/\
 /** # DESERT ENDING                                                      # **/\
 /** ###################################################################### **/\
-<h1>July 19, 2081</h1>\
-<h2>Somewhere in the desert near Reno, Nevada</h2>\
+<h1 class="passage-h1">July 19, 2081</h1>\
+<h2 class="passage-h2">Somewhere in the desert near Reno, Nevada</h2>\
 Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
 
 "I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a time.
@@ -90,8 +90,8 @@ Guilt, she says.
 /** ###################################################################### **/\
 /** # POLICE ENDING                                                      # **/\
 /** ###################################################################### **/\
-<h1>July 20, 2081</h1>\
-<h2>Reno Police, 4th Base, Waiting Room #133</h2>\
+<h1 class="passage-h1">July 20, 2081</h1>\
+<h2 class="passage-h2">Reno Police, 4th Base, Waiting Room #133</h2>\
 Five hours, thirty-four minutes after the incident, Ma Tiger steps into the waiting room, tired and bedraggled, escorted by an armored officer. "Ebiaishe," she says, nodding, "Jekusheke. Thank you. We cannot talk here. It is not safe." She smiles. "Mr. Tracey will take us elsewhere. Please." She gestures to the policeman, who nods and marches out of the waiting room.
 
 <span id="epa-s-btn"><<button "Follow.">>
@@ -123,8 +123,8 @@ Guilt, she says.
 /** ###################################################################### **/\
 /** # BAD ENDING                                                         # **/\
 /** ###################################################################### **/\
-<h1>July 24, 2081</h1>\
-<h2>Reno Police, 4th Base, Waiting Room #329</h2>\
+<h1 class="passage-h1">July 24, 2081</h1>\
+<h2 class="passage-h2">Reno Police, 4th Base, Waiting Room #329</h2>\
 You missed the kidnappers when you had the chance. So did the police. They were too slow, and the kidnappers managed to get outside of Reno, arrived somewhere in the desert. They left tracks, of course, and the police followed them, managed to find the van. They kidnappers had bailed and boarded a unlisted passenger drone, which flew under the radar to who knows where. They could be anywhere in America by now.
 
 You leave the police base with Jekusheke. He suggests a sushi place nearby on the 17th floor of the MiraPlex. The two of you sit, staring out across the city, eating mediocre slices of farmed fish.
