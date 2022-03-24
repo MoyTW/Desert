@@ -35,7 +35,7 @@
 	-webkit-user-select: none;
 }
 #right-ui-bar-toggle:before {
-	content: "\e81e";
+	content: ">";
 }
 #right-ui-bar-body {
 	height: 90%;
@@ -59,7 +59,7 @@
 	padding: .3em .55em .25em .35em;
 }
 #right-ui-bar.stowed #right-ui-bar-toggle:before {
-	content: "\e81d";
+	content: "<";
 }
 #right-ui-bar.stowed #right-ui-bar-body {
 	visibility: hidden;
