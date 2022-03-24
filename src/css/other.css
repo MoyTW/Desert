@@ -71,13 +71,13 @@ body {
 }
 
 /* Neon */
-@font-face {
+/* can't get the itch embed to use it, so eeeeeeehhhEEEEHHHHHHHH @font-face {
   font-family: title;
-  src: url(/html/fonts/hello-denver-display-regular.ttf); /* hmm */
-}
+  src: url(/html/fonts/hello-denver-display-regular.ttf);
+} */
 
 .game-title {
-  font-family: title;
+  /* font-family: title; */
   font-size: 3em; /* 18 * 3 */
   color: #ffffff;
   text-align: center;
