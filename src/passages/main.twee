@@ -31,6 +31,7 @@ Desert
   <<connect $sessionId>>
 <</button>>
 <<button [[Join a game|JoinGame]]>><</button>>
+<<button [[Credits|Credits]]>><</button>>
 
 
 :: HostGame
@@ -85,6 +86,21 @@ Please enter the session identifier you'd like to join.
     <<run Engine.play('IntroMaTiger');>>
   <</if>>
 <</receive>>\
+
+
+:: Credits
+Ma Tiger's Terrible Trip was made and released for <a href="https://www.springthing.net/2022/" target="_blank" rel="noopener noreferrer">Spring Thing 2022</a> by MoyTW (<a href="https://twitter.com/MuffiTuffi" target="_blank" rel="noopener noreferrer">Twitter</a>, <a href="https://muffituffiwuffi.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>).
+
+Thank you to all the fine testers:
+Pinkunz
+Joey Acrimonious
+Dr.McNastyPhD
+Kit Riemer
+Roscopoppolis
+Autumn Chen
+Sam Marcus
+
+<<button [[Main Menu|Start]]>><</button>>
 
 
 :: IntroMaTiger
