@@ -356,12 +356,12 @@ You tune back in. Silas is attempting to get Jeku to start drinking. Looks like 
   <<send "MercsApostate_EbiSilent_2_JekuChat_DONE" {}>><</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_EbiSilent_2_JekuChat_DONE" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuChat") }
+  if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuChat_2") }
 <</script>><</receive>><</nobr>>\
 
 
 :: MercsApostate_EbiSilent_2_JekuChat_2
-"You know what," says Jeku, you grab him by the arm. He stops and turns to you. "Need something?"
+"You know what," says Jeku, and you grab him by the arm. He stops and turns to you. "Need something?"
 
 "Hey," you say, looking at Silas, "mind if I borrow Jeku?" Before he can respond you relocate Jeku a couple of chairs down, then whisper, "Can we get a table? I don't feel like having to deal with small talk, on top of everything else."
 
