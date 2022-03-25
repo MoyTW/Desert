@@ -63,7 +63,7 @@ The car comes to a stop. "Christie's Old West Saloon" declares the sign above yo
 /** ###################################################################### **/\
 The doors to Christie's Old West Saloon look like genuine wooden saloon doors, though there's a more conventional door hidden tucked away behind. The inside is nicely lit, with polished Western decor, empty tables, and a bar with a single lonely man. The <<tooltip "bartender">>Average height with weathered skin, black hair and exaggerated beard, reasonably strong, probably unarmed but with quick access to security.<</tooltip>> looks over at you, waves. The <<tooltip "only patron">>Tall but hunched over, probably Asian, short black hair, probably unarmed.<</tooltip>> turns away from the bar to to examine you, and as he does so you get a good look at his face.
 
-Jekusheke, your <<tooltip "brother,">>Foster, not bilogical.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
+Jekusheke, your <<tooltip "brother,">>Foster, not biological.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
 
 @@#ia-mf-btn;<<button "Does he recognize you?">>
   <<send 'IntroApostate_MeetingFaithful_DONE' {}>><</send>>
@@ -366,7 +366,7 @@ He frowns. "You knew Mom was coming?"
 
 "Yeah. She didn't tell me to expect you."
 
-"Well she didn't tell me you'd be here either." His frown deepends. "Did she call you? What did she say?"
+"Well she didn't tell me you'd be here either." His frown deepens. "Did she call you? What did she say?"
 
 <<include "IntroApostate_FaithfulSadWhy_Conclusion">>
 

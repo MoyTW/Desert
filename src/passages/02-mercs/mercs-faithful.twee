@@ -224,12 +224,12 @@ She pulls back, looks over at Silas. You resist the urge to follow her gaze. Aft
 
 She swallows. "Please."
 
-<span id="mf-dcs-a-c-btn">\
   /* NIT: Cutting argument for scope!
   <<button "\"I know Silas. He's not a spy or something.\"">>
     <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
     <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_CHOICE" { choice: "KNOW" }>><</send>>
   <</button>> */\
+<span id="mf-dcs-a-c-btn">\
   <<button "\"Fine.\"">>
     <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
     <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" {}>><</send>>
