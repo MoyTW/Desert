@@ -234,7 +234,7 @@ She swallows. "Please."
     <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
     <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" {}>><</send>>
   <</button>>
-<span>\
+</span>\
 <<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory_Fine") }
 <</script>><</receive>><</nobr>>\
