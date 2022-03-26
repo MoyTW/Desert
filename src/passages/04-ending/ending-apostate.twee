@@ -24,6 +24,157 @@ It's vaguely absured, in the way that so many of these plots are absurd, but the
 /** ###################################################################### **/\
 /** # BLOODY ENDING                                                      # **/\
 /** ###################################################################### **/\
+Somebody is screaming behind you; cars that had been stopped, out of caution or curiosity, are starting to pull away in a panic. You holster your gun, approach the van. Your aim was good. The three kidnappers you shot are dead, their bodies blown open by the bullet explosions. You lean down next to the woman you tackled. The back of her skull is a shattered mess. She's not breathing.
+
+You stand up, enter the van by the back doors. Ma Tiger is sitting there, legs locked by zipties, hands bound behind her back. "You shot them," she says.
+
+"Yeah." You pull out a knife, walk up to her, lean down, cut the ties off her legs. "Turn around."
+
+"Are they dead?" She stands up, turns around.
+
+"Yeah." You cut the zipties on her arms.
+
+She lets out something between a sigh and a hiss. "You have just shot four people in the middle of the street, in full light, with who knows how many cameras around. We must move quickly. The police will follow shortly, and-"
+
+You feel that old resentment bubbling back up, annoyance and anger at your imperious mother and her infinite expectations; you've just saved her, and the first thing she does is stare at you with that disappointed, disapproving gaze, not even greeting you, only ordering.
+
+/* NIT: I'd love to have these options selectable. */\
+<span id="eba-s-btn">\
+  <<disabled-button "<s>\"So wonderful to see you, Ma! Aren't you going to say hello to your daughter, who just saved your fucking miserable, ungrateful ass, huh?\"</s> (What are you, fucking five?)">>
+  <<disabled-button "<s>Grab her by the arm and pull her out of the van.</s> (Have some fucking self-control, Ebi!)">>
+  <<button "Let her finish.">>
+    <<run setup.replaceWithSending("#eba-s-btn")>>
+    <<send "EndingBloodyApostate_Start" {}>><</send>>
+  <</button>>
+</span>\ 
+<<nobr>><<receive "EndingBloodyApostate_Start" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Escape_Listen") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Escape_Listen
+"-we must be going. Can you find the keys to the van?"
+
+"You want to take the van?" you ask, incredulous. "The police will be searching for it, there's no way it can make it out of the city."
+
+"We need to move now, and it will work. Do not worry, it is hacked. We will go somewhere I know where there is no monitoring and acquire another vehicle."
+
+"What about Jeku?"
+
+"I will call him," she says, digging into her pockets. "Get the keys."
+
+You choke back a snippy comment and leap out of the van, closing the doors behind you. You search the pockets of the kidnappers in the yellow jersey, pull out his key wallet, and run into the front compartment of the van. "Car, do I have the keys?" you ask.
+
+"Yes," replies the van.
+
+"Close the doors." The doors close shut. You look back at Ma Tiger, who's on the phone, and catch her eyes. "Where are we going?" you ask.
+
+She pauses the call. "1218 Golf Club Dr Parking Lot," she calls out.
+
+"Car, you heard her, go! And if you get any remote shutdown orders or location queries, ignore them."
+
+The car hums to life. "1218 Gold Club Dr Parking Lot," it says, "and as per your request, I'm going into Fuck the Police mode! Whoop whoop!" The car accelerates at an unnerving pace, switching lanes with an aggressiveness usually reserved for military vehicles and manual drivers, tearing down the road towards your destination.
+
+<span id="eba-e-l-btn"><<button "Buckle in.">>
+  <<run setup.replaceWithSending("#eba-e-l-btn")>>
+  <<send "EndingBloodyApostate_Escape_Listen" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "EndingBloodyApostate_Start" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Meetup") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Meetup
+Surprisingly, miraculously, no cops come careening after you, no drones descend upon you. The van drives through the lengthening twilight unimpeded as Ma Tiger talks urgently into her phone in the back. She's finished with her call with Jeku. You're not sure who she's talking to now.
+
+Eventually, the destination comes into sight, a <<tooltip "golf course">>That can't be right<</tooltip>> in the center of the city, whose gigantic neon sign pronounces it "Lakeridge Golf Course!" The subscript reads "Since 1969 - 112 & STRONG!"
+
+You turn back to look at Ma Tiger. "You sure you got the right place?" you ask. She finishes her conversation, hangs up.
+
+"Lakeridge Golf Course," she says, "yes?"
+
+"Why are we going to Lakeridge Gold Course?"
+
+"I will <<tooltip "steal a car">>What the fuck is going on? Did Ma really just say that?<</tooltip>>. Do not worry. Their security systems are cheap and it will be no issue."
+
+"You're going to steal a car?"
+
+"Yes," she says, as the van comes to a halt. She opens the back doors and steps out. "Tell the car to drive to Lake Tahoe, in - what did it call it? 'Fuck the police' mode. Leave the keys inside."
+
+"Car," you say, tossing the keys onto the seat as you exit, "you heard her. Close the doors and do what she says."
+
+"Gotcha!" chirps the van. "Fuck the police!" The doors close. It hums up, starts rolling. As it exits the parking lot, you can hear it blasting some random orangepunk song at maximum volume.
+
+"Ma! Ebi!" You see Jeku, lit by the parking lot lights, next to Ma Tiger's car. He waves, then jogs across the parking lot, coming up beside you. "What's Ma doing?" he asks, watching Ma standing in front of a sporty red sedan, fiddling with her phone.
+
+<span id="eba-m-btn">\
+  <<button "She's following her escape plan, I think.">>
+    <<run setup.replaceWithSending("#eba-m-btn")>>
+    <<send "EndingBloodyApostate_Meetup" { choice: "ESCAPE" }>><</send>>
+  <</button>>
+  <<button "Stealing a car.">>
+    <<run setup.replaceWithSending("#eba-m-btn")>>
+    <<send "EndingBloodyApostate_Meetup" { choice: "STEAL" }>><</send>>
+  <</button>>
+  <<button "Fuck if I know.">>
+    <<run setup.replaceWithSending("#eba-m-btn")>>
+    <<send "EndingBloodyApostate_Meetup" { choice: "DUNNO" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "EndingBloodyApostate_Meetup" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    if (State.temporary.receiveData.choice === "ESCAPE") {
+      Engine.play("EndingBloodyApostate_Meetup_Escape");
+    } else if (State.temporary.receiveData.choice === "STEAL") {
+      Engine.play("EndingBloodyApostate_Meetup_Steal");
+    } else if (State.temporary.receiveData.choice === "DUNNO") {
+      Engine.play("EndingBloodyApostate_Meetup_Dunno");
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Meetup_Escape
+You sigh. "She's following her escape plan, I think. She seems to have had all this planned out."
+
+"She knew she'd be kidnapped?"
+
+You shrug. "She seems like she's planned for it. I'm sure it wasn't her plan."
+
+<<include "EndingBloodyApostate_Meetup_End">>
+
+
+:: EndingBloodyApostate_Meetup_Steal
+You sigh. "She stealing a car," you say.
+
+"What?" Jeku's brow furrows. "She's stealing a car? Are you serious?"
+
+"Dead serious."
+
+<<include "EndingBloodyApostate_Meetup_End">>
+
+
+:: EndingBloodyApostate_Meetup_Dunno
+You sigh. "Fuck if I know," you tell your brother.
+
+"Well," he says, "I'm just glad you guys made it out. I was really worried until I got Ma's call."
+
+<<include "EndingBloodyApostate_Meetup_End">>
+
+
+:: EndingBloodyApostate_Meetup_End
+The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says, "it is good to see you. Both of you, get in the car."
+
+<span id="eba-m-e-btn"><<button "Get in.">>
+  <<run setup.replaceWithSending("#eba-m-e-btn")>>
+  <<send "EndingBloodyApostate_Meetup_End" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "EndingBloodyApostate_Meetup_End" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Desert") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Desert
 <h1 class="passage-h1">July 19, 2081</h1>\
 <h2 class="passage-h2">Somewhere in the desert near Reno, Nevada</h2>\
 Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
