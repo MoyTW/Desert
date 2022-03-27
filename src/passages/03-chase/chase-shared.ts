@@ -410,7 +410,8 @@
     // ########################################################################
     ["ChaseFaithful_Francis", new Map<string,[string, () => void]>([
       ["KING", ["ChaseFaithful_Francis_King", () => {
-        (State.variables as any).calledFrancis = true
+        (State.variables as any).calledFrancis = true;
+        (State.variables as any).faithfulCalledFrancis = true;
       }]],
       ["NONE", ["ChaseFaithful_Francis_End_Call_Immediately", () => {}]],
       ["FREEZE", ["ChaseFaithful_Francis", () => {}]],

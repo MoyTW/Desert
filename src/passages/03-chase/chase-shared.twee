@@ -22,6 +22,7 @@
   <<set $faithfulKingReturnScene to undefined>> /* NIT: Prefix this with 911 */
   
   <<set $faithfulCanCallFrancis to true>>
+  <<set $faithfulCalledFrancis to false>>
 
   /* <<set $apostateAlreadyTriedDriving to false>> */ /* NIT: this is nonfunctional variable, Ebi can't drive any more. */
   <<set $faithfulAlreadyTriedDriving to false>>

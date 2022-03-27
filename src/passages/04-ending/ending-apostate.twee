@@ -73,13 +73,13 @@ She pauses the call. "1218 Golf Club Dr Parking Lot," she calls out.
 
 "Car, you heard her, go! And if you get any remote shutdown orders or location queries, ignore them."
 
-The car hums to life. "1218 Gold Club Dr Parking Lot," it says, "and as per your request, I'm going into Fuck the Police mode! Whoop whoop!" The car accelerates at an unnerving pace, switching lanes with an aggressiveness usually reserved for military vehicles and manual drivers, tearing down the road towards your destination.
+The car hums to life. "1218 Golf Club Dr Parking Lot," it says, "and as per your request, I'm going into Fuck the Police mode! Whoop whoop!" The car accelerates at an unnerving pace, switching lanes with an aggressiveness usually reserved for military vehicles and manual drivers, tearing down the road towards your destination.
 
 <span id="eba-e-l-btn"><<button "Buckle in.">>
   <<run setup.replaceWithSending("#eba-e-l-btn")>>
   <<send "EndingBloodyApostate_Escape_Listen" {}>><</send>>
 <</button>></span>\
-<<nobr>><<receive "EndingBloodyApostate_Start" "Apostate">><<script>>
+<<nobr>><<receive "EndingBloodyApostate_Escape_Listen" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Meetup") }
 <</script>><</receive>><</nobr>>
 
@@ -93,7 +93,7 @@ You turn back to look at Ma Tiger. "You sure you got the right place?" you ask. 
 
 "Lakeridge Golf Course," she says, "yes?"
 
-"Why are we going to Lakeridge Gold Course?"
+"Why are we going to Lakeridge Golf Course?"
 
 "I will <<tooltip "steal a car">>What the fuck is going on? Did Ma really just say that?<</tooltip>>. Do not worry. Their security systems are cheap and it will be no issue."
 
@@ -139,13 +139,13 @@ You sigh. "She's following her escape plan, I think. She seems to have had all t
 
 "She knew she'd be kidnapped?"
 
-You shrug. "She seems like she's planned for it. I'm sure it wasn't her plan."
+You shrug. "She seems like she's planned for it. I'm sure it wasn't her first plan."
 
 <<include "EndingBloodyApostate_Meetup_End">>
 
 
 :: EndingBloodyApostate_Meetup_Steal
-You sigh. "She stealing a car," you say.
+You sigh. "She's stealing a car," you say.
 
 "What?" Jeku's brow furrows. "She's stealing a car? Are you serious?"
 
