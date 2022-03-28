@@ -116,7 +116,7 @@ Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in t
 
 "I have turned on a jammer," she says. "We may speak now, if you like. But first," she says, sounding a thousand years old, "daughter, I will admit my own faults. I did not instruct you properly in the situation, or the context surrounding my request, but I did not think you would murder four people in broad daylight. It is my fault, and I do not know if I can fix it. I fear that you will be wanted for the rest of your life." She sighs. "I am sorry. It was my mistake."
 
-Then, she closes her eyes, and is silent for a time.
+Then, she closes her eyes, and is silent for a long while.
 
 <span id="eba-s-btn"><<button "Talk.">>
   <<run setup.replaceWithSending("#eba-s-btn")>>
@@ -143,7 +143,7 @@ Now you're sitting in a car in the Nevada desert with your once-mother, four fre
 /** ###################################################################### **/\
 /** # DESERT ENDING                                                      # **/\
 /** ###################################################################### **/\
-<<set $ending to "DESERT">>
+<<set $ending to "DESERT">>\
 The kidnappers drag the wounded into the back of the van, and you follow Ma Tiger in. Her wrists have faint impressions of zipties. Did they cut her free just now?
 
 "Ebiaishe," she says, nodding to you. The back of the van is spacious, containing little other than Ma, the injured kidnapper, baton man, and yourself. The remaining two kidnappers leap back into the front seats as the van starts moving.
@@ -175,7 +175,7 @@ Yellow jersey's phone rings. He picks it up, listens. "All right," he says. "An 
   <<send "EndingDesertApostate_Start" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertApostate_Start" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Ride") }
+  if (setup.isApostate()) { Engine.play("EndingDesertApostate_Ride") }
 <</script>><</receive>><</nobr>>
 
 
@@ -194,11 +194,11 @@ You feel that old resentment bubbling back up, annoyance at how your mother migh
 <</button>>
 </span>\ 
 <<nobr>><<receive "EndingDesertApostate_Ride" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Ride_2") }
+  if (setup.isApostate()) { Engine.play("EndingDesertApostate_Ride_2") }
 <</script>><</receive>><</nobr>>
 
 
-:: EndingBloodyApostate_Ride_2
+:: EndingDesertApostate_Ride_2
 "Fine," you growl.
 
 She pauses, eyes on yours. "I promise."
@@ -251,7 +251,7 @@ You turn to Ma. "They're gone," you say. "What's your plan? And what's going on?
 <h2 class="passage-h2">Somewhere in the desert near Reno, Nevada</h2>\
 Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
 
-"I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a time.
+"I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a long while.
 
 <span id="eda-s-btn"><<button "Talk.">>
   <<run setup.replaceWithSending("#eda-s-btn")>>
@@ -267,7 +267,9 @@ The three of you talk for a time.
 
 <<include "EndingApostate_YouLearnText">>
 
-That's why the kidnappers freaked out, gave up, dropped you on a nearby corner. None of this is supposed to be lethal, and the injuries you dealt out were bad enough to scare them off. Funny, really. You won the game by not knowing it was a game.
+It seems like the kidnappers and their boss wanted to stay under the radar. None of this was supposed to be lethal, and the injuries you dealt out were bad enough to scare them off. It's funny, in a way. If you'd have known that was the case, would you have still done it?
+
+Probably.
 
 Now you're sitting in a car in the Nevada desert with your once-mother, caught up in some absurd family wealth drama. She looks at Jekusheke, at you. You don't have to help me, she says. You can leave, she says. She'll give you whatever you want. Money, documents, a cushy job or a new life. You ask why. She's silent for a long while.
 

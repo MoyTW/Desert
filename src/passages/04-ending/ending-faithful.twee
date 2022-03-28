@@ -21,7 +21,7 @@ Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in t
 
 "I have turned on a jammer," she says. "We may speak now, if you like. But first," she says, sounding a thousand years old, "daughter, I will admit my own faults. I did not instruct you properly in the situation, or the context surrounding my request, but I did not think you would murder four people in broad daylight. It is my fault, and I do not know if I can fix it. I fear that you will be wanted for the rest of your life." She sighs. "I am sorry. It was my mistake."
 
-Then, she closes her eyes, and is silent for a time.
+Then, she closes her eyes, and is silent for a long while.
 
 <span id="ebs-s-btn"><<button "What in the world happened?">>
   <<run setup.replaceWithSending("#ebs-s-btn")>>
@@ -56,11 +56,16 @@ You feel a queasy unease about the situation, but what can you do about it?
 /** ###################################################################### **/\
 /** # DESERT ENDING                                                      # **/\
 /** ###################################################################### **/\
+<<set $ending to "DESERT">>\
+<<include "EndingSharedFaithful_Start">>
+
+
+:: EndingDesertFaithful_Desert
 <h1 class="passage-h1">July 19, 2081</h1>\
 <h2 class="passage-h2">Somewhere in the desert near Reno, Nevada</h2>\
 Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
 
-"I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a time.
+"I have turned on a jammer," she says. "We may speak now, if you like." Then, she closes her eyes, and is silent for a long while.
 
 <span id="eds-s-btn"><<button "Talk.">>
   <<run setup.replaceWithSending("#eds-s-btn")>>
