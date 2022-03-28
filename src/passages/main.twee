@@ -67,6 +67,7 @@ Please enter the session identifier you'd like to join.
     <<run $('#jg-join-button').prop('disabled', true)>>
   <</send>>
 <</button>><</disable>>@@\
+<<button [[Main Menu|Start]]>><</button>>
 <<done>><<script>>
   const button = $('#jg-join-button button')
   $('#jg-session-input input').on('input', function(ev) {
