@@ -7,8 +7,8 @@
   <<set $timerString to $timerSeconds + 's'>>
   <<set $optionsSeconds to $timerSeconds * 3>>
   <<set $optionsString to $timerSeconds * 3 + 's'>>
-  <<set $firstTurnSeconds to 90>>
-  <<set $restTurnSeconds to 45>>
+  <<set $firstTurnSeconds to 60>>
+  <<set $restTurnSeconds to 30>>
 
   /* Action Availability */
   <<set $apostateCanChaseOnFoot to true>>
