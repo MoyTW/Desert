@@ -24,6 +24,7 @@ It's vaguely absured, in the way that so many of these plots are absurd, but the
 /** ###################################################################### **/\
 /** # BLOODY ENDING                                                      # **/\
 /** ###################################################################### **/\
+<<set $ending to "BLOODY">>\
 Somebody is screaming behind you; cars that had been stopped, out of caution or curiosity, are starting to pull away in a panic. You holster your gun, approach the van. Your aim was good. The three kidnappers you shot are dead, their bodies blown open by the bullet explosions. You lean down next to the woman you tackled. The back of her skull is a shattered mess. She's not breathing.
 
 You stand up, enter the van by the back doors. Ma Tiger is sitting there, legs locked by zipties, hands bound behind her back. "You shot them," she says.
@@ -105,73 +106,7 @@ You turn back to look at Ma Tiger. "You sure you got the right place?" you ask. 
 
 "Gotcha!" chirps the van. "Fuck the police!" The doors close. It hums up, starts rolling. As it exits the parking lot, you can hear it blasting some random orangepunk song at maximum volume.
 
-"Ma! Ebi!" You see Jeku, lit by the parking lot lights, next to Ma Tiger's car. He waves, then jogs across the parking lot, coming up beside you. "What's Ma doing?" he asks, watching Ma standing in front of a sporty red sedan, fiddling with her phone.
-
-<span id="eba-m-btn">\
-  <<button "She's following her escape plan, I think.">>
-    <<run setup.replaceWithSending("#eba-m-btn")>>
-    <<send "EndingBloodyApostate_Meetup" { choice: "ESCAPE" }>><</send>>
-  <</button>>
-  <<button "Stealing a car.">>
-    <<run setup.replaceWithSending("#eba-m-btn")>>
-    <<send "EndingBloodyApostate_Meetup" { choice: "STEAL" }>><</send>>
-  <</button>>
-  <<button "Fuck if I know.">>
-    <<run setup.replaceWithSending("#eba-m-btn")>>
-    <<send "EndingBloodyApostate_Meetup" { choice: "DUNNO" }>><</send>>
-  <</button>>
-</span>\
-<<nobr>><<receive "EndingBloodyApostate_Meetup" "Apostate">><<script>>
-  if (setup.isApostate()) {
-    if (State.temporary.receiveData.choice === "ESCAPE") {
-      Engine.play("EndingBloodyApostate_Meetup_Escape");
-    } else if (State.temporary.receiveData.choice === "STEAL") {
-      Engine.play("EndingBloodyApostate_Meetup_Steal");
-    } else if (State.temporary.receiveData.choice === "DUNNO") {
-      Engine.play("EndingBloodyApostate_Meetup_Dunno");
-    }
-  }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyApostate_Meetup_Escape
-You sigh. "She's following her escape plan, I think. She seems to have had all this planned out."
-
-"She knew she'd be kidnapped?"
-
-You shrug. "She seems like she's planned for it. I'm sure it wasn't her first plan."
-
-<<include "EndingBloodyApostate_Meetup_End">>
-
-
-:: EndingBloodyApostate_Meetup_Steal
-You sigh. "She's stealing a car," you say.
-
-"What?" Jeku's brow furrows. "She's stealing a car? Are you serious?"
-
-"Dead serious."
-
-<<include "EndingBloodyApostate_Meetup_End">>
-
-
-:: EndingBloodyApostate_Meetup_Dunno
-You sigh. "Fuck if I know," you tell your brother.
-
-"Well," he says, "I'm just glad you guys made it out. I was really worried until I got Ma's call."
-
-<<include "EndingBloodyApostate_Meetup_End">>
-
-
-:: EndingBloodyApostate_Meetup_End
-The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says, "it is good to see you. Both of you, get in the car."
-
-<span id="eba-m-e-btn"><<button "Get in.">>
-  <<run setup.replaceWithSending("#eba-m-e-btn")>>
-  <<send "EndingBloodyApostate_Meetup_End" {}>><</send>>
-<</button>></span>\
-<<nobr>><<receive "EndingBloodyApostate_Meetup_End" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Desert") }
-<</script>><</receive>><</nobr>>
+<<include "EndingSharedApostate_Meetup_Choice">>
 
 
 :: EndingBloodyApostate_Desert
@@ -208,6 +143,110 @@ Now you're sitting in a car in the Nevada desert with your once-mother, four fre
 /** ###################################################################### **/\
 /** # DESERT ENDING                                                      # **/\
 /** ###################################################################### **/\
+<<set $ending to "DESERT">>
+The kidnappers drag the wounded into the back of the van, and you follow Ma Tiger in. Her wrists have faint impressions of zipties. Did they cut her free just now?
+
+"Ebiaishe," she says, nodding to you. The back of the van is spacious, containing little other than Ma, the injured kidnapper, baton man, and yourself. The remaining two kidnappers leap back into the front seats as the van starts moving.
+
+"Call your boss," commands Ma Tiger from across the bulkhead. "We will negotiate."
+
+"Fucking hell," mutters baton man, "negotiate?"
+
+Yellow jersey man turns around. "Call Mimi."
+
+"You fucking serious?" he growls. "This bitch just-"
+
+"I'm fucking serious. Call Mimi," he repeats.
+
+Baton man mutters a steady stream of curses under his breath, but he pulls out his phone, whispers something to it, and then hands it to Ma Tiger. She takes it, listens, talks quietly and emphatically. Minutes pass while baton man patches up his comrade. Finally, Ma Tiger hangs up. "We have reached an agreement," she declares.
+
+Yellow jersey's phone rings. He picks it up, listens. "All right," he says. "An agreement. Van, go to 1218 Golf Club Dr."
+
+"What's going on?" asks baton man.
+
+"We're letting them go."
+
+"What the fuck?" He looks over at yellow jersey, presumably the leader. "They go and beat the fuck outta Alex and we're just gonna let them go like that?"
+
+"We're fucking letting them go, and yes, that was Mimi on the phone. So make your peace with it."
+
+<span id="eda-s-btn"><<button "Let her finish.">>
+  <<run setup.replaceWithSending("#eda-s-btn")>>
+  <<send "EndingDesertApostate_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingDesertApostate_Start" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Ride") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingDesertApostate_Ride
+You inch your way over to Ma, who is sitting stoically, watching baton man glowering over the groaning body of his friend. "Ma," you whisper, "what the hell is going on?"
+
+"We will talk later," she responds. "After we are alone."
+
+You feel that old resentment bubbling back up, annoyance at how your mother might take you seriously, but always as a problem to be managed, as a person to be guided, as a child who could not be trusted with knowledge or power or the ability to make her own decisions.
+
+<span id="eda-r-btn">\
+  <<disabled-button "<s>\"No, we'll talk now! I just smashed somebody open to get to you and I deserve some fucking answers!\"</s> (What are you, fucking five? Yeah, talk right in front of the people who just kidnapped Ma, that's a great fucking plan.)">>
+  <<button "\"Fine. Later.\"">>
+    <<run setup.replaceWithSending("#eda-r-btn")>>
+    <<send "EndingDesertApostate_Ride" {}>><</send>>
+<</button>>
+</span>\ 
+<<nobr>><<receive "EndingDesertApostate_Ride" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Ride_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingBloodyApostate_Ride_2
+"Fine," you growl.
+
+She pauses, eyes on yours. "I promise."
+
+"Jeku?"
+
+She smiles. "I wish to make a phone call," she announces to the van.
+
+"Fine," says yellow jersey. "Just so long as it's not the law."
+
+"It is not the law," pronounces Ma, "but after that show you gave to all of Reno a few minutes ago, the law is fully aware of you." She pulls her phone out. "Call Jeku," she whispers, and holds it up to her ear. <<tooltip "You pull back, give her some privacy.">>The kidnappers have the van bugged, though, 100%. Whispering won't do shit against them.<</tooltip>> After a minute or so she concludes the call. "It is taken care of."
+
+"And?"
+
+"We will discuss it later."
+
+<span id="eda-r-2-btn"><<button "Ride in silence.">>
+    <<run setup.replaceWithSending("#eda-r-2-btn")>>
+    <<send "EndingDesertApostate_Ride_2" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingDesertApostate_Ride_2" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("EndingDesertApostate_Meetup") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingDesertApostate_Meetup
+The ride is uneventful. No cops come chasing after you, no drones descend from the sky. By the time the van reaches its destination, twilight has chased away the day, and the sun is low in the sky. They dump you unceremoniously at the edge of the parking lot, and then, for some inexplicable reason, start blasting an orangepunk song as they wheel away.
+
+Dumb decision. Who hired these idiots, anyways? Can barely even do a kidnapping.
+
+The giant neon sign over the parking lot declares the world that this is Lakeridge Golf Course. Below, the subscript reads "Since 1969 - 112 & STRONG!"
+
+You turn to Ma. "They're gone," you say. "What's your plan? And what's going on? You said you'd give answers, well, now's the time."
+
+"I will <<tooltip "steal a car">>What the fuck is going on? Did Ma really just say that?<</tooltip>>. Do not worry. Their security systems are cheap and it will be no issue."
+
+"You're going to steal a car?"
+
+"Yes," she says, as if it's the most natural thing in the world. You look around the parking lot. There are six, maybe seven cars left, the majority having left during daylight hours. Slim pickings.
+
+"Fine," you say, catching up, "but that doesn't tell me anything about what's going on. Who were those guys? Why are they after you? Why did they agree to just let us go?"
+
+"I will tell you when Jekusheke arrives," she says, "otherwise I will have to tell it twice." She pauses her pacing, and pokes at her phone some more.
+
+<<include "EndingSharedApostate_Meetup_Choice">>
+
+
+:: EndingDesertApostate_Desert
 <h1 class="passage-h1">July 19, 2081</h1>\
 <h2 class="passage-h2">Somewhere in the desert near Reno, Nevada</h2>\
 Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in the car," she commands. She exits the car, goes into the shack. Three or four minutes later she returns, sits in the driver's seat, and collapses as if her bones have vanished from her body.
@@ -283,6 +322,83 @@ You leave the police base with Jekusheke. He suggests a sushi place nearby on th
 He asks what you'll do now.
 
 <<include "EndingApostate_LeaveStayButtons">>
+
+
+:: EndingSharedApostate_Meetup_Choice
+/** ###################################################################### **/\
+/** # SHARED PASSAGES                                                    # **/\
+/** ###################################################################### **/\
+"Ma! Ebi!" You see Jeku, lit by the parking lot lights. He waves, then jogs across the parking lot, coming up beside you. "What's Ma doing?" he asks, watching Ma standing in front of a sporty red sedan, fiddling with her phone.
+
+<span id="eda-m-btn">\
+  <<button "She's following her escape plan, I think.">>
+    <<run setup.replaceWithSending("#eda-m-btn")>>
+    <<send "EndingSharedApostate_Meetup_Choice" { choice: "ESCAPE" }>><</send>>
+  <</button>>
+  <<button "Stealing a car.">>
+    <<run setup.replaceWithSending("#eda-m-btn")>>
+    <<send "EndingSharedApostate_Meetup_Choice" { choice: "STEAL" }>><</send>>
+  <</button>>
+  <<button "Fuck if I know.">>
+    <<run setup.replaceWithSending("#eda-m-btn")>>
+    <<send "EndingSharedApostate_Meetup_Choice" { choice: "DUNNO" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "EndingSharedApostate_Meetup_Choice" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    if (State.temporary.receiveData.choice === "ESCAPE") {
+      Engine.play("EndingSharedApostate_Meetup_Escape");
+    } else if (State.temporary.receiveData.choice === "STEAL") {
+      Engine.play("EndingSharedApostate_Meetup_Steal");
+    } else if (State.temporary.receiveData.choice === "DUNNO") {
+      Engine.play("EndingSharedApostate_Meetup_Dunno");
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedApostate_Meetup_Escape
+You sigh. "She's following her escape plan, I think. She seems to have had all this planned out."
+
+"She knew she'd be kidnapped?"
+
+You shrug. "She seems like she's planned for it. I'm sure it wasn't her first plan."
+
+<<include "EndingSharedApostate_Meetup_End">>
+
+:: EndingSharedApostate_Meetup_Steal
+You sigh. "She's stealing a car," you say.
+
+"What?" Jeku's brow furrows. "She's stealing a car? Are you serious?"
+
+"Dead serious."
+
+<<include "EndingSharedApostate_Meetup_End">>
+
+:: EndingSharedApostate_Meetup_Dunno
+You sigh. "Fuck if I know," you tell your brother.
+
+"Well," he says, "I'm just glad you guys made it out. I was really worried until I got Ma's call."
+
+<<include "EndingSharedApostate_Meetup_End">>
+
+
+:: EndingSharedApostate_Meetup_End
+The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says, "it is good to see you. Both of you, get in the car."
+
+<span id="eda-m-e-btn"><<button "Get in.">>
+  <<run setup.replaceWithSending("#eda-m-e-btn")>>
+  <<send "EndingSharedApostate_Meetup_End" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "EndingSharedApostate_Meetup_End" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    if (State.variables.ending === "BLOODY") {
+      Engine.play("EndingBloodyApostate_Desert")
+    } else if (State.variables.ending === "DESERT") {
+      Engine.play("EndingDesertApostate_Desert")
+    }
+  }
+<</script>><</receive>><</nobr>>
 
 
 :: EndingApostate_ThankYou

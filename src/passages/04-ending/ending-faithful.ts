@@ -1,21 +1,21 @@
 (function() {
   const _setup = setup as any
 
-  _setup.Complete_EndingBloodyFaithful_Meetup = function() {
+  _setup.Complete_EndingSharedFaithful_Meetup = function() {
     const _vars = State.variables as any
 
-    if (_vars.EndingBloodyFaithful_Meetup &&
-        _vars.EndingBloodyApostate_Meetup) {
-      const apostateChoice = _vars.EndingBloodyApostate_Meetup.choice
-      delete _vars.EndingBloodyFaithful_Meetup
-      delete _vars.EndingBloodyApostate_Meetup
+    if (_vars.EndingSharedFaithful_Meetup &&
+        _vars.EndingSharedApostate_Meetup_Choice) {
+      const apostateChoice = _vars.EndingSharedApostate_Meetup_Choice.choice
+      delete _vars.EndingSharedFaithful_Meetup
+      delete _vars.EndingSharedApostate_Meetup_Choice
 
       if (apostateChoice === "ESCAPE") {
-        Engine.play("EndingBloodyFaithful_Meetup_Escape")
+        Engine.play("EndingSharedFaithful_Meetup_Escape")
       } else if (apostateChoice === "STEAL") {
-        Engine.play("EndingBloodyFaithful_Meetup_Steal")
+        Engine.play("EndingSharedFaithful_Meetup_Steal")
       } else if (apostateChoice === "DUNNO") {
-        Engine.play("EndingBloodyFaithful_Meetup_Dunno")
+        Engine.play("EndingSharedFaithful_Meetup_Dunno")
       }
     }
   }

@@ -10,365 +10,8 @@ You ask why she's brought you here, into the desert. She tells you that she coul
 /** ###################################################################### **/\
 /** # BLOODY ENDING                                                      # **/\
 /** ###################################################################### **/\
-<<if $calledFrancis>>\
-  <<include "EndingBloodyFaithful_Start_Francis">>
-<<elseif $faithfulKingIsStable>>\
-  <<include "EndingBloodyFaithful_Start_No_Francis_Stable">>
-<<else>>\
-  <<include "EndingBloodyFaithful_Start_No_Francis_Dead">>
-<</if>>\
-
-
-:: EndingBloodyFaithful_Start_Francis
-"Will he be okay?" asks the bartender.
-
-"What?" you say, looking down at King. "I don't know," you admit. \
-<<if $faithfulKingIsStable>>\
-  "He's not bleeding, but I'm not an expert on dogs. I hope so, but he could have internal injuries."
-<<else>>\
-  You kneel down, inspect King. The first aid applied so far is crude and rushed. "I don't know," you repeat.
-<</if>>\
-
-"The pet hospital's coming, right?"
-
-<<if $faithfulCalledFrancis>>\
-  "Yes, but-"
-
-  "There!" cries the cook, pointing. \
-<<else>>\
-  The cook cuts in. "I called, but - wait! There!" she cries, pointing. \
-<</if>>\
-Sure enough, a yellow ambulance is roaring its way down the street, lights flashing. The ambulance pulls up to the curb, cutting the lights, and a pair of veterinary techs jump out. \
-<<if $faithfulCalledFrancis>>\
-  One of them goes to look at King, and the other runs up to you. "Are you the one who called?"
-
-  "Yeah," you say, "Jekusheke Wang." You point to King. "That's-"
-
-  "We got it," she says. \
-<<else>>\
-  One of the goes to king, the other to the cook. After a brief discussion, the tech comes over to you. "You're the owner?"
-
-  No, but, close enough. You nod.
-
-<</if>>\
-She hands you a tablet. "There's some documents we need you to sign. Ask me if you have any questions." You nod, and she joins the other tech, kneeling beside King.
-
-The bartender hovers around anxiously. The cook taps him on the shoulder. "They've got it," she says. "You should get cleaned up." Behind you, you hear the doors to the bar open and close.
-
-"Xi Shi," you say to your phone, holding it up next to the tablet, "summarize the paperwork."
-
-Xi Shi takes a few seconds before replying. "It's mostly standard," she says, "but unless Ma has pet insurance, you'll be out of pocket. Prices aren't listed, as usual for medical expenses, but probably worst-case, for a three-day stay, it won't be more than $61,000."
-
-<span id="ebs-s-btn"><<button "Tell Xi Shi to accept the terms.">>
-  <<run setup.replaceWithSending("#ebs-s-btn")>>
-  <<send "EndingBloodyFaithful_Start" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "EndingBloodyFaithful_Start" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_King_To_Police") }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyFaithful_Start_No_Francis_Stable
-The bartender pushes himself up wearily. "What should we do now?" he asks. "They look, uh, well, they're not bleeding." He gestures towards King.
-
-"Right," you say. "I'll call a pet hospital. Xi Shi," you say to your phone, "call St. Francis. The pet one." You hold your phone up to your face, smearing it in blood. Well. You'll have to clean it off before you put it back in your pockets. You'll have to clean basically all of your clothes, unless you want to walk around like you just murdered somebody. You push the thought out of your mind as the phone connects.
-
-You tell them the details, give them the situation. They'll dispatch somebody. You hang up. "They're coming," you tell the bartender.
-
-He nods, gestures to the bar. "You want to go wash up?"
-
-"I'll wait," you say. "You first." He nods, and the cook joins him back inside.
-
-The ambulance arrives soon, yellow and white, like they said. Two veterinary technicians leap out, one going to King, one going to you. She hands you a tablet with the paperwork on it. "Look it over," she says, "and if you have any questions, ask."
-
-"Xi Shi," you say, "can you summarize the terms?"
-
-Xi Shi takes a few seconds before replying. "It's mostly standard," she says, "but unless Ma has pet insurance, you'll be out of pocket. Prices aren't listed, as usual for medical expenses, but probably worst-case, for a three-day stay, it won't be more than $61,000."
-
-<span id="ebs-s-n-f-s-btn"><<button "Tell Xi Shi to accept the terms.">>
-  <<run setup.replaceWithSending("#ebs-s-n-f-s-btn")>>
-  <<send "EndingBloodyFaithful_Start_No_Francis_Stable" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "EndingBloodyFaithful_Start_No_Francis_Stable" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_King_To_Police") }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyFaithful_Start_No_Francis_Dead
-<<if $faithfulCanTriageKing is false>>\
-  You realize that King has gone still under your hands, that you can't feel him breathing, that the dog is totally silent. You lean down next to his head. No breath. You press your ear to where you think a dog's heart is. If there's a heartbeat, you can't hear it. Blood seeps from under your hands.
-
-  Shit. "His heart's stopped," you say.
-
-  "CPR," says the bartender frantically, "do you know how to do CPR to dogs?"
-
-  "Wounds are still open," you say, staring. "It'd just push the blood out." \
-<<else>>\
-  You stand there, blinking. The past few minutes are mostly a blur. Did they get away? It seems like they've gotten away.
-
-  The bartender is standing up, face ashen, panic on his face. "They're not breathing," he says, gesturing to King. "Do you know how to do CPR on a dog?"
-
-  "What?" you ask, dropping down to inspect King. He's right. King's not breathing. You can't hear a heartbeat either. He's lost an extravagant amount of blood. "CPR wouldn't help," you say distantly. "He's bled out."
-
-  "It's a he?"
-
-  "Yes." \
-<</if>>\
-You frown. The bartender seems almost more upset than you. Shit. What will you do with - I mean. You know how to dispose of a body. Body bag, then - what, do they have pet morgues? Pet funeral houses? Later. "Garbage bags," you say.
-
-The cook comes up to you. "I'm so sorry," she says.
-
-"I, yeah. Uh. Can you bring garbage bags? And can I use your freezer?"
-
-She pauses. You can see sympathy and disgust warring within her. "I, I can get you the garbage bags," she says, "but it's not sanitary to - you know? We keep food in there." Her eyes are asking you, please, do not insist.
-
-"Okay," you say. She disappears back into the bar. You look at the bartender. "You should wash up," you say. "Thank you."
-
-"I'm sorry."
-
-You shrug. "Not your fault."
-
-The cook returns with garbage bags, goes back inside. You're left alone, standing on the sidewalk, with the body of the family dog at your feet.
-
-<span id="ebs-s-n-f-d-btn"><<button "Wrap King up.">>
-  <<run setup.replaceWithSending("#ebs-s-n-f-d-btn")>>
-  <<send "EndingBloodyFaithful_Start_No_Francis_Dead" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "EndingBloodyFaithful_Start_No_Francis_Dead" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_Dead_To_Police") }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyFaithful_King_To_Police
-As you finish signing off on the paperwork, the technician who handed you the tablet stands up and comes back over. \
-<<if $faithfulKingIsStable>>\
-  "You did a good job with first aid," she says "but he's seriously injured. We'll have to take him to our facility. It'll be minimum a day, probably two."
-<<else>>\
-  "We have to take him to our facilities immediately," proclaims the tech. "He's badly inured. I don't know how long we'll have to keep him." An if hangs in the air, unspoken.
-<</if>>\
-
-"Okay," you say, handing over the tablet, "do it."
-
-"Any questions? Do you want to ride with him?"
-
-<<if $called911>>\
-  "None. I would, but I need to wait for 911."
-<<else>>\
-  "No. And no. Thank you, though."
-<</if>>\
-
-She nods, repeats how to contact them. They load King onto a stretcher and wheel him into the back of the ambulance and set off. You're left alone, standing on a blood-stained side sidewalk, your hands and clothes all smeared red.
-
-<<include "EndingBloodyFaithful_To_Police">>
-
-
-:: EndingBloodyFaithful_Dead_To_Police
-Your movements are vague, slightly fuzzy. "Xi Shi," you ask your phone, "can you find a reefer for rent? The smallest one you can find."
-
-After a few moments, your phone replies. "There's one six minutes away for $810 per hour, plus cleaning costs, estimated at $2400."
-
-"Fine," you say. You take the garbage bags and kneel down next to King. You wrap him in two, three, four layers. King is big and heavy and whenever you add a layer you have to roll him in, smearing blood all over. You can't blame the cook for not wanting to have it in her freezer.
-
-The truck comes. You open the back to a blast of frigid air. You have trouble lifting him in, but you get it in the end. You close the door behind him.
-
-<<include "EndingBloodyFaithful_To_Police">>
-
-
-:: EndingBloodyFaithful_To_Police
-You had back inside, taking care not to get blood on the door, and see the bartender talking with another couple of workers, probably from back of house. He spots you.
-
-"Washing up," you say. <<if $called911>>"If the police arrive, tell them."<</if>>
-
-Wordlessly, he reaches under the counter and tosses you a bottle of stain remover. You smile, thank him, retreat to the restroom.
-
-You emerge several minutes later to see a pair of cops in their full power armor conversing with the bartender. One of them waves you over. He regards you wordlessly for a moment from behind his black visor, then nods. "You're Jekusheke Wang?"
-
-<span id="ebs-s-btn">\
-  <<button "Yes, sir.">>
-    <<run setup.replaceWithSending("#ebs-s-btn")>>
-    <<send "EndingBloodyFaithful_To_Police" { choice: "POLITE" }>><</send>>
-  <</button>>
-  <<button "Last I checked.">>
-    <<run setup.replaceWithSending("#ebs-s-btn")>>
-    <<send "EndingBloodyFaithful_To_Police" { choice: "SNARKY" }>><</send>>
-  <</button>>
-  <<if $called911>>\
-    <<button "About time you showed up.">>
-      <<run setup.replaceWithSending("#ebs-s-btn")>>
-      <<send "EndingBloodyFaithful_To_Police" { choice: "DEMANDING" }>><</send>>
-    <</button>>
-  <<else>>\
-    <<button "Who called you?">>
-      <<run setup.replaceWithSending("#ebs-s-btn")>>
-      <<send "EndingBloodyFaithful_To_Police" { choice: "QUESTION" }>><</send>>
-    <</button>>
-  <</if>>\
-</span>\
-<<nobr>><<receive "EndingBloodyFaithful_To_Police" "Faithful">><<script>>
-  if (setup.isFaithful()) {
-    if (State.temporary.receiveData.choice === "POLITE") {
-      Engine.play("EndingBloodyFaithful_Police_Polite");
-    } else if (State.temporary.receiveData.choice === "SNARKY") {
-      Engine.play("EndingBloodyFaithful_Police_Snarky");
-    } else if (State.temporary.receiveData.choice === "DEMANDING") {
-      Engine.play("EndingBloodyFaithful_Police_Demanding");
-    } else if (State.temporary.receiveData.choice === "QUESTION") {
-      Engine.play("EndingBloodyFaithful_Police_Question");
-    }
-  }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyFaithful_Police_Polite
-"Yes, sir."
-
-"Always good to see a respectful citizen," he says. "We're here about a 911 call regarding an altercation. Hold out your hand."
-
-You stick out your hand as he rustles around in a pouch. \
-<<include "EndingBloodyFaithful_Police_Read">>
-
-:: EndingBloodyFaithful_Police_Snarky
-"Last I checked."
-
-The officer regards you impassively through his visor. "You get snippy," he growls, "I break your legs. Hand."
-
-You press your lips together and hold out your hand. \
-<<include "EndingBloodyFaithful_Police_Read">>
-
-:: EndingBloodyFaithful_Police_Demanding
-"About time you showed up."
-
-The officer regards you impassively through his visor. "You get snippy," he growls, "I break your legs. Hand."
-
-You press your lips together and hold out your hand. \
-<<include "EndingBloodyFaithful_Police_Read">>
-
-:: EndingBloodyFaithful_Police_Question
-"Who called you?"
-
-The officer growls. "A little birdy," he says. "Give me no lip. Do what I say or I'll break your legs. Your hand."
-
-You press your lips together and hold out your hand. \
-<<include "EndingBloodyFaithful_Police_Read">>
-
-
-:: EndingBloodyFaithful_Police_Read
-He holds a genescanner against your hand for a moment and confirms your identity. They don't ask you any questions. They just give you a tablet with a statement that you were present and tell you to sign it. After you sign it they tell you, in no uncertain terms, to get out of their face. Business done, they stomp back out onto the street, climb back into their dropship, and scream off into the sky.
-
-<span id="ebf-p-r-btn"><<button "Pleasant lot, the law.">>
-  <<run setup.replaceWithSending("#ebf-p-r-btn")>>
-  <<send "EndingBloodyFaithful_Police_Read" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "EndingBloodyFaithful_Police_Read" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_Ma_Tiger_Call") }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyFaithful_Ma_Tiger_Call
-Your phone buzzes. You check the name. It's Ma Tiger! You take the call. "Ma!" you almost yell, "are you okay?"
-
-"I am fine, thank you. Meet us at 1218 Gold Club Dr, in the parking lot."
-
-"Sorry, the - the golf course?"
-
-"Yes, the golf course. As soon as possible. Bring King, if you can."
-
-<<if $faithfulKingIsStable or $calledFrancis>>\
-  "King's injured, but he's in a veterinary hospital now." You can hear her click her tongue. "He was shot, with a broken leg. Don't worry, I've heard good things about them."
-
-  "He was shot?"
-
-  "Yeah. You didn't see?"
-
-  "I was very busy." You can almost see her half-smile as she speaks. "Thank you for taking care if it, Jekusheke. It will be good to see you again."
-
-  "Yeah," you say, "you too. I'll meet you there."
-<<else>>\
-  You pause. "King is, uh - King was shot." There's a silence on the other end. "He didn't make it."
-
-  She takes a long time to respond. "I see," she says. "Thank you for telling me. I am very sorry."
-
-  "No, I -" You swallow. "Yeah. I, well."
-
-  "Jekusheke, we will talk later. When it is safe. All right?"
-
-  "Right. Right. I'll see you there."
-
-  "Yes," she says, and the line goes dead.
-<</if>>\
-
-<span id="ebs-s-btn"><<button "Go to the golf course.">>
-  <<run setup.replaceWithSending("#ebs-s-btn")>>
-  <<send "EndingBloodyFaithful_Ma_Tiger_Call" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "EndingBloodyFaithful_Ma_Tiger_Call" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_Meetup") }
-<</script>><</receive>><</nobr>>
-
-
-:: EndingBloodyFaithful_Meetup
-"Lakeridge Golf Course," announces the car.
-
-You open the door and step out. It pulls back, zooming off to find its next customer. By now the sun's low in the sky, twilight overtaking the day. You stand under the giant neon sign, waiting for word of Ma's arrival. "Lakeridge Golf Course!" it announces. "Since 1969 - 112 & STRONG!"
-
-You hear a burst of music, and you look over and spot Ebi and Ma, standing in front of a red sedan. Ma's engrossed in her phone, but Ebi spots her. "Ma!" you call, waving. "Ebi!" You jog over. Ma's too engrossed to pay you any heed. "What's Ma doing?"
-
-<span id="ebf-m-btn"><<button "Well?">>
-  <<run setup.replaceWithSending("#ebf-m-btn")>>
-  <<send "EndingBloodyFaithful_Meetup" {}>><</send>>
-<</button>></span>\ 
-<<nobr>>
-  <<receive "EndingBloodyFaithful_Meetup" "Faithful">><<script>>
-    if (setup.isFaithful()) { 
-      State.variables.EndingBloodyFaithful_Meetup = true;
-      setup.replaceWithWaiting("#ebf-m-btn");
-      setup.Complete_EndingBloodyFaithful_Meetup();
-    }
-  <</script>><</receive>>
-  <<receive "EndingBloodyApostate_Meetup" "Faithful">><<script>>
-    if (setup.isFaithful()) {
-      State.variables.EndingBloodyApostate_Meetup = State.temporary.receiveData;
-      setup.Complete_EndingBloodyFaithful_Meetup();
-    }
-  <</script>><</receive>>
-<</nobr>>
-
-:: EndingBloodyFaithful_Meetup_Escape
-Ebi sighs. "She's following her escape plan, I think. She seems to have had all this planned out."
-
-"She knew she'd be kidnapped?"
-
-She shrugs. "She seems like she's planned for it. I'm sure it wasn't her first plan."
-
-<<include "EndingBloodyFaithful_Meetup_End">>
-
-:: EndingBloodyFaithful_Meetup_Steal
-Ebi sighs. "She's stealing a car."
-
-"<<tooltip What?>>There's no way!<</tooltip>> She's stealing a car? Are you serious?"
-
-"Dead serious."
-
-<<include "EndingBloodyFaithful_Meetup_End">>
-
-:: EndingBloodyFaithful_Meetup_Dunno
-Ebi lets out something between a sign and a chuckle. "Fuck if I know."
-
-"Well, I'm just glad you guys made it out. I was really worried until I got Ma's call."
-
-<<include "EndingBloodyFaithful_Meetup_End">>
-
-
-:: EndingBloodyFaithful_Meetup_End
-The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says, "it is good to see you. Both of you, get in the car."
-
-<span id="ebs-m-e-btn"><<button "Get in.">>
-  <<run setup.replaceWithSending("#ebs-m-e-btn")>>
-  <<send "EndingBloodyFaithful_Meetup_End" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "EndingBloodyFaithful_Meetup_End" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_Desert") }
-<</script>><</receive>><</nobr>>
+<<set $ending to "BLOODY">>\
+<<include "EndingSharedFaithful_Start">>
 
 
 :: EndingBloodyFaithful_Desert
@@ -505,6 +148,377 @@ You ask what she'll do now.
 <</button>></span>\ 
 <<nobr>><<receive "EndingBadFaithful_Start" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_Start
+/** ###################################################################### **/\
+/** # SHARED PASSAGES                                                    # **/\
+/** ###################################################################### **/\
+<<if $calledFrancis>>\
+  <<include "EndingSharedFaithful_Start_Francis">>
+<<elseif $faithfulKingIsStable>>\
+  <<include "EndingSharedFaithful_Start_No_Francis_Stable">>
+<<else>>\
+  <<include "EndingSharedFaithful_Start_No_Francis_Dead">>
+<</if>>\
+
+
+:: EndingSharedFaithful_Start_Francis
+"Will he be okay?" asks the bartender.
+
+"What?" you say, looking down at King. "I don't know," you admit. \
+<<if $faithfulKingIsStable>>\
+  "He's not bleeding, but I'm not an expert on dogs. I hope so, but he could have internal injuries."
+<<else>>\
+  You kneel down, inspect King. The first aid applied so far is crude and rushed. "I don't know," you repeat.
+<</if>>\
+
+"The pet hospital's coming, right?"
+
+<<if $faithfulCalledFrancis>>\
+  "Yes, but-"
+
+  "There!" cries the cook, pointing. \
+<<else>>\
+  The cook cuts in. "I called, but - wait! There!" she cries, pointing. \
+<</if>>\
+Sure enough, a yellow ambulance is roaring its way down the street, lights flashing. The ambulance pulls up to the curb, cutting the lights, and a pair of veterinary techs jump out. \
+<<if $faithfulCalledFrancis>>\
+  One of them goes to look at King, and the other runs up to you. "Are you the one who called?"
+
+  "Yeah," you say, "Jekusheke Wang." You point to King. "That's-"
+
+  "We got it," she says. \
+<<else>>\
+  One of the goes to king, the other to the cook. After a brief discussion, the tech comes over to you. "You're the owner?"
+
+  No, but, close enough. You nod.
+
+<</if>>\
+She hands you a tablet. "There's some documents we need you to sign. Ask me if you have any questions." You nod, and she joins the other tech, kneeling beside King.
+
+The bartender hovers around anxiously. The cook taps him on the shoulder. "They've got it," she says. "You should get cleaned up." Behind you, you hear the doors to the bar open and close.
+
+"Xi Shi," you say to your phone, holding it up next to the tablet, "summarize the paperwork."
+
+Xi Shi takes a few seconds before replying. "It's mostly standard," she says, "but unless Ma has pet insurance, you'll be out of pocket. Prices aren't listed, as usual for medical expenses, but probably worst-case, for a three-day stay, it won't be more than $61,000."
+
+<span id="ebs-s-btn"><<button "Tell Xi Shi to accept the terms.">>
+  <<run setup.replaceWithSending("#ebs-s-btn")>>
+  <<send "EndingSharedFaithful_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingSharedFaithful_Start" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_King_To_Police") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_Start_No_Francis_Stable
+The bartender pushes himself up wearily. "What should we do now?" he asks. "They look, uh, well, they're not bleeding." He gestures towards King.
+
+"Right," you say. "I'll call a pet hospital. Xi Shi," you say to your phone, "call St. Francis. The pet one." You hold your phone up to your face, smearing it in blood. Well. You'll have to clean it off before you put it back in your pockets. You'll have to clean basically all of your clothes, unless you want to walk around like you just murdered somebody. You push the thought out of your mind as the phone connects.
+
+You tell them the details, give them the situation. They'll dispatch somebody. You hang up. "They're coming," you tell the bartender.
+
+He nods, gestures to the bar. "You want to go wash up?"
+
+"I'll wait," you say. "You first." He nods, and the cook joins him back inside.
+
+The ambulance arrives soon, yellow and white, like they said. Two veterinary technicians leap out, one going to King, one going to you. She hands you a tablet with the paperwork on it. "Look it over," she says, "and if you have any questions, ask."
+
+"Xi Shi," you say, "can you summarize the terms?"
+
+Xi Shi takes a few seconds before replying. "It's mostly standard," she says, "but unless Ma has pet insurance, you'll be out of pocket. Prices aren't listed, as usual for medical expenses, but probably worst-case, for a three-day stay, it won't be more than $61,000."
+
+<span id="ebs-s-n-f-s-btn"><<button "Tell Xi Shi to accept the terms.">>
+  <<run setup.replaceWithSending("#ebs-s-n-f-s-btn")>>
+  <<send "EndingSharedFaithful_Start_No_Francis_Stable" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingSharedFaithful_Start_No_Francis_Stable" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_King_To_Police") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_Start_No_Francis_Dead
+<<if $faithfulCanTriageKing is false>>\
+  You realize that King has gone still under your hands, that you can't feel him breathing, that the dog is totally silent. You lean down next to his head. No breath. You press your ear to where you think a dog's heart is. If there's a heartbeat, you can't hear it. Blood seeps from under your hands.
+
+  Shit. "His heart's stopped," you say.
+
+  "CPR," says the bartender frantically, "do you know how to do CPR to dogs?"
+
+  "Wounds are still open," you say, staring. "It'd just push the blood out." \
+<<else>>\
+  You stand there, blinking. The past few minutes are mostly a blur. Did they get away? It seems like they've gotten away.
+
+  The bartender is standing up, face ashen, panic on his face. "They're not breathing," he says, gesturing to King. "Do you know how to do CPR on a dog?"
+
+  "What?" you ask, dropping down to inspect King. He's right. King's not breathing. You can't hear a heartbeat either. He's lost an extravagant amount of blood. "CPR wouldn't help," you say distantly. "He's bled out."
+
+  "It's a he?"
+
+  "Yes." \
+<</if>>\
+You frown. The bartender seems almost more upset than you. Shit. What will you do with - I mean. You know how to dispose of a body. Body bag, then - what, do they have pet morgues? Pet funeral houses? Later. "Garbage bags," you say.
+
+The cook comes up to you. "I'm so sorry," she says.
+
+"I, yeah. Uh. Can you bring garbage bags? And can I use your freezer?"
+
+She pauses. You can see sympathy and disgust warring within her. "I, I can get you the garbage bags," she says, "but it's not sanitary to - you know? We keep food in there." Her eyes are asking you, please, do not insist.
+
+"Okay," you say. She disappears back into the bar. You look at the bartender. "You should wash up," you say. "Thank you."
+
+"I'm sorry."
+
+You shrug. "Not your fault."
+
+The cook returns with garbage bags, goes back inside. You're left alone, standing on the sidewalk, with the body of the family dog at your feet.
+
+<span id="ebs-s-n-f-d-btn"><<button "Wrap King up.">>
+  <<run setup.replaceWithSending("#ebs-s-n-f-d-btn")>>
+  <<send "EndingSharedFaithful_Start_No_Francis_Dead" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingSharedFaithful_Start_No_Francis_Dead" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_Dead_To_Police") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_King_To_Police
+As you finish signing off on the paperwork, the technician who handed you the tablet stands up and comes back over. \
+<<if $faithfulKingIsStable>>\
+  "You did a good job with first aid," she says "but he's seriously injured. We'll have to take him to our facility. It'll be minimum a day, probably two."
+<<else>>\
+  "We have to take him to our facilities immediately," proclaims the tech. "He's badly inured. I don't know how long we'll have to keep him." An if hangs in the air, unspoken.
+<</if>>\
+
+"Okay," you say, handing over the tablet, "do it."
+
+"Any questions? Do you want to ride with him?"
+
+<<if $called911>>\
+  "None. I would, but I need to wait for 911."
+<<else>>\
+  "No. And no. Thank you, though."
+<</if>>\
+
+She nods, repeats how to contact them. They load King onto a stretcher and wheel him into the back of the ambulance and set off. You're left alone, standing on a blood-stained side sidewalk, your hands and clothes all smeared red.
+
+<<include "EndingSharedFaithful_To_Police">>
+
+
+:: EndingSharedFaithful_Dead_To_Police
+Your movements are vague, slightly fuzzy. "Xi Shi," you ask your phone, "can you find a reefer for rent? The smallest one you can find."
+
+After a few moments, your phone replies. "There's one six minutes away for $810 per hour, plus cleaning costs, estimated at $2400."
+
+"Fine," you say. You take the garbage bags and kneel down next to King. You wrap him in two, three, four layers. King is big and heavy and whenever you add a layer you have to roll him in, smearing blood all over. You can't blame the cook for not wanting to have it in her freezer.
+
+The truck comes. You open the back to a blast of frigid air. You have trouble lifting him in, but you get it in the end. You close the door behind him.
+
+<<include "EndingSharedFaithful_To_Police">>
+
+
+:: EndingSharedFaithful_To_Police
+You had back inside, taking care not to get blood on the door, and see the bartender talking with another couple of workers, probably from back of house. He spots you.
+
+"Washing up," you say. <<if $called911>>"If the police arrive, tell them."<</if>>
+
+Wordlessly, he reaches under the counter and tosses you a bottle of stain remover. You smile, thank him, retreat to the restroom.
+
+You emerge several minutes later to see a pair of cops in their full power armor conversing with the bartender. One of them waves you over. He regards you wordlessly for a moment from behind his black visor, then nods. "You're Jekusheke Wang?"
+
+<span id="ebs-s-btn">\
+  <<button "Yes, sir.">>
+    <<run setup.replaceWithSending("#ebs-s-btn")>>
+    <<send "EndingSharedFaithful_To_Police" { choice: "POLITE" }>><</send>>
+  <</button>>
+  <<button "Last I checked.">>
+    <<run setup.replaceWithSending("#ebs-s-btn")>>
+    <<send "EndingSharedFaithful_To_Police" { choice: "SNARKY" }>><</send>>
+  <</button>>
+  <<if $called911>>\
+    <<button "About time you showed up.">>
+      <<run setup.replaceWithSending("#ebs-s-btn")>>
+      <<send "EndingSharedFaithful_To_Police" { choice: "DEMANDING" }>><</send>>
+    <</button>>
+  <<else>>\
+    <<button "Who called you?">>
+      <<run setup.replaceWithSending("#ebs-s-btn")>>
+      <<send "EndingSharedFaithful_To_Police" { choice: "QUESTION" }>><</send>>
+    <</button>>
+  <</if>>\
+</span>\
+<<nobr>><<receive "EndingSharedFaithful_To_Police" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    if (State.temporary.receiveData.choice === "POLITE") {
+      Engine.play("EndingSharedFaithful_Police_Polite");
+    } else if (State.temporary.receiveData.choice === "SNARKY") {
+      Engine.play("EndingSharedFaithful_Police_Snarky");
+    } else if (State.temporary.receiveData.choice === "DEMANDING") {
+      Engine.play("EndingSharedFaithful_Police_Demanding");
+    } else if (State.temporary.receiveData.choice === "QUESTION") {
+      Engine.play("EndingSharedFaithful_Police_Question");
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_Police_Polite
+"Yes, sir."
+
+"Always good to see a respectful citizen," he says. "We're here about a 911 call regarding an altercation. Hold out your hand."
+
+You stick out your hand as he rustles around in a pouch. \
+<<include "EndingSharedFaithful_Police_Read">>
+
+:: EndingSharedFaithful_Police_Snarky
+"Last I checked."
+
+The officer regards you impassively through his visor. "You get snippy," he growls, "I break your legs. Hand."
+
+You press your lips together and hold out your hand. \
+<<include "EndingSharedFaithful_Police_Read">>
+
+:: EndingSharedFaithful_Police_Demanding
+"About time you showed up."
+
+The officer regards you impassively through his visor. "You get snippy," he growls, "I break your legs. Hand."
+
+You press your lips together and hold out your hand. \
+<<include "EndingSharedFaithful_Police_Read">>
+
+:: EndingSharedFaithful_Police_Question
+"Who called you?"
+
+The officer growls. "A little birdy," he says. "Give me no lip. Do what I say or I'll break your legs. Your hand."
+
+You press your lips together and hold out your hand. \
+<<include "EndingSharedFaithful_Police_Read">>
+
+
+:: EndingSharedFaithful_Police_Read
+He holds a genescanner against your hand for a moment and confirms your identity. They don't ask you any questions. They just give you a tablet with a statement that you were present and tell you to sign it. After you sign it they tell you, in no uncertain terms, to get out of their face. Business done, they stomp back out onto the street, climb back into their dropship, and scream off into the sky.
+
+<span id="ebf-p-r-btn"><<button "Pleasant lot, the law.">>
+  <<run setup.replaceWithSending("#ebf-p-r-btn")>>
+  <<send "EndingSharedFaithful_Police_Read" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingSharedFaithful_Police_Read" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_Ma_Tiger_Call") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_Ma_Tiger_Call
+Your phone buzzes. You check the name. It's Ma Tiger! You take the call. "Ma!" you almost yell, "are you okay?"
+
+"I am fine, thank you. Meet us at 1218 Gold Club Dr, in the parking lot."
+
+"Sorry, the - the golf course?"
+
+"Yes, the golf course. As soon as possible. Bring King, if you can."
+
+<<if $faithfulKingIsStable or $calledFrancis>>\
+  "King's injured, but he's in a veterinary hospital now." You can hear her click her tongue. "He was shot, with a broken leg. Don't worry, I've heard good things about them."
+
+  "He was shot?"
+
+  "Yeah. You didn't see?"
+
+  "I was very busy." You can almost see her half-smile as she speaks. "Thank you for taking care if it, Jekusheke. It will be good to see you again."
+
+  "Yeah," you say, "you too. I'll meet you there."
+<<else>>\
+  You pause. "King is, uh - King was shot." There's a silence on the other end. "He didn't make it."
+
+  She takes a long time to respond. "I see," she says. "Thank you for telling me. I am very sorry."
+
+  "No, I -" You swallow. "Yeah. I, well."
+
+  "Jekusheke, we will talk later. When it is safe. All right?"
+
+  "Right. Right. I'll see you there."
+
+  "Yes," she says, and the line goes dead.
+<</if>>\
+
+<span id="ebs-s-btn"><<button "Go to the golf course.">>
+  <<run setup.replaceWithSending("#ebs-s-btn")>>
+  <<send "EndingSharedFaithful_Ma_Tiger_Call" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingSharedFaithful_Ma_Tiger_Call" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_Meetup") }
+<</script>><</receive>><</nobr>>
+
+
+:: EndingSharedFaithful_Meetup
+"Lakeridge Golf Course," announces the car.
+
+You open the door and step out. It pulls back, zooming off to find its next customer. By now the sun's low in the sky, twilight overtaking the day. You stand under the giant neon sign, waiting for word of Ma's arrival. "Lakeridge Golf Course!" it announces. "Since 1969 - 112 & STRONG!"
+
+You hear a burst of music, and you look over and spot Ebi and Ma, standing in front of a red sedan. Ma's engrossed in her phone, but Ebi spots her. "Ma!" you call, waving. "Ebi!" You jog over. Ma's too engrossed to pay you any heed. "What's Ma doing?"
+
+<span id="ebf-m-btn"><<button "Well?">>
+  <<run setup.replaceWithSending("#ebf-m-btn")>>
+  <<send "EndingSharedFaithful_Meetup" {}>><</send>>
+<</button>></span>\ 
+<<nobr>>
+  <<receive "EndingSharedFaithful_Meetup" "Faithful">><<script>>
+    if (setup.isFaithful()) { 
+      State.variables.EndingSharedFaithful_Meetup = true;
+      setup.replaceWithWaiting("#ebf-m-btn");
+      setup.Complete_EndingSharedFaithful_Meetup();
+    }
+  <</script>><</receive>>
+  <<receive "EndingSharedApostate_Meetup_Choice" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.EndingSharedApostate_Meetup_Choice = State.temporary.receiveData;
+      setup.Complete_EndingSharedFaithful_Meetup();
+    }
+  <</script>><</receive>>
+<</nobr>>
+
+:: EndingSharedFaithful_Meetup_Escape
+Ebi sighs. "She's following her escape plan, I think. She seems to have had all this planned out."
+
+"She knew she'd be kidnapped?"
+
+She shrugs. "She seems like she's planned for it. I'm sure it wasn't her first plan."
+
+<<include "EndingSharedFaithful_Meetup_End">>
+
+:: EndingSharedFaithful_Meetup_Steal
+Ebi sighs. "She's stealing a car."
+
+"<<tooltip What?>>There's no way!<</tooltip>> She's stealing a car? Are you serious?"
+
+"Dead serious."
+
+<<include "EndingSharedFaithful_Meetup_End">>
+
+:: EndingSharedFaithful_Meetup_Dunno
+Ebi lets out something between a sign and a chuckle. "Fuck if I know."
+
+"Well, I'm just glad you guys made it out. I was really worried until I got Ma's call."
+
+<<include "EndingSharedFaithful_Meetup_End">>
+
+
+:: EndingSharedFaithful_Meetup_End
+The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says, "it is good to see you. Both of you, get in the car."
+
+<span id="ebs-m-e-btn"><<button "Get in.">>
+  <<run setup.replaceWithSending("#ebs-m-e-btn")>>
+  <<send "EndingSharedFaithful_Meetup_End" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "EndingSharedFaithful_Meetup_End" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    if (State.variables.ending === "BLOODY") {
+      Engine.play("EndingBloodyFaithful_Desert")
+    } else if (State.variables.ending === "DESERT") {
+      Engine.play("EndingDesertFaithful_Desert")
+    }
+  }
 <</script>><</receive>><</nobr>>
 
 
