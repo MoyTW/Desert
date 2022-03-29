@@ -1,5 +1,6 @@
 :: ConvoFaithful_Start
 <<set $ConvoFaithful_Continue to false>>\
+<<set $convosLeft to 4>>\
 You pick at your salad, watch as Ebi chomps down on the chips. It feels a bit nostalgic, maybe. Maybe she'll be willing to talk now? What's something she'd be nostalgic about?
 
 Well, she always liked <<tooltip "King">>Ma Tiger's guardian dog. She had him when she adopted you. Thirty-three years old, and as per his genetic specs, he's got another twenty years in him yet.<</tooltip>>.
@@ -58,13 +59,20 @@ Ebi blinks, looks up from her soup. "Yeah."
     setup.Route_ConvoFaithful_Receiver();
   }
 <</script>><</receive>>
+<<receive "ConvoFaithful_Goto_End" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("ConvoFaithful_End") }
+<</script>><</receive>>
 
 
 :: ConvoFaithful_Continue_Button [widget]
 <<widget "cf-continue-button">>\
   <span id="cf-c-b"><<button _args[0]>>
     <<run setup.replaceWithSending("#cf-c-b")>>
-    <<send "ConvoFaithful_Continue_Button" {}>><</send>>
+    <<if $convosLeft > 0 >>\
+      <<send "ConvoFaithful_Continue_Button" {}>><</send>>
+    <<else>>\
+      <<send "ConvoFaithful_Goto_End" {}>><</send>>
+    <</if>>\
   </span><</button>>\
 <</widget>>\
 
@@ -115,6 +123,7 @@ Ebi blinks, looks up from her soup. "Yeah."
 /** ###################################################################### **/\
 /** # JEKU SNIPPETS                                                      # **/\
 /** ###################################################################### **/\
+<<set $convosLeft to $convosLeft - 1>>\
 "So, uh, that alcohol filter. Handy, huh?"
 
 "Very."
@@ -173,6 +182,7 @@ Well, fine. It was worth a try.
 
 
 :: ConvoFaithful_Jeku_Fiancee
+<<set $convosLeft to $convosLeft - 1>>\
 "I'm due to be married in five weeks."
 
 Ebi pauses. "Congratulations," she says, "and I do mean that sincerely - that's neither a joke nor a taunt."
@@ -209,6 +219,7 @@ Ebi is watching you, an eyebrow raised.
 
 
 :: ConvoFaithful_Jeku_Life
+<<set $convosLeft to $convosLeft - 1>>\
 "So," you ask, "how have you been doing?"
 
 She leans in. "Jeku," she says, "Jeku, Jeku. I know where you're going with this, and I told you, didn't I? A girl's got to have her secrets."
@@ -219,6 +230,7 @@ She leans in. "Jeku," she says, "Jeku, Jeku. I know where you're going with this
 
 
 :: ConvoFaithful_Jeku_Childhood
+<<set $convosLeft to $convosLeft - 1>>\
 "You ever think about our childhood?"
 
 "Nope." The answer is instant. It's also almost certainly a lie.
@@ -254,6 +266,7 @@ You sigh. "Ebi, if you don't want to talk about this, you can just tell me."
 /** ###################################################################### **/\
 /** # EBI SNIPPETS                                                       # **/\
 /** ###################################################################### **/\
+<<set $convosLeft to $convosLeft - 1>>\
 "So how's your life been going?" asks Ebi.
 
 You think for a moment. "Well, it's all right. I like being an EMT. I have a three year lease in a nice place. Going to be married soon. Pay's not great, but it's not terrible."
@@ -339,6 +352,7 @@ She nods. She grew up in the slums too.
 
 
 :: ConvoFaithful_Ebi_Weather
+<<set $convosLeft to $convosLeft - 1>>\
 Ebi leans back. "So, how's the weather here in Reno?"
 
 "Dry, mostly. Hot during the day, cold at night." You grin. "July's pretty warm, though. Nights stay above freezing."
@@ -355,6 +369,7 @@ You suppose. "I like the summers. Snow's fun sometimes, but honestly it's a huge
 
 
 :: ConvoFaithful_Ebi_Reno
+<<set $convosLeft to $convosLeft - 1>>\
 "How did you end up in Reno?" Ebi leans in. "That's a long way from SF."
 
 You hesitate. Truth is, you followed your second girlfriend, six years ago, and it all ended awfully. You're not sure you want to get into that right now.
@@ -411,6 +426,7 @@ She shrugs and lets it go. "Being close to home is nice, I guess."
 
 
 :: ConvoFaithful_Ebi_Mother
+<<set $convosLeft to $convosLeft - 1>>\
 "How's Ma been doing?"
 
 This won't go well. "You're asking after Ma?"

@@ -1,5 +1,6 @@
 :: ConvoApostate_Start
 <<set $ConvoApostate_Continue to false>>\
+<<set $convosLeft to 4>>\
 Jeku is much more chatty, now that there's food. Maybe it's those old memories, creeping back. Ma Tiger insisted on everybody eating dinner together regularly.
 
 Buried resentments swirl in the back of your mind. Ma Tiger, always stern, always insistent. You push them back, spoon your soup.
@@ -56,6 +57,9 @@ Jeku falters. "You remember when we were on that trip to Seattle and we got atta
     setup.Route_ConvoApostate_Receiver();
   }
 <</script>><</receive>>
+<<receive "ConvoApostate_Goto_End" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("ConvoApostate_End") }
+<</script>><</receive>>
 
 
 :: ConvoApostate_Continue_Button [widget]
@@ -68,32 +72,39 @@ Jeku falters. "You remember when we were on that trip to Seattle and we got atta
 
 
 :: ConvoApostate_Choices
-<span id="ca-c-btn">\
-  <<if not hasVisited("ConvoApostate_Ebi_Life")>>\
-    <<button "Ask Jeku about how his life's been going.">>
-      <<run setup.replaceWithSending("#ca-c-btn")>>
-      <<send "ConvoApostate_Choices" { choice: "LIFE" }>><</send>>
-    <</button>>
-  <</if>>\
-  <<if not hasVisited("ConvoApostate_Ebi_Weather")>>\
-    <<button "Talk about the weather.">>
-      <<run setup.replaceWithSending("#ca-c-btn")>>
-      <<send "ConvoApostate_Choices" { choice: "WEATHER" }>><</send>>
-    <</button>>
-  <</if>>\
-  <<if not hasVisited("ConvoApostate_Ebi_Reno")>>\
-    <<button "Ask Jeku why he came to Reno.">>
-      <<run setup.replaceWithSending("#ca-c-btn")>>
-      <<send "ConvoApostate_Choices" { choice: "RENO" }>><</send>>
-    <</button>>
-  <</if>>\
-  <<if hasVisited("ConvoApostate_Ebi_Life") or hasVisited("ConvoApostate_Ebi_Weather") or hasVisited("ConvoApostate_Ebi_Reno")>>\
-    <<button "Ask after Ma Tiger.">>
-      <<run setup.replaceWithSending("#ca-c-btn")>>
-      <<send "ConvoApostate_Choices" { choice: "MOTHER" }>><</send>>
-    <</button>>
-  <</if>>\
-</span>\ 
+<<if $convosLeft is 0>>\
+  <span id="ca-c-btn"><<button "Finish your linner.">>
+    <<run setup.replaceWithSending("#ca-c-btn")>>
+    <<send "ConvoApostate_Goto_End" {}>><</send>>
+  <</button>></span>\
+<<else>>\
+  <span id="ca-c-btn">\
+    <<if not hasVisited("ConvoApostate_Ebi_Life")>>\
+      <<button "Ask Jeku about how his life's been going.">>
+        <<run setup.replaceWithSending("#ca-c-btn")>>
+        <<send "ConvoApostate_Choices" { choice: "LIFE" }>><</send>>
+      <</button>>
+    <</if>>\
+    <<if not hasVisited("ConvoApostate_Ebi_Weather")>>\
+      <<button "Talk about the weather.">>
+        <<run setup.replaceWithSending("#ca-c-btn")>>
+        <<send "ConvoApostate_Choices" { choice: "WEATHER" }>><</send>>
+      <</button>>
+    <</if>>\
+    <<if not hasVisited("ConvoApostate_Ebi_Reno")>>\
+      <<button "Ask Jeku why he came to Reno.">>
+        <<run setup.replaceWithSending("#ca-c-btn")>>
+        <<send "ConvoApostate_Choices" { choice: "RENO" }>><</send>>
+      <</button>>
+    <</if>>\
+    <<if hasVisited("ConvoApostate_Ebi_Life") or hasVisited("ConvoApostate_Ebi_Weather") or hasVisited("ConvoApostate_Ebi_Reno")>>\
+      <<button "Ask after Ma Tiger.">>
+        <<run setup.replaceWithSending("#ca-c-btn")>>
+        <<send "ConvoApostate_Choices" { choice: "MOTHER" }>><</send>>
+      <</button>>
+    <</if>>\
+  </span>\
+<</if>>\
 <<nobr>><<receive "ConvoApostate_Choices" "Apostate">><<script>>
   if (setup.isApostate()) {
     if (State.temporary.receiveData.choice === "LIFE") {
@@ -113,6 +124,7 @@ Jeku falters. "You remember when we were on that trip to Seattle and we got atta
 /** ###################################################################### **/\
 /** # EBI SNIPPETS                                                       # **/\
 /** ###################################################################### **/\
+<<set $convosLeft to $convosLeft - 1>>\
 "So how's your life been going?"
 
 "Well, it's all right," he says. "I like being an EMT. I have a three-year lease in a nice place. Going to be married soon." He shrugs. "Pay's not great, but it's not terrible."
@@ -193,6 +205,7 @@ Yeah. You know.
 
 
 :: ConvoApostate_Ebi_Weather
+<<set $convosLeft to $convosLeft - 1>>\
 You lean back. "So, how's the weather here in Reno?"
 
 "Dry, mostly. Hot during the day, cold at night." He pauses. "July's pretty warm, though. Nights stay above freezing."
@@ -209,6 +222,7 @@ He shrugs. "I like the summers. Snow's fun sometimes, but honestly it's a huge b
 
 
 :: ConvoApostate_Ebi_Reno
+<<set $convosLeft to $convosLeft - 1>>\
 "How did you end up in Reno? That's a long way from SF."
 
 "It's not that far," he says. "Just a few hours."
@@ -261,6 +275,7 @@ You shrug. "Being close to home is nice, I guess."
 
 
 :: ConvoApostate_Ebi_Mother
+<<set $convosLeft to $convosLeft - 1>>\
 "How's Ma been doing?"
 
 Jeku takes a deep breath. "You're asking after Ma?"
@@ -286,6 +301,7 @@ You shrug again.
 /** ###################################################################### **/\
 /** # JEKU SNIPPETS                                                      # **/\
 /** ###################################################################### **/\
+<<set $convosLeft to $convosLeft - 1>>\
 "So, uh, that alcohol filter. Handy, huh?"
 
 Oh. He's curious. Well, he doesn't need to know. "Very," you respond, leaning back.
@@ -316,6 +332,7 @@ Oh. He's curious. Well, he doesn't need to know. "Very," you respond, leaning ba
   }
 <</script>><</receive>><</nobr>>
 
+
 :: ConvoApostate_Jeku_Implants_Talk
 You grin. "You really want to know?"
 
@@ -343,7 +360,9 @@ He nods and stares out the window, watching pedestrians amble along.
 
 <<include "ConvoApostate_Choices">>
 
+
 :: ConvoApostate_Jeku_Fiancee
+<<set $convosLeft to $convosLeft - 1>>\
 "I'm due to be married in five weeks."
 
 "Congratulations," you say, "and I do mean that sincerely - that's neither a joke nor a taunt." And you do mean it.
@@ -380,6 +399,7 @@ He'll be on all day if you admit any interest. "Sounds like a nice lady."
 
 
 :: ConvoApostate_Jeku_Life
+<<set $convosLeft to $convosLeft - 1>>\
 "So," asks Jeku, "how have you been doing?"
 
 He's starting here, but he's going to go on and on and keep asking about you and honestly, you'd best cut it off at the head. "Jeku, Jeku, Jeku. I know where you're going with this, and I told you, didn't I? A girl's got to have her secrets."
@@ -390,6 +410,7 @@ He's starting here, but he's going to go on and on and keep asking about you and
 
 
 :: ConvoApostate_Jeku_Childhood
+<<set $convosLeft to $convosLeft - 1>>\
 "You ever think about our childhood?"
 
 "Nope." It's only half a lie. You don't, but you remember its lessons well.
