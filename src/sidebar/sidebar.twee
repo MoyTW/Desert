@@ -22,9 +22,7 @@
   <strong>Ebiaishe Wang</strong>
   The Former Daughter
 <</if>>\
-<h2>DEBUG</h2>\
-<<print passage()>>
-<<button 'Restart'>><<run Engine.restart()>><</button>>
+
 
 :: RestartConfirmation
 Are you sure you want to restart? Your current game will be lost.
