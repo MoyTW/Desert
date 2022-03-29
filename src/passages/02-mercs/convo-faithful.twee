@@ -201,7 +201,7 @@ You swallow your rude comment. "Thanks," you say.
 
 "She-" You pause. You grasp for words. "She's, well. You know how everybody's got problems?"
 
-<span id="cf-j-f"><<button "She does, right?">>
+<span id="cf-j-f"><<button "Ebi, more than anybody, should understand.">>
   <<run setup.replaceWithSending("#cf-j-f")>>
   <<send "ConvoFaithful_Jeku_Fiancee" {}>><</send>>
 <</button>></span>\
