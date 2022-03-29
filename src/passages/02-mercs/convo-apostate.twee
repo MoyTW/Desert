@@ -1,0 +1,254 @@
+:: ConvoApostate_Start
+<<set $ConvoApostate_Continue to false>>\
+Jeku is much more chatty, now that there's food. Maybe it's those old memories, creeping back. Ma Tiger insisted on everybody eating dinner together regularly.
+
+Buried resentments swirl in the back of your mind. Ma Tiger, always stern, always insistent. You push them back, spoon your soup.
+
+<span id="ca-s-btn"><<button "Jeku looks like he wants to say something.">>
+  <<run setup.replaceWithSending("#ca-s-btn")>>
+  <<send "ConvoApostate_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "ConvoApostate_Start" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("ConvoApostate_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: ConvoApostate_Start_2
+"You remember <<tooltip "King">>Ma Tiger's guardian dog. Genetically modified for age and strength. He was old when you were adopted.<</tooltip>>, right?"
+
+You pause. "Yeah," you say.
+
+"Well, he's still kicking. Doing pretty well."
+
+<span id="ca-s-2-btn"><<button "Yeah?">>
+  <<run setup.replaceWithSending("#ca-s-2-btn")>>
+  <<send "ConvoApostate_Start_2" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "ConvoApostate_Start_2" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("ConvoApostate_Start_3") }
+<</script>><</receive>><</nobr>>
+
+
+:: ConvoApostate_Start_3
+"Yeah?" Jeku's watching, waiting. You put on a smile. "That's good," you say. It is good. You liked King, as much as you liked anything in that house.
+
+Jeku falters. "You remember when we were on that trip to Seattle and we got attacked by that mountain lion?" You don't. Jeku examines your face as he speaks. "You know, the one King fought off?"
+
+"No," you say.
+
+"Oh." He looks out the window. It's like you kicked a puppy. You feel - what is this feeling, pity? Nostalgia? He's trying so hard to be friendly. You might as well chat.
+
+<<include "ConvoApostate_Choices">>
+
+
+:: ConvoApostate_Receiver
+/** ###################################################################### **/\
+/** # RECEIVER & CHOICES                                                 # **/\
+/** ###################################################################### **/\
+<<receive "ConvoFaithful_Choices" "Apostate">><<script>>
+  State.variables.ConvoFaithful_Choices = State.temporary.receiveData;
+  setup.Route_ConvoApostate_Receiver();
+<</script>><</receive>>
+<<receive "ConvoApostate_Continue_Button" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    setup.replaceWithWaiting("#ca-c-b");
+    State.variables.ConvoApostate_Continue = true;
+    setup.Route_ConvoApostate_Receiver();
+  }
+<</script>><</receive>>
+
+
+:: ConvoApostate_Continue_Button [widget]
+<<widget "ca-continue-button">>\
+  <span id="ca-c-b"><<button _args[0]>>
+    <<run setup.replaceWithSending("#ca-c-b")>>
+    <<send "ConvoApostate_Continue_Button" {}>><</send>>
+  </span><</button>>\
+<</widget>>\
+
+
+:: ConvoApostate_Choices
+<span id="ca-c-btn">\
+  <<button "Ask Jeku about how his life's been going.">>
+    <<run setup.replaceWithSending("#ca-c-btn")>>
+    <<send "ConvoApostate_Choices" { choice: "LIFE" }>><</send>>
+  <</button>>
+  <<button "Talk about the weather.">>
+    <<run setup.replaceWithSending("#ca-c-btn")>>
+    <<send "ConvoApostate_Choices" { choice: "WEATHER" }>><</send>>
+  <</button>>
+  <<button "Ask after Ma Tiger.">>
+    <<run setup.replaceWithSending("#ca-c-btn")>>
+    <<send "ConvoApostate_Choices" { choice: "MOTHER" }>><</send>>
+  <</button>>
+  <<button "Ask Jeku about living in Reno.">>
+    <<run setup.replaceWithSending("#ca-c-btn")>>
+    <<send "ConvoApostate_Choices" { choice: "RENO" }>><</send>>
+  <</button>>
+</span>\ 
+<<nobr>><<receive "ConvoApostate_Choices" "Apostate">><<script>>
+  if (setup.isApostate()) {
+    if (State.temporary.receiveData.choice === "LIFE") {
+      Engine.play("ConvoApostate_Ebi_Life")
+    } else if (State.temporary.receiveData.choice === "WEATHER") {
+      Engine.play("ConvoApostate_Ebi_Weather")
+    } else if (State.temporary.receiveData.choice === "MOTHER") {
+      Engine.play("ConvoApostate_Ebi_Mother")
+    } else if (State.temporary.receiveData.choice === "RENO") {
+      Engine.play("ConvoApostate_Ebi_Reno")
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: ConvoApostate_Ebi_Life
+/** ###################################################################### **/\
+/** # EBI SNIPPETS                                                       # **/\
+/** ###################################################################### **/\
+"So how's your life been going?"
+
+"Well, it's all right," he says. "I like being an EMT. I have a three-year lease in a nice place. Going to be married soon." He shrugs. "Pay's not great, but it's not terrible."
+
+He looks - well, he looks almost happy. EMT, though. He wanted to be a doctor the last time you saw him, didn't he?
+
+<span id="ca-e-l-btn"><<button "What happened to being a doctor?">>
+  <<run setup.replaceWithSending("#ca-e-l-btn")>>
+  <<send "ConvoApostate_Ebi_Life" {}>><</send>>
+<</button>></span>\ 
+<<nobr>>
+  <<receive "ConvoApostate_Ebi_Life" "Apostate">><<script>>
+    if (setup.isApostate()) {
+      setup.replaceWithWaiting("#ca-e-l-btn");
+      State.variables.ConvoApostate_Ebi_Life = true;
+      setup.Complete_ConvoApostate_Ebi_Life();
+    }
+  <</script>><</receive>>
+  <<receive "ConvoFaithful_Ebi_Life" "Apostate">><<script>>
+    if (setup.isApostate) {
+      State.variables.ConvoFaithful_Ebi_Life = State.temporary.receiveData;
+      setup.Complete_ConvoApostate_Ebi_Life();
+    }
+  <</script>><</receive>>
+<</nobr>>
+
+
+:: ConvoApostate_Ebi_Life_Corporate
+"Corporate doctoring is mind-numbing," he says. "You don't get to make any decisions. You mostly just do what the medical AIs tell you. Sometimes you can appeal the decisions, but you spend most of your days just carrying out whatever the AI says." He lets out a sour chuckle. "I couldn't stand it, you know?"
+
+"I guess," you agree.
+
+"It's because of liability. If the doctor disobeys the AI and messes up, they're vulnerable to a suit. So all the hospitals just force their employees to work exactly to the AI diagnoses."
+
+"Yeah," you agree, "that's messed up."
+
+He shrugs. "That's how the system works."
+
+<<ca-continue-button "Nod and smile.">>
+
+
+:: ConvoApostate_Ebi_Life_Cosmetic
+"Well," says Jeku, "most licensed doctors don't make much money."
+
+"No. Really?"
+
+"Really. It's not like the slum docs. Licensed docs work mostly under AI supervision, and they're honestly pretty interchangable."
+
+"Huh. Interesting."
+
+"You don't see doctors much?"
+
+You laugh. "I see slum docs."
+
+"Well, for licensed doctors, the only ones that make any money at all are cosmetic surgeons, because a lot of people don't really trust an AI when it comes to beauty advice." He shrugs. "I mean, I don't really think that's true, but it does mean that cosmetic surgeons are the only ones that make any real money."
+
+You try to picture it and crack up. "Jekusheke Wang, beauty consultant."
+
+"I make more as an EMT than I would as a licensed doctor, and I get to go outside sometimes."
+
+<<ca-continue-button "Nod and smile.">>
+
+
+:: ConvoApostate_Ebi_Life_Slum
+"Doctoring in the licensed world is," he declares, "frankly, boring."
+
+"Boring? I thought you liked boring."
+
+He doesn't rise to the bait. "Look, licensed doctors have to do what the AI tells them to, otherwise they get sued. Slum docs don't. They can use their discretion. I wanted to be a doctor because - well, you know."
+
+Yeah. You know.
+
+"It turns out that's not what a licensed doctor does. A licensed doctor sees patients in the hospital, after they've been scanned and analyzed. Really, all licensed doctors do is wield the scalpel, the decisions get made by the AI. Ma Tiger would murder me herself if I became an unlicensed doctor, so I became an EMT instead. You get to go outside, you're not quite as bound by the AIs, and you're helping save lives."
+
+"Can't argue."
+
+<<ca-continue-button "Nod and smile.">>
+
+
+:: ConvoApostate_Ebi_Weather
+<<ca-continue-button "TODO.">>
+
+:: ConvoApostate_Ebi_Mother
+<<ca-continue-button "TODO.">>
+
+:: ConvoApostate_Ebi_Reno
+<<ca-continue-button "TODO.">>
+
+:: ConvoApostate_Jeku_Implants
+TODO
+
+<<include "ConvoApostate_Choices">>
+
+:: ConvoApostate_Jeku_Fiancee
+TODO
+
+<<include "ConvoApostate_Choices">>
+
+:: ConvoApostate_Jeku_Life
+TODO
+
+<<include "ConvoApostate_Choices">>
+
+:: ConvoApostate_Jeku_Childhood
+TODO
+
+<<include "ConvoApostate_Choices">>
+
+
+/** ###################################################################### **/\
+/** # UNDER CONSTRUCTION                                                 # **/\
+/** ###################################################################### **/\
+
+
+You chat idly about what he's been up to (EMT, marriage), what the weather's like in Reno (hot), what you've been up to (you're vague; he doesn't need to know), how Ma Tiger's been doing (well, or so he thought), about King (Ma Tiger's genetically modified dog, who was old when you were adopted), about old memories (you mostly remember a house full of suppressed strife).
+
+You order more drinks, drink them. He doesn't partake. Wise.
+
+The sun creeps toward the horizon. Ma Tiger said she'd be here by ten. You check the street outside regularly but, to be honest, you're not sure you'd recognize her if you saw her. Patrons creep in; the bar fills up with a low chatter.
+
+You order more drinks, drink them. The alcohol filter does its work.
+
+A <<tooltip "young couple">>Male, tall, red windbreaker, unarmed; Male, average, scarf and jacket, unarmed.<</tooltip>> take a seat next to you. You're briefly distracted by a <<tooltip "trio of kids">>Short Asian, beanie, unarmed; short white, blue shoes, unarmed; short black woman, plaid coat, unarmed.<</tooltip>> shouting racously at the bar when Jekusheke leaps up in a panic, pointing out the window. "That's her!" he yells.
+
+<span id="ma-l-se-2-btn"><<button "Turn and look.">>
+  <<run setup.replaceWithSending("#ma-l-se-2-btn")>>
+  <<send "MercsApostate_Linner_SceneEnd_2_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsApostate_Linner_SceneEnd_2_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd_3") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsApostate_Linner_SceneEnd_3
+As you turn around, you hear a brief piercing tone, followed by two muted thwaps. You leap out of your seat. That sounds like gauss pistol fire! What the hell?
+
+You turn. There's an older <<tooltip "Asian woman">>Brown jacket, unarmed?<</tooltip>>, struggling with <<tooltip "a man in a yellow jersey">>Pistol on hip.<</tooltip>> and a <<tooltip "short woman with a baseball cap">>Baton and pistol.<</tooltip>>. Closer to the window is a gigantic guard dog, King, Ma Tiger's pet and guardian for as long as you've known him. There are two bloody wounds on his back. He's leaping at another <<tooltip "man in a red shirt">>Holding an extendable baton, pistol on belt.<</tooltip>>. The last assailant involved is holding a gauss pistol, pointing it at King.
+
+You bolt for the door, burst out of the bar. By the time you reach the scene, Ma Tiger's been pulled into the back doors of a nondescript white van. The last kidnapper leaps into the back, shoving the doors, and the van accelerates away, leaving King bleeding on the sidewalk, one leg broken and riddled with bullets.
+
+<span id="ma-l-se-3-btn"><<button "Fuck!">>
+  <<run setup.replaceWithSending("#ma-l-se-3-btn")>>
+  <<send "MercsApostate_Linner_SceneEnd_3_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsApostate_Linner_SceneEnd_3_DONE" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("ChaseApostate_Start") }
+<</script>><</receive>><</nobr>>

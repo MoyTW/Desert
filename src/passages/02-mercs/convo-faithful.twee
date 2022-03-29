@@ -1,0 +1,264 @@
+:: ConvoFaithful_Start
+<<set $ConvoFaithful_Continue to false>>\
+You pick at your salad, watch as Ebi chomps down on the chips. It feels a bit nostalgic, maybe. Maybe she'll be willing to talk now? What's something she'd be nostalgic about?
+
+Well, she always liked <<tooltip "King">>Ma Tiger's guardian dog. She had him when she adopted you. Thirty-three years old, and as per his genetic specs, he's got another twenty years in him yet.<</tooltip>>.
+
+<span id="cf-s-btn"><<button "\"You remember King, right?\"">>
+  <<run setup.replaceWithSending("#cf-s-btn")>>
+  <<send "ConvoFaithful_Start" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "ConvoFaithful_Start" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("ConvoFaithful_Start_2") }
+<</script>><</receive>><</nobr>>
+
+
+:: ConvoFaithful_Start_2
+"You remember King, right?"
+
+Ebi blinks, looks up from her soup. "Yeah."
+
+"Well, he's still kicking. Doing pretty well."
+
+<span id="cf-s-2-btn"><<button "Wait for her response.">>
+  <<run setup.replaceWithSending("#cf-s-2-btn")>>
+  <<send "ConvoFaithful_Start_2" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "ConvoFaithful_Start_2" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("ConvoFaithful_Start_3") }
+<</script>><</receive>><</nobr>>
+
+
+:: ConvoFaithful_Start_3
+"Yeah?" She has a small smile on her face. "That's good." It vanishes, and she returns to eating.
+
+"You remember when we were on that trip to Seattle and we got attacked by that mountain lion?" No response. "You know, the one King fought off?"
+
+"No."
+
+<<tooltip "\"Oh.\"">>Really? We nearly died. That's a big thing to forget.<</tooltip>> You pause. Well, maybe nostalgia only goes so far. Or, well, she was never very happy anyways. You turn to the side, look out the window, and then you realize that Ebi's speaking. You blink, look back at her.
+
+<<cf-continue-button "What did she just say?">>
+
+
+:: ConvoFaithful_Receiver
+/** ###################################################################### **/\
+/** # RECEIVER & CHOICES                                                 # **/\
+/** ###################################################################### **/\
+<<receive "ConvoApostate_Choices" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    State.variables.ConvoApostate_Choices = State.temporary.receiveData;
+    setup.Route_ConvoFaithful_Receiver();
+  }
+<</script>><</receive>>
+<<receive "ConvoFaithful_Continue_Button" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    setup.replaceWithWaiting("#cf-c-b");
+    State.variables.ConvoFaithful_Continue = true;
+    setup.Route_ConvoFaithful_Receiver();
+  }
+<</script>><</receive>>
+
+
+:: ConvoFaithful_Continue_Button [widget]
+<<widget "cf-continue-button">>\
+  <span id="cf-c-b"><<button _args[0]>>
+    <<run setup.replaceWithSending("#cf-c-b")>>
+    <<send "ConvoFaithful_Continue_Button" {}>><</send>>
+  </span><</button>>\
+<</widget>>\
+
+
+:: ConvoFaithful_Choices
+<span id="cf-c-btn">\
+  <<button "Ask about Ebi's implants.">>
+    <<run setup.replaceWithSending("#cf-c-btn")>>
+    <<send "ConvoFaithful_Choices" { choice: "IMPLANTS" }>><</send>>
+  <</button>>
+  <<button "Talk about your fiancee.">>
+    <<run setup.replaceWithSending("#cf-c-btn")>>
+    <<send "ConvoFaithful_Choices" { choice: "FIANCEE" }>><</send>>
+  <</button>>
+  <<button "Ask about what Ebi's been doing all this time.">>
+    <<run setup.replaceWithSending("#cf-c-btn")>>
+    <<send "ConvoFaithful_Choices" { choice: "LIFE" }>><</send>>
+  <</button>>
+  <<button "Reminisce about your childhood.">>
+    <<run setup.replaceWithSending("#cf-c-btn")>>
+    <<send "ConvoFaithful_Choices" { choice: "CHILDHOOD" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "ConvoFaithful_Choices" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    if (State.temporary.receiveData.choice === "IMPLANTS") {
+      Engine.play("ConvoFaithful_Jeku_Implants")
+    } else if (State.temporary.receiveData.choice === "FIANCEE") {
+      Engine.play("ConvoFaithful_Jeku_Fiancee")
+    } else if (State.temporary.receiveData.choice === "LIFE") {
+      Engine.play("ConvoFaithful_Jeku_Life")
+    } else if (State.temporary.receiveData.choice === "CHILDHOOD") {
+      Engine.play("ConvoFaithful_Jeku_Childhood")
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+
+:: ConvoFaithful_Jeku_Implants
+/** ###################################################################### **/\
+/** # JEKU SNIPPETS                                                      # **/\
+/** ###################################################################### **/\
+<<cf-continue-button "TODO.">>
+
+
+:: ConvoFaithful_Jeku_Fiancee
+<<cf-continue-button "TODO.">>
+
+
+:: ConvoFaithful_Jeku_Life
+<<cf-continue-button "TODO.">>
+
+
+:: ConvoFaithful_Jeku_Childhood
+<<cf-continue-button "TODO.">>
+
+
+:: ConvoFaithful_Ebi_Life
+/** ###################################################################### **/\
+/** # EBI SNIPPETS                                                       # **/\
+/** ###################################################################### **/\
+"So how's your life been going?" asks Ebi.
+
+You think for a moment. "Well, it's all right. I like being an EMT. I have a three year lease in a nice place. Going to be married soon. Pay's not great, but it's not terrible."
+
+"What happened to being a doctor?"
+
+<span id="cf-e-l-btn">\
+  <<button "I couldn't stand how little autonomy I had in corporate doctoring.">>
+    <<run setup.replaceWithSending("#cf-e-l-btn")>>
+    <<send "ConvoFaithful_Ebi_Life" { choice: "CORPORATE" }>><</send>>
+  <</button>>
+  <<button "The only doctors that make any money are cosmetic surgeons, and I didn't fit in.">>
+    <<run setup.replaceWithSending("#cf-e-l-btn")>>
+    <<send "ConvoFaithful_Ebi_Life" { choice: "COSMETIC" }>><</send>>
+  <</button>>
+  <<button "It turns out that proper doctoring is a lot less exciting than slum doctoring.">>
+    <<run setup.replaceWithSending("#cf-e-l-btn")>>
+    <<send "ConvoFaithful_Ebi_Life" { choice: "SLUM" }>><</send>>
+  <</button>>
+</span>\
+<<nobr>><<receive "ConvoFaithful_Ebi_Life" "Faithful">><<script>>
+  if (setup.isFaithful()) {
+    if (State.temporary.receiveData.choice === "CORPORATE") {
+      Engine.play("ConvoFaithful_Ebi_Life_Corporate");
+    } else if (State.temporary.receiveData.choice === "COSMETIC") {
+      Engine.play("ConvoFaithful_Ebi_Life_Cosmetic");
+    } else if (State.temporary.receiveData.choice === "SLUM") {
+      Engine.play("ConvoFaithful_Ebi_Life_Slum");
+    }
+  }
+<</script>><</receive>><</nobr>>
+
+:: ConvoFaithful_Ebi_Life_Corporate
+"Corporate doctoring is mind-numbing," you say. "You don't get to make any decisions. You mostly just do what the medical AIs tell you. Sometimes you can appeal the decisions, but you spend most of your days just carrying out whatever the AI says." You chuckle. "I couldn't stand it, you know?"
+
+"I guess," says Ebi.
+
+"It's because of liability," you say. "If the doctor disobeys the AI and messes up, they're vulnerable to a suit. So all the hospitals just force their employees to work exactly to the AI diagnoses."
+
+"Yeah, that's messed up," she agrees.
+
+You shrug. "That's how the system works."
+
+<<include "ConvoFaithful_Choices">>
+
+
+:: ConvoFaithful_Ebi_Life_Cosmetic
+"Well, most licensed doctors don't make much money."
+
+"No?" she asks. "Really?"
+
+"Really. It's not like the slum docs. Licensed docs work mostly under AI supervision, and they're honestly pretty interchangable."
+
+"Huh. Interesting."
+
+"You don't see doctors much?"
+
+She laughs. "I see slum docs."
+
+"Well, for licensed doctors, the only ones that make any money at all are cosmetic surgeons, because a lot of people don't really trust an AI when it comes to beauty advice." You shrug. "I mean, I don't really think that's true, but it does mean that cosmetic surgeons are the only ones that make any real money."
+
+Ebi grins. "Jekusheke Wang, beauty consultant."
+
+"I make more as an EMT than I would as a licensed doctor," you say, "and I get to go outside sometimes."
+
+<<include "ConvoFaithful_Choices">>
+
+
+:: ConvoFaithful_Ebi_Life_Slum
+"Doctoring in the licensed world is, frankly, boring."
+
+"Boring?" She raises an eyebrow. "I thought you liked boring."
+
+You ignore the insult. "Look, licensed doctors have to do what the AI tells them to, otherwise they get sued. Slum docs don't. They can use their discretion. I wanted to be a doctor because - well, you know."
+
+She nods. She grew up in the slums too.
+
+"It turns out that's not what a licensed doctor does. A licensed doctor sees patients in the hospital, after they've been scanned and analyzed. Really, all licensed doctors do is wield the scalpel, the decisions get made by the AI. Ma Tiger would murder me herself if I became an unlicensed doctor, so I became an EMT instead. You get to go outside, you're not quite as bound by the AIs, and you're helping save lives."
+
+"Can't argue," she says.
+
+<<include "ConvoFaithful_Choices">>
+
+
+:: ConvoFaithful_Ebi_Weather
+TODO
+<<include "ConvoFaithful_Choices">>
+
+:: ConvoFaithful_Ebi_Mother
+TODO
+<<include "ConvoFaithful_Choices">>
+
+:: ConvoFaithful_Ebi_Reno
+TODO
+<<include "ConvoFaithful_Choices">>
+
+
+
+/** ###################################################################### **/\
+/** # UNDER CONSTRUCTION                                                 # **/\
+/** ###################################################################### **/\
+
+
+You tell her about your fiancee, your career as an EMT. She asks about the weather. It's July, you tell her, and the days are long and the sun hot. She doesn't give up much about what she's been up to, and honestly, you don't push. You reminisce about cheap dinners, about playing with King, Ma Tiger's ancient guardian dog. You had some good times, right? You'd like to think so.
+
+Time passes. Whenever the server comes by, she orders another round of drinks. Lacking a filter, you don't participate.
+
+It's getting later now, and customers are starting to trickle in. You watch the cars pass by through the windows in the lengthening shadows. A white van pulls up outside the bar. Four mismatched characters, all strapped, saunter out, chatting idly.
+
+She puts back a frankly stunning amount of alcohol. You wonder if you should bring up the fact that, despite agreeing to split half and half, she's really running up the bill.
+
+A woman with a giant dog crosses the street towards the bar. The dog is - oh, that's King and Ma. Great. She finally made it. Suddenly, the four the characters dash up to Ma, grab her. What? You jump up, point. "That's her!" you yell.
+
+<span id="mf-ls-se-2-btn"><<button "Get to the door!">>
+  <<run setup.replaceWithSending("#mf-ls-se-2-btn")>>
+  <<send "MercsFaithful_Linner_SceneEnd_2_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsFaithful_Linner_SceneEnd_2_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd_3") }
+<</script>><</receive>><</nobr>>
+
+
+:: MercsFaithful_Linner_SceneEnd_3
+Ebi spins in her seat as you towards the door. One of the kidnappers kicks King, hard, knocking him sideways. Another pulls out a pistol. You hear a brief piercing tone, followed by two pistol shots, and King shudders.
+
+Shit, they're all armed! You stumble over a chair as you run for the door, knocking another patron aside. "Sorry," you yell, scrambling. You burst through the door to see two of the attackers, a man in a yellow jersey and a woman in a blue shirt, dragging Ma Tiger back. Another gunshot goes off. A man in a red shirt is swinging a baton at King, who's biting furiously. There's a meaty thwack, a hit on King's leg, and it curves unnaturally. King collapses to the ground. Ma Tiger vanishes into the back of the van.
+
+Ebi dashes past you, a blur, but by the time she reaches the scene, the van's already peeling away. You throw a glance at King. He's lying on the ground, whimpering. His leg looks to be broken, and he's been shot, several times. You spy Ma Tiger's car, parked only feet away. Her keys lie, abandoned, on the sidewalk.
+
+<span id="mf-ls-se-3-btn"><<button "What the fuck is going on?">>
+  <<run setup.replaceWithSending("#mf-ls-se-3-btn")>>
+  <<send "MercsFaithful_Linner_SceneEnd_3_DONE" {}>><</send>>
+<</button>></span>\ 
+<<nobr>><<receive "MercsFaithful_Linner_SceneEnd_3_DONE" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("ChaseFaithful_Start") }
+<</script>><</receive>><</nobr>>

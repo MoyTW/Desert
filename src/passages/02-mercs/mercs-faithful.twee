@@ -577,43 +577,5 @@ The bartender returns, bearing the food. Cheap, flash-reheated bar fare. It alwa
   <<send "MercsFaithful_Linner_SceneEnd_DONE" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_Linner_SceneEnd_DONE" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd_2") }
-<</script>><</receive>><</nobr>>
-
-
-:: MercsFaithful_Linner_SceneEnd_2
-You pick at your salad, watch as Ebi chomps down on the chips. It feels a bit nostalgic, maybe. She seems more willing to chat, now. You keep it light.
-
-You tell her about your fiancee, your career as an EMT. She asks about the weather. It's July, you tell her, and the days are long and the sun hot. She doesn't give up much about what she's been up to, and honestly, you don't push. You reminisce about cheap dinners, about playing with King, Ma Tiger's ancient guardian dog. You had some good times, right? You'd like to think so.
-
-Time passes. Whenever the server comes by, she orders another round of drinks. Lacking a filter, you don't participate.
-
-It's getting later now, and customers are starting to trickle in. You watch the cars pass by through the windows in the lengthening shadows. A white van pulls up outside the bar. Four mismatched characters, all strapped, saunter out, chatting idly.
-
-She puts back a frankly stunning amount of alcohol. You wonder if you should bring up the fact that, despite agreeing to split half and half, she's really running up the bill.
-
-A woman with a giant dog crosses the street towards the bar. The dog is - oh, that's King and Ma. Great. She finally made it. Suddenly, the four the characters dash up to Ma, grab her. What? You jump up, point. "That's her!" you yell.
-
-<span id="mf-ls-se-2-btn"><<button "Get to the door!">>
-  <<run setup.replaceWithSending("#mf-ls-se-2-btn")>>
-  <<send "MercsFaithful_Linner_SceneEnd_2_DONE" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "MercsFaithful_Linner_SceneEnd_2_DONE" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd_3") }
-<</script>><</receive>><</nobr>>
-
-
-:: MercsFaithful_Linner_SceneEnd_3
-Ebi spins in her seat as you towards the door. One of the kidnappers kicks King, hard, knocking him sideways. Another pulls out a pistol. You hear a brief piercing tone, followed by two pistol shots, and King shudders.
-
-Shit, they're all armed! You stumble over a chair as you run for the door, knocking another patron aside. "Sorry," you yell, scrambling. You burst through the door to see two of the attackers, a man in a yellow jersey and a woman in a blue shirt, dragging Ma Tiger back. Another gunshot goes off. A man in a red shirt is swinging a baton at King, who's biting furiously. There's a meaty thwack, a hit on King's leg, and it curves unnaturally. King collapses to the ground. Ma Tiger vanishes into the back of the van.
-
-Ebi dashes past you, a blur, but by the time she reaches the scene, the van's already peeling away. You throw a glance at King. He's lying on the ground, whimpering. His leg looks to be broken, and he's been shot, several times. You spy Ma Tiger's car, parked only feet away. Her keys lie, abandoned, on the sidewalk.
-
-<span id="mf-ls-se-3-btn"><<button "What the fuck is going on?">>
-  <<run setup.replaceWithSending("#mf-ls-se-3-btn")>>
-  <<send "MercsFaithful_Linner_SceneEnd_3_DONE" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "MercsFaithful_Linner_SceneEnd_3_DONE" "Faithful">><<script>>
-  if (setup.isFaithful()) { Engine.play("ChaseFaithful_Start") }
+  if (setup.isFaithful()) { Engine.play("ConvoFaithful_Start") }
 <</script>><</receive>><</nobr>>

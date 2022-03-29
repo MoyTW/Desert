@@ -478,43 +478,5 @@ The bartender returns, bearing food and drink, obviously flash-heated, from how 
   <<send "MercsApostate_Linner_SceneEnd_DONE" {}>><</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsApostate_Linner_SceneEnd_DONE" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd_2") }
-<</script>><</receive>><</nobr>>
-
-
-:: MercsApostate_Linner_SceneEnd_2
-Jeku is much more chatty, now that there's food. Maybe it's those old memories, creeping back. Ma Tiger insisted on everybody eating dinner together regularly.
-
-You chat idly about what he's been up to (EMT, marriage), what the weather's like in Reno (hot), what you've been up to (you're vague; he doesn't need to know), how Ma Tiger's been doing (well, or so he thought), about King (Ma Tiger's genetically modified dog, who was old when you were adopted), about old memories (you mostly remember a house full of suppressed strife).
-
-You order more drinks, drink them. He doesn't partake. Wise.
-
-The sun creeps toward the horizon. Ma Tiger said she'd be here by ten. You check the street outside regularly but, to be honest, you're not sure you'd recognize her if you saw her. Patrons creep in; the bar fills up with a low chatter.
-
-You order more drinks, drink them. The alcohol filter does its work.
-
-A <<tooltip "young couple">>Male, tall, red windbreaker, unarmed; Male, average, scarf and jacket, unarmed.<</tooltip>> take a seat next to you. You're briefly distracted by a <<tooltip "trio of kids">>Short Asian, beanie, unarmed; short white, blue shoes, unarmed; short black woman, plaid coat, unarmed.<</tooltip>> shouting racously at the bar when Jekusheke leaps up in a panic, pointing out the window. "That's her!" he yells.
-
-<span id="ma-l-se-2-btn"><<button "Turn and look.">>
-  <<run setup.replaceWithSending("#ma-l-se-2-btn")>>
-  <<send "MercsApostate_Linner_SceneEnd_2_DONE" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "MercsApostate_Linner_SceneEnd_2_DONE" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd_3") }
-<</script>><</receive>><</nobr>>
-
-
-:: MercsApostate_Linner_SceneEnd_3
-As you turn around, you hear a brief piercing tone, followed by two muted thwaps. You leap out of your seat. That sounds like gauss pistol fire! What the hell?
-
-You turn. There's an older <<tooltip "Asian woman">>Brown jacket, unarmed?<</tooltip>>, struggling with <<tooltip "a man in a yellow jersey">>Pistol on hip.<</tooltip>> and a <<tooltip "short woman with a baseball cap">>Baton and pistol.<</tooltip>>. Closer to the window is a gigantic guard dog, King, Ma Tiger's pet and guardian for as long as you've known him. There are two bloody wounds on his back. He's leaping at another <<tooltip "man in a red shirt">>Holding an extendable baton, pistol on belt.<</tooltip>>. The last assailant involved is holding a gauss pistol, pointing it at King.
-
-You bolt for the door, burst out of the bar. By the time you reach the scene, Ma Tiger's been pulled into the back doors of a nondescript white van. The last kidnapper leaps into the back, shoving the doors, and the van accelerates away, leaving King bleeding on the sidewalk, one leg broken and riddled with bullets.
-
-<span id="ma-l-se-3-btn"><<button "Fuck!">>
-  <<run setup.replaceWithSending("#ma-l-se-3-btn")>>
-  <<send "MercsApostate_Linner_SceneEnd_3_DONE" {}>><</send>>
-<</button>></span>\ 
-<<nobr>><<receive "MercsApostate_Linner_SceneEnd_3_DONE" "Apostate">><<script>>
-  if (setup.isApostate()) { Engine.play("ChaseApostate_Start") }
+  if (setup.isApostate()) { Engine.play("ConvoApostate_Start") }
 <</script>><</receive>><</nobr>>
