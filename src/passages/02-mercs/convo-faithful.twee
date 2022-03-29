@@ -71,22 +71,30 @@ Ebi blinks, looks up from her soup. "Yeah."
 
 :: ConvoFaithful_Choices
 <span id="cf-c-btn">\
-  <<button "Ask about Ebi's implants.">>
-    <<run setup.replaceWithSending("#cf-c-btn")>>
-    <<send "ConvoFaithful_Choices" { choice: "IMPLANTS" }>><</send>>
-  <</button>>
-  <<button "Talk about your fiancee.">>
-    <<run setup.replaceWithSending("#cf-c-btn")>>
-    <<send "ConvoFaithful_Choices" { choice: "FIANCEE" }>><</send>>
-  <</button>>
-  <<button "Ask about what Ebi's been doing all this time.">>
-    <<run setup.replaceWithSending("#cf-c-btn")>>
-    <<send "ConvoFaithful_Choices" { choice: "LIFE" }>><</send>>
-  <</button>>
-  <<button "Reminisce about your childhood.">>
-    <<run setup.replaceWithSending("#cf-c-btn")>>
-    <<send "ConvoFaithful_Choices" { choice: "CHILDHOOD" }>><</send>>
-  <</button>>
+  <<if not hasVisited("ConvoFaithful_Jeku_Implants")>>\
+    <<button "Ask about Ebi's implants.">>
+      <<run setup.replaceWithSending("#cf-c-btn")>>
+      <<send "ConvoFaithful_Choices" { choice: "IMPLANTS" }>><</send>>
+    <</button>>
+  <</if>>\
+  <<if not hasVisited("ConvoFaithful_Jeku_Fiancee")>>\
+    <<button "Talk about your fiancee.">>
+      <<run setup.replaceWithSending("#cf-c-btn")>>
+      <<send "ConvoFaithful_Choices" { choice: "FIANCEE" }>><</send>>
+    <</button>>
+  <</if>>\
+  <<if not hasVisited("ConvoFaithful_Jeku_Life")>>\
+    <<button "Ask about what Ebi's been doing all this time.">>
+      <<run setup.replaceWithSending("#cf-c-btn")>>
+      <<send "ConvoFaithful_Choices" { choice: "LIFE" }>><</send>>
+    <</button>>
+  <</if>>\
+  <<if hasVisited("ConvoFaithful_Jeku_Implants") or hasVisited("ConvoFaithful_Jeku_Fiancee") or hasVisited("ConvoFaithful_Jeku_Life")>>\
+    <<button "Reminisce about your childhood.">>
+      <<run setup.replaceWithSending("#cf-c-btn")>>
+      <<send "ConvoFaithful_Choices" { choice: "CHILDHOOD" }>><</send>>
+    <</button>>
+  <</if>>\
 </span>\
 <<nobr>><<receive "ConvoFaithful_Choices" "Faithful">><<script>>
   if (setup.isFaithful()) {
@@ -107,19 +115,139 @@ Ebi blinks, looks up from her soup. "Yeah."
 /** ###################################################################### **/\
 /** # JEKU SNIPPETS                                                      # **/\
 /** ###################################################################### **/\
-<<cf-continue-button "TODO.">>
+"So, uh, that alcohol filter. Handy, huh?"
+
+"Very."
+
+Right. Well, you're going to have to convince her to tell you. "Look," you say, "just - just in case you get picked up. You don't have a record, do you?"
+
+She chuckles. "Not as far as I'm aware."
+
+"Right. If we do get picked up and scanned, can you at least give me an idea at what you'll pop for? It'd help if I have to do any talking."
+
+<span id="cf-j-i"><<button "Is she going to say?">>
+  <<run setup.replaceWithSending("#cf-j-i")>>
+  <<send "ConvoFaithful_Jeku_Implants" {}>><</send>>
+<</button>></span>\
+<<nobr>>
+  <<receive "ConvoFaithful_Jeku_Implants" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      setup.replaceWithWaiting("#cf-j-i");
+      State.variables.ConvoFaithful_Jeku_Implants = true;
+      setup.Complete_ConvoFaithful_Jeku_Implants();
+    }
+  <</script>><</receive>>
+  <<receive "ConvoApostate_Jeku_Implants" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.ConvoApostate_Jeku_Implants = State.temporary.receiveData;
+      setup.Complete_ConvoFaithful_Jeku_Implants();
+    }
+  <</script>><</receive>>
+<</nobr>>
+
+:: ConvoFaithful_Jeku_Implants_Talk
+She grins. "You really want to know?"
+
+"Look, if you're not-"
+
+"Well, there's that alcohol filter, to start. What else? Leg grafts, arm grafts, minor heart enhancements, augmented lungs, a smoke filter, and lasik. Oh! And I dyed my hair."
+
+"Shit," you whisper. You weren't expecting quite that much. "All unregistered?"
+
+"The lasik was done by a very reputable doctor, thank you very much."
+
+"That's-" You look around the bar. Nobody seems to be paying any attention. "That's a lot."
+
+"It is, isn't it?" She grins. You shake your head.
+
+"Let's talk about something else."
+
+<<cf-continue-button "Please.">>
+
+:: ConvoFaithful_Jeku_Implants_Evade
+"Like I said, a girl's got her secrets."
+
+Well, fine. It was worth a try.
+
+<<cf-continue-button "Watch the pedestrians go by.">>
 
 
 :: ConvoFaithful_Jeku_Fiancee
-<<cf-continue-button "TODO.">>
+"I'm due to be married in five weeks."
+
+Ebi pauses. "Congratulations," she says, "and I do mean that sincerely - that's neither a joke nor a taunt."
+
+You swallow your rude comment. "Thanks," you say.
+
+"How'd you meet?"
+
+"On the job. She's a doctor at one of the clinics I worked at."
+
+"How long?"
+
+"Two and a half years."
+
+"What's she like?"
+
+"She-" You pause. You grasp for words. "She's, well. You know how everybody's got problems?"
+
+"Yeah."
+
+"She doesn't."
+
+Ebi raises an eyebrow. "I don't believe you."
+
+"I didn't, either. But it's true. Somehow, she got through life without anything bad happening to her." You pause. "Of course she's known people who died; her great-grandparents both died. But they died with their children and grandchildren and great-granchildren in a nice little death ceremony in a park, just drifted off to sleep. And, mind, she's not sequestered away from the world. She worked four years in a shitty nonprofit clinic treating the poorest and sickets people in the slums. It's just, somehow, none of it seems to have hurt her. She's been mugged, but only once, and she hit the gangers in the stomach and it just so happened that there was a police cruiser watching and they jumped out and beat the shit out of them, and she got all her stuff back. She dated three guys before me but all the breakups were very nice and amicable and if she's bitter, if anything in that made a lasting impression on her, it's - I don't know." You realize you've been talking for a very long time.
+
+Ebi is watching you, an eyebrow raised.
+
+"Anybody who says what doesn't kill you makes you stronger is deluded," you say. "It just hurts you. You've got it, I've got it, Ma Tiger's got it." You pause. "Kore doesn't have it. I don't know. Sorry. I didn't mean to - you know."
+
+"Sounds like a nice lady."
+
+<<cf-continue-button "Yeah. She is.">>
 
 
 :: ConvoFaithful_Jeku_Life
-<<cf-continue-button "TODO.">>
+"So," you ask, "how have you been doing?"
+
+She leans in. "Jeku," she says, "Jeku, Jeku. I know where you're going with this, and I told you, didn't I? A girl's got to have her secrets."
+
+"Well, it was worth a try." You just wish she'd be less condescending when she didn't want to talk. That part of her certainly hasn't changed.
+
+<<cf-continue-button "Fine, what would you rather talk about?">>
 
 
 :: ConvoFaithful_Jeku_Childhood
-<<cf-continue-button "TODO.">>
+"You ever think about our childhood?"
+
+"Nope." The answer is instant. It's also almost certainly a lie.
+
+"Really?"
+
+"Really."
+
+"You never wonder what happened to Spark?"
+
+"Nope."
+
+"You remember <<tooltip "Dirty Harry">>The closest thing a teenage Ebi ever had to romance. It was not a traditional romance.<</tooltip>>?"
+
+"Yeah."
+
+"You wanna know where he ended up?"
+
+"Nope."
+
+"We had some good times with King, didn't we?"
+
+"Yeah."
+
+You sigh. "Ebi, if you don't want to talk about this, you can just tell me."
+
+"Oh, I know."
+
+<<cf-continue-button "Goddammit Ebi.">>
 
 
 :: ConvoFaithful_Ebi_Life
@@ -211,26 +339,103 @@ She nods. She grew up in the slums too.
 
 
 :: ConvoFaithful_Ebi_Weather
-TODO
+Ebi leans back. "So, how's the weather here in Reno?"
+
+"Dry, mostly. Hot during the day, cold at night." You grin. "July's pretty warm, though. Nights stay above freezing."
+
+"You like it?"
+
+You suppose. "I like the summers. Snow's fun sometimes, but honestly it's a huge bother."
+
+"I don't think I've ever seen snow."
+
+"Yeah, it's fun the first couple of times but it gets old fast." You shrug. "Eh. It's all right."
+
 <<include "ConvoFaithful_Choices">>
 
-:: ConvoFaithful_Ebi_Mother
-TODO
-<<include "ConvoFaithful_Choices">>
 
 :: ConvoFaithful_Ebi_Reno
-TODO
+"How did you end up in Reno?" Ebi leans in. "That's a long way from SF."
+
+You hesitate. Truth is, you followed your second girlfriend, six years ago, and it all ended awfully. You're not sure you want to get into that right now.
+
+Especially not with Ebi. Unless she's a completely different person, she'd just needle you about it, endlessly.
+
+"It's not that far," you protest. "Just a few hours."
+
+"It's not close, either."
+
+"Well," you say, shrugging, "close enough."
+
+<span id="cf-e-r"><<button "Will she drop it?">>
+  <<run setup.replaceWithSending("#cf-e-r")>>
+  <<send "ConvoFaithful_Ebi_Reno" {}>><</send>>
+<</button>></span>\
+<<nobr>>
+  <<receive "ConvoFaithful_Ebi_Reno" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      setup.replaceWithWaiting("#cf-e-r");
+      State.variables.ConvoFaithful_Ebi_Reno = true;
+      setup.Complete_ConvoFaithful_Ebi_Reno();
+    }
+  <</script>><</receive>>
+  <<receive "ConvoApostate_Ebi_Reno" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.ConvoApostate_Ebi_Reno = State.temporary.receiveData;
+      setup.Complete_ConvoFaithful_Ebi_Reno();
+    }
+  <</script>><</receive>>
+<</nobr>>
+
+
+:: ConvoFaithful_Ebi_Reno_Push
+"You moved to Reno because it was close enough?"
+
+Goddammit. "You're not going to drop this, are you?"
+
+"Jeku," she says, almost mockingly, "if you tell me to drop it, I'll drop it. If you don't, I won't."
+
+"Fine! Fine. Then drop it."
+
+"Dropped."
+
 <<include "ConvoFaithful_Choices">>
 
 
+:: ConvoFaithful_Ebi_Reno_Drop
+She shrugs and lets it go. "Being close to home is nice, I guess."
 
+"Yeah."
+
+<<include "ConvoFaithful_Choices">>
+
+
+:: ConvoFaithful_Ebi_Mother
+"How's Ma been doing?"
+
+This won't go well. "You're asking after Ma?"
+
+"I'm asking after Ma."
+
+"Well, she's been the same." You pause and study Ebi's face. It's unmoving. "You know her."
+
+"Do I? I guess I do. She pluck any other orphans off the street to play house with?"
+
+"Jesus," you mutter, unable to stop yourself. "No. Is that - is that how you always saw it?"
+
+She shrugs.
+
+"I - look," he says, "let's talk about something else, okay? Just. Not now."
+
+She shrugs again.
+
+<<include "ConvoFaithful_Choices">>
+
+
+:: ConvoFaithful_End
 /** ###################################################################### **/\
 /** # UNDER CONSTRUCTION                                                 # **/\
 /** ###################################################################### **/\
-
-
-You tell her about your fiancee, your career as an EMT. She asks about the weather. It's July, you tell her, and the days are long and the sun hot. She doesn't give up much about what she's been up to, and honestly, you don't push. You reminisce about cheap dinners, about playing with King, Ma Tiger's ancient guardian dog. You had some good times, right? You'd like to think so.
-
 Time passes. Whenever the server comes by, she orders another round of drinks. Lacking a filter, you don't participate.
 
 It's getting later now, and customers are starting to trickle in. You watch the cars pass by through the windows in the lengthening shadows. A white van pulls up outside the bar. Four mismatched characters, all strapped, saunter out, chatting idly.
