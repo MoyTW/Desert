@@ -381,7 +381,16 @@ He nods and stares out the window, watching pedestrians amble along.
 
 "She-" He pauses, starts, pauses again. "She's, well. You know how everybody's got problems?"
 
-"Yeah."
+<span id="ca-j-f"><<button "\"Yeah.\"">>
+  <<run setup.replaceWithSending("#ca-j-f")>>
+  <<send "ConvoApostate_Jeku_Fiancee" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "ConvoApostate_Jeku_Fiancee" "Apostate">><<script>>
+  if (setup.isApostate()) { Engine.play("ConvoApostate_Jeku_Fiancee_2") }
+<</script>><</receive>><</nobr>>
+
+:: ConvoApostate_Jeku_Fiancee_2
+"Yeah," you agree.
 
 <<tooltip "\"She doesn't.\"">>Hahahahahaha! Oh, he's serious.<</tooltip>>
 

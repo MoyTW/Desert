@@ -201,7 +201,16 @@ You swallow your rude comment. "Thanks," you say.
 
 "She-" You pause. You grasp for words. "She's, well. You know how everybody's got problems?"
 
-"Yeah."
+<span id="cf-j-f"><<button "She does, right?">>
+  <<run setup.replaceWithSending("#cf-j-f")>>
+  <<send "ConvoFaithful_Jeku_Fiancee" {}>><</send>>
+<</button>></span>\
+<<nobr>><<receive "ConvoFaithful_Jeku_Fiancee" "Faithful">><<script>>
+  if (setup.isFaithful()) { Engine.play("ConvoFaithful_Jeku_Fiancee_2") }
+<</script>><</receive>><</nobr>>
+
+:: ConvoFaithful_Jeku_Fiancee_2
+"Yeah," she agrees.
 
 "She doesn't."
 
