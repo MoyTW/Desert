@@ -71,7 +71,6 @@ Please enter the session identifier you'd like to join.
 <<done>><<script>>
   const button = $('#jg-join-button button')
   $('#jg-session-input input').on('input', function(ev) {
-    console.log(setup.Websocket.isUuid);
     if (setup.Websocket.isUuid(ev.target.value)) {
       button.html('Join game.')
       button.prop('disabled', false)

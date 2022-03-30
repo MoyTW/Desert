@@ -207,7 +207,9 @@
         return;
       }
 
-      console.log(`Found receive macro for ${this.args[0]}`);
+      if (DEBUG) {
+        console.log(`Found receive macro for ${this.args[0]}`);
+      }
 
       const macroPayload = this.payload;
       const payloadFn = function(data: object) {
