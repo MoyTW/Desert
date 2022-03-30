@@ -23,15 +23,52 @@ Desert
   <<set $selectCharacterHostConfirmed to false>>
   <<set $selectCharacterPartnerConfirmed to false>>
 <</nobr>>\
-<h1 class="game-title">MA TIGER'S TERRIBLE TRIP</h1>\
-<h2 class="passage-h2">Main Menu</h2>\
-<<button [[Host a game|HostGame]]>>
-  <<set $sessionId to setup.Websocket.uuidv4()>>
-  <<set $hostClientId to setup.Websocket.getClientId()>>
-  <<connect $sessionId>>
-<</button>>
-<<button [[Join a game|JoinGame]]>><</button>>
-<<button [[Credits|Credits]]>><</button>>
+<<include "CheckIfShouldRestartAs">>\
+<<if _shouldRestart>>\
+  <h1>Swapping characters and restarting...</h1>\
+  Please wait, the swap should be done momentarily.
+  <<nobr>>
+    <<set $sessionId to _restartSessionId>>
+    <<set $hostClientId to _restartHostClientId>>
+    <<connect $sessionId>>
+    <<send 'SELECT_CHARACTER_SELECTED' { characterRole: _restartAs }>><</send>>
+    <<send 'SELECT_CHARACTER_CONFIRMED' {}>><</send>>
+  <</nobr>>\
+<<else>>\
+  <h1 class="game-title">MA TIGER'S TERRIBLE TRIP</h1>\
+  <h2 class="passage-h2">Main Menu</h2>\
+  <<button [[Host a game|HostGame]]>>
+    <<set $sessionId to setup.Websocket.uuidv4()>>
+    <<set $hostClientId to setup.Websocket.getClientId()>>
+    <<connect $sessionId>>
+  <</button>>
+  <<button [[Join a game|JoinGame]]>><</button>>
+  <<button [[Credits|MainMenu_Credits]]>><</button>>
+<</if>>\
+
+
+:: CheckIfShouldRestartAs
+<<nobr>><<script>>
+  const storage = window.localStorage;
+  const restartAs = storage.getItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_As`);
+  const restartSessionId = storage.getItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Session_Id`);
+  const restartHostClientId = storage.getItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Host_Client_Id`);
+
+  if (restartAs || restartSessionId || restartHostClientId) {
+    if (!(restartAs && restartSessionId && restartHostClientId)) {
+      console.errror(`Could not restart; local storage inconsistent!`);
+    } else {
+      State.temporary.restartAs = restartAs;
+      State.temporary.restartSessionId = restartSessionId;
+      State.temporary.restartHostClientId = restartHostClientId;
+      State.temporary.shouldRestart = true;
+    }
+  }
+
+  storage.removeItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_As`);
+  storage.removeItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Session_Id`);
+  storage.removeItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Host_Client_Id`);
+<</script>><</nobr>>\
 
 
 :: HostGame
@@ -88,30 +125,8 @@ Please enter the session identifier you'd like to join.
 <</receive>>\
 
 
-:: Credits
-Ma Tiger's Terrible Trip was made by by Travis Moy (<a href="https://twitter.com/MuffiTuffi" target="_blank" rel="noopener noreferrer">Twitter</a>, <a href="https://muffituffiwuffi.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>) and released for <a href="https://www.springthing.net/2022/" target="_blank" rel="noopener noreferrer">Spring Thing 2022</a>.
-
-Title font: <a href="https://www.1001fonts.com/hello-denver-display-font.html" target="_blank" rel="noopener noreferrer">HELLO DENVER DISPLAY</a> by <a href="https://www.1001fonts.com/users/goodapples/" target="_blank" rel="noopener noreferrer">Good Apples</a>, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>
-Image used in the cover art: <a href="https://commons.wikimedia.org/wiki/File:Reno_Ricoh_(22030858236).jpg" target="_blank" rel="noopener noreferrer">Reno Ricoh</a> by <a href="https://www.flickr.com/people/12837894@N04" target="_blank" rel="noopener noreferrer">Kathy Drasky</a>, <a href="https://creativecommons.org/licenses/by/2.0/deed.en#" target="_blank" rel="noopener noreferrer">CC BY 2.0</a>
-
-Thank you to all the testers:
-Amanda Walker
-Tom Walker
-Autumn Chen
-Sam Marcus
-Pinkunz
-Joey Acrimonious
-Dr.McNastyPhD
-Kit Riemer
-Roscopoppolis
-Inferno#3671
-pepsi#1213
-Andrew Schultz
-
-Additional thanks to:
-Dan Fabulich
-SjoerdHekking
-The Twine Games Discord server
+:: MainMenu_Credits
+<<include "Credits_Text">>
 
 <<button [[Main Menu|Start]]>><</button>>
 

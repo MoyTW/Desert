@@ -531,18 +531,50 @@ The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says
 /** ###################################################################### **/\
 /** # THANK YOU                                                          # **/\
 /** ###################################################################### **/\
-Thanks for playing!
+<h1>The End</h1>\
+Thank you for playing Ma Tiger's Terrible Trip! I hope you enjoyed! If you had fun, I'd encourage you to try replaying with the other sibling, preferably with the same partner.
 
-This version of the game is for testing only. Not for individual resale. Or. Look, there's a joke in there, but I'm too tired to find it. Sorry!
+If you're interested in the technical aspects behind this game, I've put a link to the source in the About section.
 
-Anyways, please send all feedback to moytravis@gmail.com, or whatever method I used to contact you. Here are some questions I'm looking for feedback on:
-<ol>
-  <li>Were there any bugs or other technical difficulties you encountered, especially with the network code? If so, please give as detailed a description as you can.</li>
-  <li>Did you feel like the choices presented gave the impression that you were engaging with the other player in a satisfactory way?</li>
-  <li>How did the timed section feel, in terms of usability, urgency and fun?</li>
-  <li>Are there any suggestions you would have for improving the multiplayer aspect of the game?</li>
-  <li>Did the player playing Ebi communicate to the player play Jeku what the last game decision was?</li>
-</ol>
-Of course, any other feedback you have is welcome, up to and including typos, plot criticism, and rants about writing style and prose.
+<span id="es-ty"><<button "Restart as Ebiaishe.">>
+  <<run setup.replaceWithSending("#es-ty")>>
+  <<set _restartSessionId to setup.Websocket.uuidv4()>>
+  <<send "EndingFaithful_Restart" { sessionId: _restartSessionId, hostClientId: $clientId }>><</send>>
+<</button>></span>\
+<<button [[Credits|EndingFaithful_Credits]]>><</button>>
+<<button "Main Menu">><<run Engine.restart()>><</button>>
+<<nobr>>
+  <<receive "EndingFaithful_Restart" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      setup.replaceWithWaiting("#es-ty");
+      State.variables.EndingFaithful_Restart = State.temporary.receiveData;
+      if (State.variables.EndingFaithful_Restart && State.variables.EndingApostate_Restart) {
+        const data = State.variables.EndingFaithful_Restart;
+        const storage = window.localStorage
+        storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_As`, "Apostate")
+        storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Session_Id`, data.sessionId);
+        storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Host_Client_Id`, data.hostClientId);
+        Engine.restart();
+      }
+    }
+  <</script>><</receive>>
+  <<receive "EndingApostate_Restart" "Faithful">><<script>>
+    if (setup.isFaithful()) {
+      State.variables.EndingApostate_Restart = true;
+      if (State.variables.EndingFaithful_Restart && State.variables.EndingApostate_Restart) {
+        const data = State.variables.EndingFaithful_Restart;
+        const storage = window.localStorage
+        storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_As`, "Apostate")
+        storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Session_Id`, data.sessionId);
+        storage.setItem(`D7EEB4F6-CCC2-43E3-AD93-B5855945E8EC_Restart_Host_Client_Id`, data.hostClientId);
+        Engine.restart();
+      }
+    }
+  <</script>><</receive>>
+<</nobr>>
 
-Thanks again!
+
+:: EndingFaithful_Credits
+<<include "Credits_Text">>
+
+<<button [[Go Back|EndingFaithful_ThankYou]]>><</button>>
