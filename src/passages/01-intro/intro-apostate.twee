@@ -167,7 +167,7 @@ So he wasn't told to expect you. Good to know.
 <<if hasVisited("IntroApostateNoGreeting")>>\
   You take a seat next to Jekusheke. He glances over at you, that quizzical look still on his face, and then turns back to contemplate his <<tooltip "drink">>Soda. Non-alcoholic.<</tooltip>>.
 
-  What's there to say after thirteen years of absence? You're alive. He's alive. It looks like he's doing <<tooltip "well">>His clothes are good quality, he's neither underfed nor eating too well.<</tooltip>>. You'd be just as content to let him pass by. But Ma asked for your help, and his presence no mistake.
+  What's there to say after thirteen years of absence? You're alive. He's alive. It looks like he's doing <<tooltip "well">>His clothes are good quality, he's neither underfed nor eating too well.<</tooltip>>. You'd be just as content to let him pass by. But Ma asked for your help, and his presence is no mistake.
 
   "So," you start, "what brings you here?"
 
