@@ -542,8 +542,16 @@ If you're interested in the technical aspects behind this game, I've put a link 
   <<send "EndingFaithful_Restart" { sessionId: _restartSessionId, hostClientId: $clientId }>><</send>>
 <</button>></span>\
 <<button [[Credits|EndingFaithful_Credits]]>><</button>>
-<<button "Main Menu">><<run Engine.restart()>><</button>>
+<<button "Main Menu">>
+  <<send "EndingFaithful_EndGame" {}>><</send>>
+  <<run Engine.restart()>>
+<</button>>
 <<nobr>>
+  <<receive "EndingApostate_EndGame" "Faithful">>
+    <<run $("#es-ty").html("<strong>Partner has left the game.</strong>")>>
+    <<run delete State.variables.EndingApostate_Restart>>
+    <<run delete State.variables.EndingFaithful_Restart>>
+  <</receive>>
   <<receive "EndingFaithful_Restart" "Faithful">><<script>>
     if (setup.isFaithful()) {
       setup.replaceWithWaiting("#es-ty");

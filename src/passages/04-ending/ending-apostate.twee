@@ -413,12 +413,20 @@ Thank you for playing Ma Tiger's Terrible Trip! I hope you enjoyed! If you had f
 If you're interested in the technical aspects behind this game, I've put a link to the source in the About section.
 
 <span id="es-ty"><<button "Restart as Jekusheke.">>
-  <<run setup.replaceWithSending("es-ty")>>
+  <<run setup.replaceWithSending("#es-ty")>>
   <<send "EndingApostate_Restart" {}>><</send>>
 <</button>></span>\
 <<button [[Credits|EndingApostate_Credits]]>><</button>>
-<<button "Main Menu">><<run Engine.restart()>><</button>>
+<<button "Main Menu">>
+  <<send "EndingApostate_EndGame" {}>><</send>>
+  <<run Engine.restart()>>
+<</button>>
 <<nobr>>
+  <<receive "EndingFaithful_EndGame" "Apostate">>
+    <<run $("#es-ty").html("<strong>Partner has left the game.</strong>")>>
+    <<run delete State.variables.EndingApostate_Restart>>
+    <<run delete State.variables.EndingFaithful_Restart>>
+  <</receive>>
   <<receive "EndingApostate_Restart" "Apostate">><<script>>
     if (setup.isApostate()) {
       setup.replaceWithWaiting("#es-ty");
