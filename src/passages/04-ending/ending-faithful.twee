@@ -325,7 +325,7 @@ The truck comes. You open the back to a blast of frigid air. You have trouble li
 
 
 :: EndingSharedFaithful_To_Police
-You had back inside, taking care not to get blood on the door, and see the bartender talking with another couple of workers, probably from back of house. He spots you.
+You head back inside, taking care not to get blood on the door, and see the bartender talking with another couple of workers, probably from back of house. He spots you.
 
 "Washing up," you say. <<if $called911>>"If the police arrive, tell them."<</if>>
 
