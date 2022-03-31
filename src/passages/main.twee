@@ -44,6 +44,7 @@ Desert
   <</button>>
   <<button [[Join a game|JoinGame]]>><</button>>
   <<button [[Credits|MainMenu_Credits]]>><</button>>
+  <<button [[About|MainMenu_About]]>><</button>>
 <</if>>\
 
 
@@ -127,6 +128,12 @@ Please enter the session identifier you'd like to join.
 
 :: MainMenu_Credits
 <<include "Credits_Text">>
+
+<<button [[Main Menu|Start]]>><</button>>
+
+
+:: MainMenu_About
+<<include "About_Text">>
 
 <<button [[Main Menu|Start]]>><</button>>
 

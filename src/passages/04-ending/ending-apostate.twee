@@ -417,6 +417,7 @@ If you're interested in the technical aspects behind this game, I've put a link 
   <<send "EndingApostate_Restart" {}>><</send>>
 <</button>></span>\
 <<button [[Credits|EndingApostate_Credits]]>><</button>>
+<<button [[About|EndingApostate_About]]>><</button>>
 <<button "Main Menu">>
   <<send "EndingApostate_EndGame" {}>><</send>>
   <<run Engine.restart()>>
@@ -459,5 +460,11 @@ If you're interested in the technical aspects behind this game, I've put a link 
 
 :: EndingApostate_Credits
 <<include "Credits_Text">>
+
+<<button [[Go Back|EndingApostate_ThankYou]]>><</button>>
+
+
+:: EndingApostate_About
+<<include "About_Text">>
 
 <<button [[Go Back|EndingApostate_ThankYou]]>><</button>>

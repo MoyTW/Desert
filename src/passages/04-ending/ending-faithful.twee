@@ -542,6 +542,7 @@ If you're interested in the technical aspects behind this game, I've put a link 
   <<send "EndingFaithful_Restart" { sessionId: _restartSessionId, hostClientId: $clientId }>><</send>>
 <</button>></span>\
 <<button [[Credits|EndingFaithful_Credits]]>><</button>>
+<<button [[About|EndingFaithful_About]]>><</button>>
 <<button "Main Menu">>
   <<send "EndingFaithful_EndGame" {}>><</send>>
   <<run Engine.restart()>>
@@ -584,5 +585,11 @@ If you're interested in the technical aspects behind this game, I've put a link 
 
 :: EndingFaithful_Credits
 <<include "Credits_Text">>
+
+<<button [[Go Back|EndingFaithful_ThankYou]]>><</button>>
+
+
+:: EndingFaithful_About
+<<include "About_Text">>
 
 <<button [[Go Back|EndingFaithful_ThankYou]]>><</button>>

@@ -19,6 +19,32 @@ pepsi#1213
 Andrew Schultz
 
 Additional thanks to:
+Milo van Mesdag
 Dan Fabulich
 SjoerdHekking
-The Twine Games Discord server
+
+
+:: About_Text
+I wrote Ma Tiger's Terrible Trip in a little under two months, starting on February 3, 2022 and running right up until March 30. However, it wasn't my first multiplayer Twine game, so that time was mostly spent on the, well, writing part of it, though there were many improvements to the networking code.
+
+I was hoping to make a small multiplayer game, more a proof of concept than anything else. It ended up longer than I was expecting. It's short, but it could have been much shorter. Some of the things I wanted to do, especially with regards to the timed section, suffered greatly due to time constraints. As a proof of concept, though, it worked out fine.
+
+I was inspired by The Last Night of Alexisgrad, by Milo van Mesdig, which is the first multiplayer IF I'd encountered. Alexisgrad is also made in Twine, but it functions via code-passing. Each turn, the players pass each other a code, read down the block of text, and then pass each other another code. It was novel, but clunkly. It showed me that it was possible - which, you know, "Multiplayer narrative games with tightly authored plots and dialogue can exist!" seems like an obvious statement, but it was simply something I'd never thought of before seeing Alexisgrad.
+
+The writing part of it was mostly unplanned. I'll admit, I had very little idea of where the plot was going to go, and luckily it's short enough that I didn't have to deal with much. The majority of my effort went into two areas - trying to set up a dialogue options so that the players could respond to each other in ways that made it feel like they were playing together, and the big action scene. I think I half-succeeded in the first and maybe failed in the second, but who knows? The audience may think differently. If you have any feedback, negative or positive, I'd love to hear it; message me on <a href="https://twitter.com/MuffiTuffi" target="_blank" rel="noopener noreferrer">Twitter</a> or email me at moytravis@gmail.com.
+
+All right, technical stuff. The game is built with Twine, on a slightly modified version of Sugarcube which has a fix for the dialog box flickering when there's a timer macro running. It uses a Python server to communicate between the clients. Clients talk to the server using websockets, passing essentially json snippets.
+
+I wrote my own macros - <<\send\>> and <<\receive\>> - which I used to indicate when the user pressed buttons. When the server receives a message, it echoes it to both clients, and all state changes are committed only when the client receives the message. Structed this way, I can ensure the clients stay in sync without having to have one client be authoritative, though having one client be authoritative would certainly be a lot better! I couldn't be bothered to go through and unravel the save system. One certainly could, were they so inclined.
+
+I hosted the server on Heroku, in the free tier. I hope this doesn't blow up too bad. I mean. That'd be a good problem to have, I guess.
+
+Anyways! You can find all the networking code in websockets.ts. I've put the source code up on GitHub:
+<ul>
+<li><a ref="https://github.com/MoyTW/sugarcube-2">The modified version of Sugarcube</a></li>
+<li><a ref="https://github.com/MoyTW/Desert/blob/master/src/websockets/websockets.ts" target="_blank" rel="noopener noreferrer">The game</a></li>
+<li><a ref="https://github.com/MoyTW/MultiplayerTwineServer" target="_blank" rel="noopener noreferrer">The server</a></li>
+</ul>\
+If you're interested in making your own multiplayer game, or collaborating on something, send me an email or find me on Twitter and I can give you a hand. I think there's not a lot of multiplayer stuff out there with closely authored narratives, and I'd love to see what other people come up with.
+
+Thanks for playing!
