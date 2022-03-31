@@ -41,9 +41,9 @@ I hosted the server on Heroku, in the free tier. I hope this doesn't blow up too
 
 Anyways! You can find all the networking code in websockets.ts. I've put the source code up on GitHub:
 <ul>
-<li><a ref="https://github.com/MoyTW/sugarcube-2">The modified version of Sugarcube</a></li>
-<li><a ref="https://github.com/MoyTW/Desert/blob/master/src/websockets/websockets.ts" target="_blank" rel="noopener noreferrer">The game</a></li>
-<li><a ref="https://github.com/MoyTW/MultiplayerTwineServer" target="_blank" rel="noopener noreferrer">The server</a></li>
+<li><a href="https://github.com/MoyTW/sugarcube-2/tree/resize-dialog-selectively" target="_blank" rel="noopener noreferrer">The modified version of Sugarcube</a></li>
+<li><a href="https://github.com/MoyTW/Desert" target="_blank" rel="noopener noreferrer">The game</a></li>
+<li><a href="https://github.com/MoyTW/MultiplayerTwineServer" target="_blank" rel="noopener noreferrer">The server</a></li>
 </ul>\
 If you're interested in making your own multiplayer game, or collaborating on something, send me an email or find me on Twitter and I can give you a hand. I think there's not a lot of multiplayer stuff out there with closely authored narratives, and I'd love to see what other people come up with.
 
