@@ -35,9 +35,9 @@ The writing part of it was mostly unplanned. I'll admit, I had very little idea 
 
 All right, technical stuff. The game is built with Twine, on a slightly modified version of Sugarcube which has a fix for the dialog box flickering when there's a timer macro running. It uses a Python server to communicate between the clients. Clients talk to the server using websockets, passing essentially json snippets.
 
-I wrote my own macros - <<\send\>> and <<\receive\>> - which I used to indicate when the user pressed buttons. When the server receives a message, it echoes it to both clients, and all state changes are committed only when the client receives the message. Structed this way, I can ensure the clients stay in sync without having to have one client be authoritative, though having one client be authoritative would certainly be a lot better! I couldn't be bothered to go through and unravel the save system. One certainly could, were they so inclined.
+I wrote my own macros - <<\send\>> and <<\receive\>> - which I used to indicate when the user pressed buttons. When the server receives a message, it echoes it to both clients, and all state changes are committed only when the client receives the message. Structured this way, I can ensure the clients stay in sync without having to have one client be authoritative, though having one client be authoritative would certainly be a lot better! I couldn't be bothered to go through and unravel the save system. One certainly could, were they so inclined.
 
-I hosted the server on Heroku, in the free tier. I hope this doesn't blow up too bad. I mean. That'd be a good problem to have, I guess.
+I hosted the server on Heroku, in the free tier. I hope this doesn't blow up too bad, or I'll have to upgrade to a paid plan. I suppose that's a good problem to have.
 
 Anyways! You can find all the networking code in websockets.ts. I've put the source code up on GitHub:
 <ul>
