@@ -98,12 +98,11 @@ The game will automatically start once your partner has joined.
 Please enter the session identifier you'd like to join.
 @@#jg-session-input;<<textbox '_input' '' autofocus>>@@
 @@#jg-join-button;<<disable>><<button 'Session identifier is invalid.'>>
+  <<run $('#jg-join-button').text('Joining game...')>>
+  <<run $('#jg-join-button').prop('disabled', true)>>
   <<set $sessionId to $('#jg-session-input input')[0].value>>
   <<connect $sessionId>>
-  <<send 'JOIN_GAME_CLIENT_CONNECTED' {}>>
-    <<run $('#jg-join-button').text('Joining game...')>>
-    <<run $('#jg-join-button').prop('disabled', true)>>
-  <</send>>
+  <<send 'JOIN_GAME_CLIENT_CONNECTED' {}>><</send>>
 <</button>><</disable>>@@\
 <<button [[Main Menu|Start]]>><</button>>
 <<done>><<script>>
@@ -160,13 +159,14 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
     Lives in Reno, Nevada. Works as an EMT at a local clinic. Sees his mom every holiday season, due to be married in six months. Got a letter a while ago from Ma Tiger, telling him to meet her on a certain day at a certain place.
 
     <<button "Jekusheke Wang">>
-      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful', characterName: "Jekusheke" }>><<script>>
+      <<script>>
         if (State.variables.clientId === State.variables.hostClientId) {
           $("#sc-host-selection").text(`Host has selected Jekusheke Wang.`)
         } else {
           $("#sc-partner-selection").text(`Joiner has selected Jekusheke Wang.`)
         }
-      <</script>><</send>>\
+      <</script>>
+      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful', characterName: "Jekusheke" }>><</send>>
     <</button>>\
   </div>\
   <div class='column'>\
@@ -174,13 +174,14 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
     Lives nowhere in particular. Does this and that. Vanished out of the house one day. Hasn't seen either her mother or brother in thirteen years. Somehow Ma Tiger's letter has found her, a cry for help with a date and a place.
 
     <<button "Ebiaishe Wang">>
-      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate', characterName: "Ebiaishe" }>><<script>>
+      <<script>>
         if (State.variables.clientId === State.variables.hostClientId) {
           $("#sc-host-selection").text(`Host has selected Ebiaishe Wang.`)
         } else {
           $("#sc-partner-selection").text(`Joiner has selected Ebiaishe Wang.`)
         }
-      <</script>><</send>>\
+      <</script>>
+      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate', characterName: "Ebiaishe" }>><</send>>\
     <</button>>\
   </div>\
 </div>@@\
@@ -214,12 +215,13 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
 <</if>>@@
 
 @@#sc-confirm;<<disable>><<button "Confirm choices">>
-  <<send 'SELECT_CHARACTER_CONFIRMED' {}>><<script>>
+  <<script>>
     const button = $('#sc-confirm button')
     button.html('Waiting for partner to confirm...')
     button.prop('disabled', true)
     $('#sc-character-buttons button').prop('disabled', true)
-  <</script>><</send>>
+  <</script>>
+  <<send 'SELECT_CHARACTER_CONFIRMED' {}>><</send>>
 <</button>><</disable>>@@
 <<nobr>><<receive 'SELECT_CHARACTER_CONFIRMED' 'All'>><<script>>
   const data = State.temporary.receiveData
