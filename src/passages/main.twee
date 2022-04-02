@@ -161,9 +161,9 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
     <<button "Jekusheke Wang">>
       <<script>>
         if (State.variables.clientId === State.variables.hostClientId) {
-          $("#sc-host-selection").text(`Host has selected Jekusheke Wang.`)
+          $("#sc-host-selection").text(`Host has selected Jekusheke.`)
         } else {
-          $("#sc-partner-selection").text(`Joiner has selected Jekusheke Wang.`)
+          $("#sc-partner-selection").text(`Joiner has selected Jekusheke.`)
         }
       <</script>>
       <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful', characterName: "Jekusheke" }>><</send>>
@@ -176,9 +176,9 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
     <<button "Ebiaishe Wang">>
       <<script>>
         if (State.variables.clientId === State.variables.hostClientId) {
-          $("#sc-host-selection").text(`Host has selected Ebiaishe Wang.`)
+          $("#sc-host-selection").text(`Host has selected Ebiaishe.`)
         } else {
-          $("#sc-partner-selection").text(`Joiner has selected Ebiaishe Wang.`)
+          $("#sc-partner-selection").text(`Joiner has selected Ebiaishe.`)
         }
       <</script>>
       <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate', characterName: "Ebiaishe" }>><</send>>\
