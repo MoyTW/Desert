@@ -158,31 +158,35 @@
         return this.error(`Cannot send; no sessionId set!`);
       }
 
-      const rest = this.args.full.replace(this.args[0], '').slice(3).trim();
-      if (!rest) {
-        return this.error(`Cannot send: no data object specified! Use {} for an empty data object.`);
-      }
-
+      // Evaluate the message type & payload
+      var messageType: any = undefined
+      var data: any = undefined
       try {
-        Scripting.evalJavaScript('State.temporary.websocketTemp = ' + rest);
+        messageType = Scripting.evalJavaScript(this.args.full)
+        Scripting.evalJavaScript('State.temporary.websocketTemp = ' + this.payload[0].contents)
+        data = State.temporary.websocketTemp
       } catch (err: any) {
-        return this.error(`bad evaluation: ${typeof err === 'object' ? err.message : err}`);
-      }
-      const result = State.temporary.websocketTemp;
-      if (typeof result !== 'object') {
-        return this.error(`evaluation of object passed to send was ${result}, not an object!`);
-      }
-      if (result['type'] !== undefined || result['clientId'] !== undefined) {
-        return this.error(`type and clientId are reserved properties on a message object!`);
+        return this.error(`bad evaluation: ${typeof err === 'object' ? err.message : err}`)
       }
 
+      // Check messageType, data
+      if (!messageType) {
+        return this.error(`Cannot send: no message type specified!`)
+      } else if (typeof messageType !== 'string') {
+        return this.error(`Cannot send: message type did not evaluate to string!`)
+      }
+      if (!data) {
+        return this.error(`Cannot send: no data object specified! Use {} for an empty data object.`)
+      } else if (typeof data !== 'object') {
+        return this.error(`evaluation of object passed to send was ${data}, not an object!`)
+      } else if (data['type'] !== undefined || data['clientId'] !== undefined) {
+        return this.error(`type and clientId are reserved properties on a message object!`)
+      }
+
+      // Construct, send message
       const msgObj = {type: this.args[0], clientId: _clientId};
-      Object.assign(msgObj, result);
+      Object.assign(msgObj, data);
       _send(State.getVar('$sessionId'), msgObj);
-
-      if (this.payload[0].contents !== '') {
-        this.createShadowWrapper(() => Wikifier.wikifyEval(this.payload[0].contents.trim()))();
-      }
     }
   })
 
