@@ -11,7 +11,7 @@ You sip your soda, glance around at the patrons. The last lunch regulars are cle
 
 @@#if-s-btn;<<button "Read Ma Tiger's letter again.">>
   <<run setup.replaceWithSending("#if-s-btn")>>
-  <<send 'IntroFaithful_Start_DONE' {}>><</send>>
+  <<send 'IntroFaithful_Start_DONE' >>{}<</send>>
 <</button>>@@\
 <<nobr>><<receive 'IntroFaithful_Start_DONE' 'Faithful'>><<script>>
   if (setup.isFaithful()) { Engine.play("IntroFaithful_ReadLetter") }
@@ -38,7 +38,7 @@ You fold it neatly and replace it. Nothing to do but wait.
 
 @@#if-rl-btn;<<button "Wait.">>
   <<run setup.replaceWithSending("#if-rl-btn")>>
-  <<send "IntroFaithful_ReadLetter_DONE" {}>><</send>>
+  <<send "IntroFaithful_ReadLetter_DONE" >>{}<</send>>
 <</button>>@@
 <<nobr>><<receive 'IntroFaithful_ReadLetter_DONE' 'Faithful'>><<script>>
   if (setup.isFaithful()) { Engine.play("IntroFaithful_Wait") }
@@ -58,15 +58,15 @@ He examines you, looks away, leans on the bar with a casual air. "Got stood up?"
 
 @@#if-w-btn;<<button "Seems so.">>
   <<run setup.replaceWithSending("#if-w-btn")>>
-  <<send 'IntroFaithful_Wait_CHOICE' { choice: "AGREE" }>><</send>>
+  <<send 'IntroFaithful_Wait_CHOICE'>>{ choice: "AGREE" }<</send>>
 <</button>>
 <<button "Well, who knows? There's still time.">>
   <<run setup.replaceWithSending("#if-w-btn")>>
-  <<send 'IntroFaithful_Wait_CHOICE' { choice: "WAIT" }>><</send>>
+  <<send 'IntroFaithful_Wait_CHOICE'>>{ choice: "WAIT" }<</send>>
 <</button>>
 <<button "Thanks, but I'd rather not talk about it.">>
   <<run setup.replaceWithSending("#if-w-btn")>>
-  <<send 'IntroFaithful_Wait_CHOICE' { choice: "DEMUR" }>><</send>>
+  <<send 'IntroFaithful_Wait_CHOICE'>>{ choice: "DEMUR" }<</send>>
 <</button>>@@
 <<nobr>><<receive "IntroFaithful_Wait_CHOICE" "Faithful">><<script>>
   if (setup.isFaithful()) {
@@ -115,7 +115,7 @@ Come on, Ma. It's been a little over four hours now. What's going on?
 
 @@#fsu-wb;<<button "Wait.">>
   <<run setup.replaceWithSending("#fsu-wb")>>
-  <<send 'IntroFaithful_WaitInChristies_DONE' {}>><</send>>
+  <<send 'IntroFaithful_WaitInChristies_DONE' >>{}<</send>>
 <</button>>@@\
 <<nobr>>
   <<receive 'IntroFaithful_WaitInChristies_DONE' 'Faithful'>><<script>>
@@ -147,15 +147,15 @@ She takes a moment to look around the room, then starts heading for the bar and,
 <span id="ifmc-btn">\
   <<button "Greet her like you know her, because you're sure you do. You're just not sure where from.">>
     <<run setup.replaceWithSending("#ifmc-btn")>>
-    <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "FAMILIAR" }>><</send>>
+    <<send "IntroFaithfulMeetingApostate_GREETING">>{ greeting: "FAMILIAR" }<</send>>
   <</button>>
   <<button "Greet her as a stranger, and hope that talking to her jogs your memory.">>
     <<run setup.replaceWithSending("#ifmc-btn")>>
-    <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "STRANGER" }>><</send>>
+    <<send "IntroFaithfulMeetingApostate_GREETING">>{ greeting: "STRANGER" }<</send>>
   <</button>>
   <<button "Don't greet her yet - try and remember where you met her before you talk.">>
     <<run setup.replaceWithSending("#ifmc-btn")>>
-    <<send "IntroFaithfulMeetingApostate_GREETING" { greeting: "NONE" }>><</send>>
+    <<send "IntroFaithfulMeetingApostate_GREETING">>{ greeting: "NONE" }<</send>>
   <</button>>
 </span>
 <<nobr>><<receive "IntroFaithfulMeetingApostate_GREETING" "Faithful">><<script>>
@@ -198,7 +198,7 @@ If only you could remember where you've seen her.
 :: IntroFaithfulWaitForChoices
 <span id="ifwfc"><<button "No, really, where do you know her from?">>
   <<run setup.replaceWithSending("#ifwfc")>>
-  <<send "IntroFaithfulWaitForChoices_DONE" {}>><</send>>
+  <<send "IntroFaithfulWaitForChoices_DONE" >>{}<</send>>
 <</button>></span>
 <<nobr>>
   <<receive "IntroFaithfulWaitForChoices_DONE" "Faithful">><<script>>
@@ -316,10 +316,10 @@ She stands up straight as a statue, and suddenly she seems to be a completely di
 
 :: IntroFaithfulAliveReactionChoice
 <<button "Holy shit. You're alive! That's - that's incredible!">>
-  <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "HAPPY" }>><</send>>
+  <<send "IntroFaithfulAliveReactionChoice_CHOICE">>{ choice: "HAPPY" }<</send>>
 <</button>>
 <<button "Then...why didn't you come back?">>
-  <<send "IntroFaithfulAliveReactionChoice_CHOICE" { choice: "SAD" }>><</send>>
+  <<send "IntroFaithfulAliveReactionChoice_CHOICE">>{ choice: "SAD" }<</send>>
 <</button>>
 <<disable>><<button "<s>I - seriously? What the fuck! Why didn't you tell us?</s> (No. Be calm.)">><</button>><</disable>>
 <<nobr>><<receive "IntroFaithfulAliveReactionChoice_CHOICE" "Faithful">><<script>>
@@ -466,7 +466,7 @@ She nods. "Then I guess we wait."
 /** ###################################################################### **/\
 <span id="if-wa-btn"><<button "That's all you're going to say?">>
   <<run setup.replaceWithSending("#if-wa-btn")>>
-  <<send "IntroFaithful_WaitingAwkwardly_DONE" {}>><</send>>
+  <<send "IntroFaithful_WaitingAwkwardly_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "IntroFaithful_WaitingAwkwardly_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("IntroFaithful_WaitingAwkwardly_2") }
@@ -484,7 +484,7 @@ How do you know she's the <<tooltip "same person?">>You can't - and even less if
 
 <span id="if-wa-2-btn"><<button "Say something.">>
   <<run setup.replaceWithSending("#if-wa-2-btn")>>
-  <<send "IntroFaithful_WaitingAwkwardly_2_DONE" {}>><</send>>
+  <<send "IntroFaithful_WaitingAwkwardly_2_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "IntroFaithful_WaitingAwkwardly_2_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("IntroFaithful_WaitingAwkwardly_3") }
@@ -501,11 +501,11 @@ Something? What is something? You know what something is before you can say some
 <span id="if-wa-3-btn">\
   <<button "Something about yourself.">>
     <<run setup.replaceWithSending("#if-wa-3-btn")>>
-    <<send "IntroFaithful_WaitingAwkwardly_3_CHOICE" { choice: "YOU" }>><</send>>
+    <<send "IntroFaithful_WaitingAwkwardly_3_CHOICE">>{ choice: "YOU" }<</send>>
   <</button>>
   <<button "Something about her.">>
     <<run setup.replaceWithSending("#if-wa-3-btn")>>
-    <<send "IntroFaithful_WaitingAwkwardly_3_CHOICE" { choice: "HER" }>><</send>>
+    <<send "IntroFaithful_WaitingAwkwardly_3_CHOICE">>{ choice: "HER" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "IntroFaithful_WaitingAwkwardly_3_CHOICE" "Faithful">><<script>>
@@ -551,7 +551,7 @@ Where have you been? How have you been? What have you been doing, all these year
 :: IntroFaithful_WaitingAwkwardly_SayAnything
 <span id="if-wa-sa-btn"><<button "Say anything, it doesn't matter how dumb it is, as long as you start talking.">>
   <<run setup.replaceWithSending("#if-wa-sa-btn")>>
-  <<send "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" {}>><</send>>
+  <<send "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" >>{}<</send>>
 <</button>></span>
 <<nobr>><<receive "IntroFaithful_WaitingAwkwardly_SayAnything_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_Start") }

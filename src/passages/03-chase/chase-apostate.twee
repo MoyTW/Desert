@@ -8,7 +8,7 @@
 
   <span id="ca-s-btn"><<button "I'm ready.">>
     <<run setup.replaceWithSending("#ca-s-btn")>>
-    <<send "ChaseApostate_Start_DONE" {}>><</send>>
+    <<send "ChaseApostate_Start_DONE" >>{}<</send>>
   <</button>></span>
   <<nobr>>
     <<receive "ChaseApostate_Start_DONE" "Apostate">><<script>>
@@ -35,7 +35,8 @@
 :: ChaseApostate_ButtonWidget [widget]
 <<widget "ca-button">>\
   <<button _args[0]>>
-    <<send "ChaseApostate_CHOICE" { choice: _args[1], passage: passage() }>><</send>>
+    <<set _choice to _args[1]>>
+    <<send "ChaseApostate_CHOICE">>{ choice: State.temporary.choice, passage: passage() }<</send>>
     <<replace "#chase-shared-timer">><h1>_args[2]</h1><</replace>>
     <<set _stopTimer to true>>
     <<run $("#chase-shared-msg-status").removeClass("hidden")>>
@@ -659,7 +660,7 @@
 
   <span id="ca-e-btn"><<button "Continue.">>
     <<run setup.replaceWithSending("#ca-e-btn")>>
-    <<send "ChaseApostate_End_DONE" {}>><</send>>
+    <<send "ChaseApostate_End_DONE" >>{}<</send>>
   <</button>></span>
   <<nobr>>
     <<receive "ChaseApostate_End_DONE" "Apostate">><<script>>

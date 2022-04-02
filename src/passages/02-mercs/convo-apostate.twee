@@ -7,7 +7,7 @@ Buried resentments swirl in the back of your mind. Ma Tiger, always stern, alway
 
 <span id="ca-s-btn"><<button "Jeku looks like he wants to say something.">>
   <<run setup.replaceWithSending("#ca-s-btn")>>
-  <<send "ConvoApostate_Start" {}>><</send>>
+  <<send "ConvoApostate_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "ConvoApostate_Start" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("ConvoApostate_Start_2") }
@@ -23,7 +23,7 @@ You pause. "Yeah," you say.
 
 <span id="ca-s-2-btn"><<button "Yeah?">>
   <<run setup.replaceWithSending("#ca-s-2-btn")>>
-  <<send "ConvoApostate_Start_2" {}>><</send>>
+  <<send "ConvoApostate_Start_2" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "ConvoApostate_Start_2" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("ConvoApostate_Start_3") }
@@ -66,7 +66,7 @@ Jeku falters. "You remember when we were on that trip to Seattle and we got atta
 <<widget "ca-continue-button">>\
   <span id="ca-c-b"><<button _args[0]>>
     <<run setup.replaceWithSending("#ca-c-b")>>
-    <<send "ConvoApostate_Continue_Button" {}>><</send>>
+    <<send "ConvoApostate_Continue_Button" >>{}<</send>>
   </span><</button>>\
 <</widget>>\
 
@@ -75,32 +75,32 @@ Jeku falters. "You remember when we were on that trip to Seattle and we got atta
 <<if $convosLeft is 0>>\
   <span id="ca-c-btn"><<button "Finish your linner.">>
     <<run setup.replaceWithSending("#ca-c-btn")>>
-    <<send "ConvoApostate_Goto_End" {}>><</send>>
+    <<send "ConvoApostate_Goto_End" >>{}<</send>>
   <</button>></span>\
 <<else>>\
   <span id="ca-c-btn">\
     <<if not hasVisited("ConvoApostate_Ebi_Life")>>\
       <<button "Ask Jeku about how his life's been going.">>
         <<run setup.replaceWithSending("#ca-c-btn")>>
-        <<send "ConvoApostate_Choices" { choice: "LIFE" }>><</send>>
+        <<send "ConvoApostate_Choices">>{ choice: "LIFE" }<</send>>
       <</button>>
     <</if>>\
     <<if not hasVisited("ConvoApostate_Ebi_Weather")>>\
       <<button "Talk about the weather.">>
         <<run setup.replaceWithSending("#ca-c-btn")>>
-        <<send "ConvoApostate_Choices" { choice: "WEATHER" }>><</send>>
+        <<send "ConvoApostate_Choices">>{ choice: "WEATHER" }<</send>>
       <</button>>
     <</if>>\
     <<if not hasVisited("ConvoApostate_Ebi_Reno")>>\
       <<button "Ask Jeku why he came to Reno.">>
         <<run setup.replaceWithSending("#ca-c-btn")>>
-        <<send "ConvoApostate_Choices" { choice: "RENO" }>><</send>>
+        <<send "ConvoApostate_Choices">>{ choice: "RENO" }<</send>>
       <</button>>
     <</if>>\
     <<if hasVisited("ConvoApostate_Ebi_Life") or hasVisited("ConvoApostate_Ebi_Weather") or hasVisited("ConvoApostate_Ebi_Reno")>>\
       <<button "Ask after Ma Tiger.">>
         <<run setup.replaceWithSending("#ca-c-btn")>>
-        <<send "ConvoApostate_Choices" { choice: "MOTHER" }>><</send>>
+        <<send "ConvoApostate_Choices">>{ choice: "MOTHER" }<</send>>
       <</button>>
     <</if>>\
   </span>\
@@ -133,7 +133,7 @@ He looks - well, he looks almost happy. EMT, though. He wanted to be a doctor th
 
 <span id="ca-e-l-btn"><<button "What happened to being a doctor?">>
   <<run setup.replaceWithSending("#ca-e-l-btn")>>
-  <<send "ConvoApostate_Ebi_Life" {}>><</send>>
+  <<send "ConvoApostate_Ebi_Life" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>>
   <<receive "ConvoApostate_Ebi_Life" "Apostate">><<script>>
@@ -234,11 +234,11 @@ Well, that's not much of an answer, is it? "It's not close, either."
 <span id="ca-e-r">\
   <<button "Push a little harder.">>
     <<run setup.replaceWithSending("#ca-e-r")>>
-    <<send "ConvoApostate_Ebi_Reno" { choice: "PUSH" }>><</send>>
+    <<send "ConvoApostate_Ebi_Reno">>{ choice: "PUSH" }<</send>>
   <</button>>
   <<button "Drop it.">>
     <<run setup.replaceWithSending("#ca-e-r")>>
-    <<send "ConvoApostate_Ebi_Reno" { choice: "DROP" }>><</send>>
+    <<send "ConvoApostate_Ebi_Reno">>{ choice: "DROP" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "ConvoApostate_Ebi_Reno" "Apostate">><<script>>
@@ -315,11 +315,11 @@ Oh. He's curious. Well, he doesn't need to know. "Very," you respond, leaning ba
 <span id="ca-j-i">\
   <<button "Tell him.">>
     <<run setup.replaceWithSending("#ca-j-i")>>
-    <<send "ConvoApostate_Jeku_Implants" { choice: "TALK" }>><</send>>
+    <<send "ConvoApostate_Jeku_Implants">>{ choice: "TALK" }<</send>>
   <</button>>
   <<button "You'd rather not.">>
     <<run setup.replaceWithSending("#ca-j-i")>>
-    <<send "ConvoApostate_Jeku_Implants" { choice: "EVADE" }>><</send>>
+    <<send "ConvoApostate_Jeku_Implants">>{ choice: "EVADE" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "ConvoApostate_Jeku_Implants" "Apostate">><<script>>
@@ -383,7 +383,7 @@ He nods and stares out the window, watching pedestrians amble along.
 
 <span id="ca-j-f"><<button "\"Yeah.\"">>
   <<run setup.replaceWithSending("#ca-j-f")>>
-  <<send "ConvoApostate_Jeku_Fiancee" {}>><</send>>
+  <<send "ConvoApostate_Jeku_Fiancee" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "ConvoApostate_Jeku_Fiancee" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("ConvoApostate_Jeku_Fiancee_2") }
@@ -463,7 +463,7 @@ A <<tooltip "young couple">>Male, tall, red windbreaker, unarmed; Male, average,
 
 <span id="ma-l-se-2-btn"><<button "Turn and look.">>
   <<run setup.replaceWithSending("#ma-l-se-2-btn")>>
-  <<send "MercsApostate_Linner_SceneEnd_2_DONE" {}>><</send>>
+  <<send "MercsApostate_Linner_SceneEnd_2_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsApostate_Linner_SceneEnd_2_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd_3") }
@@ -479,7 +479,7 @@ You bolt for the door, burst out of the bar. By the time you reach the scene, Ma
 
 <span id="ma-l-se-3-btn"><<button "Fuck!">>
   <<run setup.replaceWithSending("#ma-l-se-3-btn")>>
-  <<send "MercsApostate_Linner_SceneEnd_3_DONE" {}>><</send>>
+  <<send "MercsApostate_Linner_SceneEnd_3_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsApostate_Linner_SceneEnd_3_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("ChaseApostate_Start") }

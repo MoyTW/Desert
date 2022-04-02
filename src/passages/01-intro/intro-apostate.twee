@@ -13,7 +13,7 @@ The car chimes its five minute warning. Almost time. The letter's in your hand.
 
 @@#ia-s-btn;<<button "Read it again.">>
   <<run setup.replaceWithSending("#ia-s-btn")>>
-  <<send 'IntroApostate_Start_1' {}>><</send>>
+  <<send 'IntroApostate_Start_1' >>{}<</send>>
 <</button>>@@
 <<nobr>><<receive 'IntroApostate_Start_1' 'Apostate'>><<script>>
     if (setup.isApostate()) { Engine.play("IntroApostate_ReadLetter") }
@@ -38,7 +38,8 @@ Ma Tiger</div></div>\
 The car comes to a stop. "Christie's Old West Saloon" declares the sign above your destination. More than anything, it looks like a tourist trap. You shove the letter back into your pocket.
 
 @@#tai-enter;<<button "Enter.">>
-  <<send 'IntroApostate_Start_DONE' {}>><<run setup.replaceWithSending("#tai-enter")>><</send>>
+  <<run setup.replaceWithSending("#tai-enter")>>
+  <<send 'IntroApostate_Start_DONE'>>{}<</send>>
 <</button>>@@\
 <<nobr>>
   <<receive 'IntroFaithful_WaitInChristies_DONE' 'Apostate'>><<script>>
@@ -66,7 +67,7 @@ The doors to Christie's Old West Saloon look like genuine wooden saloon doors, t
 Jekusheke, your <<tooltip "brother,">>Foster, not biological.<</tooltip>> who you last saw half a lifetime ago. You suppose you shouldn't be surprised. Ma did say it was a family issue.
 
 @@#ia-mf-btn;<<button "Does he recognize you?">>
-  <<send 'IntroApostate_MeetingFaithful_DONE' {}>><</send>>
+  <<send 'IntroApostate_MeetingFaithful_DONE' >>{}<</send>>
   <<run setup.replaceWithWaiting("#ia-mf-btn")>>
 <</button>>@@
 <nobr>
@@ -113,15 +114,15 @@ Interesting. He didn't recognize you, at least not perfectly, but he did show a 
 :: IntroApostateUnrecognizedChoices
 @@#ia-u-c;\
   <<button "He can't even recognize his own sister? That's frankly insulting.">>
-    <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "OFFENDED"}>><</send>>
+    <<send "IntroApostateUnrecognizedChoices_CHOICE">>{ choice: "OFFENDED"}<</send>>
     <<run setup.replaceWithWaiting("#ia-u-c")>>
   <</button>>
   <<button "I'm a little relieved, to be honest.">>
-    <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "RELIEVED"}>><</send>>
+    <<send "IntroApostateUnrecognizedChoices_CHOICE">>{ choice: "RELIEVED"}<</send>>
     <<run setup.replaceWithWaiting("#ia-u-c")>>
   <</button>>
   <<button "That's hilarious. I'll make the most of it.">>
-    <<send "IntroApostateUnrecognizedChoices_CHOICE" { choice: "GREMLIN"}>><</send>>
+    <<send "IntroApostateUnrecognizedChoices_CHOICE">>{ choice: "GREMLIN"}<</send>>
     <<run setup.replaceWithWaiting("#ia-u-c")>>
   <</button>>
 @@\
@@ -234,7 +235,7 @@ You stand up straight, drop your voice back to normal. "Jekusheke," you say, put
 
 :: IntroApostateWaitForFaithfulReaction
 @@#iawffr-btn;<<button "Poor little Jeku. He didn't see this coming.">>
-  <<send 'IntroApostateWaitForFaithfulReaction_DONE' {}>><</send>>
+  <<send 'IntroApostateWaitForFaithfulReaction_DONE' >>{}<</send>>
   <<run setup.replaceWithSending("#iawffr-btn")>>
 <</button>>@@\
 <<nobr>>
@@ -284,23 +285,23 @@ Jekusheke takes a deep breath, steeling himself. "Then," he asks, voice unsteady
 
 /* TODO: Truth/Lie buttons */\
 @@#iarcs-btn;<<button "\"I just couldn't take living with Ma Tiger.\"">>
-  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "MOTHER" }>><</send>>
+  <<send "IntroApostateReactionChoiceSad_REASON">>{ choice: "MOTHER" }<</send>>
   <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"I was imprisoned in a blacksite for five years.\"">>
-  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "IMPRISONED" }>><</send>>
+  <<send "IntroApostateReactionChoiceSad_REASON">>{ choice: "IMPRISONED" }<</send>>
   <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"I was too ashamed to face Ma. And you.\"">>
-  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "SHAME" }>><</send>>
+  <<send "IntroApostateReactionChoiceSad_REASON">>{ choice: "SHAME" }<</send>>
   <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"I'll tell you later, when Ma shows up.\"">>
-  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "LATER" }>><</send>>
+  <<send "IntroApostateReactionChoiceSad_REASON">>{ choice: "LATER" }<</send>>
   <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>
 <<button "\"My reasons are my own.\"">>
-  <<send "IntroApostateReactionChoiceSad_REASON" { choice: "REFUSE" }>><</send>>
+  <<send "IntroApostateReactionChoiceSad_REASON">>{ choice: "REFUSE" }<</send>>
   <<run setup.replaceWithSending("#iarcs-btn")>>
 <</button>>@@\
 <<nobr>><<receive "IntroApostateReactionChoiceSad_REASON" "Apostate">><<script>>
@@ -407,7 +408,7 @@ Your former brother shakes his head. "No," he says. "No, she didn't. She said sh
 /** # AWKWARD WAITING                                                    # **/\
 /** ###################################################################### **/\
 @@#ia-wa-btn;<<button "Wait.">>
-  <<send 'IntroApostate_WaitingAwkwardly_DONE' {}>><</send>>
+  <<send 'IntroApostate_WaitingAwkwardly_DONE' >>{}<</send>>
   <<run setup.replaceWithSending("#ia-wa-btn")>>
 <</button>>@@\
 <<nobr>><<receive "IntroApostate_WaitingAwkwardly_DONE" "Apostate">><<script>>
@@ -423,7 +424,7 @@ As for you, well, what would you say? It's been too long. He's got nothing to do
 
 @@#ia-wa2-btn;<<button "What is Ma Tiger up to?">>
   <<run setup.replaceWithSending("#ia-wa2-btn")>>
-  <<send "IntroApostate_WaitingAwkwardly_2_DONE" {}>><</send>>
+  <<send "IntroApostate_WaitingAwkwardly_2_DONE" >>{}<</send>>
 <</button>>@@
 <<nobr>><<receive "IntroApostate_WaitingAwkwardly_2_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("IntroApostate_WaitingAwkwardly_3") }
@@ -441,15 +442,15 @@ So why would she need you? Or Jekusheke?
 
 @@#ia-wa3-btn;<<button "Maybe the source of her troubles is her family.">>
   <<run setup.replaceWithSending("#ia-wa3-btn")>>
-  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE" { choice: "FAMILY" }>><</send>>
+  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE">>{ choice: "FAMILY" }<</send>>
 <</button>>
 <<button "Did she lose her wealth in these last thirteen years?">>
   <<run setup.replaceWithSending("#ia-wa3-btn")>>
-  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE" { choice: "LOST" }>><</send>>
+  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE">>{ choice: "LOST" }<</send>>
 <</button>>
 <<button "Would solving her problems with money be too hard to keep quiet?">>
   <<run setup.replaceWithSending("#ia-wa3-btn")>>
-  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE" { choice: "LOUD" }>><</send>>
+  <<send "IntroApostate_WaitingAwkwardly_3_CHOICE">>{ choice: "LOUD" }<</send>>
 <</button>>@@
 <<nobr>><<receive "IntroApostate_WaitingAwkwardly_3_CHOICE" "Apostate">><<script>>
   if (setup.isApostate()) {

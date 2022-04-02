@@ -12,11 +12,11 @@ Silas grins when he sees you. "Jekusheke," he says, "how you doin', man?" He hol
 <span id="if-me-btns">\
   <<button "Oh, that's a hell of a coincidence! Any distraction is a welcome distraction.">>
     <<run setup.replaceWithSending("#if-me-btns")>>
-    <<send "MercsFaithful_Start_CHOICE" { choice: "CHAT" }>><</send>>
+    <<send "MercsFaithful_Start_CHOICE">>{ choice: "CHAT" }<</send>>
   <</button>>
   <<button "I'd rather not talk right now, but I can't be rude.">>
     <<run setup.replaceWithSending("#if-me-btns")>>
-    <<send "MercsFaithful_Start_CHOICE" { choice: "REJECT" }>><</send>>
+    <<send "MercsFaithful_Start_CHOICE">>{ choice: "REJECT" }<</send>>
   <</button>>
   <<nobr>>
     <<receive "MercsFaithful_Start_CHOICE" "Faithful">><<script>>
@@ -107,11 +107,11 @@ After a moment, Silas regains his composure. "Right," he says, nodding to your s
 <span id="mf-et-btn">\
   <<button "What the fuck, Ebi!?">>
     <<run setup.replaceWithSending("#mf-et-btn")>>
-    <<send "MercsFaithful_EbiTalk_CHOICE" { choice: "ANGER" }>><</send>>
+    <<send "MercsFaithful_EbiTalk_CHOICE">>{ choice: "ANGER" }<</send>>
   <</button>>
   <<button "Just...just ignore her.">>
     <<run setup.replaceWithSending("#mf-et-btn")>>
-    <<send "MercsFaithful_EbiTalk_CHOICE" { choice: "IGNORE" }>><</send>>
+    <<send "MercsFaithful_EbiTalk_CHOICE">>{ choice: "IGNORE" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "MercsFaithful_EbiTalk_CHOICE" "Faithful">><<script>>
@@ -136,7 +136,7 @@ You march off towards one of the corner seats, your sister in tow, and as soon a
 
 <span id="mf-et-ja-btn"><<button "What?">>
   <<run setup.replaceWithSending("#mf-et-ja-btn")>>
-  <<send "MercsFaithful_EbiTalk_JekuAngry_DONE" {}>><</send>>
+  <<send "MercsFaithful_EbiTalk_JekuAngry_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_EbiTalk_JekuAngry_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory") }
@@ -156,7 +156,7 @@ You march off towards one of the corner seats, your sister in tow, and as soon a
 
 <span id="mf-et-ji-btn"><<button "What?">>
   <<run setup.replaceWithSending("#mf-et-ji-btn")>>
-  <<send "MercsFaithful_EbiTalk_JekuIgnore_DONE" {}>><</send>>
+  <<send "MercsFaithful_EbiTalk_JekuIgnore_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_EbiTalk_JekuIgnore_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory") }
@@ -171,11 +171,11 @@ She's not - she's not...wrong. But -
 <span id="mf-dcs-btn">\
   <<button "\"I don't see why.\" (You do, but you'll make her work for it.)">>
     <<run setup.replaceWithSending("#mf-dcs-btn")>>
-    <<send "MercsFaithful_DiscussCoverStory_CHOICE" { choice: "WHY" }>><</send>>
+    <<send "MercsFaithful_DiscussCoverStory_CHOICE">>{ choice: "WHY" }<</send>>
   <</button>>
   <<button "\"Fine.\"">>
     <<run setup.replaceWithSending("#mf-dcs-btn")>>
-    <<send "MercsFaithful_DiscussCoverStory_CHOICE" { choice: "FINE" }>><</send>>
+    <<send "MercsFaithful_DiscussCoverStory_CHOICE">>{ choice: "FINE" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "MercsFaithful_DiscussCoverStory_CHOICE" "Faithful">><<script>>
@@ -197,7 +197,7 @@ She opens her mouth, takes a breath, presses her lips together.
 /* NIT: There's a big chance for huge sniping buuut, I don't have time, lol. */\
 <span id="mf-dcs-a-btn"><<button "\"Cat got your tongue, for once?\"">>
   <<run setup.replaceWithSending("#mf-dcs-a-btn")>>
-  <<send "MercsFaithful_DiscussCoverStory_Argue_DONE" {}>><</send>>
+  <<send "MercsFaithful_DiscussCoverStory_Argue_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>>
   <<receive "MercsFaithful_DiscussCoverStory_Argue_DONE" "Faithful">><<script>>
@@ -232,7 +232,7 @@ She swallows. "Please."
 <span id="mf-dcs-a-c-btn">\
   <<button "\"Fine.\"">>
     <<run setup.replaceWithSending("#mf-dcs-a-c-btn")>>
-    <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" {}>><</send>>
+    <<send "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" >>{}<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Concerns_DONE" "Faithful">><<script>>
@@ -253,7 +253,7 @@ You sigh. You're still mad, but it seems gauche to push it after such a direct a
 
 <span id="mf-dcs-a-a-btn"><<button "\"Fine.\"">>
   <<run setup.replaceWithSending("#mf-dcs-a-a-btn")>>
-  <<send "MercsFaithful_DiscussCoverStory_Argue_Apologize_DONE" {}>><</send>>
+  <<send "MercsFaithful_DiscussCoverStory_Argue_Apologize_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Apologize_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory_Fine") }
@@ -275,7 +275,7 @@ You stay silent.
 
 <span id="mf-dcs-a-e-btn"><<button "\"Fine.\"">>
   <<run setup.replaceWithSending("#mf-dcs-a-e-btn")>>
-  <<send "MercsFaithful_DiscussCoverStory_Argue_Explain_DONE" {}>><</send>>
+  <<send "MercsFaithful_DiscussCoverStory_Argue_Explain_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_DiscussCoverStory_Argue_Explain_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_DiscussCoverStory_Fine") }
@@ -309,7 +309,7 @@ A menu slides across the table. Ebi sits down, studies the offerings. "Pick some
 
 <span id="mf-dcs-f-btn"><<button "\"Order something. (Something light.)\"">>
   <<run setup.replaceWithSending("#mf-dcs-f-btn")>>
-  <<send "MercsFaithful_DiscussCoverStory_Fine_DONE" {}>><</send>>
+  <<send "MercsFaithful_DiscussCoverStory_Fine_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_DiscussCoverStory_Fine_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd") }
@@ -339,12 +339,12 @@ Silas takes a seat next to you, and Arthur next to him. "That th' <em>fi-an-cee<
   <<if $MercsFaithful_Start_CHOICE.choice is "CHAT">>\
     <<button "Chat with Silas.">>
       <<run setup.replaceWithSending("#mf-es-btn")>>
-      <<send "MercsFaithful_EbiSilent_DONE" {}>><</send>>
+      <<send "MercsFaithful_EbiSilent_DONE" >>{}<</send>>
     <</button>>\
   <<else>>\
     <<button "I'm definitely not in the mood for this.">>
       <<run setup.replaceWithSending("#mf-es-btn")>>
-      <<send "MercsFaithful_EbiSilent_DONE" {}>><</send>>
+      <<send "MercsFaithful_EbiSilent_DONE" >>{}<</send>>
     <</button>>\
   <</if>>\
 </span>\
@@ -371,11 +371,11 @@ Silas takes a seat next to you, and Arthur next to him. "That th' <em>fi-an-cee<
 <span id="mf-es-2-jc-btn">\
   <<button "Accept Silas' offer. (It'll help take the edge off.)">>
     <<run setup.replaceWithSending("#mf-es-2-jc-btn")>>
-    <<send "MercsFaithful_EbiSilent_2_JekuChat_DONE" {}>><</send>>
+    <<send "MercsFaithful_EbiSilent_2_JekuChat_DONE" >>{}<</send>>
   <</button>>\
   <<button "Reject Silas' offer. (Day drinking's a little much.)">>
     <<run setup.replaceWithSending("#mf-es-2-jc-btn")>>
-    <<send "MercsFaithful_EbiSilent_2_JekuChat_DONE" {}>><</send>>
+    <<send "MercsFaithful_EbiSilent_2_JekuChat_DONE" >>{}<</send>>
   <</button>>\
 </span>\
 <<nobr>><<receive "MercsFaithful_EbiSilent_2_JekuChat_DONE" "Faithful">><<script>>
@@ -406,7 +406,7 @@ You smile. "I appreciate the offer, but-"
 
 <span id="mf-es-2-jc-2-btn"><<button "Silas, please take the hint.">>
   <<run setup.replaceWithSending("#mf-es-2-jc-2-btn")>>
-  <<send "MercsFaithful_EbiSilent_2_JekuChat_2_DONE" {}>><</send>>
+  <<send "MercsFaithful_EbiSilent_2_JekuChat_2_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_EbiSilent_2_JekuChat_2_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_EbiSilent_2_JekuChat_3") }
@@ -432,7 +432,7 @@ The bartender raises his eye as you struggle to extricate yourself. "No," you sa
 
 <span id="mf-es-2-jr-btn"><<button "Ugh. Come on, Silas, take the hint.">>
   <<run setup.replaceWithSending("#mf-es-2-jr-btn")>>
-  <<send "MercsFaithful_EbiSilent_2_JekuReject_DONE" {}>><</send>>
+  <<send "MercsFaithful_EbiSilent_2_JekuReject_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_EbiSilent_2_JekuReject_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_EbiSilent_2_JekuReject_2") }
@@ -468,7 +468,7 @@ You shrug. "Sure," you say.
 
 <span id="mf-jr-2-es"><<button "I guess we're getting linner now.">>
   <<run setup.replaceWithSending("#mf-jr-2-es")>>
-  <<send "MercsFaithful_JekuReject_2_EbiSilent_DONE" {}>><</send>>
+  <<send "MercsFaithful_JekuReject_2_EbiSilent_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_JekuReject_2_EbiSilent_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd") }
@@ -497,7 +497,7 @@ Silas sucks in his breath, leans back. "Ah, well, what't'ell. Sure. Pick summin.
 
 <span id="mf-jr-2-et-btn"><<button "\"Thanks for the cover.\"">>
     <<run setup.replaceWithSending("#mf-jr-2-et-btn")>>
-    <<send "MercsFaithful_JekuReject_2_EbiTalk_DONE" {}>><</send>>
+    <<send "MercsFaithful_JekuReject_2_EbiTalk_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaithful_JekuReject_2_EbiTalk_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaitihful_EbiDrinks_MercsLeave") }
@@ -517,7 +517,7 @@ And Ma Tiger's still not arrived.
 
 <span id="mf-ed-ml-btn"><<button "\"Wait.\"">>
   <<run setup.replaceWithSending("#mf-ed-ml-btn")>>
-  <<send "MercsFaitihful_EbiDrinks_MercsLeave_DONE" {}>><</send>>
+  <<send "MercsFaitihful_EbiDrinks_MercsLeave_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaitihful_EbiDrinks_MercsLeave_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaitihful_EbiDrinks_Linner") }
@@ -545,7 +545,7 @@ The two of you get a table in the corner, next to the window. Ebi grabs her menu
 
 <span id="mf-ed-l-btn"><<button "\"Order something. (Something light, though.)\"">>
   <<run setup.replaceWithSending("#mf-ed-l-btn")>>
-  <<send "MercsFaitihful_EbiDrinks_Linner_DONE" {}>><</send>>
+  <<send "MercsFaitihful_EbiDrinks_Linner_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsFaitihful_EbiDrinks_Linner_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd") }
@@ -574,7 +574,7 @@ The bartender returns, bearing the food. Cheap, flash-reheated bar fare. It alwa
 
 <span id="mf-ls-se-btn"><<button "Eat your cheap, slightly metallic salad.">>
   <<run setup.replaceWithSending("#mf-ls-se-btn")>>
-  <<send "MercsFaithful_Linner_SceneEnd_DONE" {}>><</send>>
+  <<send "MercsFaithful_Linner_SceneEnd_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_Linner_SceneEnd_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("ConvoFaithful_Start") }

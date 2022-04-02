@@ -31,8 +31,8 @@ Desert
     <<set $sessionId to _restartSessionId>>
     <<set $hostClientId to _restartHostClientId>>
     <<connect $sessionId>>
-    <<send 'SELECT_CHARACTER_SELECTED' { characterRole: _restartAs }>><</send>>
-    <<send 'SELECT_CHARACTER_CONFIRMED' {}>><</send>>
+    <<send 'SELECT_CHARACTER_SELECTED'>>{ characterRole: State.temporary.restartAs }<</send>>
+    <<send 'SELECT_CHARACTER_CONFIRMED' >>{}<</send>>
   <</nobr>>\
 <<else>>\
   <h1 class="game-title">MA TIGER'S TERRIBLE TRIP</h1>\
@@ -82,7 +82,7 @@ The game will automatically start once your partner has joined.
 <<nobr>>
   <<receive 'JOIN_GAME_CLIENT_CONNECTED' 'Host'>>
     <<if $clientId === $hostClientId>>
-      <<send 'HOST_GAME_GAME_STARTED' { hostClientId: $hostClientId }>><</send>>
+      <<send 'HOST_GAME_GAME_STARTED'>>{ hostClientId: State.variables.hostClientId }<</send>>
     <</if>>
   <</receive>>
   <<receive 'HOST_GAME_GAME_STARTED' 'Host'>>
@@ -102,7 +102,7 @@ Please enter the session identifier you'd like to join.
   <<run $('#jg-join-button').prop('disabled', true)>>
   <<set $sessionId to $('#jg-session-input input')[0].value>>
   <<connect $sessionId>>
-  <<send 'JOIN_GAME_CLIENT_CONNECTED' {}>><</send>>
+  <<send 'JOIN_GAME_CLIENT_CONNECTED' >>{}<</send>>
 <</button>><</disable>>@@\
 <<button [[Main Menu|Start]]>><</button>>
 <<done>><<script>>
@@ -166,7 +166,7 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
           $("#sc-partner-selection").text(`Joiner has selected Jekusheke.`)
         }
       <</script>>
-      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Faithful', characterName: "Jekusheke" }>><</send>>
+      <<send 'SELECT_CHARACTER_SELECTED'>>{ characterRole: 'Faithful', characterName: "Jekusheke" }<</send>>
     <</button>>\
   </div>\
   <div class='column'>\
@@ -181,7 +181,7 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
           $("#sc-partner-selection").text(`Joiner has selected Ebiaishe.`)
         }
       <</script>>
-      <<send 'SELECT_CHARACTER_SELECTED' { characterRole: 'Apostate', characterName: "Ebiaishe" }>><</send>>\
+      <<send 'SELECT_CHARACTER_SELECTED'>>{ characterRole: 'Apostate', characterName: "Ebiaishe" }<</send>>\
     <</button>>\
   </div>\
 </div>@@\
@@ -221,7 +221,7 @@ She wonders if her plans will pan out. She wonders if it will be as hot as she r
     button.prop('disabled', true)
     $('#sc-character-buttons button').prop('disabled', true)
   <</script>>
-  <<send 'SELECT_CHARACTER_CONFIRMED' {}>><</send>>
+  <<send 'SELECT_CHARACTER_CONFIRMED' >>{}<</send>>
 <</button>><</disable>>@@
 <<nobr>><<receive 'SELECT_CHARACTER_CONFIRMED' 'All'>><<script>>
   const data = State.temporary.receiveData

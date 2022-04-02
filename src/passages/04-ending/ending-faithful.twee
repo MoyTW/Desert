@@ -25,7 +25,7 @@ Then, she closes her eyes, and is silent for a long while.
 
 <span id="ebs-s-btn"><<button "What in the world happened?">>
   <<run setup.replaceWithSending("#ebs-s-btn")>>
-  <<send "EndingBloodyFaithful_Start_DONE" {}>><</send>>
+  <<send "EndingBloodyFaithful_Start_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBloodyFaithful_Start_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingBloodyFaithful_Start_2") }
@@ -45,7 +45,7 @@ You feel a queasy unease about the situation, but what can you do about it?
 
 <span id="ebs-s-2-btn"><<button "That's just how it is.">>
   <<run setup.replaceWithSending("#ebs-s2--btn")>>
-  <<send "EndingBloodyFaithful_Start_2_DONE" {}>><</send>>
+  <<send "EndingBloodyFaithful_Start_2_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBloodyFaithful_Start_2_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
@@ -69,7 +69,7 @@ Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in t
 
 <span id="eds-s-btn"><<button "Talk.">>
   <<run setup.replaceWithSending("#eds-s-btn")>>
-  <<send "EndingDesertFaithful_Start" {}>><</send>>
+  <<send "EndingDesertFaithful_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertFaithful_Start" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingDesertFaithful_Start_2") }
@@ -89,7 +89,7 @@ For you, nothing, because between the two of you, all debts have been paid.
 
 <span id="eds-s-2-btn"><<button "Wait for Ebi's decision.">>
   <<run setup.replaceWithSending("#eds-s2--btn")>>
-  <<send "EndingDesertFaithful_Start_2" {}>><</send>>
+  <<send "EndingDesertFaithful_Start_2" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertFaithful_Start_2" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
@@ -106,7 +106,7 @@ Five hours, thirty-four minutes after the incident, Ma Tiger steps into the wait
 
 <span id="epf-s-btn"><<button "Follow.">>
   <<run setup.replaceWithSending("#epf-s-btn")>>
-  <<send "EndingPoliceFaithful_Start" {}>><</send>>
+  <<send "EndingPoliceFaithful_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingPoliceFaithful_Start" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingPoliceFaithful_Start_2") }
@@ -128,7 +128,7 @@ For you, nothing, because between the two of you, all debts have been paid.
 
 <span id="epf-s-2-btn"><<button "Wait for Ebi's decision.">>
   <<run setup.replaceWithSending("#epf-s-2-btn")>>
-  <<send "EndingPoliceFaithful_Start_2" {}>><</send>>
+  <<send "EndingPoliceFaithful_Start_2" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingPoliceFaithful_Start_2" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
@@ -149,7 +149,7 @@ You ask what she'll do now.
 
 <span id="ebf-s-btn"><<button "Wait for Ebi's decision.">>
   <<run setup.replaceWithSending("#ebf-s-btn")>>
-  <<send "EndingBadFaithful_Start" {}>><</send>>
+  <<send "EndingBadFaithful_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBadFaithful_Start" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingFaithful_ThankYou") }
@@ -211,7 +211,7 @@ Xi Shi takes a few seconds before replying. "It's mostly standard," she says, "b
 
 <span id="ebs-s-btn"><<button "Tell Xi Shi to accept the terms.">>
   <<run setup.replaceWithSending("#ebs-s-btn")>>
-  <<send "EndingSharedFaithful_Start" {}>><</send>>
+  <<send "EndingSharedFaithful_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingSharedFaithful_Start" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_King_To_Police") }
@@ -237,7 +237,7 @@ Xi Shi takes a few seconds before replying. "It's mostly standard," she says, "b
 
 <span id="ebs-s-n-f-s-btn"><<button "Tell Xi Shi to accept the terms.">>
   <<run setup.replaceWithSending("#ebs-s-n-f-s-btn")>>
-  <<send "EndingSharedFaithful_Start_No_Francis_Stable" {}>><</send>>
+  <<send "EndingSharedFaithful_Start_No_Francis_Stable" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingSharedFaithful_Start_No_Francis_Stable" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_King_To_Police") }
@@ -282,7 +282,7 @@ The cook returns with garbage bags, goes back inside. You're left alone, standin
 
 <span id="ebs-s-n-f-d-btn"><<button "Wrap King up.">>
   <<run setup.replaceWithSending("#ebs-s-n-f-d-btn")>>
-  <<send "EndingSharedFaithful_Start_No_Francis_Dead" {}>><</send>>
+  <<send "EndingSharedFaithful_Start_No_Francis_Dead" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingSharedFaithful_Start_No_Francis_Dead" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_Dead_To_Police") }
@@ -336,21 +336,21 @@ You emerge several minutes later to see a pair of cops in their full power armor
 <span id="ebs-s-btn">\
   <<button "Yes, sir.">>
     <<run setup.replaceWithSending("#ebs-s-btn")>>
-    <<send "EndingSharedFaithful_To_Police" { choice: "POLITE" }>><</send>>
+    <<send "EndingSharedFaithful_To_Police">>{ choice: "POLITE" }<</send>>
   <</button>>
   <<button "Last I checked.">>
     <<run setup.replaceWithSending("#ebs-s-btn")>>
-    <<send "EndingSharedFaithful_To_Police" { choice: "SNARKY" }>><</send>>
+    <<send "EndingSharedFaithful_To_Police">>{ choice: "SNARKY" }<</send>>
   <</button>>
   <<if $called911>>\
     <<button "About time you showed up.">>
       <<run setup.replaceWithSending("#ebs-s-btn")>>
-      <<send "EndingSharedFaithful_To_Police" { choice: "DEMANDING" }>><</send>>
+      <<send "EndingSharedFaithful_To_Police">>{ choice: "DEMANDING" }<</send>>
     <</button>>
   <<else>>\
     <<button "Who called you?">>
       <<run setup.replaceWithSending("#ebs-s-btn")>>
-      <<send "EndingSharedFaithful_To_Police" { choice: "QUESTION" }>><</send>>
+      <<send "EndingSharedFaithful_To_Police">>{ choice: "QUESTION" }<</send>>
     <</button>>
   <</if>>\
 </span>\
@@ -407,7 +407,7 @@ He holds a genescanner against your hand for a moment and confirms your identity
 
 <span id="ebf-p-r-btn"><<button "Pleasant lot, the law.">>
   <<run setup.replaceWithSending("#ebf-p-r-btn")>>
-  <<send "EndingSharedFaithful_Police_Read" {}>><</send>>
+  <<send "EndingSharedFaithful_Police_Read" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingSharedFaithful_Police_Read" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_Ma_Tiger_Call") }
@@ -449,7 +449,7 @@ Your phone buzzes. You check the name. It's Ma Tiger! You take the call. "Ma!" y
 
 <span id="ebs-s-btn"><<button "Go to the golf course.">>
   <<run setup.replaceWithSending("#ebs-s-btn")>>
-  <<send "EndingSharedFaithful_Ma_Tiger_Call" {}>><</send>>
+  <<send "EndingSharedFaithful_Ma_Tiger_Call" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingSharedFaithful_Ma_Tiger_Call" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("EndingSharedFaithful_Meetup") }
@@ -465,7 +465,7 @@ You hear a burst of music, and you look over and spot Ebi and Ma, standing in fr
 
 <span id="ebf-m-btn"><<button "Well?">>
   <<run setup.replaceWithSending("#ebf-m-btn")>>
-  <<send "EndingSharedFaithful_Meetup" {}>><</send>>
+  <<send "EndingSharedFaithful_Meetup" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>>
   <<receive "EndingSharedFaithful_Meetup" "Faithful">><<script>>
@@ -514,7 +514,7 @@ The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says
 
 <span id="ebs-m-e-btn"><<button "Get in.">>
   <<run setup.replaceWithSending("#ebs-m-e-btn")>>
-  <<send "EndingSharedFaithful_Meetup_End" {}>><</send>>
+  <<send "EndingSharedFaithful_Meetup_End" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingSharedFaithful_Meetup_End" "Faithful">><<script>>
   if (setup.isFaithful()) {
@@ -539,12 +539,12 @@ If you're interested in the technical aspects behind this game, I've put a link 
 <span id="es-ty"><<button "Restart as Ebiaishe.">>
   <<run setup.replaceWithSending("#es-ty")>>
   <<set _restartSessionId to setup.Websocket.uuidv4()>>
-  <<send "EndingFaithful_Restart" { sessionId: _restartSessionId, hostClientId: $clientId }>><</send>>
+  <<send "EndingFaithful_Restart">>{ sessionId: State.temporary.restartSessionId, hostClientId: State.variables.clientId }<</send>>
 <</button>></span>\
 <<button [[Credits|EndingFaithful_Credits]]>><</button>>
 <<button [[About|EndingFaithful_About]]>><</button>>
 <<button "Main Menu">>
-  <<send "EndingFaithful_EndGame" {}>><</send>>
+  <<send "EndingFaithful_EndGame" >>{}<</send>>
   <<run Engine.restart()>>
 <</button>>
 <<nobr>>

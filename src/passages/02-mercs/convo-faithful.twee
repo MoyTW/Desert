@@ -7,7 +7,7 @@ Well, she always liked <<tooltip "King">>Ma Tiger's guardian dog. She had him wh
 
 <span id="cf-s-btn"><<button "\"You remember King, right?\"">>
   <<run setup.replaceWithSending("#cf-s-btn")>>
-  <<send "ConvoFaithful_Start" {}>><</send>>
+  <<send "ConvoFaithful_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "ConvoFaithful_Start" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("ConvoFaithful_Start_2") }
@@ -23,7 +23,7 @@ Ebi blinks, looks up from her soup. "Yeah."
 
 <span id="cf-s-2-btn"><<button "Wait for her response.">>
   <<run setup.replaceWithSending("#cf-s-2-btn")>>
-  <<send "ConvoFaithful_Start_2" {}>><</send>>
+  <<send "ConvoFaithful_Start_2" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "ConvoFaithful_Start_2" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("ConvoFaithful_Start_3") }
@@ -69,9 +69,9 @@ Ebi blinks, looks up from her soup. "Yeah."
   <span id="cf-c-b"><<button _args[0]>>
     <<run setup.replaceWithSending("#cf-c-b")>>
     <<if $convosLeft > 0 >>\
-      <<send "ConvoFaithful_Continue_Button" {}>><</send>>
+      <<send "ConvoFaithful_Continue_Button" >>{}<</send>>
     <<else>>\
-      <<send "ConvoFaithful_Goto_End" {}>><</send>>
+      <<send "ConvoFaithful_Goto_End" >>{}<</send>>
     <</if>>\
   </span><</button>>\
 <</widget>>\
@@ -82,25 +82,25 @@ Ebi blinks, looks up from her soup. "Yeah."
   <<if not hasVisited("ConvoFaithful_Jeku_Implants")>>\
     <<button "Ask about Ebi's implants.">>
       <<run setup.replaceWithSending("#cf-c-btn")>>
-      <<send "ConvoFaithful_Choices" { choice: "IMPLANTS" }>><</send>>
+      <<send "ConvoFaithful_Choices">>{ choice: "IMPLANTS" }<</send>>
     <</button>>
   <</if>>\
   <<if not hasVisited("ConvoFaithful_Jeku_Fiancee")>>\
     <<button "Talk about your fiancee.">>
       <<run setup.replaceWithSending("#cf-c-btn")>>
-      <<send "ConvoFaithful_Choices" { choice: "FIANCEE" }>><</send>>
+      <<send "ConvoFaithful_Choices">>{ choice: "FIANCEE" }<</send>>
     <</button>>
   <</if>>\
   <<if not hasVisited("ConvoFaithful_Jeku_Life")>>\
     <<button "Ask about what Ebi's been doing all this time.">>
       <<run setup.replaceWithSending("#cf-c-btn")>>
-      <<send "ConvoFaithful_Choices" { choice: "LIFE" }>><</send>>
+      <<send "ConvoFaithful_Choices">>{ choice: "LIFE" }<</send>>
     <</button>>
   <</if>>\
   <<if hasVisited("ConvoFaithful_Jeku_Implants") or hasVisited("ConvoFaithful_Jeku_Fiancee") or hasVisited("ConvoFaithful_Jeku_Life")>>\
     <<button "Reminisce about your childhood.">>
       <<run setup.replaceWithSending("#cf-c-btn")>>
-      <<send "ConvoFaithful_Choices" { choice: "CHILDHOOD" }>><</send>>
+      <<send "ConvoFaithful_Choices">>{ choice: "CHILDHOOD" }<</send>>
     <</button>>
   <</if>>\
 </span>\
@@ -136,7 +136,7 @@ She chuckles. "Not as far as I'm aware."
 
 <span id="cf-j-i"><<button "Is she going to say?">>
   <<run setup.replaceWithSending("#cf-j-i")>>
-  <<send "ConvoFaithful_Jeku_Implants" {}>><</send>>
+  <<send "ConvoFaithful_Jeku_Implants" >>{}<</send>>
 <</button>></span>\
 <<nobr>>
   <<receive "ConvoFaithful_Jeku_Implants" "Faithful">><<script>>
@@ -203,7 +203,7 @@ You swallow your rude comment. "Thanks," you say.
 
 <span id="cf-j-f"><<button "Ebi, more than anybody, should understand.">>
   <<run setup.replaceWithSending("#cf-j-f")>>
-  <<send "ConvoFaithful_Jeku_Fiancee" {}>><</send>>
+  <<send "ConvoFaithful_Jeku_Fiancee" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "ConvoFaithful_Jeku_Fiancee" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("ConvoFaithful_Jeku_Fiancee_2") }
@@ -285,15 +285,15 @@ You think for a moment. "Well, it's all right. I like being an EMT. I have a thr
 <span id="cf-e-l-btn">\
   <<button "I couldn't stand how little autonomy I had in corporate doctoring.">>
     <<run setup.replaceWithSending("#cf-e-l-btn")>>
-    <<send "ConvoFaithful_Ebi_Life" { choice: "CORPORATE" }>><</send>>
+    <<send "ConvoFaithful_Ebi_Life">>{ choice: "CORPORATE" }<</send>>
   <</button>>
   <<button "The only doctors that make any money are cosmetic surgeons, and I didn't fit in.">>
     <<run setup.replaceWithSending("#cf-e-l-btn")>>
-    <<send "ConvoFaithful_Ebi_Life" { choice: "COSMETIC" }>><</send>>
+    <<send "ConvoFaithful_Ebi_Life">>{ choice: "COSMETIC" }<</send>>
   <</button>>
   <<button "It turns out that proper doctoring is a lot less exciting than slum doctoring.">>
     <<run setup.replaceWithSending("#cf-e-l-btn")>>
-    <<send "ConvoFaithful_Ebi_Life" { choice: "SLUM" }>><</send>>
+    <<send "ConvoFaithful_Ebi_Life">>{ choice: "SLUM" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "ConvoFaithful_Ebi_Life" "Faithful">><<script>>
@@ -393,7 +393,7 @@ Especially not with Ebi. Unless she's a completely different person, she'd just 
 
 <span id="cf-e-r"><<button "Will she drop it?">>
   <<run setup.replaceWithSending("#cf-e-r")>>
-  <<send "ConvoFaithful_Ebi_Reno" {}>><</send>>
+  <<send "ConvoFaithful_Ebi_Reno" >>{}<</send>>
 <</button>></span>\
 <<nobr>>
   <<receive "ConvoFaithful_Ebi_Reno" "Faithful">><<script>>
@@ -471,7 +471,7 @@ A woman with a giant dog crosses the street towards the bar. The dog is - oh, th
 
 <span id="mf-ls-se-2-btn"><<button "Get to the door!">>
   <<run setup.replaceWithSending("#mf-ls-se-2-btn")>>
-  <<send "MercsFaithful_Linner_SceneEnd_2_DONE" {}>><</send>>
+  <<send "MercsFaithful_Linner_SceneEnd_2_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_Linner_SceneEnd_2_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("MercsFaithful_Linner_SceneEnd_3") }
@@ -487,7 +487,7 @@ Ebi dashes past you, a blur, but by the time she reaches the scene, the van's al
 
 <span id="mf-ls-se-3-btn"><<button "What the fuck is going on?">>
   <<run setup.replaceWithSending("#mf-ls-se-3-btn")>>
-  <<send "MercsFaithful_Linner_SceneEnd_3_DONE" {}>><</send>>
+  <<send "MercsFaithful_Linner_SceneEnd_3_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsFaithful_Linner_SceneEnd_3_DONE" "Faithful">><<script>>
   if (setup.isFaithful()) { Engine.play("ChaseFaithful_Start") }

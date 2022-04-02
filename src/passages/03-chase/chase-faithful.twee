@@ -8,7 +8,7 @@
 
   <span id="cf-s-btn"><<button "I'm ready.">>
     <<run setup.replaceWithSending("#cf-s-btn")>>
-    <<send "ChaseFaithful_Start_DONE" {}>><</send>>
+    <<send "ChaseFaithful_Start_DONE" >>{}<</send>>
   <</button>></span>
   <<nobr>>
     <<receive "ChaseFaithful_Start_DONE" "Faithful">><<script>>
@@ -35,7 +35,8 @@
 :: ChaseFaithful_ButtonWidget [widget]
 <<widget "cf-button">>\
   <<button _args[0]>>
-    <<send "ChaseFaithful_CHOICE" { choice: _args[1], passage: passage() }>><</send>>
+    <<set _choice to _args[1]>>
+    <<send "ChaseFaithful_CHOICE">>{ choice: State.temporary.choice, passage: passage() }<</send>>
     <<replace "#chase-shared-timer">><h1>_args[2]</h1><</replace>>
     <<set _stopTimer to true>>
     <<run $("#chase-shared-msg-status").removeClass("hidden")>>
@@ -1046,7 +1047,7 @@ TODO: Did you just kill somebody?
 
   <span id="cf-e-btn"><<button "Continue.">>
     <<run setup.replaceWithSending("#cf-e-btn")>>
-    <<send "ChaseFaithful_End_DONE" {}>><</send>>
+    <<send "ChaseFaithful_End_DONE" >>{}<</send>>
   <</button>></span>
   <<nobr>>
     <<receive "ChaseFaithful_End_DONE" "Faithful">><<script>>

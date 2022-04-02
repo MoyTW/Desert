@@ -8,11 +8,11 @@ It's vaguely absured, in the way that so many of these plots are absurd, but the
 <span id="ea-lsb-btn">\
   <<button "Stay.">>
     <<run setup.replaceWithSending("#ea-lsb-btn")>>
-    <<send "EndingApostate_LeaveStayButtons" {}>><</send>>
+    <<send "EndingApostate_LeaveStayButtons" >>{}<</send>>
   <</button>>
   <<button "Leave.">>
     <<run setup.replaceWithSending("#ea-lsb-btn")>>
-    <<send "EndingApostate_LeaveStayButtons" {}>><</send>>
+    <<send "EndingApostate_LeaveStayButtons" >>{}<</send>>
   <</button>>
 </span>\ 
 <<nobr>><<receive "EndingApostate_LeaveStayButtons" "Apostate">><<script>>
@@ -45,7 +45,7 @@ You feel that old resentment bubbling back up, annoyance and anger at your imper
   <<disabled-button "<s>Grab her by the arm and pull her out of the van.</s> (Have some fucking self-control, Ebi!)">>
   <<button "Let her finish.">>
     <<run setup.replaceWithSending("#eba-s-btn")>>
-    <<send "EndingBloodyApostate_Start" {}>><</send>>
+    <<send "EndingBloodyApostate_Start" >>{}<</send>>
   <</button>>
 </span>\ 
 <<nobr>><<receive "EndingBloodyApostate_Start" "Apostate">><<script>>
@@ -78,7 +78,7 @@ The car hums to life. "1218 Golf Club Dr Parking Lot," it says, "and as per your
 
 <span id="eba-e-l-btn"><<button "Buckle in.">>
   <<run setup.replaceWithSending("#eba-e-l-btn")>>
-  <<send "EndingBloodyApostate_Escape_Listen" {}>><</send>>
+  <<send "EndingBloodyApostate_Escape_Listen" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "EndingBloodyApostate_Escape_Listen" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Meetup") }
@@ -120,7 +120,7 @@ Then, she closes her eyes, and is silent for a long while.
 
 <span id="eba-s-btn"><<button "Talk.">>
   <<run setup.replaceWithSending("#eba-s-btn")>>
-  <<send "EndingBloodyApostate_Start_DONE" {}>><</send>>
+  <<send "EndingBloodyApostate_Start_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingBloodyApostate_Start_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingBloodyApostate_Start_2") }
@@ -172,7 +172,7 @@ Yellow jersey's phone rings. He picks it up, listens. "All right," he says. "An 
 
 <span id="eda-s-btn"><<button "Let her finish.">>
   <<run setup.replaceWithSending("#eda-s-btn")>>
-  <<send "EndingDesertApostate_Start" {}>><</send>>
+  <<send "EndingDesertApostate_Start" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertApostate_Start" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingDesertApostate_Ride") }
@@ -190,7 +190,7 @@ You feel that old resentment bubbling back up, annoyance at how your mother migh
   <<disabled-button "<s>\"No, we'll talk now! I just smashed somebody open to get to you and I deserve some fucking answers!\"</s> (What are you, fucking five? Yeah, talk right in front of the people who just kidnapped Ma, that's a great fucking plan.)">>
   <<button "\"Fine. Later.\"">>
     <<run setup.replaceWithSending("#eda-r-btn")>>
-    <<send "EndingDesertApostate_Ride" {}>><</send>>
+    <<send "EndingDesertApostate_Ride" >>{}<</send>>
 <</button>>
 </span>\ 
 <<nobr>><<receive "EndingDesertApostate_Ride" "Apostate">><<script>>
@@ -217,7 +217,7 @@ She smiles. "I wish to make a phone call," she announces to the van.
 
 <span id="eda-r-2-btn"><<button "Ride in silence.">>
     <<run setup.replaceWithSending("#eda-r-2-btn")>>
-    <<send "EndingDesertApostate_Ride_2" {}>><</send>>
+    <<send "EndingDesertApostate_Ride_2" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertApostate_Ride_2" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingDesertApostate_Meetup") }
@@ -255,7 +255,7 @@ Ma Tiger stops the car outside of what looks like an abandoned shack. "Stay in t
 
 <span id="eda-s-btn"><<button "Talk.">>
   <<run setup.replaceWithSending("#eda-s-btn")>>
-  <<send "EndingDesertApostate_Start_DONE" {}>><</send>>
+  <<send "EndingDesertApostate_Start_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingDesertApostate_Start_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingDesertApostate_Start_2") }
@@ -288,7 +288,7 @@ Five hours, thirty-four minutes after the incident, Ma Tiger steps into the wait
 
 <span id="epa-s-btn"><<button "Follow.">>
   <<run setup.replaceWithSending("#epa-s-btn")>>
-  <<send "EndingPoliceApostate_Start_DONE" {}>><</send>>
+  <<send "EndingPoliceApostate_Start_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "EndingPoliceApostate_Start_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("EndingPoliceApostate_Start_2") }
@@ -335,15 +335,15 @@ He asks what you'll do now.
 <span id="eda-m-btn">\
   <<button "She's following her escape plan, I think.">>
     <<run setup.replaceWithSending("#eda-m-btn")>>
-    <<send "EndingSharedApostate_Meetup_Choice" { choice: "ESCAPE" }>><</send>>
+    <<send "EndingSharedApostate_Meetup_Choice">>{ choice: "ESCAPE" }<</send>>
   <</button>>
   <<button "Stealing a car.">>
     <<run setup.replaceWithSending("#eda-m-btn")>>
-    <<send "EndingSharedApostate_Meetup_Choice" { choice: "STEAL" }>><</send>>
+    <<send "EndingSharedApostate_Meetup_Choice">>{ choice: "STEAL" }<</send>>
   <</button>>
   <<button "Fuck if I know.">>
     <<run setup.replaceWithSending("#eda-m-btn")>>
-    <<send "EndingSharedApostate_Meetup_Choice" { choice: "DUNNO" }>><</send>>
+    <<send "EndingSharedApostate_Meetup_Choice">>{ choice: "DUNNO" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "EndingSharedApostate_Meetup_Choice" "Apostate">><<script>>
@@ -390,7 +390,7 @@ The car beeps and its doors unlock. Ma Tiger turns around. "Jekusheke," she says
 
 <span id="eda-m-e-btn"><<button "Get in.">>
   <<run setup.replaceWithSending("#eda-m-e-btn")>>
-  <<send "EndingSharedApostate_Meetup_End" {}>><</send>>
+  <<send "EndingSharedApostate_Meetup_End" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "EndingSharedApostate_Meetup_End" "Apostate">><<script>>
   if (setup.isApostate()) {
@@ -414,12 +414,12 @@ If you're interested in the technical aspects behind this game, I've put a link 
 
 <span id="es-ty"><<button "Restart as Jekusheke.">>
   <<run setup.replaceWithSending("#es-ty")>>
-  <<send "EndingApostate_Restart" {}>><</send>>
+  <<send "EndingApostate_Restart" >>{}<</send>>
 <</button>></span>\
 <<button [[Credits|EndingApostate_Credits]]>><</button>>
 <<button [[About|EndingApostate_About]]>><</button>>
 <<button "Main Menu">>
-  <<send "EndingApostate_EndGame" {}>><</send>>
+  <<send "EndingApostate_EndGame" >>{}<</send>>
   <<run Engine.restart()>>
 <</button>>
 <<nobr>>

@@ -9,11 +9,11 @@ The two of them see Jekusheke, see you. The heavy dismisses you; the slim one wh
 
 <span id="ia-me-btns">\
   <<button "Possible complications? I'll try and keep them from talking.">>
-    <<send "MercsApostate_Start_CHOICE" { choice: "TALK" }>><</send>>
+    <<send "MercsApostate_Start_CHOICE">>{ choice: "TALK" }<</send>>
     <<run setup.replaceWithSending("#ia-me-btns")>>
   <</button>>
   <<button "Unless they're related to Ma Tiger's somehow, I don't care.">>
-    <<send "MercsApostate_Start_CHOICE" { choice: "SILENT" } >><</send>>
+    <<send "MercsApostate_Start_CHOICE">>{ choice: "SILENT" }<</send>>
     <<run setup.replaceWithSending("#ia-me-btns")>>
   <</button>>
   <<nobr>>
@@ -107,7 +107,7 @@ After a moment, Silas regains his composure. "Right," he says, nodding to you, "
 <span id="ia-jmc-btns">\
   <<button "Jeku's quite angry now. That's a problem.">>
     <<run setup.replaceWithSending("#ia-jmc-btns")>>
-    <<send "MercsApostate_EbiTalk_DONE" { }>><</send>>
+    <<send "MercsApostate_EbiTalk_DONE">>{}<</send>>
   <</button>>
 </span>\
 <<nobr>>
@@ -136,7 +136,7 @@ This is a problem, though; you need Jeku to cooperate. You'll have to talk fast.
 
 <span id="ma-et-ja-btn"><<button "How's he reacting?">>
   <<run setup.replaceWithSending("#ma-et-ja-btn")>>
-  <<send "MercsApostate_EbiTalk_JekuAngry_DONE" { }>><</send>>
+  <<send "MercsApostate_EbiTalk_JekuAngry_DONE">>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_EbiTalk_JekuAngry_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory") }
@@ -156,7 +156,7 @@ Jeku starts stammering instead of shutting up. "I, uh. Not quite. Actually, I wa
 
 <span id="ma-et-ji-btn"><<button "How's he reacting?">>
   <<run setup.replaceWithSending("#ma-et-ji-btn")>>
-  <<send "MercsApostate_EbiTalk_JekuIgnore_DONE" {}>><</send>>
+  <<send "MercsApostate_EbiTalk_JekuIgnore_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_EbiTalk_JekuIgnore_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory") }
@@ -168,7 +168,7 @@ He's still wide-eyed. Your voice is brisk, businesslike. "We can't talk to anybo
 
 <span id="ma-dcs-btn"><<button "Well?">>
   <<run setup.replaceWithSending("#ma-dcs-btn")>>
-  <<send "MercsApostate_DiscussCoverStory_DONE" {}>><</send>>
+  <<send "MercsApostate_DiscussCoverStory_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>>
   <<receive "MercsApostate_DiscussCoverStory_DONE" "Apostate">><<script>>
@@ -196,15 +196,15 @@ What's the best way to approach this?
 <span id="ma-dcs-a-btn">\
   <<button "Confide in him that you were worried, and made a bad call.">>
     <<run setup.replaceWithSending("#ma-dcs-a-btn")>>
-    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE" { choice: "CONCERNS" }>><</send>>
+    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE">>{ choice: "CONCERNS" }<</send>>
   <</button>>
   <<button "Apologize for not thinking of how it would effect him.">>
     <<run setup.replaceWithSending("#ma-dcs-a-btn")>>
-    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE" { choice: "APOLOGIZE" }>><</send>>
+    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE">>{ choice: "APOLOGIZE" }<</send>>
   <</button>>
   <<button "Explain why it was necessary to stop him talking.">>
     <<run setup.replaceWithSending("#ma-dcs-a-btn")>>
-    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE" { choice: "EXPLAIN" }>><</send>>
+    <<send "MercsApostate_DiscussCoverStory_Argue_CHOICE">>{ choice: "EXPLAIN" }<</send>>
   <</button>>
 </span>\
 <<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_CHOICE" "Apostate">><<script>>
@@ -229,7 +229,7 @@ You give it a few seconds, then swallow. "Please."
 
 <span id="ma-dcs-a-c-btn"><<button "Does he buy it?">>
   <<run setup.replaceWithSending("#ma-dcs-a-c-btn")>>
-  <<send "MercsApostate_DiscussCoverStory_Argue_Concerns_DONE" {}>><</send>>
+  <<send "MercsApostate_DiscussCoverStory_Argue_Concerns_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_Concerns_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory_Fine") }
@@ -249,7 +249,7 @@ He sighs.
 
 <span id="ma-dcs-a-a-btn"><<button "He seems to have bought it.">>
   <<run setup.replaceWithSending("#ma-dcs-a-a-btn")>>
-  <<send "MercsApostate_DiscussCoverStory_Argue_Apologize_DONE" {}>><</send>>
+  <<send "MercsApostate_DiscussCoverStory_Argue_Apologize_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_Apologize_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory_Fine") }
@@ -271,7 +271,7 @@ Come on Jeku, are you five? "You can be mad at me later, after we meet Ma Tiger.
 
 <span id="ma-dcs-a-e-btn"><<button "Come on. You're being silly.">>
   <<run setup.replaceWithSending("#ma-dcs-a-e-btn")>>
-  <<send "MercsApostate_DiscussCoverStory_Argue_Explain_DONE" {}>><</send>>
+  <<send "MercsApostate_DiscussCoverStory_Argue_Explain_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_DiscussCoverStory_Argue_Explain_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_DiscussCoverStory_Fine") }
@@ -303,7 +303,7 @@ Jeku's staring out the window, brow furrowed. You sit down, slide a menu over. "
 
 <span id="ma-dcs-f-btn"><<button "Pick something to order.">>
   <<run setup.replaceWithSending("#ma-dcs-f-btn")>>
-  <<send "MercsApostate_DiscussCoverStory_Fine_DONE" {}>><</send>>
+  <<send "MercsApostate_DiscussCoverStory_Fine_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_DiscussCoverStory_Fine_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd") }
@@ -331,7 +331,7 @@ What? He's got a fiance?  "No," says your brother, "she's my-"
 
 <span id="ma-es-btn"><<button "Find a way to separate them.">>
   <<run setup.replaceWithSending("#ma-es-btn")>>
-  <<send "MercsApostate_EbiSilent_DONE" {}>><</send>>
+  <<send "MercsApostate_EbiSilent_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_EbiSilent_DONE" "Apostate">><<script>>
   if (setup.isApostate()) {
@@ -353,7 +353,7 @@ You tune back in. Silas is attempting to get Jeku to start drinking. Looks like 
 
 <span id="ma-es-2-jc-btn"><<button "Interrupt.">>
   <<run setup.replaceWithSending("#ma-es-2-jc-btn")>>
-  <<send "MercsApostate_EbiSilent_2_JekuChat_DONE" {}>><</send>>
+  <<send "MercsApostate_EbiSilent_2_JekuChat_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_EbiSilent_2_JekuChat_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuChat_2") }
@@ -383,7 +383,7 @@ You follow Jeku back to his seat. "Sorry," he says to Silas, "my friend's kind o
 
 <span id="ma-es-2-jc-2-btn"><<button "Force the issue.">>
   <<run setup.replaceWithSending("#ma-es-2-jc-2-btn")>>
-  <<send "MercsApostate_EbiSilent_2_JekuChat_2_DONE" {}>><</send>>
+  <<send "MercsApostate_EbiSilent_2_JekuChat_2_DONE" >>{}<</send>>
 <</button>></span>\
 <<nobr>><<receive "MercsApostate_EbiSilent_2_JekuChat_2_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuChat_3") }
@@ -409,7 +409,7 @@ You follow Jeku back to his seat. "Sorry," he says to Silas, "my friend's kind o
 
 <span id="ma-es-2-jr-btn"><<button "All right, time to bail him out.">>
   <<run setup.replaceWithSending("#ma-es-2-jr-btn")>>
-  <<send "MercsApostate_EbiSilent_2_JekuReject_DONE" {}>><</send>>
+  <<send "MercsApostate_EbiSilent_2_JekuReject_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsApostate_EbiSilent_2_JekuReject_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_EbiSilent_2_JekuReject_2") }
@@ -445,7 +445,7 @@ He shrugs. "Sure."
 
 <span id="ma-es-2-jr-2-btn"><<button "Browse the menu.">>
   <<run setup.replaceWithSending("#ma-es-2-jr-2-btn")>>
-  <<send "MercsApostate_EbiSilent_2_JekuReject_2_DONE" {}>><</send>>
+  <<send "MercsApostate_EbiSilent_2_JekuReject_2_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsApostate_EbiSilent_2_JekuReject_2_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("MercsApostate_Linner_SceneEnd") }
@@ -475,7 +475,7 @@ The bartender returns, bearing food and drink, obviously flash-heated, from how 
 
 <span id="ma-l-se-btn"><<button "Eat.">>
   <<run setup.replaceWithSending("#ma-l-se-btn")>>
-  <<send "MercsApostate_Linner_SceneEnd_DONE" {}>><</send>>
+  <<send "MercsApostate_Linner_SceneEnd_DONE" >>{}<</send>>
 <</button>></span>\ 
 <<nobr>><<receive "MercsApostate_Linner_SceneEnd_DONE" "Apostate">><<script>>
   if (setup.isApostate()) { Engine.play("ConvoApostate_Start") }
