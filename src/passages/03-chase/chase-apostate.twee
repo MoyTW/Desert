@@ -331,7 +331,7 @@
     "FIGHT"
     "You're subduing the kidnappers.">>
   <<ca-button "Negotiate. (They're caught. Nobody else needs to get hurt.)"
-    "FIGHT"
+    "NEGOTIATE"
     "You're negotiating with the kidnappers.">>
 <</chase-shared-options-section>>\
 
