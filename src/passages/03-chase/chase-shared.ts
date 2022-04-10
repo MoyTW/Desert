@@ -177,11 +177,13 @@
       ["CHASE_END", ["ChaseApostate_End", () => {
         (State.variables as any).apostateCaughtKidnappers = true
       }]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill_Shoot", () => {}]],
     ])],
     ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", new Map<string,[string, () => void]>([
       ["CHASE_END", ["ChaseApostate_End", () => {
         (State.variables as any).apostateCaughtKidnappers = true
       }]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Kill_Deescalate", () => {}]],
     ])],
     ["ChaseApostate_OnFoot_Caught_Subdue", new Map<string,[string, () => void]>([
       ["FIGHT", ["ChaseApostate_OnFoot_Caught_Subdue_2", () => {}]],
@@ -196,11 +198,13 @@
       ["CHASE_END", ["ChaseApostate_End", () => {
         (State.variables as any).apostateCaughtKidnappers = true
       }]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Subdue_Fight", () => {}]],
     ])],
     ["ChaseApostate_OnFoot_Caught_Subdue_Negotiate", new Map<string,[string, () => void]>([
       ["CHASE_END", ["ChaseApostate_End", () => {
         (State.variables as any).apostateCaughtKidnappers = true
       }]],
+      ["FREEZE", ["ChaseApostate_OnFoot_Caught_Subdue_Negotiate", () => {}]],
     ])],
     // ########################################################################
     // # 911                                                                  #
@@ -542,6 +546,7 @@
       }]],
       ["FREEZE", ["ChaseFaithful_King_Treat_Belly", () => {}]],
     ])],
+    ["ChaseFaithful_King_Treat_Stable", _faithfulChristiesRouting],
     ["ChaseFaithful_King_Leave_Dangerously", _faithfulChristiesRouting],
     // ########################################################################
     // # BAR                                                                  #
